@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 public class PlayerListingsMenu : MonoBehaviourPunCallbacks
 {
@@ -10,12 +11,48 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     private Transform _content;
     [SerializeField]
     private PlayerListing _playerListing;
+    [SerializeField] 
+    private Text _readyUpText;
 
     private List<PlayerListing> _listings = new List<PlayerListing>();
+    private RoomsCanvases _roomCanvases;
+    private bool _ready = false;
 
-    private void Awake()
+    public override void OnEnable()
     {
+        base.OnEnable();
+        SetReadyUp(false);
         GetCurrentRoomPlayers();
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        for (int i = 0; i < _listings.Count; i++)
+            Destroy(_listings[i].gameObject);
+
+        _listings.Clear();
+    }
+
+    public void FirstInitialize(RoomsCanvases canvases)
+    {
+        _roomCanvases = canvases;
+    }
+
+    private void SetReadyUp(bool state)
+    {
+        _ready = state;
+        if (state)
+        {
+            if (_ready)
+            {
+                _readyUpText.text = "R";
+            }
+            else
+            {
+                _readyUpText.text = "N";
+            }
+        }
     }
 
     private void GetCurrentRoomPlayers()
@@ -28,11 +65,17 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
 
     private void AddPlayerListings(Player player)
     {
-        PlayerListing listing = Instantiate(_playerListing, _content);
-        if (listing != null)
+        int index = _listings.FindIndex(x => x.Player == player);
+        if (index != -1)
+            _listings[index].SetPlayerInfo(player);
+        else
         {
-            listing.SetPlayerInfo(player);
-            _listings.Add(listing);
+            PlayerListing listing = Instantiate(_playerListing, _content);
+            if (listing != null)
+            {
+                listing.SetPlayerInfo(player);
+                _listings.Add(listing);
+            }
         }
     }
 
