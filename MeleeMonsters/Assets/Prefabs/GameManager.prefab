@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3249966276505475120}
   - component: {fileID: 6741178743958388546}
   m_Layer: 0
-  m_Name: InitPlayers
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,13 +43,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a586399d0ef0843936de74aa7a3732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD:MeleeMonsters/Assets/Prefabs/InitPlayers.prefab
-  avocatPrefab: {fileID: 4958320532538682467, guid: 336e564b6d178af4b862da35321f0afd,
-    type: 3}
-  fantomePrefab: {fileID: 4958320532538682467, guid: 0fd6a1012daa8fa458415d87a3cc8107,
-    type: 3}
-  gameManager: {fileID: 0}
-=======
-  playerPrefab: {fileID: 4958320532538682467, guid: 336e564b6d178af4b862da35321f0afd,
-    type: 3}
->>>>>>> 1bf71412baf4b6925e68a7a0d90791ed25a120fa:MeleeMonsters/Assets/Prefabs/GameManager.prefab
