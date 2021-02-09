@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public abstract class PlayerClass : MonoBehaviour
 {
-    public int monsterType;
+    public int x = 0;
+    public int y = 0;
 
-    public int MonsterType { get { return monsterType; } }
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-        monsterType = Random.Range(0, 2);
-    }
+    public int speed;
 
     // Start is called before the first frame update
     void Start()
@@ -25,4 +20,7 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public abstract void FaitesDuBruitCeSoiiir();
+
 }

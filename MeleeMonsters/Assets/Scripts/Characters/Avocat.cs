@@ -2,27 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class Avocat : PlayerClass
 {
-    public int monsterType;
-
-    public int MonsterType { get { return monsterType; } }
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-        monsterType = Random.Range(0, 2);
-    }
-
     // Start is called before the first frame update
     void Start()
     {
-
+        FaitesDuBruitCeSoiiir();
+        this.speed = 30;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public override void FaitesDuBruitCeSoiiir()
+    {
+        print("ouai l'avocat là");
     }
 }

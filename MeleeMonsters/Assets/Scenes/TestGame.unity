@@ -361,13 +361,22 @@ PrefabInstance:
     - target: {fileID: 3683287678611796696, guid: 75986232762fb5f44b436b4075abe0fc,
         type: 3}
       propertyPath: m_Name
-      value: GameManager
+      value: InitPlayers
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 6741178743958388546, guid: 75986232762fb5f44b436b4075abe0fc,
         type: 3}
-      propertyPath: playerPrefab
+      propertyPath: gameManager
       value: 
-      objectReference: {fileID: 4958320532538682467, guid: 336e564b6d178af4b862da35321f0afd,
+      objectReference: {fileID: 5799791366307857346, guid: 629175421a39580489737649ed7e9a38,
         type: 3}
+    - target: {fileID: 6741178743958388546, guid: 75986232762fb5f44b436b4075abe0fc,
+        type: 3}
+      propertyPath: gameManagerObject
+      value: 
+      objectReference: {fileID: 5799791366307857347, guid: 629175421a39580489737649ed7e9a38,
+        type: 3}
+=======
+>>>>>>> 1bf71412baf4b6925e68a7a0d90791ed25a120fa
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75986232762fb5f44b436b4075abe0fc, type: 3}
