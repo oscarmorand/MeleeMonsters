@@ -6,10 +6,32 @@ using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    public GameObject playerPrefab;
+    public GameObject avocat;
+    public GameObject fantome;
+
+    public int monsterNbr;
+
+    private GameObject playerPrefab;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 
     // Start is called before the first frame update
     void Start()
+    {
+        this.monsterNbr = Random.Range(0, 2);
+        print("my monster has type" + this.monsterNbr);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void InstantiatePlayer ()
     {
         if (playerPrefab == null)
         {
@@ -22,9 +44,15 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InitPlayerPrefab(int monsterNbr)
     {
-        
+        if (monsterNbr==0)
+        {
+            playerPrefab = avocat;
+        }
+        else
+        {
+            playerPrefab = fantome;
+        }
     }
 }
