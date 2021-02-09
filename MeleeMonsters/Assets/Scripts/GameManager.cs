@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     public GameObject avocat;
     public GameObject fantome;
+    public GameObject yeti;
+    public GameObject kraken;
 
     public int monsterNbr;
 
@@ -21,7 +23,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        this.monsterNbr = Random.Range(0, 2);
+        this.monsterNbr = Random.Range(0, 4);
         print("my monster has type" + this.monsterNbr);
     }
 
@@ -46,13 +48,20 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void InitPlayerPrefab(int monsterNbr)
     {
-        if (monsterNbr==0)
+        switch(monsterNbr)
         {
-            playerPrefab = avocat;
-        }
-        else
-        {
-            playerPrefab = fantome;
+            case 0:
+                playerPrefab = avocat;
+                break;
+            case 1:
+                playerPrefab = fantome;
+                break;
+            case 2:
+                playerPrefab = yeti;
+                break;
+            default:
+                playerPrefab = kraken;
+                break;
         }
     }
 }

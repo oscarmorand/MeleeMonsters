@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterClass
+public class Yeti : MonsterClass
 {
+    private int speed = 10;
 
     // Start is called before the first frame update
     void Start()

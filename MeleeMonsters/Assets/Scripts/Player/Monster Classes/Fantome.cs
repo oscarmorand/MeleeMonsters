@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Fantome : MonsterClass
 {
+    private int speed = 20;
+
     // Start is called before the first frame update
     void Start()
     {
