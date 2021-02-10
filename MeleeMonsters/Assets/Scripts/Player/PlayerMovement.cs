@@ -6,23 +6,26 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private PhotonView PV;
+    private PhotonView photonView;
 
     [SerializeField]
     private CharacterController myCC;
 
-    public float movementSpeed;
+    [SerializeField]
+    private MonsterP monster;
+
+    private float movementSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        movementSpeed = monster.speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(PV.IsMine)
+        if(photonView.IsMine)
         {
             BasicMovement();
         }

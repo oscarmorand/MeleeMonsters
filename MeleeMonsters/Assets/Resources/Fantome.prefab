@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4958320532538682495}
-  - component: {fileID: 516033982471052357}
+  - component: {fileID: 4446709073697464764}
   - component: {fileID: 4958320532538682494}
   - component: {fileID: 4958320532538682465}
   - component: {fileID: 4958320532538682464}
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &516033982471052357
+--- !u!114 &4446709073697464764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,9 +45,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4958320532538682467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b03732e2b9b01994fa4faea7e80a2f5a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e62760e2c580564f833b72f05d74f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 20
 --- !u!114 &4958320532538682494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,9 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa8ba4d42670b74f8858b6b2528cdfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PV: {fileID: 4958320532538682465}
+  photonView: {fileID: 4958320532538682465}
   myCC: {fileID: 4958320532538682492}
-  movementSpeed: 20
+  monster: {fileID: 4446709073697464764}
 --- !u!114 &4958320532538682465
 MonoBehaviour:
   m_ObjectHideFlags: 0
