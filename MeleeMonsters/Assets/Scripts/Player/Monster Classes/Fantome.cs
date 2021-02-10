@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class Fantome : MonsterClass
 {
-    private int speed = 20;
-
+    public static int speed = 20;
 }

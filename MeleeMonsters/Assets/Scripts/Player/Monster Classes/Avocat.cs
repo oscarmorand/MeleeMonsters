@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class Avocat : MonsterClass
 {
-    private int speed = 15;
-
+    public static int speed = 15;
 }

@@ -11,15 +11,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private CharacterController myCC;
 
-    [SerializeField]
-    private MonsterP monster;
-
     private float movementSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        movementSpeed = monster.speed;
+        
     }
 
     // Update is called once per frame
