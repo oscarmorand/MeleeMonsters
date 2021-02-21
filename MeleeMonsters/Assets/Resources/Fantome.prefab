@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photonView: {fileID: 4958320532538682465}
   myCC: {fileID: 4958320532538682492}
+  settings: {fileID: 11400000, guid: 412d791cc087ccb46bc96fb14c561260, type: 2}
 --- !u!114 &4958320532538682465
 MonoBehaviour:
   m_ObjectHideFlags: 0

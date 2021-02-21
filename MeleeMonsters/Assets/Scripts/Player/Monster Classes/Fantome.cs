@@ -1,8 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 public class Fantome : MonsterClass
 {
-    public static int speed = 20;
+    static public int speed_static = 15;
+
+    public int Speed_public_instance = 15;
+
+    private FantomeSettings fantomeSettings;
+
+    //constructor
+    public Fantome(MonsterScriptableObject _monsterSetting) : base(_monsterSetting) => fantomeSettings = (FantomeSettings)_monsterSetting;
 }

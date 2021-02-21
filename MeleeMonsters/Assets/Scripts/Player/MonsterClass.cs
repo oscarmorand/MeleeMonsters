@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 public class MonsterClass
 {
+    public MonsterScriptableObject monsterSettings;
+
+    public MonsterClass(MonsterScriptableObject _monsterSetting) => monsterSettings = _monsterSetting;
 
 }
