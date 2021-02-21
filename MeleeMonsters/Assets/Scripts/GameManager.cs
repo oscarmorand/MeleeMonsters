@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        this.monsterNbr = Random.Range(0, 2);
+        //this.monsterNbr = Random.Range(0, 2);
+        this.monsterNbr = 0;
         print("my monster has type" + this.monsterNbr);
     }
 

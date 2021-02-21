@@ -8,46 +8,64 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private PhotonView photonView;
 
-    [SerializeField]
-    private CharacterController myCC;
+    public Rigidbody2D rb;
+    private Vector3 velocity = Vector3.zero;
 
     [SerializeField]
     private MonsterScriptableObject settings;
 
-    private float movementSpeed;
+    public bool isJumping;
+    public bool isGrounded;
+    public Transform groundCheckLeft;
+    public Transform groundCheckRight;
+
+    private float moveSpeed;
+    private float jumpForce;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        movementSpeed = settings.speed;
+        moveSpeed = settings.speed;
+        jumpForce = settings.jumpStrength;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(photonView.IsMine)
+        if (photonView.IsMine)
         {
-            BasicMovement();
+            isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
+
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                isJumping = true;
+            }
         }
     }
 
-    void BasicMovement()
+    void FixedUpdate()
     {
-        if(Input.GetKey(KeyCode.Z))
+        if (photonView.IsMine)
         {
-            myCC.Move(transform.up * Time.deltaTime * movementSpeed);
+            BasicMovementInput();
         }
-        if (Input.GetKey(KeyCode.Q))
+    }
+
+    void BasicMovementInput()
+    {
+        float horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        MovePlayer(horizontalMovement);
+    }
+
+    void MovePlayer(float _horizontalMovement)
+    {
+        Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
+        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.05f);
+
+        if(isJumping)
         {
-            myCC.Move(-transform.right * Time.deltaTime * movementSpeed);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            myCC.Move(-transform.up * Time.deltaTime * movementSpeed);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            myCC.Move(transform.right * Time.deltaTime * movementSpeed);
+            rb.AddForce(new Vector2(0f, jumpForce));
+            isJumping = false;
         }
     }
 }
