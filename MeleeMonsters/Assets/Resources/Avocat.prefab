@@ -44,6 +44,10 @@ GameObject:
   - component: {fileID: -3068341975309647541}
   - component: {fileID: 4958320532538682465}
   - component: {fileID: 4958320532538682464}
+  - component: {fileID: 2328902348070445744}
+  - component: {fileID: 30028956836613467}
+  - component: {fileID: 4438365348576293513}
+  - component: {fileID: 1086552784739092397}
   m_Layer: 0
   m_Name: Avocat
   m_TagString: Untagged
@@ -83,15 +87,16 @@ MonoBehaviour:
   photonView: {fileID: 4958320532538682465}
   rb: {fileID: 3079477876805541461}
   settings: {fileID: 11400000, guid: dbc08e84701007d48a1e5707ec5a9111, type: 2}
-  isGrounded: 0
+  xWallForce: 15
+  wallJumpTime: 0.08
   groundCheck: {fileID: 1433306911251532281}
+  frontCheck: {fileID: 6251800672405213747}
   checkRadius: 0.2
+  isGrounded: 0
+  isTouchingFront: 0
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  frontCheck: {fileID: 6251800672405213747}
-  xWallForce: 15
-  wallJumpTime: 0.08
 --- !u!50 &3079477876805541461
 Rigidbody2D:
   serializedVersion: 4
@@ -168,6 +173,71 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &2328902348070445744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958320532538682467}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b07834e121d69d40b7ce6cc14883b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputS: {fileID: 30028956836613467}
+  movementS: {fileID: 4438365348576293513}
+  collisionS: {fileID: 1086552784739092397}
+  rb: {fileID: 3079477876805541461}
+  moveSpeed: 100
+--- !u!114 &30028956836613467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958320532538682467}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 663ed1bbaa090984c8c47432bf7ff285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScript: {fileID: 2328902348070445744}
+  isJumpPressed: 0
+  moveInput: 0
+--- !u!114 &4438365348576293513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958320532538682467}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ebc00da3367f324389210c9e6bc2900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScript: {fileID: 2328902348070445744}
+--- !u!114 &1086552784739092397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958320532538682467}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da688cee1542e824382143b097774640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundCheck: {fileID: 1433306911251532281}
+  frontCheck: {fileID: 6251800672405213747}
+  checkRadius: 0.2
+  isGrounded: 0
+  isTouchingFront: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &4958320534275945268
 GameObject:
   m_ObjectHideFlags: 0

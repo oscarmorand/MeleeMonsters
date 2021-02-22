@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementScript : MonoBehaviour
 {
     [SerializeField]
     private PhotonView photonView;
@@ -20,13 +20,6 @@ public class PlayerMovement : MonoBehaviour
     private float moveInput;
     private bool facingRight = true;
 
-    public bool isGrounded;
-    public Transform groundCheck;
-    public float checkRadius;
-    public LayerMask whatIsGround;
-
-    private bool isTouchingFront;
-    public Transform frontCheck;
     private bool wallSliding;
     private float wallSlidingSpeed;
 
@@ -37,6 +30,16 @@ public class PlayerMovement : MonoBehaviour
 
     private float moveSpeed;
     private float jumpForce;
+
+    public Transform groundCheck;
+    public Transform frontCheck;
+
+    public float checkRadius;
+
+    public bool isGrounded;
+    public bool isTouchingFront;
+
+    public LayerMask whatIsGround;
 
 
     void Start()
@@ -134,7 +137,6 @@ public class PlayerMovement : MonoBehaviour
             Invoke("SetWallJumpinToFalse", wallJumpTime);
         }
     }
-
 
     void CheckOverlap()
     {
