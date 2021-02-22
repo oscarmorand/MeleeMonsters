@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    [SerializeField]
+    private PhotonView photonView;
+
     [SerializeField]
     internal PlayerInputs inputS;
 
@@ -16,6 +20,8 @@ public class PlayerScript : MonoBehaviour
     public Rigidbody2D rb;
 
     public float moveSpeed;
+    public int maxJump;
+    public float jumpForce;
 
     private void Awake()
     {
@@ -36,12 +42,11 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        BasicHorizontalMovement();
+        if(photonView.IsMine)
+        {
+            movementS.HorizontalMovement();
+            movementS.Jump();
+        }
     }
 
-    void BasicHorizontalMovement()
-    {
-        float horizontalMovement = inputS.moveInput * moveSpeed * Time.deltaTime;
-        movementS.HorizontalMovement(horizontalMovement);
-    }
 }

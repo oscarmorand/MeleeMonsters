@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private PhotonView photonView;
@@ -11,8 +11,10 @@ public class PlayerMovementScript : MonoBehaviour
     public Rigidbody2D rb;
     private Vector3 velocity = Vector3.zero;
 
+    /*
     [SerializeField]
     private MonsterScriptableObject settings;
+    */
 
     private int maxJump;
     private int nbrJump;
@@ -44,6 +46,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     void Start()
     {
+        /*
         moveSpeed = settings.speed;
         jumpForce = settings.jumpStrength;
         maxJump = settings.extraJump;
@@ -51,6 +54,14 @@ public class PlayerMovementScript : MonoBehaviour
         wallSlidingSpeed = settings.wallSlidingSpeed;
         yWallForce = settings.yWallForce;
         rb.gravityScale = settings.gravityScale;
+        */
+        moveSpeed = 300;
+        jumpForce = 8;
+        maxJump = 2;
+        nbrJump = maxJump;
+        wallSlidingSpeed = 1.5f;
+        yWallForce = 7;
+        rb.gravityScale = 1.5f;
     }
 
 
@@ -61,13 +72,13 @@ public class PlayerMovementScript : MonoBehaviour
             CheckOverlap();
             CheckJumpInputs();
 
-            if(wallSliding)
+            if (wallSliding)
             {
                 nbrJump = maxJump;
-                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, - wallSlidingSpeed, float.MaxValue));
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
             }
 
-            if(wallJumping)
+            if (wallJumping)
             {
                 rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
             }

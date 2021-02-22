@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4958320532538682495}
-  - component: {fileID: 4958320532538682494}
+  - component: {fileID: 4048278115268245952}
   - component: {fileID: 3079477876805541461}
   - component: {fileID: -3068341975309647541}
   - component: {fileID: 4958320532538682465}
@@ -72,7 +72,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4958320532538682494
+--- !u!114 &4048278115268245952
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,12 +81,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4958320532538682467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffa8ba4d42670b74f8858b6b2528cdfa, type: 3}
+  m_Script: {fileID: 11500000, guid: db59451858dac684e849df9d8e60c64a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   photonView: {fileID: 4958320532538682465}
   rb: {fileID: 3079477876805541461}
-  settings: {fileID: 11400000, guid: dbc08e84701007d48a1e5707ec5a9111, type: 2}
   xWallForce: 15
   wallJumpTime: 0.08
   groundCheck: {fileID: 1433306911251532281}
@@ -185,11 +184,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b07834e121d69d40b7ce6cc14883b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photonView: {fileID: 0}
   inputS: {fileID: 30028956836613467}
   movementS: {fileID: 4438365348576293513}
   collisionS: {fileID: 1086552784739092397}
   rb: {fileID: 3079477876805541461}
-  moveSpeed: 100
+  moveSpeed: 300
+  maxJump: 2
+  jumpForce: 8
 --- !u!114 &30028956836613467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,8 +205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 2328902348070445744}
-  isJumpPressed: 0
-  moveInput: 0
 --- !u!114 &4438365348576293513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ebc00da3367f324389210c9e6bc2900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScript: {fileID: 2328902348070445744}
+  playerS: {fileID: 2328902348070445744}
+  wallJumpTime: 0.5
 --- !u!114 &1086552784739092397
 MonoBehaviour:
   m_ObjectHideFlags: 0

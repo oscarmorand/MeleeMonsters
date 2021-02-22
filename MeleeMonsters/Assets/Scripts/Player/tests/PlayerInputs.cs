@@ -7,8 +7,8 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField]
     PlayerScript playerScript;
 
-    public bool isJumpPressed;
-    public float moveInput;
+    internal bool isJumpPressed;
+    internal float moveInput;
 
     // Start is called before the first frame update
     void Start()
