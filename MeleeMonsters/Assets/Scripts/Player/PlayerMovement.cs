@@ -11,10 +11,9 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private Vector3 velocity = Vector3.zero;
 
-    /*
     [SerializeField]
     private MonsterScriptableObject settings;
-    */
+
 
     private int maxJump;
     private int nbrJump;
@@ -46,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        /*
+        
         moveSpeed = settings.speed;
         jumpForce = settings.jumpStrength;
         maxJump = settings.extraJump;
@@ -54,7 +53,8 @@ public class PlayerMovement : MonoBehaviour
         wallSlidingSpeed = settings.wallSlidingSpeed;
         yWallForce = settings.yWallForce;
         rb.gravityScale = settings.gravityScale;
-        */
+        
+        /*
         moveSpeed = 300;
         jumpForce = 8;
         maxJump = 2;
@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
         wallSlidingSpeed = 1.5f;
         yWallForce = 7;
         rb.gravityScale = 1.5f;
+        */
     }
 
 
