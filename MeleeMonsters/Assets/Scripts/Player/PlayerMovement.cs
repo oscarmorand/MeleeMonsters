@@ -11,9 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private Vector3 velocity = Vector3.zero;
 
-    [SerializeField]
-    private MonsterScriptableObject settings;
-
+    public MonsterScriptableObject settings;
 
     private int maxJump;
     private int nbrJump;

@@ -11,7 +11,7 @@ public class PlayerMovements : MonoBehaviour
 
     private int nbrJump;
 
-    private bool wallJumping;
+    //private bool wallJumping;
     private bool wallSliding;
     public float wallJumpTime;
 
@@ -44,13 +44,13 @@ public class PlayerMovements : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && wallSliding)
         {
-            wallJumping = true;
+            //wallJumping = true;
             Invoke("SetWallJumpinToFalse", wallJumpTime);
         }
     }
 
     void SetWallJumpinToFalse()
     {
-        wallJumping = false;
+        //wallJumping = false;
     }
 }

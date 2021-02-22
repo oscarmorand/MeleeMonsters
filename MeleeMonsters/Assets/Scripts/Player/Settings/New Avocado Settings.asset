@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Avocado Settings
-  m_EditorClassIdentifier: Assembly-CSharp::AvocadoSettings
-  speed: 300
+  m_Script: {fileID: 11500000, guid: a6f8d4a989578264295cab8fe29b089c, type: 3}
+  m_Name: New Avocado Settings
+  m_EditorClassIdentifier: 
+  speed: 1000
   jumpStrength: 9
   extraJump: 1
   wallSlidingSpeed: 1.5
