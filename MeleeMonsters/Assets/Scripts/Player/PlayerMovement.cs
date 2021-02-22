@@ -25,35 +25,52 @@ public class PlayerMovement : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
 
+    private bool isTouchingFront;
+    public Transform frontCheck;
+    private bool wallSliding;
+    private float wallSlidingSpeed;
+
+    private bool wallJumping;
+    public float xWallForce;
+    private float yWallForce;
+    public float wallJumpTime;
 
     private float moveSpeed;
     private float jumpForce;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         moveSpeed = settings.speed;
         jumpForce = settings.jumpStrength;
         maxJump = settings.extraJump;
         nbrJump = maxJump;
+        wallSlidingSpeed = settings.wallSlidingSpeed;
+        yWallForce = settings.yWallForce;
+        rb.gravityScale = settings.gravityScale;
     }
+
 
     private void Update()
     {
         if (photonView.IsMine)
         {
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-            if (isGrounded)
-                nbrJump = maxJump;
+            CheckOverlap();
+            CheckJumpInputs();
 
-            if (Input.GetButtonDown("Jump") && nbrJump > 0)
+            if(wallSliding)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                nbrJump--;
+                nbrJump = maxJump;
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, - wallSlidingSpeed, float.MaxValue));
+            }
+
+            if(wallJumping)
+            {
+                rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
             }
         }
     }
+
 
     void FixedUpdate()
     {
@@ -72,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     void BasicMovementInput()
     {
         moveInput = Input.GetAxis("Horizontal");
@@ -79,11 +97,13 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer(horizontalMovement);
     }
 
+
     void MovePlayer(float _horizontalMovement)
     {
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.05f);
     }
+
 
     void Flip()
     {
@@ -91,5 +111,41 @@ public class PlayerMovement : MonoBehaviour
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
+    }
+
+
+    void SetWallJumpinToFalse()
+    {
+        wallJumping = false;
+    }
+
+
+    void CheckJumpInputs()
+    {
+        if (Input.GetButtonDown("Jump") && nbrJump > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            nbrJump--;
+        }
+
+        if (Input.GetButtonDown("Jump") && wallSliding)
+        {
+            wallJumping = true;
+            Invoke("SetWallJumpinToFalse", wallJumpTime);
+        }
+    }
+
+
+    void CheckOverlap()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        if (isGrounded)
+            nbrJump = maxJump;
+
+        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
+        if (isTouchingFront && !isGrounded && moveInput != 0)
+            wallSliding = true;
+        else
+            wallSliding = false;
     }
 }

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Avocado Settings
   m_EditorClassIdentifier: Assembly-CSharp::AvocadoSettings
-  speed: 250
-  jumpStrength: 7
+  speed: 300
+  jumpStrength: 9
   extraJump: 1
+  wallSlidingSpeed: 1.5
+  yWallForce: 7
+  gravityScale: 1.5
   StoneShootStrength: 5

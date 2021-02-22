@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FantomeSettings
   speed: 5
   jumpStrength: 3
+  extraJump: 1
+  wallSlidingSpeed: 5
+  yWallForce: 5
+  gravityScale: 1
   StoneShootStrength: 5

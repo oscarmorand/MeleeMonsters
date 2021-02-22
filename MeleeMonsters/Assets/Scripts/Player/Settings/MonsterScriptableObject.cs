@@ -10,4 +10,10 @@ public class MonsterScriptableObject : ScriptableObject
     public float jumpStrength = 3.0f;
 
     public int extraJump = 1;
+
+    public float wallSlidingSpeed = 5;
+
+    public float yWallForce = 5;
+
+    public float gravityScale = 1;
 }
