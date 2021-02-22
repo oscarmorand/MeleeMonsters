@@ -8,4 +8,6 @@ public class MonsterScriptableObject : ScriptableObject
     public float speed = 10.0f;
 
     public float jumpStrength = 3.0f;
+
+    public int extraJump = 1;
 }

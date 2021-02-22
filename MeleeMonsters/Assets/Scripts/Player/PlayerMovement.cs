@@ -14,10 +14,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private MonsterScriptableObject settings;
 
-    public bool isJumping;
+    private int maxJump;
+    private int nbrJump;
+
+    private float moveInput;
+    private bool facingRight = true;
+
     public bool isGrounded;
-    public Transform groundCheckLeft;
-    public Transform groundCheckRight;
+    public Transform groundCheck;
+    public float checkRadius;
+    public LayerMask whatIsGround;
+
 
     private float moveSpeed;
     private float jumpForce;
@@ -28,17 +35,22 @@ public class PlayerMovement : MonoBehaviour
     {
         moveSpeed = settings.speed;
         jumpForce = settings.jumpStrength;
+        maxJump = settings.extraJump;
+        nbrJump = maxJump;
     }
 
     private void Update()
     {
         if (photonView.IsMine)
         {
-            isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+            if (isGrounded)
+                nbrJump = maxJump;
 
-            if (Input.GetButtonDown("Jump") && isGrounded)
+            if (Input.GetButtonDown("Jump") && nbrJump > 0)
             {
-                isJumping = true;
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                nbrJump--;
             }
         }
     }
@@ -48,12 +60,22 @@ public class PlayerMovement : MonoBehaviour
         if (photonView.IsMine)
         {
             BasicMovementInput();
+
+            if (!facingRight && moveInput > 0)
+            {
+                Flip();
+            }
+            else if (facingRight && moveInput < 0)
+            {
+                Flip();
+            }
         }
     }
 
     void BasicMovementInput()
     {
-        float horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        moveInput = Input.GetAxis("Horizontal");
+        float horizontalMovement = moveInput * moveSpeed * Time.deltaTime;
         MovePlayer(horizontalMovement);
     }
 
@@ -61,11 +83,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.05f);
+    }
 
-        if(isJumping)
-        {
-            rb.AddForce(new Vector2(0f, jumpForce));
-            isJumping = false;
-        }
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
     }
 }
