@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     public MonsterScriptableObject settings;
 
+    private bool isJumping;
     private int maxJump;
     private int nbrJump;
 
@@ -66,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
         if (photonView.IsMine)
         {
             CheckOverlap();
-            CheckInputs();
 
             if (isGrounded)
             {
@@ -90,6 +91,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.velocity = transform.right * (int)moveInput * dashForce;
             }
+
+            if(isJumping)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                nbrJump--;
+                isJumping = false;
+            }
         }
     }
 
@@ -98,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (photonView.IsMine)
         {
-            BasicMovementInput();
+            MovePlayerUpdate();
 
             if (!facingRight && moveInput > 0)
             {
@@ -112,15 +120,15 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void BasicMovementInput()
+    void MovePlayerUpdate()
     {
-        moveInput = Input.GetAxis("Horizontal");
+        //moveInput = Input.GetAxis("Horizontal");
         float horizontalMovement = moveInput * moveSpeed * Time.deltaTime;
-        MovePlayer(horizontalMovement);
+        Move(horizontalMovement);
     }
 
 
-    void MovePlayer(float _horizontalMovement)
+    void Move(float _horizontalMovement)
     {
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.05f);
@@ -136,11 +144,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void Jump()
-    {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        nbrJump--;
-    }
 
 
     void WallJumpState()
@@ -168,30 +171,39 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    void CheckInputs()
+    public void FastFallInput(InputAction.CallbackContext context)
     {
-        CheckJumpInputs();
-        CheckDashInputs();
+
     }
 
-    void CheckDashInputs()
+    public void MoveInput(InputAction.CallbackContext context)
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift) && moveInput != 0 && canDash)
+        moveInput = context.ReadValue<Vector2>().x;
+    }
+
+    public void DashInput(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
-            DashState();
+            if (moveInput != 0 && canDash)
+            {
+                DashState();
+            }
         }
     }
 
-    void CheckJumpInputs()
+    public void JumpInput(InputAction.CallbackContext context)
     {
-        if (Input.GetButtonDown("Jump") && nbrJump > 0)
+        if(context.performed)
         {
-            Jump();
-        }
-
-        if (Input.GetButtonDown("Jump") && wallSliding)
-        {
-            WallJumpState();
+            if (nbrJump > 0)
+            {
+                isJumping = true;
+            }
+            if (wallSliding)
+            {
+                WallJumpState();
+            }
         }
     }
 

@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour
     private PhotonView photonView;
 
     [SerializeField]
-    internal PlayerInputs inputS;
+    internal PlayerInput inputS;
 
     [SerializeField]
     internal PlayerMovements movementS;
