@@ -10,6 +10,7 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
     public GameObject[] localObjects;
     //Values that will be synced over network
     Vector3 latestPos;
+    Vector3 latestScale;
     //Quaternion latestRot;
 
     void Start()
@@ -42,12 +43,14 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
         {
             //We own this player: send the others our data
             stream.SendNext(transform.position);
+            stream.SendNext(transform.localScale);
             //stream.SendNext(transform.rotation);
         }
         else
         {
             //Network player, receive data
             latestPos = (Vector3)stream.ReceiveNext();
+            latestScale = (Vector3)stream.ReceiveNext();
             //latestRot = (Quaternion)stream.ReceiveNext();
         }
     }
@@ -59,6 +62,7 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
         {
             //Update remote player (smooth this, this looks good, at the cost of some accuracy)
             transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime * 5);
+            transform.localScale = Vector3.Lerp(transform.localScale, latestScale, Time.deltaTime * 5);
             //transform.rotation = Quaternion.Lerp(transform.rotation, latestRot, Time.deltaTime * 5);
         }
     }

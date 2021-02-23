@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
 
     public MonsterScriptableObject settings;
 
+    private Animator anim;
+
     private bool isJumping;
     private int maxJump;
     private int nbrJump;
@@ -63,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = settings.gravityScale;
         dashForce = settings.dashForce;
         fastFallingSpeed = settings.fastFallingSpeed;
+        anim = GetComponent<Animator>();
 
     }
 
@@ -119,6 +122,18 @@ public class PlayerMovement : MonoBehaviour
         if (photonView.IsMine)
         {
             MovePlayerUpdate();
+
+            if(isGrounded)
+            {
+                if (moveInput == 0)
+                    anim.SetBool("isRunning", false);
+                else
+                    anim.SetBool("isRunning", true);
+            }
+            else
+            {
+                anim.SetBool("isRunning", false);
+            }
 
             if (!facingRight && moveInput > 0)
             {
