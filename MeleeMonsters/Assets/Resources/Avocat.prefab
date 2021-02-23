@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: -3068341975309647541}
   - component: {fileID: 4958320532538682465}
   - component: {fileID: 4958320532538682464}
+  - component: {fileID: 7906142339195820345}
+  - component: {fileID: -1459930853616729469}
   m_Layer: 0
   m_Name: Avocat
   m_TagString: Untagged
@@ -282,7 +284,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 4958320532538682464}
+  - {fileID: 7906142339195820345}
+  - {fileID: -1459930853616729469}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -293,7 +296,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4958320532538682467}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
   m_Name: 
@@ -302,6 +305,34 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &7906142339195820345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958320532538682467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 175cae5d939868d498fde7622f722e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1459930853616729469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958320532538682467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187452f935ff07643b2ed49abe807933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localScripts:
+  - {fileID: 2292960928436713693}
+  - {fileID: 4048278115268245952}
+  localObjects: []
 --- !u!1 &4958320534275945268
 GameObject:
   m_ObjectHideFlags: 0

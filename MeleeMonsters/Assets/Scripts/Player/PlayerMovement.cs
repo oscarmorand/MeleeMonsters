@@ -190,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
-            if (!isGrounded && !isFastFalling)
+            if (!isGrounded && !isFastFalling && !wallSliding)
             {
                 FastFallState();
             }
