@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 350
   jumpStrength: 9
-  extraJump: 1
+  extraJump: 2
   wallSlidingSpeed: 1.5
   yWallForce: 7
   gravityScale: 1.5
-  dashForce: 15
+  dashForce: 20
+  fastFallingSpeed: 13
   StoneShootStrength: 5

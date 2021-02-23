@@ -18,4 +18,6 @@ public class MonsterScriptableObject : ScriptableObject
     public float gravityScale = 1;
 
     public float dashForce = 15;
+
+    public float fastFallingSpeed = 10;
 }

@@ -206,6 +206,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c4de793b-0c3b-4be4-9d58-d5bf457541ef
     m_ActionName: Player/Dash[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4048278115268245952}
+        m_MethodName: FastFallInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c36feede-9681-492a-b749-8b49344236e7
+    m_ActionName: Player/FastFall[/Keyboard/downArrow,/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

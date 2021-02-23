@@ -34,6 +34,9 @@ public class PlayerMovement : MonoBehaviour
     private float dashForce;
     public float dashTime;
 
+    private bool isFastFalling;
+    private float fastFallingSpeed;
+
     private float moveSpeed;
     private float jumpForce;
 
@@ -59,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
         yWallForce = settings.yWallForce;
         rb.gravityScale = settings.gravityScale;
         dashForce = settings.dashForce;
+        fastFallingSpeed = settings.fastFallingSpeed;
 
     }
 
@@ -73,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 nbrJump = maxJump;
                 canDash = true;
+                isFastFalling = false;
             }
 
             if (wallSliding)
@@ -90,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
             if (isDashing)
             {
                 rb.velocity = transform.right * (int)moveInput * dashForce;
+                isFastFalling = false;
             }
 
             if(isJumping)
@@ -97,6 +103,12 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 nbrJump--;
                 isJumping = false;
+                isFastFalling = false;
+            }
+
+            if (isFastFalling)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, -fastFallingSpeed);
             }
         }
     }
@@ -165,15 +177,25 @@ public class PlayerMovement : MonoBehaviour
     void SetDashingToFalse()
     {
         isDashing = false;
-        canDash = false;
     }
 
+    void FastFallState()
+    {
+        isFastFalling = true;
+    }
 
 
 
     public void FastFallInput(InputAction.CallbackContext context)
     {
-
+        if (context.performed)
+        {
+            if (!isGrounded && !isFastFalling)
+            {
+                FastFallState();
+            }
+            
+        }
     }
 
     public void MoveInput(InputAction.CallbackContext context)
@@ -189,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 DashState();
             }
+            canDash = false;
         }
     }
 
@@ -206,8 +229,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
-
 
 
 
