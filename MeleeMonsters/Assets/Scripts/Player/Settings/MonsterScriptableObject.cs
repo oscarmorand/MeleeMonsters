@@ -16,4 +16,6 @@ public class MonsterScriptableObject : ScriptableObject
     public float yWallForce = 5;
 
     public float gravityScale = 1;
+
+    public float dashForce = 15;
 }

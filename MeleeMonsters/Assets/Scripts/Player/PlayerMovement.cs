@@ -27,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
     private float yWallForce;
     public float wallJumpTime;
 
+    private bool isDashing;
+    private bool canDash;
+    private float dashForce;
+    public float dashTime;
+
     private float moveSpeed;
     private float jumpForce;
 
@@ -43,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        
+ 
         moveSpeed = settings.speed;
         jumpForce = settings.jumpStrength;
         maxJump = settings.extraJump;
@@ -51,16 +56,8 @@ public class PlayerMovement : MonoBehaviour
         wallSlidingSpeed = settings.wallSlidingSpeed;
         yWallForce = settings.yWallForce;
         rb.gravityScale = settings.gravityScale;
-        
-        /*
-        moveSpeed = 300;
-        jumpForce = 8;
-        maxJump = 2;
-        nbrJump = maxJump;
-        wallSlidingSpeed = 1.5f;
-        yWallForce = 7;
-        rb.gravityScale = 1.5f;
-        */
+        dashForce = settings.dashForce;
+
     }
 
 
@@ -69,17 +66,29 @@ public class PlayerMovement : MonoBehaviour
         if (photonView.IsMine)
         {
             CheckOverlap();
-            CheckJumpInputs();
+            CheckInputs();
+
+            if (isGrounded)
+            {
+                nbrJump = maxJump;
+                canDash = true;
+            }
 
             if (wallSliding)
             {
                 nbrJump = maxJump;
+                canDash = true;
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
             }
 
             if (wallJumping)
             {
                 rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
+            }
+
+            if (isDashing)
+            {
+                rb.velocity = transform.right * (int)moveInput * dashForce;
             }
         }
     }
@@ -127,32 +136,72 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    void Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        nbrJump--;
+    }
+
+
+    void WallJumpState()
+    {
+        wallJumping = true;
+        Invoke("SetWallJumpinToFalse", wallJumpTime);
+    }
     void SetWallJumpinToFalse()
     {
         wallJumping = false;
     }
 
 
+    void DashState()
+    {
+        isDashing = true;
+        Invoke("SetDashingToFalse", dashTime);
+    }
+    void SetDashingToFalse()
+    {
+        isDashing = false;
+        canDash = false;
+    }
+
+
+
+
+    void CheckInputs()
+    {
+        CheckJumpInputs();
+        CheckDashInputs();
+    }
+
+    void CheckDashInputs()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftShift) && moveInput != 0 && canDash)
+        {
+            DashState();
+        }
+    }
+
     void CheckJumpInputs()
     {
         if (Input.GetButtonDown("Jump") && nbrJump > 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            nbrJump--;
+            Jump();
         }
 
         if (Input.GetButtonDown("Jump") && wallSliding)
         {
-            wallJumping = true;
-            Invoke("SetWallJumpinToFalse", wallJumpTime);
+            WallJumpState();
         }
     }
+
+
+
+
 
     void CheckOverlap()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-        if (isGrounded)
-            nbrJump = maxJump;
 
         isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
         if (isTouchingFront && !isGrounded && moveInput != 0)
