@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,19 +13,17 @@ public class PlayerMovement : MonoBehaviour
 
     public MonsterScriptableObject settings;
 
-    private Animator anim;
-
-    private bool isJumping;
+    internal bool isJumping;
     private int maxJump;
-    private int nbrJump;
+    internal int nbrJump;
     private float jumpForce;
 
-    private float moveInputx;
-    private float moveInputy;
+    internal float moveInputx;
+    internal float moveInputy;
     private bool facingRight = true;
-    private float direction = 1;
+    internal float direction = 1;
 
-    private bool wallSliding;
+    internal bool wallSliding;
     private float wallSlidingSpeed;
 
     private bool wallJumping;
@@ -35,29 +32,22 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpTime;
 
     private bool isDashing;
-    private int nbrDash;
+    internal int nbrDash;
     private int maxDash;
     private float dashForce;
     private float dashTime;
-    private float dashInputx;
-    private float dashInputy;
+    internal float dashInputx;
+    internal float dashInputy;
 
-    private bool isFastFalling;
+    internal bool isFastFalling;
     private float fastFallingSpeed;
 
     private float moveSpeed;
 
-    public Transform groundCheck;
-    public Transform frontCheck;
+    internal bool isGrounded;
+    internal bool isTouchingFront;
 
-    public float checkRadius;
-
-    public bool isGrounded;
-    public bool isTouchingFront;
-
-    public LayerMask whatIsGround;
-
-
+ 
     void Start()
     {
  
@@ -74,8 +64,6 @@ public class PlayerMovement : MonoBehaviour
         nbrDash = maxDash;
         dashTime = settings.dashTime;
 
-        anim = GetComponent<Animator>();
-
     }
 
 
@@ -83,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (photonView.IsMine)
         {
-            CheckOverlap();
 
             if (isGrounded)
             {
@@ -91,6 +78,11 @@ public class PlayerMovement : MonoBehaviour
                 nbrDash = maxDash;
                 isFastFalling = false;
             }
+
+            if (isTouchingFront && !isGrounded && moveInputx != 0)
+                wallSliding = true;
+            else
+                wallSliding = false;
 
             if (wallSliding)
             {
@@ -132,20 +124,6 @@ public class PlayerMovement : MonoBehaviour
         {
             MovePlayerUpdate();
 
-            if(isGrounded)
-            {
-                if (moveInputx == 0)
-                    anim.SetBool("isRunning", false);
-                else
-                    anim.SetBool("isRunning", true);
-                anim.SetBool("isJumping", false);
-            }
-            else
-            {
-                anim.SetBool("isRunning", false);
-                anim.SetBool("isJumping", true);
-            }
-
             if (!facingRight && moveInputx > 0)
             {
                 Flip();
@@ -184,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    void WallJumpState()
+    public void WallJumpState()
     {
         wallJumping = true;
         Invoke("SetWallJumpinToFalse", wallJumpTime);
@@ -195,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void DashState()
+    public void DashState()
     {
         isDashing = true;
         Invoke("SetDashingToFalse", dashTime);
@@ -205,96 +183,9 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
     }
 
-    void FastFallState()
+    public void FastFallState()
     {
         isFastFalling = true;
     }
 
-
-
-    public void FastFallInput(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            if (!isGrounded && !isFastFalling && !wallSliding)
-            {
-                FastFallState();
-            }
-            
-        }
-    }
-
-    public void MoveInput(InputAction.CallbackContext context)
-    {
-        moveInputx = context.ReadValue<Vector2>().x;
-        moveInputy = context.ReadValue<Vector2>().y;
-    }
-
-
-
-    public void DashInput(InputAction.CallbackContext context)
-    {
-        if (context.performed && nbrDash>0)
-        {
-            if(!isGrounded)
-            {
-                if(moveInputy != 0)
-                {
-                    if(moveInputx != 0)
-                    {
-                        dashInputx = moveInputx;
-                    }
-                    else
-                    {
-                        dashInputx = 0;
-                    }
-                    dashInputy = moveInputy;
-                }
-                else
-                {
-                    dashInputx = direction;
-                    dashInputy = 0;
-                }
-            }
-            else
-            {
-                dashInputx = direction;
-                dashInputy = 0;
-            }
-            DashState();
-            nbrDash--;
-        }
-    }
-
-
-
-    public void JumpInput(InputAction.CallbackContext context)
-    {
-        if(context.performed)
-        {
-            if (nbrJump > 0)
-            {
-                isJumping = true;
-                anim.SetTrigger("takeOf");
-            }
-            if (wallSliding)
-            {
-                WallJumpState();
-            }
-        }
-    }
-
-
-
-    void CheckOverlap()
-    {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-
-        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
-        if (isTouchingFront && !isGrounded && moveInputx != 0)
-            wallSliding = true;
-        else
-            wallSliding = false;
-        anim.SetBool("isWallSliding", wallSliding);
-    }
 }

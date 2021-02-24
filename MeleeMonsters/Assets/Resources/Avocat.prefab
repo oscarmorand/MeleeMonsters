@@ -367,7 +367,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4958320532538682495}
+  - component: {fileID: -5467363061727139425}
   - component: {fileID: 4048278115268245952}
+  - component: {fileID: -366637032177327525}
+  - component: {fileID: -3785744018447802112}
+  - component: {fileID: -8414197654532742275}
   - component: {fileID: 2292960928436713693}
   - component: {fileID: 3079477876805541461}
   - component: {fileID: -3068341975309647541}
@@ -402,6 +406,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-5467363061727139425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958320532538682467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc5aea643c5d00489c4fed4a1dc8e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pseudo: 
+  lives: 0
+  percentage: 0
+  isAlive: 0
+  isInGame: 0
+  isWrath: 0
 --- !u!114 &4048278115268245952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,14 +441,48 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 3b9c57086da3bf64392b811fc936ed7a, type: 2}
   xWallForce: 15
   wallJumpTime: 0.08
+--- !u!114 &-366637032177327525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958320532538682467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1001df42ea94fbd4cb3e0ec26dbf344e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   groundCheck: {fileID: 1433306911251532281}
   frontCheck: {fileID: 6251800672405213747}
-  checkRadius: 0.15
-  isGrounded: 0
-  isTouchingFront: 0
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  checkRadius: 0.1
+--- !u!114 &-3785744018447802112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958320532538682467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66dc3346f79ea964d9097a288b0b69d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8414197654532742275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958320532538682467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685deeda7afab774087a782b9f8c7e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2292960928436713693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,7 +511,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4048278115268245952}
+      - m_Target: {fileID: -3785744018447802112}
         m_MethodName: MoveInput
         m_Mode: 0
         m_Arguments:
@@ -510,7 +566,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4048278115268245952}
+      - m_Target: {fileID: -3785744018447802112}
         m_MethodName: JumpInput
         m_Mode: 0
         m_Arguments:
@@ -525,7 +581,7 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4048278115268245952}
+      - m_Target: {fileID: -3785744018447802112}
         m_MethodName: DashInput
         m_Mode: 0
         m_Arguments:
@@ -540,7 +596,7 @@ MonoBehaviour:
     m_ActionName: Player/Dash[/Keyboard/shift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4048278115268245952}
+      - m_Target: {fileID: -3785744018447802112}
         m_MethodName: FastFallInput
         m_Mode: 0
         m_Arguments:
@@ -691,6 +747,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 2
     Name: takeOf
+  - Type: 4
+    SynchronizeType: 1
+    Name: isWallSliding
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
