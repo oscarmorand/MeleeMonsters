@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerListingsMenu : MonoBehaviourPunCallbacks
 {
@@ -105,7 +106,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
-            PhotonNetwork.LoadLevel(1);
+            PhotonNetwork.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
         }
         
     }
