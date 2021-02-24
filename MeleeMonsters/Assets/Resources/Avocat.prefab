@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pseudo: 
+  monster: 0
   lives: 0
   percentage: 0
   isAlive: 0
