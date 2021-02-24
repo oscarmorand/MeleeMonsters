@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862054914504229515}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.26028097, y: -0.82552755, z: 0}
+  m_LocalPosition: {x: 0.260281, y: -0.82552755, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4958320532538682495}
@@ -300,13 +300,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4077925034402998960}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.02651918, w: 0.9996484}
   m_LocalPosition: {x: -0.52495325, y: -0.06072557, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8237914662769969992}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.039}
 --- !u!212 &279371317036546717
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -686,6 +686,12 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: isRunning
+  - Type: 4
+    SynchronizeType: 1
+    Name: isJumping
+  - Type: 9
+    SynchronizeType: 2
+    Name: takeOf
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -828,14 +834,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8568527741563098131}
-  m_LocalRotation: {x: -0, y: -0, z: 0.17951956, w: 0.9837544}
+  m_LocalRotation: {x: -0, y: -0, z: 0.1279532, w: 0.9917803}
   m_LocalPosition: {x: 0.555, y: -0.075915575, z: 0}
   m_LocalScale: {x: 0.8317372, y: 1, z: 1}
   m_Children:
   - {fileID: 1272921167927110239}
   m_Father: {fileID: 8237914662769969992}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20.684002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 14.703001}
 --- !u!212 &7907465674870744522
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -129,10 +129,12 @@ public class PlayerMovement : MonoBehaviour
                     anim.SetBool("isRunning", false);
                 else
                     anim.SetBool("isRunning", true);
+                anim.SetBool("isJumping", false);
             }
             else
             {
                 anim.SetBool("isRunning", false);
+                anim.SetBool("isJumping", true);
             }
 
             if (!facingRight && moveInput > 0)
@@ -237,6 +239,7 @@ public class PlayerMovement : MonoBehaviour
             if (nbrJump > 0)
             {
                 isJumping = true;
+                anim.SetTrigger("takeOf");
             }
             if (wallSliding)
             {
