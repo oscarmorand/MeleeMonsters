@@ -4,8 +4,18 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
+
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    [Header("Local Player")]
+    public string playerName;
+    public void SetPlayerName(string _value)   // property
+    {
+        playerName = _value;
+        PhotonNetwork.NickName = playerName;
+    }
+
+    [Header("Monsters")]
     public GameObject avocat;
     public GameObject fantome;
     public GameObject yeti;
