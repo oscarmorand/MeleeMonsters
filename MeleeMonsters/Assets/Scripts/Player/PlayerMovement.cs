@@ -21,8 +21,10 @@ public class PlayerMovement : MonoBehaviour
     private int nbrJump;
     private float jumpForce;
 
-    private float moveInput;
+    private float moveInputx;
+    private float moveInputy;
     private bool facingRight = true;
+    private float direction = 1;
 
     private bool wallSliding;
     private float wallSlidingSpeed;
@@ -37,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     private int maxDash;
     private float dashForce;
     private float dashTime;
+    private float dashInputx;
+    private float dashInputy;
 
     private bool isFastFalling;
     private float fastFallingSpeed;
@@ -97,12 +101,12 @@ public class PlayerMovement : MonoBehaviour
 
             if (wallJumping)
             {
-                rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
+                rb.velocity = new Vector2(xWallForce * -moveInputx, yWallForce);
             }
 
             if (isDashing)
             {
-                rb.velocity = transform.right * (int)moveInput * dashForce;
+                rb.velocity = new Vector2(dashInputx * dashForce, (dashInputy * dashForce)/3);
                 isFastFalling = false;
             }
 
@@ -130,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
 
             if(isGrounded)
             {
-                if (moveInput == 0)
+                if (moveInputx == 0)
                     anim.SetBool("isRunning", false);
                 else
                     anim.SetBool("isRunning", true);
@@ -142,11 +146,11 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetBool("isJumping", true);
             }
 
-            if (!facingRight && moveInput > 0)
+            if (!facingRight && moveInputx > 0)
             {
                 Flip();
             }
-            else if (facingRight && moveInput < 0)
+            else if (facingRight && moveInputx < 0)
             {
                 Flip();
             }
@@ -156,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayerUpdate()
     {
-        float horizontalMovement = moveInput * moveSpeed * Time.deltaTime;
+        float horizontalMovement = moveInputx * moveSpeed * Time.deltaTime;
         Move(horizontalMovement);
     }
 
@@ -171,6 +175,7 @@ public class PlayerMovement : MonoBehaviour
     void Flip()
     {
         facingRight = !facingRight;
+        direction = -1 * direction;
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
@@ -221,20 +226,47 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveInput(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>().x;
+        moveInputx = context.ReadValue<Vector2>().x;
+        moveInputy = context.ReadValue<Vector2>().y;
     }
+
+
 
     public void DashInput(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && nbrDash>0)
         {
-            if (moveInput != 0 && nbrDash > 0)
+            if(!isGrounded)
             {
-                DashState();
+                if(moveInputy != 0)
+                {
+                    if(moveInputx != 0)
+                    {
+                        dashInputx = moveInputx;
+                    }
+                    else
+                    {
+                        dashInputx = 0;
+                    }
+                    dashInputy = moveInputy;
+                }
+                else
+                {
+                    dashInputx = direction;
+                    dashInputy = 0;
+                }
             }
+            else
+            {
+                dashInputx = direction;
+                dashInputy = 0;
+            }
+            DashState();
             nbrDash--;
         }
     }
+
+
 
     public void JumpInput(InputAction.CallbackContext context)
     {
@@ -259,7 +291,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
         isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
-        if (isTouchingFront && !isGrounded && moveInput != 0)
+        if (isTouchingFront && !isGrounded && moveInputx != 0)
             wallSliding = true;
         else
             wallSliding = false;
