@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
+using TMPro;
 
 public class CreateRoomMenu : MonoBehaviourPunCallbacks
 {
     [SerializeField]
-    private Text _roomName;
+    private TMP_Text _roomName;
+
 
     private RoomsCanvases _roomCanvases;
 
@@ -24,7 +26,6 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
 
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = 4;
-
         PhotonNetwork.JoinOrCreateRoom(_roomName.text, options, TypedLobby.Default);
     }
 

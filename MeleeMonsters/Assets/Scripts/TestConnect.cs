@@ -8,6 +8,11 @@ public class TestConnect : MonoBehaviourPunCallbacks
 {
     void Start()
     {
+        StartConnect();
+    }
+
+    public void StartConnect()
+    {
         print("Connecting to server...");
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NickName = MasterManager.GameSettings.NickName;
