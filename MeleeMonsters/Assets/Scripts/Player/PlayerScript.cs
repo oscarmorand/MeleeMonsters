@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public enum Monsters
+    {
+        Avocado,
+        Ghost,
+        Yeti,
+        Kraken,
+    }
+
     public string pseudo;
+
+    public Monsters monster;
 
     public int lives;
     public int percentage;
