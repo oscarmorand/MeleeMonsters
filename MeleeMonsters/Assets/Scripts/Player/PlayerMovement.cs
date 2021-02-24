@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (isDashing)
             {
-                rb.velocity = new Vector2(dashInputx * dashForce, (dashInputy * dashForce)/3);
+                rb.velocity = new Vector2(dashInputx * dashForce, (dashInputy * dashForce)/2);
                 isFastFalling = false;
             }
 
