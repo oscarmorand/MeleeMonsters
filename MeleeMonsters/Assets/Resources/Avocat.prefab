@@ -419,7 +419,6 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 3b9c57086da3bf64392b811fc936ed7a, type: 2}
   xWallForce: 15
   wallJumpTime: 0.08
-  dashTime: 0.2
   groundCheck: {fileID: 1433306911251532281}
   frontCheck: {fileID: 6251800672405213747}
   checkRadius: 0.15

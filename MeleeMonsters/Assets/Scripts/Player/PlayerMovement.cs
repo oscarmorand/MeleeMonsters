@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping;
     private int maxJump;
     private int nbrJump;
+    private float jumpForce;
 
     private float moveInput;
     private bool facingRight = true;
@@ -32,15 +33,15 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpTime;
 
     private bool isDashing;
-    private bool canDash;
+    private int nbrDash;
+    private int maxDash;
     private float dashForce;
-    public float dashTime;
+    private float dashTime;
 
     private bool isFastFalling;
     private float fastFallingSpeed;
 
     private float moveSpeed;
-    private float jumpForce;
 
     public Transform groundCheck;
     public Transform frontCheck;
@@ -65,6 +66,10 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = settings.gravityScale;
         dashForce = settings.dashForce;
         fastFallingSpeed = settings.fastFallingSpeed;
+        maxDash = settings.dashNbr;
+        nbrDash = maxDash;
+        dashTime = settings.dashTime;
+
         anim = GetComponent<Animator>();
 
     }
@@ -79,14 +84,14 @@ public class PlayerMovement : MonoBehaviour
             if (isGrounded)
             {
                 nbrJump = maxJump;
-                canDash = true;
+                nbrDash = maxDash;
                 isFastFalling = false;
             }
 
             if (wallSliding)
             {
                 nbrJump = maxJump;
-                canDash = true;
+                nbrDash = maxDash;
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
             }
 
@@ -151,7 +156,6 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayerUpdate()
     {
-        //moveInput = Input.GetAxis("Horizontal");
         float horizontalMovement = moveInput * moveSpeed * Time.deltaTime;
         Move(horizontalMovement);
     }
@@ -224,11 +228,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
-            if (moveInput != 0 && canDash)
+            if (moveInput != 0 && nbrDash > 0)
             {
                 DashState();
             }
-            canDash = false;
+            nbrDash--;
         }
     }
 
@@ -259,5 +263,6 @@ public class PlayerMovement : MonoBehaviour
             wallSliding = true;
         else
             wallSliding = false;
+        anim.SetBool("isWallSliding", wallSliding);
     }
 }

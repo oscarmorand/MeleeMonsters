@@ -18,6 +18,8 @@ MonoBehaviour:
   wallSlidingSpeed: 1.5
   yWallForce: 7
   gravityScale: 1.5
-  dashForce: 20
   fastFallingSpeed: 13
+  dashNbr: 2
+  dashForce: 30
+  dashTime: 0.1
   StoneShootStrength: 5
