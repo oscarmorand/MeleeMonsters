@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [Header("Monsters")]
-    public GameObject avocat;
-    public GameObject fantome;
+    public GameObject avocado;
+    public GameObject ghost;
     public GameObject yeti;
     public GameObject kraken;
 
@@ -35,7 +35,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         //this.monsterNbr = Random.Range(0, 2);
         this.monsterNbr = 0;
-        print("my monster has type" + this.monsterNbr);
+
+        print("my monster has type " + this.monsterNbr + " by default");
     }
 
     // Update is called once per frame
@@ -57,15 +58,20 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public void SelectMonster(int _monsterNbr)
+    {
+        monsterNbr = _monsterNbr;
+    }
+
     public void InitPlayerPrefab(int monsterNbr)
     {
         switch(monsterNbr)
         {
             case 0:
-                playerPrefab = avocat;
+                playerPrefab = avocado;
                 break;
             case 1:
-                playerPrefab = fantome;
+                playerPrefab = ghost;
                 break;
             case 2:
                 playerPrefab = yeti;

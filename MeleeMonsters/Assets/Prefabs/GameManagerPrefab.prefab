@@ -43,5 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a586399d0ef0843936de74aa7a3732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avocat: {fileID: 4958320532538682467, guid: 336e564b6d178af4b862da35321f0afd, type: 3}
-  fantome: {fileID: 4958320532538682467, guid: 015e4fc12e60a3042bb262d2f5b081b2, type: 3}
+  playerName: 
+  avocado: {fileID: 4958320532538682467, guid: 336e564b6d178af4b862da35321f0afd, type: 3}
+  ghost: {fileID: 4958320532538682467, guid: 4eaddad448a2d23429ed0eea726bfd8d, type: 3}
+  yeti: {fileID: 0}
+  kraken: {fileID: 0}
+  monsterNbr: 0

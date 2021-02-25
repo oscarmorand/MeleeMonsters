@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6f8d4a989578264295cab8fe29b089c, type: 3}
-  m_Name: New Avocado Settings
+  m_Script: {fileID: 11500000, guid: 4dff053d9d9d2bd4db2cdbb2b7aadb84, type: 3}
+  m_Name: New Ghost Settings
   m_EditorClassIdentifier: 
-  speed: 350
+  speed: 450
   jumpStrength: 9
   extraJump: 2
-  wallSlidingSpeed: 1.5
+  wallSlidingSpeed: 1.3
   yWallForce: 7
-  gravityScale: 1.5
-  fastFallingSpeed: 13
+  gravityScale: 1.3
+  fastFallingSpeed: 10
   dashNbr: 2
-  dashForce: 20
+  dashForce: 30
   dashTime: 0.1
   dashCoolDown: 0.2
   StoneShootStrength: 5
