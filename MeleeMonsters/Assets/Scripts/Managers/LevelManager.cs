@@ -39,8 +39,14 @@ public class LevelManager : MonoBehaviour
             case 1:
                 spawnList = spawnPoints.p1;
                 break;
-            default:
+            case 2:
                 spawnList = spawnPoints.p2;
+                break;
+            case 3:
+                spawnList = spawnPoints.p3;
+                break;
+            default:
+                spawnList = spawnPoints.p4;
                 break;
         }
         gameManager.InstantiatePlayer(spawnList[(PhotonNetwork.LocalPlayer.ActorNumber) - 1].position);
