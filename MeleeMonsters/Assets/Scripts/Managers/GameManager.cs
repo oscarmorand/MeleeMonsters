@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         
     }
 
-    public void InstantiatePlayer ()
+    public void InstantiatePlayer (Vector3 pos)
     {
         if (playerPrefab == null)
         {
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         else
         {
             Debug.Log("instancié!");
-            PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+            PhotonNetwork.Instantiate(this.playerPrefab.name, pos, Quaternion.identity, 0);
         }
     }
 
