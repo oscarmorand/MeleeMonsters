@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     private GameManager gameManager;
 
     public SpawnPoints spawnPoints;
-    private List<Transform> spawnList;
+    public List<Transform> spawnList;
 
     // Start is called before the first frame update
     void Start()

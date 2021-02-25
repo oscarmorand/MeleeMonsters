@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class PlayerScript : MonoBehaviour
         Kraken,
     }
 
-    public string pseudo;
+    public string nickName;
+    private int playerNumber;
 
     public Monsters monster;
 
@@ -28,6 +30,11 @@ public class PlayerScript : MonoBehaviour
     private PlayerAnimation pAnimation;
     private PlayerInputs pInputs;
 
+    private SpawnPoints spawnPoints;
+    private List<Transform> spawnList;
+
+    private LevelManager levelManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +43,34 @@ public class PlayerScript : MonoBehaviour
         pCollisions = GetComponent<PlayerCollisions>();
         pAnimation = GetComponent<PlayerAnimation>();
         pInputs = GetComponent<PlayerInputs>();
+
+        spawnPoints = GameObject.Find("SpawnPoints").GetComponent<SpawnPoints>();
+
+        playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
+        nickName = PhotonNetwork.LocalPlayer.NickName;
+
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        spawnList = levelManager.spawnList;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void Reappear()
+    {
+        lives--;
+        CheckStillAlive();
+        transform.position = spawnList[playerNumber].position;
+    }
+
+    void CheckStillAlive()
+    {
+        if(lives <= 0)
+        {
+            isAlive = false;
+        }
     }
 }
