@@ -18,22 +18,26 @@ public class PlayerScript : MonoBehaviour
 
     public Monsters monster;
 
-    public int lives;
+    private int lives;
     public int percentage;
 
-    public bool isAlive;
-    public bool isInGame;
-    public bool isWrath;
+    public bool isAlive = true;
+    public bool canStillPlay = true;
+    public bool isWrath = false;
 
     private PlayerMovement pMovement;
     private PlayerCollisions pCollisions;
     private PlayerAnimation pAnimation;
     private PlayerInputs pInputs;
 
-    private SpawnPoints spawnPoints;
+    private Rigidbody2D rb;
+
     private List<Transform> spawnList;
 
     private LevelManager levelManager;
+    private GameManager gameManager;
+
+    public float reappearitionTime;
 
 
     // Start is called before the first frame update
@@ -44,13 +48,17 @@ public class PlayerScript : MonoBehaviour
         pAnimation = GetComponent<PlayerAnimation>();
         pInputs = GetComponent<PlayerInputs>();
 
-        spawnPoints = GameObject.Find("SpawnPoints").GetComponent<SpawnPoints>();
+        rb = GetComponent<Rigidbody2D>();
 
-        playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
+        playerNumber = (PhotonNetwork.LocalPlayer.ActorNumber) - 1;
         nickName = PhotonNetwork.LocalPlayer.NickName;
 
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         spawnList = levelManager.spawnList;
+        levelManager.players.Add(this);
+
+        gameManager = GameObject.Find("GameManagerPrefab").GetComponent<GameManager>();
+        lives = gameManager.nbrLives;
     }
 
     // Update is called once per frame
@@ -59,18 +67,29 @@ public class PlayerScript : MonoBehaviour
         
     }
 
-    void Reappear()
+    public void OnEnterReappear()
     {
+        isAlive = false;
         lives--;
         CheckStillAlive();
+        if (canStillPlay)
+            Invoke("Reappear", reappearitionTime);
+        else
+            Destroy(gameObject);
+    }
+
+    private void Reappear()
+    {
+        rb.velocity = new Vector2(0, 0);
         transform.position = spawnList[playerNumber].position;
+        isAlive = true;
     }
 
     void CheckStillAlive()
     {
         if(lives <= 0)
         {
-            isAlive = false;
+            canStillPlay = false;
         }
     }
 }

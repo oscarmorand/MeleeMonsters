@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour
     public SpawnPoints spawnPoints;
     public List<Transform> spawnList;
 
+    public List<PlayerScript> players;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void SpawnPlayers()

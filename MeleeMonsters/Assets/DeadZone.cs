@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DeadZone : MonoBehaviour
 {
+
+    private PlayerScript playerScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,8 @@ public class DeadZone : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-
+            playerScript = collision.gameObject.GetComponent<PlayerScript>();
+            playerScript.OnEnterReappear();
         }
     }
 }
