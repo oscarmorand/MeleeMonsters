@@ -418,13 +418,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc5aea643c5d00489c4fed4a1dc8e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pseudo: 
+  nickName: 
   monster: 1
-  lives: 0
   percentage: 0
   isAlive: 0
-  isInGame: 0
+  canStillPlay: 1
   isWrath: 0
+  reappearitionTime: 0
 --- !u!114 &4048278115268245952
 MonoBehaviour:
   m_ObjectHideFlags: 0

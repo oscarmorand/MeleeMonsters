@@ -81,7 +81,8 @@ public class PlayerScript : MonoBehaviour
     private void Reappear()
     {
         rb.velocity = new Vector2(0, 0);
-        transform.position = spawnList[playerNumber].position;
+        int randomSpawnPoint = Random.Range(0, spawnList.Count);
+        transform.position = spawnList[randomSpawnPoint].position;
         isAlive = true;
     }
 
