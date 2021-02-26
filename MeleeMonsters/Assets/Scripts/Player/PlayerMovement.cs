@@ -143,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void Move(float _horizontalMovement)
+    public void Move(float _horizontalMovement)
     {
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.05f);

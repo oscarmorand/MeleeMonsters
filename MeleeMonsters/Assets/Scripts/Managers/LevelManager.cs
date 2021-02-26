@@ -25,7 +25,6 @@ public class LevelManager : MonoBehaviour
         print(PhotonNetwork.LocalPlayer.ActorNumber);
 
         SpawnPlayers();
-
     }
 
     // Update is called once per frame
