@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/SelectMonster.unity
     guid: ba336829fa7b0dd418f87f8ec44353c8
   - enabled: 1
-    path: Assets/Scenes/TestGame.unity
+    path: Assets/Scenes/Forest.unity
     guid: ffc8fd43fd8a98042bbb204ff1d64b64
   m_configObjects: {}
