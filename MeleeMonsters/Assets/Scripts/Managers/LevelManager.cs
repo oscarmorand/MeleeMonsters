@@ -17,8 +17,7 @@ public class LevelManager : MonoBehaviour
         manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager.GetComponent<GameManager>();
 
-        int mNumber = gameManager.monsterNbr;
-        gameManager.InitPlayerPrefab(mNumber);
+        gameManager.InitPlayerPrefab();
 
         print(PhotonNetwork.LocalPlayer.ActorNumber);
 

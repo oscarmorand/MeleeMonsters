@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: -1459930853616729469}
   - component: {fileID: -4568185816180669887}
   m_Layer: 0
-  m_Name: Ghost
+  m_Name: Yeti
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -859,7 +859,7 @@ SpriteRenderer:
   m_SortingOrder: 3
   m_Sprite: {fileID: -2936974803793752853, guid: 0727f8dca85750744838c53f5cd0134e,
     type: 3}
-  m_Color: {r: 1, g: 0.83248734, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.33935905, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

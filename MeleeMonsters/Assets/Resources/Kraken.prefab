@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: -1459930853616729469}
   - component: {fileID: -4568185816180669887}
   m_Layer: 0
-  m_Name: Ghost
+  m_Name: Kraken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pseudo: 
-  monster: 1
+  monster: 0
   lives: 0
   percentage: 0
   isAlive: 0
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photonView: {fileID: 4958320532538682465}
   rb: {fileID: 3079477876805541461}
-  settings: {fileID: 11400000, guid: 8d8b5d7a038d58e449c30dc80baec3fd, type: 2}
+  settings: {fileID: 11400000, guid: 3b9c57086da3bf64392b811fc936ed7a, type: 2}
   xWallForce: 15
   wallJumpTime: 0.08
 --- !u!114 &-366637032177327525
@@ -859,7 +859,7 @@ SpriteRenderer:
   m_SortingOrder: 3
   m_Sprite: {fileID: -2936974803793752853, guid: 0727f8dca85750744838c53f5cd0134e,
     type: 3}
-  m_Color: {r: 1, g: 0.83248734, b: 0, a: 1}
+  m_Color: {r: 0.7172403, g: 0.17354932, b: 0.9433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

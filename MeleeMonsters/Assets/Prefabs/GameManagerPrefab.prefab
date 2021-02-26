@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: 
-  avocado: {fileID: 4958320532538682467, guid: 336e564b6d178af4b862da35321f0afd, type: 3}
-  ghost: {fileID: 4958320532538682467, guid: 4eaddad448a2d23429ed0eea726bfd8d, type: 3}
-  yeti: {fileID: 0}
-  kraken: {fileID: 0}
-  monsterNbr: 0
+  monstersArray:
+  - {fileID: 4958320532538682467, guid: 336e564b6d178af4b862da35321f0afd, type: 3}
+  - {fileID: 4958320532538682467, guid: 4eaddad448a2d23429ed0eea726bfd8d, type: 3}
+  - {fileID: 4958320532538682467, guid: 1243e384533e502498309a6fa4922836, type: 3}
+  - {fileID: 4958320532538682467, guid: 544af2434a5bba0489315dbec581cacb, type: 3}
