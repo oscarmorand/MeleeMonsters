@@ -48,17 +48,15 @@ public class IA : MonoBehaviour
             if (distanceX > 4f)
                 playerMovement.DashState();
 
-            if (relativeSideY > 2f)
+            if (relativeSideY > 3f)
             {
-                if (playerMovement.nbrJump > 0)
+                if (playerMovement.nbrJump > 0 && !playerMovement.isDashing)
                     playerMovement.isJumping = true;
-                else if (playerMovement.nbrDash > 0)
+                else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
                 {
                     playerMovement.dashInputy = 1;
                     playerMovement.DashState();
                 }
-                else
-                    playerMovement.FastFallState();
             }
         }
     }

@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private int maxJump;
     internal int nbrJump;
     private float jumpForce;
+    private float jumpTime;
 
     internal float moveInputx;
     internal float moveInputy;
@@ -31,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private float yWallForce;
     public float wallJumpTime;
 
-    private bool isDashing;
+    internal bool isDashing;
     internal int nbrDash;
     private int maxDash;
     private float dashForce;
@@ -190,4 +191,10 @@ public class PlayerMovement : MonoBehaviour
         isFastFalling = true;
     }
 
+
+    public void JumpState()
+    {
+        isJumping = true;
+        Invoke("SetJumpingToFalse", jumpTime)
+    }
 }
