@@ -51,12 +51,12 @@ public class IA : MonoBehaviour
             if (relativeSideY > 3f)
             {
                 if (playerMovement.nbrJump > 0 && !playerMovement.isDashing)
-                    playerMovement.isJumping = true;
-                else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
-                {
-                    playerMovement.dashInputy = 1;
-                    playerMovement.DashState();
-                }
+                    playerMovement.JumpState();
+                //else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
+                //{
+                //    playerMovement.dashInputy = 1;
+                //    playerMovement.DashState();
+                //}
             }
         }
     }

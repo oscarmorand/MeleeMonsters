@@ -23,6 +23,4 @@ public class MonsterScriptableObject : ScriptableObject
     public float dashForce = 15;
     public float dashTime = 0.2f;
     public float dashCoolDown = 0.2f;
-
-    public int test = 12;
 }

@@ -64,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         maxDash = settings.dashNbr;
         nbrDash = maxDash;
         dashTime = settings.dashTime;
+        jumpTime = settings.jumpTime;
 
     }
 
@@ -106,8 +107,6 @@ public class PlayerMovement : MonoBehaviour
             if(isJumping)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                nbrJump--;
-                isJumping = false;
                 isFastFalling = false;
             }
 
@@ -195,6 +194,11 @@ public class PlayerMovement : MonoBehaviour
     public void JumpState()
     {
         isJumping = true;
-        Invoke("SetJumpingToFalse", jumpTime)
+        nbrJump--;
+        Invoke("SetJumpingToFalse", jumpTime);
+    }
+    void SetJumpingToFalse()
+    {
+        isJumping = false;
     }
 }

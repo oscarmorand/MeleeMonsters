@@ -81,7 +81,7 @@ public class PlayerInputs : MonoBehaviour
         {
             if (pM.nbrJump > 0)
             {
-                pM.isJumping = true;
+                pM.JumpState();
                 pA.TakeOf();
             }
             if (pM.wallSliding)
