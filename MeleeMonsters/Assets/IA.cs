@@ -8,10 +8,13 @@ public class IA : MonoBehaviour
     PlayerMovement playerMovement;
     GameObject player;
     Transform playerTrans;
+
     float distanceX;
     float distanceY;
     float relativeSideX;
     float relativeSideY;
+
+    float originOffset = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -65,25 +68,58 @@ public class IA : MonoBehaviour
                     playerMovement.WallJumpState();
                 }
 
-                playerMovement.moveInputx = playerMovement.direction;
-                //if (relativeSideY > 3f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
-                //{
-                //    playerMovement.JumpState();
-                //}
-            }
+                RaycastHit2D isThereGroundUnder = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.down), 1000f); //Le 8 correspond au layerMask (Ground)
+                RaycastHit2D isThereGroundLeft = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.left), 1000f, 8); //Le 8 correspond au layerMask (Ground)
+                RaycastHit2D isThereGroundRight = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.right), 1000f, 8); //Le 8 correspond au layerMask (Ground)
+                //RaycastHit2D isThereGroundUp = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.up), 1000f, 8); //Le 8 correspond au layerMask (Ground)
 
-            /*
-            if (relativeSideY > 3f)
-            {
-                if (playerMovement.nbrJump > 0)
-                    playerMovement.JumpState();
-                else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
+                if (!isThereGroundUnder) //Si l'IA n'est pas au-dessus d'un sol
                 {
-                    playerMovement.dashInputy = 1;
-                    playerMovement.DashState();
+                    print("noground");
+                    if (isThereGroundLeft) //Si le terrain est à gauche de l'IA
+                    {
+                        if (playerMovement.nbrJump > 0)
+                        {
+                            playerMovement.moveInputx = -1;
+                            playerMovement.JumpState(); //Saut vers la gauche
+                        }
+                        else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
+                        {
+                            playerMovement.dashInputx = -1;
+                            playerMovement.dashInputy = 1;
+                            playerMovement.DashState(); //Dash vers le haut-gauche
+                        }
+                        else
+                            playerMovement.moveInputx = -1; //Move vers la gauche
+                    }
+                    else if (isThereGroundRight) //Si le terrain est à droite de l'IA
+                    {
+                        if (playerMovement.nbrJump > 0)
+                        {
+                            playerMovement.moveInputx = 1;
+                            playerMovement.JumpState(); //Saut vers la droite
+                        }
+                        else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
+                        {
+                            playerMovement.dashInputx = 1;
+                            playerMovement.dashInputy = 1;
+                            playerMovement.DashState(); //Dash vers le haut-droit
+                        }
+                        else
+                            playerMovement.moveInputx = 1; //Move vers la droite
+                    }
                 }
+                else
+                {
+                    playerMovement.moveInputx = playerMovement.direction;
+                    if (relativeSideY > 3f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
+                    {
+                        playerMovement.JumpState();
+                    }
+                }
+
+
             }
-            */
         }
     }
 }
