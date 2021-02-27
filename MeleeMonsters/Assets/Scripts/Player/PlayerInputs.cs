@@ -44,6 +44,7 @@ public class PlayerInputs : MonoBehaviour
 
     public void DashInput(InputAction.CallbackContext context)
     {
+        //test à supprimer si besoin (déjà fait dans pM)
         if (context.performed && pM.nbrDash > 0)
         {
             if (!pM.isGrounded)
@@ -79,6 +80,7 @@ public class PlayerInputs : MonoBehaviour
     {
         if (context.performed)
         {
+            //test à supprimer si besoin (déjà fait dans pM)
             if (pM.nbrJump > 0)
             {
                 pM.JumpState();

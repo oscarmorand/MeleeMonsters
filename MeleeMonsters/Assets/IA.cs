@@ -37,27 +37,53 @@ public class IA : MonoBehaviour
             distanceY = Math.Abs(relativeSideY);
 
             playerMovement.dashInputx = playerMovement.direction;
+            playerMovement.moveInputx = 0;
 
             //flip pour regarder dans la direction du player
-            if (relativeSideX < 0 && playerMovement.facingRight)
+            if (relativeSideX < 0.5f && playerMovement.facingRight)
                 playerMovement.Flip();
-            if (relativeSideX > 0 && !playerMovement.facingRight)
+            if (relativeSideX > 0.5f && !playerMovement.facingRight)
                 playerMovement.Flip();
 
-            //dash si trop loin du player
-            if (distanceX > 4f)
-                playerMovement.DashState();
+            if (playerMovement.isGrounded) //si l'IA est au sol
+            {
+                if (distanceX > 3.5f) //si le player est assez loin de l'IA (en x)
+                {
+                    if (relativeSideY < 3f) //si le player n'est pas trop haut par rapport à l'IA (en y)
+                        playerMovement.DashState();
+                    else
+                    {
+                        playerMovement.moveInputx = playerMovement.direction; //appelle MovePlayerUpdate
+                        playerMovement.JumpState();
+                    }
+                }
+            }
+            else //si l'IA n'est pas au sol
+            {
+                if (playerMovement.wallSliding)
+                {
+                    playerMovement.WallJumpState();
+                }
 
+                playerMovement.moveInputx = playerMovement.direction;
+                if (relativeSideY > 3f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
+                {
+                    playerMovement.JumpState();
+                }
+            }
+
+            /*
             if (relativeSideY > 3f)
             {
-                if (playerMovement.nbrJump > 0 && !playerMovement.isDashing)
+                if (playerMovement.nbrJump > 0)
                     playerMovement.JumpState();
-                //else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
-                //{
-                //    playerMovement.dashInputy = 1;
-                //    playerMovement.DashState();
-                //}
+                else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
+                {
+                    playerMovement.dashInputy = 1;
+                    playerMovement.DashState();
+                }
             }
+            */
         }
     }
 }
