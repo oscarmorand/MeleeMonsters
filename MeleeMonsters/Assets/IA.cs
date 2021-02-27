@@ -66,10 +66,10 @@ public class IA : MonoBehaviour
                 }
 
                 playerMovement.moveInputx = playerMovement.direction;
-                if (relativeSideY > 3f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
-                {
-                    playerMovement.JumpState();
-                }
+                //if (relativeSideY > 3f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
+                //{
+                //    playerMovement.JumpState();
+                //}
             }
 
             /*

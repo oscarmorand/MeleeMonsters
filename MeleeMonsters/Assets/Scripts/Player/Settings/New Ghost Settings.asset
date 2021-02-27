@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 450
   jumpStrength: 9
+  jumpTime: 0.025
   extraJump: 2
   wallSlidingSpeed: 1.3
   yWallForce: 7
