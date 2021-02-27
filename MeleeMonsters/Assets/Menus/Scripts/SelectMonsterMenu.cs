@@ -5,7 +5,8 @@ using Photon.Pun;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class SelectMonsterMenu : MonoBehaviour
+
+public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
 {
     private GameObject manager;
     private GameManager gameManager;
@@ -20,18 +21,19 @@ public class SelectMonsterMenu : MonoBehaviour
         manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager.GetComponent<GameManager>();
         
-        int i = 0;
-        foreach(var player in gameManager.players)
-        {
-           playerNamesArray[i].text = player.NickName;
-            ++i;
-        }
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        int i = 0;
+        foreach (var player in gameManager.players)
+        {
+            playerNamesArray[i].text = player.NickName;  
+            ++i;
+        }
+
+
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             print("right arrow key is held down");
@@ -72,4 +74,23 @@ public class SelectMonsterMenu : MonoBehaviour
         gameManager.SelectMonster(monster);
         print(PhotonNetwork.NickName + " has choose " + monster);
     }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            //We own this player: send the others our data
+            //stream.SendNext(transform.position);
+            //stream.SendNext(transform.localScale); 
+            //stream.SendNext(transform.rotation);
+        }
+        else
+        {
+            //Network player, receive data
+            //latestPos = (Vector3)stream.ReceiveNext();
+            //latestScale = (Vector3)stream.ReceiveNext();
+            //latestRot = (Quaternion)stream.ReceiveNext();
+        }
+    }
+
 }

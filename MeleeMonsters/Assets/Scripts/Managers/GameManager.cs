@@ -67,12 +67,23 @@ public class GameManager : MonoBehaviourPunCallbacks
         playerPrefab = monstersArray[localPlayerMonsterIndex];
     }
 
-    public override void OnCreatedRoom()
+    public override void OnJoinedRoom()
+    {
+        InitPlayerList();
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        InitPlayerList(); 
+    }
+
+    private void InitPlayerList()
     {
         if (!PhotonNetwork.IsConnected)
             return;
         if (PhotonNetwork.CurrentRoom == null || PhotonNetwork.CurrentRoom.Players == null)
             return;
+        players.Clear(); 
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
             players.Add(playerInfo.Value);

@@ -42,6 +42,6 @@ public class LevelManager : MonoBehaviour
                 spawnList = spawnPoints.p2;
                 break;
         }
-        gameManager.InstantiatePlayer(spawnList[(PhotonNetwork.LocalPlayer.ActorNumber) - 1].position);
+        gameManager.InstantiatePlayer(spawnList[(PhotonNetwork.LocalPlayer.ActorNumber) % spawnList.Count].position);
     }
 }
