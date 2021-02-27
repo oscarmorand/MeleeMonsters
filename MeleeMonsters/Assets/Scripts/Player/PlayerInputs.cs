@@ -72,7 +72,6 @@ public class PlayerInputs : MonoBehaviour
                 pM.dashInputy = 0;
             }
             pM.DashState();
-            pM.nbrDash--;
         }
     }
 

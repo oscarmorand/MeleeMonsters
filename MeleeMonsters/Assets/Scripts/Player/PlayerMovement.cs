@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     internal float moveInputx;
     internal float moveInputy;
-    private bool facingRight = true;
+    internal bool facingRight = true;
     internal float direction = 1;
 
     internal bool wallSliding;
@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void Flip()
+    public void Flip()
     {
         facingRight = !facingRight;
         direction = -1 * direction;
@@ -177,10 +177,12 @@ public class PlayerMovement : MonoBehaviour
     {
         isDashing = true;
         Invoke("SetDashingToFalse", dashTime);
+        nbrDash--;
     }
     void SetDashingToFalse()
     {
         isDashing = false;
+        dashInputy = 0;
     }
 
     public void FastFallState()

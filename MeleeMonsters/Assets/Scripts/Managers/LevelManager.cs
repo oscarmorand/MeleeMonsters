@@ -9,7 +9,8 @@ public class LevelManager : MonoBehaviour
     private GameManager gameManager;
 
     public SpawnPoints spawnPoints;
-    public List<Transform> spawnList;
+    internal List<Transform> spawnList;
+    private GameObject spawnGameObject;
 
     public List<PlayerScript> players;
 
@@ -23,6 +24,9 @@ public class LevelManager : MonoBehaviour
         gameManager.InitPlayerPrefab(mNumber);
 
         print(PhotonNetwork.LocalPlayer.ActorNumber);
+
+        spawnGameObject = GameObject.Find("SpawnPoints").gameObject;
+        spawnPoints = spawnGameObject.GetComponent<SpawnPoints>();
 
         SpawnPlayers();
     }

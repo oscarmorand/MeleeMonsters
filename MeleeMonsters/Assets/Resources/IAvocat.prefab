@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: -1417845002242164788}
   m_Layer: 0
   m_Name: IAvocat
-  m_TagString: test
+  m_TagString: IA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
