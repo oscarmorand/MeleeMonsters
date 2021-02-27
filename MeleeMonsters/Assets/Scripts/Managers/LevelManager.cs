@@ -9,7 +9,8 @@ public class LevelManager : MonoBehaviour
     private GameManager gameManager;
 
     public SpawnPoints spawnPoints;
-    public List<Transform> spawnList;
+    internal List<Transform> spawnList;
+    private GameObject spawnGameObject;
 
     public List<PlayerScript> players;
 
@@ -24,8 +25,10 @@ public class LevelManager : MonoBehaviour
 
         print(PhotonNetwork.LocalPlayer.ActorNumber);
 
-        SpawnPlayers();
+        spawnGameObject = GameObject.Find("SpawnPoints").gameObject;
+        spawnPoints = spawnGameObject.GetComponent<SpawnPoints>();
 
+        SpawnPlayers();
     }
 
     // Update is called once per frame

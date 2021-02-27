@@ -17,10 +17,11 @@ public class PlayerMovement : MonoBehaviour
     private int maxJump;
     internal int nbrJump;
     private float jumpForce;
+    private float jumpTime;
 
     internal float moveInputx;
     internal float moveInputy;
-    private bool facingRight = true;
+    internal bool facingRight = true;
     internal float direction = 1;
 
     internal bool wallSliding;
@@ -31,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private float yWallForce;
     public float wallJumpTime;
 
-    private bool isDashing;
+    internal bool isDashing;
     internal int nbrDash;
     private int maxDash;
     private float dashForce;
@@ -63,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         maxDash = settings.dashNbr;
         nbrDash = maxDash;
         dashTime = settings.dashTime;
+        jumpTime = settings.jumpTime;
 
     }
 
@@ -105,8 +107,6 @@ public class PlayerMovement : MonoBehaviour
             if(isJumping)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                nbrJump--;
-                isJumping = false;
                 isFastFalling = false;
             }
 
@@ -143,14 +143,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void Move(float _horizontalMovement)
+    public void Move(float _horizontalMovement)
     {
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.05f);
     }
 
 
-    void Flip()
+    public void Flip()
     {
         facingRight = !facingRight;
         direction = -1 * direction;
@@ -177,10 +177,12 @@ public class PlayerMovement : MonoBehaviour
     {
         isDashing = true;
         Invoke("SetDashingToFalse", dashTime);
+        nbrDash--;
     }
     void SetDashingToFalse()
     {
         isDashing = false;
+        dashInputy = 0;
     }
 
     public void FastFallState()
@@ -188,4 +190,15 @@ public class PlayerMovement : MonoBehaviour
         isFastFalling = true;
     }
 
+
+    public void JumpState()
+    {
+        isJumping = true;
+        nbrJump--;
+        Invoke("SetJumpingToFalse", jumpTime);
+    }
+    void SetJumpingToFalse()
+    {
+        isJumping = false;
+    }
 }

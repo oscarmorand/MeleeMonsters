@@ -21,7 +21,7 @@ public class DeadZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "IA")
         {
             playerScript = collision.gameObject.GetComponent<PlayerScript>();
             playerScript.OnEnterReappear();
