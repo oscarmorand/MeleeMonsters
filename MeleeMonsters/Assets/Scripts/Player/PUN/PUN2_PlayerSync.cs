@@ -61,8 +61,9 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
         if (!photonView.IsMine)
         {
             //Update remote player (smooth this, this looks good, at the cost of some accuracy)
-            transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime * 5);
-            transform.localScale = Vector3.Lerp(transform.localScale, latestScale, Time.deltaTime * 5);
+            transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime*5);
+            //transform.localScale = Vector3.Lerp(transform.localScale, latestScale, Time.deltaTime * 5);
+            transform.localScale = latestScale;
             //transform.rotation = Quaternion.Lerp(transform.rotation, latestRot, Time.deltaTime * 5);
         }
     }

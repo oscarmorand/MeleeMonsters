@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private GameObject playerPrefab;
 
+    public int nbrLives;
+
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
