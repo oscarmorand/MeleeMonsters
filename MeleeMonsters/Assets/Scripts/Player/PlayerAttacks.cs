@@ -22,12 +22,7 @@ public class PlayerAttacks : MonoBehaviour
     void Update()
     {
       
-        // Attaque SideG 
-        /*if (Input.GetKeyDown(KeyCode.J))
-        {
-            SideG();
-        }*/
-
+     
 
     }
 
@@ -38,6 +33,7 @@ public class PlayerAttacks : MonoBehaviour
         if (monsterType == PlayerScript.Monsters.Avocado)
         {
             avocadoAttacks.AvocadoSideG();
+
         }
 
         // Si l'attaquant est le fantome 
@@ -73,10 +69,12 @@ public class PlayerAttacks : MonoBehaviour
 
     }
 
-    public void AddPercentage(int damage)
+    public void AddPercentage(int damage,PlayerScript target)
     {
 
-        playerScript.percentage += damage;
+        target.percentage += damage;
+        print(target.name + " took " + damage);
+        print(target.percentage);
 
     }
 

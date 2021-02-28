@@ -14,8 +14,9 @@ public class AvocadoAttacks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerAttacks = GetComponent<PlayerAttacks>();
         attackRange = 0.5f;
-     
+        
         
     }
 
@@ -30,14 +31,16 @@ public class AvocadoAttacks : MonoBehaviour
         //Jouer animation 
 
         // Detection des enemies à portée 
-        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
 
         
         // Application des dégâts 
-        foreach (Collider2D player in hitPlayer)
-        {
-            
-            Debug.Log("Vous avez touché" + " " + player.name);
+        foreach (Collider2D colliders in hitColliders)
+        {            
+            Debug.Log("Vous avez touché" + " " + colliders.name);
+            GameObject hitObject = colliders.gameObject;
+            PlayerScript player = hitObject.GetComponent<PlayerScript>();
+            playerAttacks.AddPercentage(5, player);
             
         }
 
@@ -47,7 +50,7 @@ public class AvocadoAttacks : MonoBehaviour
 
      void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
+       
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
