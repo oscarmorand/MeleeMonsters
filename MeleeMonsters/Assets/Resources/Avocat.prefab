@@ -613,6 +613,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c36feede-9681-492a-b749-8b49344236e7
     m_ActionName: Player/FastFall[/Keyboard/downArrow,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -3785744018447802112}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b686b476-7d6b-4a58-b031-1bcbd718432a
+    m_ActionName: Player/SideG[/Keyboard/j]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

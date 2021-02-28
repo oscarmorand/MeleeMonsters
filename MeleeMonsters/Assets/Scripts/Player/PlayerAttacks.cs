@@ -7,6 +7,7 @@ public class PlayerAttacks : MonoBehaviour
     private AvocadoAttacks avocadoAttacks;
     private PlayerScript playerScript;
 
+    private PlayerScript.Monsters monsterType;
   
     // Start is called before the first frame update
     void Start()
@@ -14,6 +15,7 @@ public class PlayerAttacks : MonoBehaviour
         avocadoAttacks = GetComponent<AvocadoAttacks>();
         playerScript = GetComponent<PlayerScript>();
 
+        PlayerScript.Monsters monsterType = playerScript.monster;
     }
 
     // Update is called once per frame
@@ -21,27 +23,25 @@ public class PlayerAttacks : MonoBehaviour
     {
       
         // Attaque SideG 
-        if (Input.GetKeyDown(KeyCode.J))
+        /*if (Input.GetKeyDown(KeyCode.J))
         {
             SideG();
-        }
+        }*/
 
 
     }
 
-    void SideG()
+    public void SideG()
     {
-        PlayerScript.Monsters monsterType = playerScript.monster;
         
         // Si l'attaquant est l'avocat 
-        if (monsterType == (PlayerScript.Monsters) 0)
+        if (monsterType == PlayerScript.Monsters.Avocado)
         {
             avocadoAttacks.AvocadoSideG();
-            
         }
 
         // Si l'attaquant est le fantome 
-        if (monsterType == (PlayerScript.Monsters) 1)
+        if (monsterType == PlayerScript.Monsters.Ghost)
         {
             Debug.Log("Attaque du fantome déclenchée");
         }
