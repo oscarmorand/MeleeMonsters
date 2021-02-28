@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SelectMonster.unity
     guid: f69a49cd7f3d8b241a69cfcae64f0e0d
   - enabled: 1
+    path: Assets/Scenes/SelectLevel.unity
+    guid: 2b1eedece28f7f343addcd775fbde9b1
+  - enabled: 1
     path: Assets/Scenes/Forest.unity
     guid: ffc8fd43fd8a98042bbb204ff1d64b64
+  - enabled: 1
+    path: Assets/Scenes/Cemetery.unity
+    guid: 067f5ba1d8a3448439e6d6e693c6de11
   m_configObjects: {}
