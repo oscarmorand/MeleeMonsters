@@ -49,4 +49,4 @@ MonoBehaviour:
   yeti: {fileID: 0}
   kraken: {fileID: 0}
   monsterNbr: 0
-  nbrLives: 5
+  nbrLives: 2

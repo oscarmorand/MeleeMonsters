@@ -663,6 +663,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: IAvocat
       objectReference: {fileID: 0}
+    - target: {fileID: 4958320532538682467, guid: 7dde166eab071ae42aca2ec8733eb0c8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4958320532538682495, guid: 7dde166eab071ae42aca2ec8733eb0c8,
         type: 3}
       propertyPath: m_RootOrder
@@ -923,7 +928,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoints: {fileID: 2067830440}
-  spawnList: []
   players: []
 --- !u!4 &997328279
 Transform:
