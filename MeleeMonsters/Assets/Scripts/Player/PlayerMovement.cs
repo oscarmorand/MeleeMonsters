@@ -136,14 +136,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void MovePlayerUpdate()
+    public void MovePlayerUpdate()
     {
         float horizontalMovement = moveInputx * moveSpeed * Time.deltaTime;
         Move(horizontalMovement);
     }
 
 
-    public void Move(float _horizontalMovement)
+    void Move(float _horizontalMovement)
     {
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.05f);
@@ -175,9 +175,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void DashState()
     {
-        isDashing = true;
-        Invoke("SetDashingToFalse", dashTime);
-        nbrDash--;
+        if (nbrDash > 0)
+        {
+            isDashing = true;
+            Invoke("SetDashingToFalse", dashTime);
+            nbrDash--;
+        }
     }
     void SetDashingToFalse()
     {
@@ -193,9 +196,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void JumpState()
     {
-        isJumping = true;
-        nbrJump--;
-        Invoke("SetJumpingToFalse", jumpTime);
+        if (nbrJump > 0 && !isJumping)
+        {
+            print("saut");
+            isJumping = true;
+            nbrJump--;
+            Invoke("SetJumpingToFalse", jumpTime);
+        }
+        if (wallSliding)
+        {
+            WallJumpState();
+        }
     }
     void SetJumpingToFalse()
     {

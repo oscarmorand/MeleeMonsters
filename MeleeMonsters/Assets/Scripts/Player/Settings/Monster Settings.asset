@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpStrength: 3
+  jumpTime: 0.025
   extraJump: 1
   wallSlidingSpeed: 0.2
   yWallForce: 5
   gravityScale: 1
+  fastFallingSpeed: 10
+  dashNbr: 1
+  dashForce: 15
+  dashTime: 0.2
+  dashCoolDown: 0.2
