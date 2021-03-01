@@ -8,7 +8,12 @@ public class MainMenu : MonoBehaviour
 
     public void PlaySolo()
     {
-        SceneManager.LoadScene(7); //Loading screen solo
+        SceneManager.LoadScene("LoadingScreenSolo"); //Loading screen solo
+    }
+
+    public void PlayMulti()
+    {
+        SceneManager.LoadScene("LoadingScreenMultiplayer");
     }
 
     public void PlayGame()

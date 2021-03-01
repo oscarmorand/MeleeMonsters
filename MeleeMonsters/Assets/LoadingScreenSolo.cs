@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class LoadingScreen : MonoBehaviourPunCallbacks
+public class LoadingScreenSolo : MonoBehaviourPunCallbacks
 {
     public override void OnConnectedToMaster()
     {
