@@ -421,9 +421,6 @@ MonoBehaviour:
   nickName: 
   monster: 0
   percentage: 0
-  isAlive: 0
-  canStillPlay: 1
-  isWrath: 0
   reappearitionTime: 0
 --- !u!114 &4048278115268245952
 MonoBehaviour:
