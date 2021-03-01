@@ -15,7 +15,7 @@ MonoBehaviour:
   speed: 350
   jumpStrength: 9
   jumpTime: 0.025
-  extraJump: 2
+  extraJump: 1
   wallSlidingSpeed: 1.5
   yWallForce: 7
   gravityScale: 1.5
