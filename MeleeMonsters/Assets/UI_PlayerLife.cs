@@ -13,6 +13,7 @@ public class UI_PlayerLife : MonoBehaviour
 
     private GameManager gameManager;
     private LevelManager levelManager;
+    private GameObject panel;
 
     public int playerIndex = -1;
 
@@ -22,13 +23,27 @@ public class UI_PlayerLife : MonoBehaviour
         GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager?.GetComponent<GameManager>();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-
-        username.text = gameManager.players[playerIndex].NickName;
+        panel = transform.Find("Panel PlayerLife").gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        UI_percentage.text = levelManager.players[playerIndex].percentage.ToString();
+        if (playerIndex < gameManager.players.Count)
+        {
+            username.text = gameManager.players[playerIndex].NickName;
+            panel.SetActive(true);
+        }
+        else
+        {
+            panel.SetActive(false);
+        }
+           
+
+        if (playerIndex < levelManager.players.Count)
+        {
+            UI_percentage.text = levelManager.players[playerIndex].percentage.ToString();
+        }
+            
     }
 }
