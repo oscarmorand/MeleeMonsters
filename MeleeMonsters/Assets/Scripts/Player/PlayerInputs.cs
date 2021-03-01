@@ -102,4 +102,12 @@ public class PlayerInputs : MonoBehaviour
         }
     }
 
+    public void NeutralSInput(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            pAt.NeutralS();
+        }
+    }
+
 }

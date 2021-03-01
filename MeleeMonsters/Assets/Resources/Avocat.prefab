@@ -628,6 +628,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b686b476-7d6b-4a58-b031-1bcbd718432a
     m_ActionName: Player/SideG[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -3785744018447802112}
+        m_MethodName: NeutralSInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8027abbd-0cb1-4330-b1de-b54a3f9dbd40
+    m_ActionName: Player/NeutralS[/Keyboard/k]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

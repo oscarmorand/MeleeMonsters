@@ -15,7 +15,7 @@ public class AvocadoAttacks : MonoBehaviour
     void Start()
     {
         playerAttacks = GetComponent<PlayerAttacks>();
-        attackRange = 0.5f;
+        
         
         
     }
@@ -37,20 +37,24 @@ public class AvocadoAttacks : MonoBehaviour
         // Application des dégâts 
         foreach (Collider2D colliders in hitColliders)
         {            
-            Debug.Log("Vous avez touché" + " " + colliders.name);
+           
             GameObject hitObject = colliders.gameObject;
-            PlayerScript player = hitObject.GetComponent<PlayerScript>();
-            playerAttacks.AddPercentage(5, player);
-            
+            if (hitObject != gameObject)
+            { 
+                Debug.Log("Vous avez touché " + colliders.name +"(SideG)");
+                PlayerScript player = hitObject.GetComponent<PlayerScript>();
+                playerAttacks.AddPercentage(5, player);
+            }
+
+
         }
 
-
+       
 
     }
 
      void OnDrawGizmosSelected()
     {
-       
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 

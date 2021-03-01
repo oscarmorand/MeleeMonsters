@@ -44,6 +44,11 @@ public class PlayerAttacks : MonoBehaviour
 
     }
 
+    public void NeutralS()
+    {
+        print("neutralS");
+    }
+
     void NeutralG()
     {
 

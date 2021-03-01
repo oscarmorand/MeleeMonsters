@@ -923,7 +923,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoints: {fileID: 2067830440}
-  spawnList: []
   players: []
 --- !u!4 &997328279
 Transform:

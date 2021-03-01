@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "NeutralS",
+                    "type": "Button",
+                    "id": "8027abbd-0cb1-4330-b1de-b54a3f9dbd40",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -242,6 +250,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SideG",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad13fc16-a1d7-4546-8847-c88fe6b422b2",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "NeutralS",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
