@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinnerScene.unity
     guid: 02e800c08decd8d4884fb511771cab93
+  - enabled: 1
+    path: Assets/Scenes/LoadingScreenSolo.unity
+    guid: 780b1c9bc1acbf34ba292ef2c22ad432
+  - enabled: 1
+    path: Assets/Scenes/LoadingScreenMultiplayer.unity
+    guid: 4069a33115338d24bae3e03b16106e1f
   m_configObjects: {}
