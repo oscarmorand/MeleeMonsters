@@ -6,6 +6,7 @@ public class PlayerAttacks : MonoBehaviour
 {
     private AvocadoAttacks avocadoAttacks;
     private PlayerScript playerScript;
+    private PlayerMovement pM;
 
     private PlayerScript.Monsters monsterType;
   
@@ -14,6 +15,7 @@ public class PlayerAttacks : MonoBehaviour
     {
         avocadoAttacks = GetComponent<AvocadoAttacks>();
         playerScript = GetComponent<PlayerScript>();
+        pM = GetComponent<PlayerMovement>();
 
         PlayerScript.Monsters monsterType = playerScript.monster;
     }
@@ -24,6 +26,54 @@ public class PlayerAttacks : MonoBehaviour
       
      
 
+    }
+
+    public void NormalAttacks()
+    {
+        if (pM.isGrounded)
+        {
+
+            if (pM.moveInputx != 0)
+            {
+                SideG();
+            }
+            else if (pM.moveInputy < 0)
+            {
+                DownG();
+            }
+            else
+            {
+                NeutralG();
+            }
+            
+
+        } 
+        else
+        {
+            if (pM.moveInputx != 0)
+            {
+                SideA();
+            }
+            else if (pM.moveInputy < 0)
+            {
+                DownA();
+            }
+            else
+            {
+                NeutralA();
+            }
+        }
+        
+    }
+
+   
+
+    
+    // Attaques faible au sol (= Weak Ground Attacks) 
+    
+    void NeutralG()
+    {
+        print("NeutralG");
     }
 
     public void SideG()
@@ -42,38 +92,34 @@ public class PlayerAttacks : MonoBehaviour
             Debug.Log("Attaque du fantome déclenchée");
         }
 
-    }
-
-    public void NeutralS()
-    {
-        print("neutralS");
-    }
-
-    void NeutralG()
-    {
-
+        print("SideG");
     }
 
     void DownG()
     {
-
+        print("DownA");
     }
+
+
+    // Attaque faible en l'air (= Air Weak Attacks) 
 
     void SideA()
     {
-
+        print("SideA");
     }
 
     void NeutralA()
     {
-
+        print("NeutralA");
     }
 
     void DownA()
     {
-
+        print("DownA");
     }
 
+
+    // Fonction qui fais prendre des dégâts à "target". 
     public void AddPercentage(int damage,PlayerScript target)
     {
 

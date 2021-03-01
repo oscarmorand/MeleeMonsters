@@ -94,20 +94,12 @@ public class PlayerInputs : MonoBehaviour
         }
     }
 
-    public void SideGInput(InputAction.CallbackContext context)
-    {
-        if(context.performed)
+   public void NormalAttacksInput (InputAction.CallbackContext context)
+   {
+        if (context.performed)
         {
-            pAt.SideG();
+            pAt.NormalAttacks();
         }
-    }
-
-    public void NeutralSInput(InputAction.CallbackContext context)
-    {
-        if(context.performed)
-        {
-            pAt.NeutralS();
-        }
-    }
+   }
 
 }
