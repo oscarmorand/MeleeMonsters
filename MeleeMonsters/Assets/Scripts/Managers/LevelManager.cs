@@ -14,6 +14,9 @@ public class LevelManager : MonoBehaviour
 
     public List<PlayerScript> players;
 
+    private List<Photon.Realtime.Player> playersInGame = new List<Photon.Realtime.Player>();
+    private ExitGames.Client.Photon.Hashtable _myCustomPropreties = new ExitGames.Client.Photon.Hashtable();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +56,57 @@ public class LevelManager : MonoBehaviour
                 spawnList = spawnPoints.p4;
                 break;
         }
-        gameManager.InstantiatePlayer(spawnList[(PhotonNetwork.LocalPlayer.ActorNumber) % spawnList.Count].position);
+
+        //gameManager.InstantiatePlayer(spawnList[(PhotonNetwork.LocalPlayer.ActorNumber) % spawnList.Count].position);
+
+        gameManager.InstantiatePlayer(spawnList[(PhotonNetwork.LocalPlayer.ActorNumber) - 1].position);
+        InitializePlayers();
+    }
+
+    void InitializePlayers()
+    {
+        foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+        {
+            _myCustomPropreties["StillInGame"] = true;
+            player.CustomProperties = _myCustomPropreties;
+        }
+    }
+
+    public void PlayersStillInGame()
+    {
+        print("playerStillIngame est lance");
+        foreach(Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+        {
+            if((bool)player.CustomProperties["StillInGame"])
+            {
+                playersInGame.Add(player);
+            }
+            print(player.NickName + " " + player.CustomProperties["StillInGame"].ToString());
+        }
+    }
+
+    public void SearchForWinner()
+    {
+        PlayersStillInGame();
+        if (playersInGame.Count < 2)
+        {
+            if (playersInGame.Count == 1)
+                WinnerFound();
+            if (playersInGame.Count == 0)
+                print("beurk vous etes nul");
+            EndGame();
+        }
+    }
+
+    void WinnerFound()
+    {
+        gameManager.winner = playersInGame[0];
+        print(playersInGame[0].NickName + " is the winner !");
+    }
+
+    void EndGame()
+    {
+        PhotonNetwork.LoadLevel(6);
+
     }
 }
