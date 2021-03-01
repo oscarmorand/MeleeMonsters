@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     private GameObject manager;
     private GameManager gameManager;
+    private GameObject gameObjectIA;
 
     public SpawnPoints spawnPoints;
     internal List<Transform> spawnList;
@@ -31,6 +32,13 @@ public class LevelManager : MonoBehaviour
         spawnPoints = spawnGameObject.GetComponent<SpawnPoints>();
 
         SpawnPlayers();
+
+        gameObjectIA = GameObject.FindGameObjectWithTag("IA").gameObject;
+
+        if (PhotonNetwork.PlayerList.Length > 1)
+        {
+            gameObjectIA.SetActive(false);
+        }
     }
 
     // Update is called once per frame
