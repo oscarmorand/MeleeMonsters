@@ -14,8 +14,6 @@ public class IA : MonoBehaviour
     float relativeSideX;
     float relativeSideY;
 
-    float originOffset = 0.5f;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -68,15 +66,16 @@ public class IA : MonoBehaviour
                     playerMovement.WallJumpState();
                 }
 
-                RaycastHit2D isThereGroundUnder = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.down), 1000f); //Le 8 correspond au layerMask (Ground)
-                RaycastHit2D isThereGroundLeft = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.left), 1000f, 8); //Le 8 correspond au layerMask (Ground)
-                RaycastHit2D isThereGroundRight = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.right), 1000f, 8); //Le 8 correspond au layerMask (Ground)
-                //RaycastHit2D isThereGroundUp = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.up), 1000f, 8); //Le 8 correspond au layerMask (Ground)
+                RaycastHit2D isThereGroundUnder = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.down), 100f, 1 << 8); //Le 1<<8 correspond au layerMask 8 (Ground)
 
                 if (!isThereGroundUnder) //Si l'IA n'est pas au-dessus d'un sol
                 {
-                    print("noground");
-                    if (isThereGroundLeft) //Si le terrain est à gauche de l'IA
+                    RaycastHit2D isThereGroundLeft = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.left), 100f, 1 << 8);
+                    RaycastHit2D isThereGroundRight = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.right), 100f, 1 << 8);
+                    RaycastHit2D isThereGroundUnderLeft = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(new Vector2(-1, -1)), 100f, 1 << 8);
+                    RaycastHit2D isThereGroundUnderRight = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(new Vector2(1, -1)), 100f, 1 << 8);
+
+                    if (isThereGroundLeft || isThereGroundUnderLeft) //Si le terrain est à gauche de l'IA
                     {
                         if (playerMovement.nbrJump > 0)
                         {
@@ -92,7 +91,7 @@ public class IA : MonoBehaviour
                         else
                             playerMovement.moveInputx = -1; //Move vers la gauche
                     }
-                    else if (isThereGroundRight) //Si le terrain est à droite de l'IA
+                    else if (isThereGroundRight || isThereGroundUnderRight) //Si le terrain est à droite de l'IA
                     {
                         if (playerMovement.nbrJump > 0)
                         {
@@ -117,8 +116,6 @@ public class IA : MonoBehaviour
                         playerMovement.JumpState();
                     }
                 }
-
-
             }
         }
     }
