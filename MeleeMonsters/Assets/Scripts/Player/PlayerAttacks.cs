@@ -73,7 +73,18 @@ public class PlayerAttacks : MonoBehaviour
     
     void NeutralG()
     {
-        print("NeutralG");
+        // Si l'attaquant est l'avocat 
+        if (monsterType == PlayerScript.Monsters.Avocado)
+        {
+            avocadoAttacks.AvocadoNeutralG();
+
+        }
+
+        // Si l'attaquant est le fantome 
+        if (monsterType == PlayerScript.Monsters.Ghost)
+        {
+            Debug.Log("Attaque du fantome déclenchée (NeutralG)");
+        }
     }
 
     public void SideG()
@@ -92,12 +103,24 @@ public class PlayerAttacks : MonoBehaviour
             Debug.Log("Attaque du fantome déclenchée");
         }
 
-        print("SideG");
+
     }
 
     void DownG()
     {
-        print("DownA");
+        // Si l'attaquant est l'avocat 
+        if (monsterType == PlayerScript.Monsters.Avocado)
+        {
+            avocadoAttacks.AvocadoDownG();
+
+        }
+
+        // Si l'attaquant est le fantome 
+        if (monsterType == PlayerScript.Monsters.Ghost)
+        {
+            Debug.Log("Attaque du fantome déclenchée (DownG)");
+        }
+
     }
 
 
@@ -105,17 +128,50 @@ public class PlayerAttacks : MonoBehaviour
 
     void SideA()
     {
-        print("SideA");
+        // Si l'attaquant est l'avocat 
+        if (monsterType == PlayerScript.Monsters.Avocado)
+        {
+            avocadoAttacks.AvocadoSideA();
+
+        }
+
+        // Si l'attaquant est le fantome 
+        if (monsterType == PlayerScript.Monsters.Ghost)
+        {
+            Debug.Log("Attaque du fantome déclenchée (Side A)");
+        }
     }
 
     void NeutralA()
     {
-        print("NeutralA");
+        // Si l'attaquant est l'avocat 
+        if (monsterType == PlayerScript.Monsters.Avocado)
+        {
+            avocadoAttacks.AvocadoNeutralA();
+
+        }
+
+        // Si l'attaquant est le fantome 
+        if (monsterType == PlayerScript.Monsters.Ghost)
+        {
+            Debug.Log("Attaque du fantome déclenchée (NeutralA)");
+        }
     }
 
     void DownA()
     {
-        print("DownA");
+        // Si l'attaquant est l'avocat 
+        if (monsterType == PlayerScript.Monsters.Avocado)
+        {
+            avocadoAttacks.AvocadoDownA();
+
+        }
+
+        // Si l'attaquant est le fantome 
+        if (monsterType == PlayerScript.Monsters.Ghost)
+        {
+            Debug.Log("Attaque du fantome déclenchée (DownA)");
+        }
     }
 
 
@@ -125,7 +181,7 @@ public class PlayerAttacks : MonoBehaviour
 
         target.percentage += damage;
         print(target.name + " took " + damage);
-        print(target.percentage);
+        print(target + " current percent: " + target.percentage);
 
     }
 
