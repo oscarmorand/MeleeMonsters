@@ -3,6 +3,7 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoomListingsMenu : MonoBehaviourPunCallbacks
 {
@@ -21,7 +22,7 @@ public class RoomListingsMenu : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        _roomCanvases.CurrentRoomCanvas.Show();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         _content.DestroyChildren();
         _listings.Clear();
     }

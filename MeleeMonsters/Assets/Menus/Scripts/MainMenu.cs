@@ -5,6 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
+    public void PlaySolo()
+    {
+        SceneManager.LoadScene("LoadingScreenSolo"); //Loading screen solo
+    }
+
+    public void PlayMulti()
+    {
+        SceneManager.LoadScene("LoadingScreenMultiplayer");
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 

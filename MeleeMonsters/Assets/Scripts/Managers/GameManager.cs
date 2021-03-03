@@ -16,16 +16,18 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [Header("Monsters")]
-    public GameObject avocado;
-    public GameObject ghost;
-    public GameObject yeti;
-    public GameObject kraken;
+    public GameObject[] monstersArray;
 
-    public int monsterNbr;
+    private int localPlayerMonsterIndex = 0;
 
     private GameObject playerPrefab;
 
     public int nbrLives;
+
+    public List<Player> players = new List<Player>(); // players in current room
+
+    internal Photon.Realtime.Player winner;
+    internal bool IAwon = false;
 
 
     private void Awake()
@@ -37,9 +39,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Start()
     {
         //this.monsterNbr = Random.Range(0, 2);
-        this.monsterNbr = 0;
+        this.localPlayerMonsterIndex = 0;
 
-        print("my monster has type " + this.monsterNbr + " by default");
+        print("my monster has type " + this.localPlayerMonsterIndex + " by default");
     }
 
     // Update is called once per frame
@@ -63,25 +65,35 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void SelectMonster(int _monsterNbr)
     {
-        monsterNbr = _monsterNbr;
+        localPlayerMonsterIndex = _monsterNbr;
     }
 
-    public void InitPlayerPrefab(int monsterNbr)
+    public void InitPlayerPrefab()
     {
-        switch(monsterNbr)
+        playerPrefab = monstersArray[localPlayerMonsterIndex];
+    }
+
+    public override void OnJoinedRoom()
+    {
+        InitPlayerList();
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        InitPlayerList(); 
+    }
+
+    private void InitPlayerList()
+    {
+        if (!PhotonNetwork.IsConnected)
+            return;
+        if (PhotonNetwork.CurrentRoom == null || PhotonNetwork.CurrentRoom.Players == null)
+            return;
+        players.Clear(); 
+        foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
-            case 0:
-                playerPrefab = avocado;
-                break;
-            case 1:
-                playerPrefab = ghost;
-                break;
-            case 2:
-                playerPrefab = yeti;
-                break;
-            default:
-                playerPrefab = kraken;
-                break;
+            players.Add(playerInfo.Value);
         }
+
     }
 }

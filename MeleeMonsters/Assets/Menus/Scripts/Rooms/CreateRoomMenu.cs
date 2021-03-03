@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Photon.Realtime;
 using Photon.Pun;
 using TMPro;
@@ -32,7 +33,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     {
         Debug.Log("Created room successfully", this);
-        _roomCanvases.CurrentRoomCanvas.Show();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)

@@ -21,9 +21,9 @@ public class PlayerScript : MonoBehaviour
     private int lives;
     public int percentage;
 
-    public bool isAlive = true;
-    public bool canStillPlay = true;
-    public bool isWrath = false;
+    internal bool isAlive = true;
+    internal bool canStillPlay = true;
+    internal bool isWrath = false;
 
     private PlayerMovement pMovement;
     private PlayerCollisions pCollisions;
@@ -39,6 +39,7 @@ public class PlayerScript : MonoBehaviour
 
     public float reappearitionTime;
 
+    private ExitGames.Client.Photon.Hashtable _myCustomPropreties = new ExitGames.Client.Photon.Hashtable();
 
     // Start is called before the first frame update
     void Start()
@@ -75,16 +76,23 @@ public class PlayerScript : MonoBehaviour
         if (canStillPlay)
             Invoke("Reappear", reappearitionTime);
         else
+        {
             Destroy(gameObject);
+            if (levelManager.inSolo)
+            {
+                Destroy(levelManager.gameObjectIA);
+            }
+        }
     }
 
     private void Reappear()
     {
         rb.velocity = new Vector2(0, 0);
-        //int randomSpawnPoint = Random.Range(0, spawnList.Count);
-        //transform.position = spawnList[randomSpawnPoint].position;
-        transform.position = new Vector3(0, 1, 0);
+        int randomSpawnPoint = Random.Range(0, spawnList.Count);
+        transform.position = spawnList[randomSpawnPoint].position;
+        //transform.position = new Vector3(0, 1, 0);
         isAlive = true;
+        percentage = 0;
     }
 
     void CheckStillAlive()
@@ -92,6 +100,9 @@ public class PlayerScript : MonoBehaviour
         if(lives <= 0)
         {
             canStillPlay = false;
+            _myCustomPropreties["StillInGame"] = false;
+            PhotonNetwork.LocalPlayer.CustomProperties = _myCustomPropreties;
+            levelManager.SearchForWinner();
         }
     }
 }

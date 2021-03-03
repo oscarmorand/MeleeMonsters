@@ -520,10 +520,7 @@ MonoBehaviour:
   nickName: 
   monster: 0
   percentage: 0
-  isAlive: 1
-  canStillPlay: 1
-  isWrath: 0
-  reappearitionTime: 2
+  reappearitionTime: 1
 --- !u!114 &4048278115268245952
 MonoBehaviour:
   m_ObjectHideFlags: 0

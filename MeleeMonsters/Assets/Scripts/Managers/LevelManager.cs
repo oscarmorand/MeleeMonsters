@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     private GameObject manager;
     private GameManager gameManager;
+    internal GameObject gameObjectIA;
 
     public SpawnPoints spawnPoints;
     internal List<Transform> spawnList;
@@ -14,19 +15,33 @@ public class LevelManager : MonoBehaviour
 
     public List<PlayerScript> players;
 
+    public bool inSolo;
+
+    private List<Photon.Realtime.Player> playersInGame = new List<Photon.Realtime.Player>();
+    private ExitGames.Client.Photon.Hashtable _myCustomPropreties = new ExitGames.Client.Photon.Hashtable();
+
     // Start is called before the first frame update
     void Start()
     {
         manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager.GetComponent<GameManager>();
 
-        int mNumber = gameManager.monsterNbr;
-        gameManager.InitPlayerPrefab(mNumber);
+        gameManager.InitPlayerPrefab();
 
         print(PhotonNetwork.LocalPlayer.ActorNumber);
 
         spawnGameObject = GameObject.Find("SpawnPoints").gameObject;
         spawnPoints = spawnGameObject.GetComponent<SpawnPoints>();
+
+        gameObjectIA = GameObject.FindGameObjectWithTag("IA").gameObject;
+
+        if (PhotonNetwork.PlayerList.Length > 1)
+        {
+            gameObjectIA.SetActive(false);
+            inSolo = false;
+        }
+        else
+            inSolo = true;
 
         SpawnPlayers();
     }
@@ -39,7 +54,10 @@ public class LevelManager : MonoBehaviour
 
     void SpawnPlayers()
     {
-        switch (PhotonNetwork.PlayerList.Length)
+        int iaNbr = 0;
+        if (gameObjectIA.activeSelf)
+            iaNbr++;
+        switch (PhotonNetwork.PlayerList.Length + iaNbr)
         {
             case 1:
                 spawnList = spawnPoints.p1;
@@ -54,6 +72,72 @@ public class LevelManager : MonoBehaviour
                 spawnList = spawnPoints.p4;
                 break;
         }
+        print("il y a " + (PhotonNetwork.PlayerList.Length + iaNbr).ToString() + " joueurs ou ia");
+
+        //gameManager.InstantiatePlayer(spawnList[(PhotonNetwork.LocalPlayer.ActorNumber) % spawnList.Count].position);
+
         gameManager.InstantiatePlayer(spawnList[(PhotonNetwork.LocalPlayer.ActorNumber) - 1].position);
+        InitializePlayers();
+    }
+
+    void InitializePlayers()
+    {
+        foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+        {
+            _myCustomPropreties["StillInGame"] = true;
+            player.CustomProperties = _myCustomPropreties;
+        }
+    }
+
+    public void PlayersStillInGame()
+    {
+        print("playerStillIngame est lance");
+        foreach(Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+        {
+            if((bool)player.CustomProperties["StillInGame"])
+            {
+                playersInGame.Add(player);
+            }
+            print(player.NickName + " " + player.CustomProperties["StillInGame"].ToString());
+        }
+    }
+
+    public void SearchForWinner()
+    {
+        PlayersStillInGame();
+
+        if(inSolo)
+        {
+            if(playersInGame.Count <= 1)
+            {
+                if (playersInGame.Count == 1 && !(gameObjectIA.GetComponent<PlayerScript>().canStillPlay))
+                    WinnerFound();
+                if (playersInGame.Count == 0 && (gameObjectIA.GetComponent<PlayerScript>().canStillPlay))
+                    gameManager.IAwon = true;
+                EndGame();
+            } 
+        }
+        else
+        {
+            if (playersInGame.Count < 2)
+            {
+                if (playersInGame.Count == 1)
+                    WinnerFound();
+                if (playersInGame.Count == 0)
+                    print("vous etes tous morts");
+                EndGame();
+            }
+        } 
+    }
+
+    void WinnerFound()
+    {
+        gameManager.winner = playersInGame[0];
+        print(playersInGame[0].NickName + " is the winner !");
+    }
+
+    void EndGame()
+    {
+        PhotonNetwork.LoadLevel(6);
     }
 }
