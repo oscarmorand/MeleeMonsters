@@ -63,7 +63,17 @@ public class AvocadoAttacks : MonoBehaviour
             { 
                 Debug.Log("Vous avez touché " + colliders.name +"(SideG)");
                 PlayerScript player = hitObject.GetComponent<PlayerScript>();
+
+                //Application des degats
                 playerAttacks.AddPercentage(8, player);
+
+
+                //Knockback
+                Vector2 direction = colliders.transform.position - gameObject.transform.position;
+                Rigidbody2D rbEnemi = colliders.GetComponent<Rigidbody2D>();
+                float knockbackstrenght = player.percentage * 0.8f;
+                direction.y = 0.5f;
+                rbEnemi.AddForce(direction * knockbackstrenght,ForceMode2D.Impulse);
             }
 
         }
@@ -89,7 +99,12 @@ public class AvocadoAttacks : MonoBehaviour
             {
                 Debug.Log("Vous avez touché " + colliders.name + "(SideA)");
                 PlayerScript player = hitObject.GetComponent<PlayerScript>();
+
+                //Ajout des degats
                 playerAttacks.AddPercentage(8, player);
+
+                
+
             }
 
         }
