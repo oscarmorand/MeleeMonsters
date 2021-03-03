@@ -113,7 +113,7 @@ public class LevelManager : MonoBehaviour
                 if (playersInGame.Count == 1 && !(gameObjectIA.GetComponent<PlayerScript>().canStillPlay))
                     WinnerFound();
                 if (playersInGame.Count == 0 && (gameObjectIA.GetComponent<PlayerScript>().canStillPlay))
-                    print("L'IA a gagné");
+                    gameManager.IAwon = true;
                 EndGame();
             } 
         }
