@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     internal bool isGrounded;
     internal bool isTouchingFront;
 
-    public float timeForNextDashClone;
+    public float timeForNextDashClone = 0.02f;
     private float currentDashTime;
     public GameObject dashClone;
 
@@ -140,12 +140,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (isDashing)
         {
-            currentDashTime += Time.fixedDeltaTime;
+            currentDashTime += Time.fixedDeltaTime; // currentDashTime : le temps depuis la dernière fois qu'on a sponné un clone
+                                                    // fixedDeltaTime : le temps entre 2 updates de fixedUpdate
 
             if (currentDashTime > timeForNextDashClone)
             {
                 currentDashTime -= timeForNextDashClone;
-                Instantiate(dashClone, transform.position, transform.rotation);
+                GameObject newObject = Instantiate(dashClone, transform.position, transform.rotation); 
+                newObject.transform.localScale = transform.localScale; // retourne les clones de l'avocat dans le bon sens
             }
         }
         else

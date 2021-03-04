@@ -6,6 +6,8 @@ public class DashEffects : MonoBehaviour
 {
     public GameObject gameObjectBody;
     private List<SpriteRenderer> childrenSpriteRenderer = new List<SpriteRenderer>();
+    public float fadeSpeed = 0.1f;
+    public float fadeStart = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +23,7 @@ public class DashEffects : MonoBehaviour
     IEnumerator FadeOut()
     {
 
-        for (float f = 1f; f >= -0.1f; f -= 0.1f)
+        for (float f = fadeStart; f >= fadeSpeed; f -= fadeSpeed)
         {
             foreach (var childRend in childrenSpriteRenderer)
             {
@@ -30,10 +32,10 @@ public class DashEffects : MonoBehaviour
                 childRend.material.color = c;
             }
             
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.02f);
         }
 
-        Destroy(this);
+        Destroy(gameObject);
     }
 
 
