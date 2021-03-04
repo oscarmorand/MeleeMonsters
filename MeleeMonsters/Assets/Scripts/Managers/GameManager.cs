@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         this.localPlayerMonsterIndex = 0;
 
         print("my monster has type " + this.localPlayerMonsterIndex + " by default");
+        PhotonNetwork.NetworkingClient.LoadBalancingPeer.DisconnectTimeout = 60000; // in milliseconds. any high value for debug
     }
 
     // Update is called once per frame
@@ -49,7 +50,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         
     }
 
-    public void InstantiatePlayer (Vector3 pos)
+    /*public void InstantiatePlayer (Vector3 pos)
     {
         if (playerPrefab == null)
         {
@@ -59,6 +60,28 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("instancié!");
             PhotonNetwork.Instantiate(this.playerPrefab.name, pos, Quaternion.identity, 0);
+        }
+    }*/
+
+    public void InstantiatePlayer(Vector3 pos, bool Solo)
+    {
+        if (playerPrefab == null)
+        {
+            Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
+        }
+        else
+        {
+            if (Solo)
+            {
+                GameObject Prefab = (GameObject)Resources.Load(this.playerPrefab.name, typeof(GameObject));
+                Instantiate(Prefab, pos, Quaternion.identity);
+            }
+            else
+            {
+                PhotonNetwork.Instantiate(this.playerPrefab.name, pos, Quaternion.identity, 0);
+            }
+
+            Debug.Log("instancié!");
         }
     }
 

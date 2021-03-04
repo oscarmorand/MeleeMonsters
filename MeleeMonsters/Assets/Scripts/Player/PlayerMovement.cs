@@ -48,7 +48,11 @@ public class PlayerMovement : MonoBehaviour
     internal bool isGrounded;
     internal bool isTouchingFront;
 
- 
+    public float timeForNextDashClone;
+    private float currentDashTime;
+    public GameObject dashClone;
+
+
     void Start()
     {
  
@@ -132,6 +136,21 @@ public class PlayerMovement : MonoBehaviour
             {
                 Flip();
             }
+        }
+
+        if (isDashing)
+        {
+            currentDashTime += Time.fixedDeltaTime;
+
+            if (currentDashTime > timeForNextDashClone)
+            {
+                currentDashTime -= timeForNextDashClone;
+                Instantiate(dashClone, transform.position, transform.rotation);
+            }
+        }
+        else
+        {
+            currentDashTime = 0f;
         }
     }
 
