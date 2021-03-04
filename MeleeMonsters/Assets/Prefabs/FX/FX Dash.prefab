@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameObjectBody: {fileID: 5962881707770481114}
   fadeSpeed: 0.05
-  fadeStart: 0.7
+  fadeStart: 0.5
 --- !u!1001 &8386253708965146599
 PrefabInstance:
   m_ObjectHideFlags: 0

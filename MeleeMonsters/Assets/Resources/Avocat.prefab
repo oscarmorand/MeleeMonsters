@@ -280,6 +280,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c36feede-9681-492a-b749-8b49344236e7
     m_ActionName: Player/FastFall[/Keyboard/downArrow,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2c9b5ced-92e6-45be-a74e-37d25ce60ee9
+    m_ActionName: Player/NormalAttacks[/Keyboard/j]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
