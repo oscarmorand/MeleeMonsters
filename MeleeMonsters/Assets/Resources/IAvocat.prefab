@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2046536456705746757}
   - component: {fileID: 6514965465736499342}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Right Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7598729985038037462}
   - component: {fileID: 2499066467883210318}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Noyau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6251800672405213747}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FrontCheck
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1272921167927110239}
   - component: {fileID: 6579776627600172}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3874505309396110163}
   - component: {fileID: 279371317036546717}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: -1459930853616729469}
   - component: {fileID: -4568185816180669887}
   - component: {fileID: -1417845002242164788}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IAvocat
   m_TagString: IA
   m_Icon: {fileID: 0}
@@ -611,6 +611,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c36feede-9681-492a-b749-8b49344236e7
     m_ActionName: Player/FastFall[/Keyboard/downArrow,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b686b476-7d6b-4a58-b031-1bcbd718432a
+    m_ActionName: Player/SideG[/Keyboard/j]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -776,7 +780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1433306911251532281}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
@@ -807,7 +811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8237914662769969992}
   - component: {fileID: 5129723005089324561}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -892,7 +896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1077766950712188770}
   - component: {fileID: 7907465674870744522}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Right Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -975,7 +979,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3850110937024858151}
   - component: {fileID: 242384888625634170}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

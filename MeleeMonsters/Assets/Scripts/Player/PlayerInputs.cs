@@ -9,11 +9,14 @@ public class PlayerInputs : MonoBehaviour
 
     private PlayerAnimation pA;
 
+    private PlayerAttacks pAt;
+
     // Start is called before the first frame update
     void Start()
     {
         pM = GetComponent<PlayerMovement>();
         pA = GetComponent<PlayerAnimation>();
+        pAt = GetComponent<PlayerAttacks>();
     }
 
     // Update is called once per frame
@@ -92,5 +95,13 @@ public class PlayerInputs : MonoBehaviour
             }
         }
     }
+
+   public void NormalAttacksInput (InputAction.CallbackContext context)
+   {
+        if (context.performed)
+        {
+            pAt.NormalAttacks();
+        }
+   }
 
 }

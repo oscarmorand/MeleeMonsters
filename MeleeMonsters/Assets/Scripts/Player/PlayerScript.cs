@@ -60,8 +60,6 @@ public class PlayerScript : MonoBehaviour
 
         gameManager = GameObject.Find("GameManagerPrefab").GetComponent<GameManager>();
         lives = gameManager.nbrLives;
-
-        
     }
 
     // Update is called once per frame
@@ -75,20 +73,26 @@ public class PlayerScript : MonoBehaviour
         isAlive = false;
         lives--;
         CheckStillAlive();
-        //levelManager.PlayersStillInGame();
         if (canStillPlay)
             Invoke("Reappear", reappearitionTime);
         else
+        {
             Destroy(gameObject);
+            if (levelManager.inSolo)
+            {
+                Destroy(levelManager.gameObjectIA);
+            }
+        }
     }
 
     private void Reappear()
     {
         rb.velocity = new Vector2(0, 0);
-        //int randomSpawnPoint = Random.Range(0, spawnList.Count);
-        //transform.position = spawnList[randomSpawnPoint].position;
-        transform.position = new Vector3(0, 1, 0);
+        int randomSpawnPoint = Random.Range(0, spawnList.Count);
+        transform.position = spawnList[randomSpawnPoint].position;
+        //transform.position = new Vector3(0, 1, 0);
         isAlive = true;
+        percentage = 0;
     }
 
     void CheckStillAlive()

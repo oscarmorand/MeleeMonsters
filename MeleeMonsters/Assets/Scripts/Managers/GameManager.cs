@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public List<Player> players = new List<Player>(); // players in current room
 
     internal Photon.Realtime.Player winner;
+    internal bool IAwon = false;
 
 
     private void Awake()
