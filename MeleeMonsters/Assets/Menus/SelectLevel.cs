@@ -26,17 +26,20 @@ public class SelectLevel : MonoBehaviour
 
     public void OnClickedForest()
     {
-        level = forest;
+        if(PhotonNetwork.IsMasterClient)
+            level = forest;
     }
 
     public void OnClickedCemetery()
     {
-        level = cemetery;
+        if (PhotonNetwork.IsMasterClient)
+            level = cemetery;
     }
 
     public void OnClickedPlay()
     {
-        PlayLevel();
+        if (PhotonNetwork.IsMasterClient)
+            PlayLevel();
     }
 
     void PlayLevel()
