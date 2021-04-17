@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "WrathMode",
+                    "type": "Button",
+                    "id": "b00349b5-e5b4-48d5-bd58-249e6c18693c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -203,17 +211,6 @@
                 },
                 {
                     "name": "",
-                    "id": "3660a3a0-b035-44c8-a5ab-adfabb87e93c",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d7fbd053-dee1-492a-a693-127c01f427dd",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
@@ -242,6 +239,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "NormalAttacks",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d52a24b2-0df8-4234-a640-7ed4ed781d83",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "WrathMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3660a3a0-b035-44c8-a5ab-adfabb87e93c",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

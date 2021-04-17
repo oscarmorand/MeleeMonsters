@@ -422,10 +422,8 @@ MonoBehaviour:
   nickName: 
   monster: 0
   percentage: 0
-  isAlive: 1
-  canStillPlay: 1
-  isWrath: 0
   reappearitionTime: 2
+  body: {fileID: 8196371919430071273}
 --- !u!114 &4048278115268245952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,8 +611,12 @@ MonoBehaviour:
     m_ActionName: Player/FastFall[/Keyboard/downArrow,/Keyboard/s]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: b686b476-7d6b-4a58-b031-1bcbd718432a
-    m_ActionName: Player/SideG[/Keyboard/j]
+    m_ActionId: 2c9b5ced-92e6-45be-a74e-37d25ce60ee9
+    m_ActionName: Player/NormalAttacks[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b00349b5-e5b4-48d5-bd58-249e6c18693c
+    m_ActionName: Player/WrathMode[/Keyboard/m]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
