@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: -4568185816180669887}
   m_Layer: 0
   m_Name: Kraken
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,6 +421,7 @@ MonoBehaviour:
   nickName: 
   monster: 0
   percentage: 0
+  maxWrathTime: 0
   reappearitionTime: 0
 --- !u!114 &4048278115268245952
 MonoBehaviour:
@@ -607,6 +608,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c36feede-9681-492a-b749-8b49344236e7
     m_ActionName: Player/FastFall[/Keyboard/downArrow,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2c9b5ced-92e6-45be-a74e-37d25ce60ee9
+    m_ActionName: Player/NormalAttacks[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b00349b5-e5b4-48d5-bd58-249e6c18693c
+    m_ActionName: Player/WrathMode[/Keyboard/l]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
