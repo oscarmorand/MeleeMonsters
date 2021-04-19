@@ -691,6 +691,9 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 8d8b5d7a038d58e449c30dc80baec3fd, type: 2}
   xWallForce: 15
   wallJumpTime: 0.08
+  isGrounded: 0
+  isOnPlatform: 0
+  HasPassedPlatform: 0
 --- !u!114 &-366637032177327525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -705,9 +708,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1433306911251532281}
   frontCheck: {fileID: 6251800672405213747}
+  upCheck: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  whatIsPlatform:
+    serializedVersion: 2
+    m_Bits: 0
   checkRadius: 0.1
 --- !u!114 &-3785744018447802112
 MonoBehaviour:

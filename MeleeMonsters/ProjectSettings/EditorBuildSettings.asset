@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoadingScreenMultiplayer.unity
     guid: 4069a33115338d24bae3e03b16106e1f
+  - enabled: 1
+    path: Assets/Scenes/Abyss.unity
+    guid: 3170ee93e534a2c4b92196f0e8b4485f
   m_configObjects: {}
