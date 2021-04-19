@@ -45,8 +45,10 @@ public class PlayerMovement : MonoBehaviour
 
     private float moveSpeed;
 
-    internal bool isGrounded;
+    public bool isGrounded;
     internal bool isTouchingFront;
+    public bool isOnPlatform;
+    public bool HasPassedPlatform;
 
  
     void Start()
@@ -74,14 +76,16 @@ public class PlayerMovement : MonoBehaviour
         if (photonView.IsMine)
         {
 
-            if (isGrounded)
+            if (isGrounded || isOnPlatform)
             {
                 nbrJump = maxJump;
                 nbrDash = maxDash;
                 isFastFalling = false;
+                if (!isOnPlatform)
+                    gameObject.layer = 9;
             }
 
-            if (isTouchingFront && !isGrounded && moveInputx != 0)
+            if (isTouchingFront && !isGrounded && !isOnPlatform && moveInputx != 0)
                 wallSliding = true;
             else
                 wallSliding = false;
@@ -108,11 +112,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 isFastFalling = false;
+                gameObject.layer = 9;
             }
 
             if (isFastFalling)
             {
                 rb.velocity = new Vector2(rb.velocity.x, -fastFallingSpeed);
+            }
+
+            if(HasPassedPlatform)
+            {
+                gameObject.layer = 9;
             }
         }
     }
@@ -211,5 +221,16 @@ public class PlayerMovement : MonoBehaviour
     void SetJumpingToFalse()
     {
         isJumping = false;
+    }
+
+    public void TransparentState()
+    {
+        gameObject.layer = 10;
+        Invoke("NotTransparentAnymore", 0.5f);
+    }
+
+    void NotTransparentAnymore()
+    {
+        gameObject.layer = 9;
     }
 }

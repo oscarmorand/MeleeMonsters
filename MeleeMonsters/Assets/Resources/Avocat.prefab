@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &530092319731543926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1007955814585537586}
+  m_Layer: 0
+  m_Name: UpCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1007955814585537586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530092319731543926}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.096, y: 1.172, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4958320532538682495}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &592740829807570101
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +89,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4958320532538682495}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6514965465736499342
 SpriteRenderer:
@@ -258,7 +288,7 @@ Transform:
   - {fileID: 4843556306246497155}
   - {fileID: 5659241626752991050}
   m_Father: {fileID: 4958320532538682495}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3538986740783231569
 GameObject:
@@ -498,6 +528,7 @@ Transform:
   m_Children:
   - {fileID: 1433306911251532281}
   - {fileID: 6251800672405213747}
+  - {fileID: 1007955814585537586}
   - {fileID: 8237914662769969992}
   - {fileID: 3850110937024858151}
   - {fileID: 2046536456705746757}
@@ -539,6 +570,9 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 3b9c57086da3bf64392b811fc936ed7a, type: 2}
   xWallForce: 15
   wallJumpTime: 0.08
+  isGrounded: 0
+  isOnPlatform: 0
+  HasPassedPlatform: 0
 --- !u!114 &-366637032177327525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,9 +587,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1433306911251532281}
   frontCheck: {fileID: 6251800672405213747}
+  upCheck: {fileID: 1007955814585537586}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  whatIsPlatform:
+    serializedVersion: 2
+    m_Bits: 1024
   checkRadius: 0.1
 --- !u!114 &-3785744018447802112
 MonoBehaviour:
@@ -1072,7 +1110,7 @@ Transform:
   - {fileID: 1077766950712188770}
   - {fileID: 7598729985038037462}
   m_Father: {fileID: 4958320532538682495}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5129723005089324561
 SpriteRenderer:
@@ -1267,7 +1305,7 @@ Transform:
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4958320532538682495}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &242384888625634170
 SpriteRenderer:

@@ -43,7 +43,7 @@ public class PlayerInputs : MonoBehaviour
             {
                 pM.FastFallState();
             }
-
+            pM.TransparentState();
         }
     }
 
