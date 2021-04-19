@@ -23,7 +23,11 @@ public class PlayerScript : MonoBehaviour
 
     internal bool isAlive = true;
     internal bool canStillPlay = true;
+
     internal bool isWrath = false;
+    public float maxWrathTime;
+    internal float wrathTime;
+    internal float wrathPercentage = 100;
 
     private PlayerMovement pMovement;
     private PlayerCollisions pCollisions;
@@ -40,6 +44,9 @@ public class PlayerScript : MonoBehaviour
     public float reappearitionTime;
 
     private ExitGames.Client.Photon.Hashtable _myCustomPropreties = new ExitGames.Client.Photon.Hashtable();
+
+    internal GameObject body;
+    internal SpriteRenderer bodySprite;
 
     // Start is called before the first frame update
     void Start()
@@ -60,12 +67,37 @@ public class PlayerScript : MonoBehaviour
 
         gameManager = GameObject.Find("GameManagerPrefab").GetComponent<GameManager>();
         lives = gameManager.nbrLives;
+
+        body = this.transform.Find("Body").gameObject;
+        bodySprite = body.GetComponent<SpriteRenderer>();
+
+        wrathTime = maxWrathTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(isWrath)
+            CheckWrathState();
+    }
+
+    public void WrathModeState()
+    {
+        isWrath = true;
+        bodySprite.color = Color.red;
+    }
+
+    public void CheckWrathState()
+    {
+        wrathTime -= Time.deltaTime;
+        wrathPercentage = (wrathTime / maxWrathTime) * 100;
+        if(wrathTime <= 0)
+        {
+            isWrath = false;
+            wrathTime = maxWrathTime;
+            wrathPercentage = 100;
+            bodySprite.color = Color.white;
+        }
     }
 
     public void OnEnterReappear()

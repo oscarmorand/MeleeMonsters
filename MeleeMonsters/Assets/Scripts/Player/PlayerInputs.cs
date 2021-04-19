@@ -11,12 +11,15 @@ public class PlayerInputs : MonoBehaviour
 
     private PlayerAttacks pAt;
 
+    private PlayerScript pS;
+
     // Start is called before the first frame update
     void Start()
     {
         pM = GetComponent<PlayerMovement>();
         pA = GetComponent<PlayerAnimation>();
         pAt = GetComponent<PlayerAttacks>();
+        pS = GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
@@ -93,6 +96,14 @@ public class PlayerInputs : MonoBehaviour
             {
                 pM.WallJumpState();
             }
+        }
+    }
+
+    public void WrathModeInput (InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            pS.WrathModeState();
         }
     }
 
