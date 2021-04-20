@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class PlayerAttacks : MonoBehaviour
 
     private PlayerMovement pM;
     private PlayerScript pS;
+    private PhotonView pV;
 
     internal bool isAttacking = false;
     internal bool canAttack = true;
@@ -22,6 +24,7 @@ public class PlayerAttacks : MonoBehaviour
     {
         pM = GetComponent<PlayerMovement>();
         pS = GetComponent<PlayerScript>();
+        pV = GetComponent<PhotonView>();
     }
 
     public void Update()
@@ -35,7 +38,6 @@ public class PlayerAttacks : MonoBehaviour
 
     public void PerformAttack()
     {
-        print("je performe une attaque");
         int attackNbr = DetermineAttack();
 
         isAttacking = true;
@@ -52,30 +54,46 @@ public class PlayerAttacks : MonoBehaviour
                 break;
         }
 
+        print(pS.nickName+" performe une "+attack.name);
+
         LayerMask layerMask = 9 | 10;
         Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attack.hitBox.position,attack.size, layerMask);
         foreach (Collider2D playerCollider in hitColliders)
         {
             if(playerCollider != null && playerCollider.transform != transform)
             {
-                PlayerScript targetScript;
-                if (playerCollider.TryGetComponent<PlayerScript>(out targetScript))
+                if(pV.IsMine)
                 {
+                    PlayerScript targetScript = playerCollider.GetComponent<PlayerScript>();
+                    PhotonView pVTarget = playerCollider.GetComponent<PhotonView>();
 
                     Vector2 direction = attack.direction;
                     float force = CalculateForce(attack.ejection, targetScript.percentage);
-                    PlayerMovement pMTarget = playerCollider.GetComponent<PlayerMovement>();
-                    pMTarget.EjectState(new Vector2((direction.x) * force * pM.direction, (direction.y) * force), 0.1f);
-
-                    targetScript.percentage += attack.damage;
-                    print("oof " + targetScript.nickName + " a pris une " + attack.name + " d'une puissance de " + attack.damage + " pourcents et monte maintenant à " + targetScript.percentage + " pourcents!");
-
+                    Vector2 ejectionVector = new Vector2((direction.x) * force * pM.direction, (direction.y) * force);
+                    pVTarget.RPC("Eject", RpcTarget.All, ejectionVector);
+                        
+                    pVTarget.RPC("TakeDamage", RpcTarget.All, attack.damage);
                 }
+ 
             }
         }
 
         Invoke("EndOfAttack", attack.time);
     }
+
+
+    [PunRPC]
+    private void TakeDamage(int damage)
+    {
+        pS.TakeDamage(damage);
+    }
+
+    [PunRPC]
+    private void Eject(Vector2 force)
+    {
+        pM.Eject(force);
+    }
+
 
     private float CalculateForce(float attackForce, int targetPercentage)
     {

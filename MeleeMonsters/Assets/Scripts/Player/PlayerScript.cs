@@ -34,6 +34,8 @@ public class PlayerScript : MonoBehaviour
     private PlayerAnimation pAnimation;
     private PlayerInputs pInputs;
 
+    private PhotonView photonView;
+
     private Rigidbody2D rb;
 
     private List<Transform> spawnList;
@@ -55,6 +57,8 @@ public class PlayerScript : MonoBehaviour
         pCollisions = GetComponent<PlayerCollisions>();
         pAnimation = GetComponent<PlayerAnimation>();
         pInputs = GetComponent<PlayerInputs>();
+
+        photonView = GetComponent<PhotonView>();
 
         rb = GetComponent<Rigidbody2D>();
 
@@ -139,6 +143,15 @@ public class PlayerScript : MonoBehaviour
             _myCustomPropreties["StillInGame"] = false;
             PhotonNetwork.LocalPlayer.CustomProperties = _myCustomPropreties;
             levelManager.SearchForWinner();
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if(photonView.IsMine)
+        {
+            percentage += damage;
+            print("aie " + nickName + " a pris une attaque d'une puissance de " + damage + " pourcents et monte maintenant à " + percentage + " pourcents!");
         }
     }
 }

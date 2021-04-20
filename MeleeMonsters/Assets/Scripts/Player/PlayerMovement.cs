@@ -52,8 +52,6 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isPressingDown;
 
-    public bool isBeingEjected;
-    Vector2 force;
 
     void Start()
     {
@@ -80,10 +78,10 @@ public class PlayerMovement : MonoBehaviour
         if (photonView.IsMine)
         {
 
-            if(isBeingEjected)
-            {
-                rb.velocity = force;
-            }
+            //if(isBeingEjected)
+            //{
+            //    rb.velocity = force;
+            //}
 
             if (isGrounded || isOnPlatform)
             {
@@ -243,15 +241,8 @@ public class PlayerMovement : MonoBehaviour
         gameObject.layer = 9;
     }
 
-    public void EjectState(Vector2 force, float time)
+    public void Eject(Vector2 force)
     {
-        isBeingEjected = true;
-        Invoke("StopEjection", time);
-        this.force = force;
-    }
-
-    void StopEjection()
-    {
-        isBeingEjected = false;
+        rb.AddForce(force);
     }
 }

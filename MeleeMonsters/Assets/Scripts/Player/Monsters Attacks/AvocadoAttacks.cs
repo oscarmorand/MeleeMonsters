@@ -14,17 +14,17 @@ public class AvocadoAttacks : MonoBehaviour
     private void Start()
     {
         attacks = new List<Attack>();
-        attacks.Add(new Attack("sideWeak", 4, 2, 0.4f, new Vector2(1, 0), hitboxesPoints[0],new Vector2(1,1)));
-        attacks.Add(new Attack("neutralWeak", 3, 2, 0.4f, new Vector2(0, 1), hitboxesPoints[0],new Vector2(1,1)));
-        attacks.Add(new Attack("downWeak", 4, 2, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1,1)));
+        attacks.Add(new Attack("sideWeak", 4, 400, 0.4f, new Vector2(1, 0.5f), hitboxesPoints[0],new Vector2(1,1)));
+        attacks.Add(new Attack("neutralWeak", 3, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0],new Vector2(1,1)));
+        attacks.Add(new Attack("downWeak", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1,1)));
 
-        attacks.Add(new Attack("sideSpecial", 10, 1, 0.8f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("neutralSpecial", 2, 10, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("downSpecial", 5, 5, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("sideSpecial", 10, 100, 0.8f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("neutralSpecial", 2, 400, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("downSpecial", 5, 250, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
 
-        attacks.Add(new Attack("sideAir", 4, 2, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("neutralAir", 4, 2, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("downAir", 4, 2, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("sideAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("neutralAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("downAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
     }
 
 
