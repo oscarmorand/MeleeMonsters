@@ -539,7 +539,6 @@ MonoBehaviour:
   isOnPlatform: 0
   HasPassedPlatform: 0
   isPressingDown: 0
-  isBeingEjected: 0
 --- !u!114 &-366637032177327525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,7 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b021fbaff610d954391eca408d73e9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avocadoAttacks: {fileID: -5369653022103507167}
+  monstersAttacks: {fileID: -5369653022103507167}
   monster: 0
 --- !u!114 &-5369653022103507167
 MonoBehaviour:
@@ -913,6 +912,9 @@ MonoBehaviour:
   - {fileID: 3040827734505189102}
   - {fileID: 3040827734505189102}
   - {fileID: 7487619551003241794}
+  pV: {fileID: 0}
+  pS: {fileID: 0}
+  pM: {fileID: 0}
 --- !u!1 &6470029462661459592
 GameObject:
   m_ObjectHideFlags: 0

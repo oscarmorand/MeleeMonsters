@@ -16,7 +16,8 @@ public class PlayerAttacks : MonoBehaviour
     internal bool isAttacking = false;
     internal bool canAttack = true;
 
-    public AvocadoAttacks avocadoAttacks;
+    //public AvocadoAttacks avocadoAttacks;
+    public MonstersAttacks monstersAttacks;
 
     public PlayerScript.Monsters monster;
 
@@ -43,44 +44,37 @@ public class PlayerAttacks : MonoBehaviour
         isAttacking = true;
         canAttack = false;
 
-        Attack attack;
-        switch (monster)
-        {
-            case (PlayerScript.Monsters.Avocado):
-                attack = avocadoAttacks.attacks[attackNbr];
-                break;
-            default:
-                attack = null;
-                break;
-        }
+        Attack attack = monstersAttacks.attacks[attackNbr];
 
-        print(pS.nickName+" performe une "+attack.name);
+        monstersAttacks.Attack(attack.name);
 
+        Invoke("EndOfAttack", attack.time);
+    }
+
+    public void BasicAttack(Attack attack)
+    {
         LayerMask layerMask = 9 | 10;
-        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attack.hitBox.position,attack.size, layerMask);
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attack.hitBox.position, attack.size, layerMask);
         foreach (Collider2D playerCollider in hitColliders)
         {
-            if(playerCollider != null && playerCollider.transform != transform)
+            if (playerCollider != null && playerCollider.transform != transform)
             {
-                if(pV.IsMine)
+                if (pV.IsMine)
                 {
                     PlayerScript targetScript = playerCollider.GetComponent<PlayerScript>();
                     PhotonView pVTarget = playerCollider.GetComponent<PhotonView>();
 
                     Vector2 direction = attack.direction;
-                    float force = CalculateForce(attack.ejection, targetScript.percentage);
+                    float force = PlayerAttacks.CalculateForce(attack.ejection, targetScript.percentage);
                     Vector2 ejectionVector = new Vector2((direction.x) * force * pM.direction, (direction.y) * force);
                     pVTarget.RPC("Eject", RpcTarget.All, ejectionVector);
-                        
+
                     pVTarget.RPC("TakeDamage", RpcTarget.All, attack.damage);
                 }
- 
+
             }
         }
-
-        Invoke("EndOfAttack", attack.time);
     }
-
 
     [PunRPC]
     private void TakeDamage(int damage)
@@ -95,7 +89,7 @@ public class PlayerAttacks : MonoBehaviour
     }
 
 
-    private float CalculateForce(float attackForce, int targetPercentage)
+    public static float CalculateForce(float attackForce, int targetPercentage)
     {
         return attackForce + (attackForce * targetPercentage/10);
     }
