@@ -59,7 +59,11 @@ public class PlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         playerNumber = (PhotonNetwork.LocalPlayer.ActorNumber) - 1;
-        nickName = PhotonNetwork.LocalPlayer.NickName;
+
+        if (gameObject.tag == "IA")
+            nickName = "IA";
+        else
+            nickName = PhotonNetwork.LocalPlayer.NickName;
 
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         spawnList = levelManager.spawnList;

@@ -43,8 +43,11 @@ public class PlayerInputs : MonoBehaviour
             {
                 pM.FastFallState();
             }
+            pM.isPressingDown = true;
             pM.TransparentState();
         }
+        else
+            pM.isPressingDown = false;
     }
 
 
@@ -107,12 +110,28 @@ public class PlayerInputs : MonoBehaviour
         }
     }
 
-   public void NormalAttacksInput (InputAction.CallbackContext context)
+   public void NormalAttackInput (InputAction.CallbackContext context)
    {
         if (context.performed)
         {
-            pAt.NormalAttacks();
+            pAt.normalButton = true;
+        }
+        else
+        {
+            pAt.normalButton = false;
         }
    }
+
+    public void SpecialAttackInput (InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            pAt.specialButton = true;
+        }
+        else
+        {
+            pAt.specialButton = false;
+        }
+    }
 
 }

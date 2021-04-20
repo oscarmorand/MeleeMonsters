@@ -50,7 +50,11 @@ public class PlayerMovement : MonoBehaviour
     public bool isOnPlatform;
     public bool HasPassedPlatform;
 
- 
+    public bool isPressingDown;
+
+    public bool isBeingEjected;
+    Vector2 force;
+
     void Start()
     {
  
@@ -75,6 +79,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (photonView.IsMine)
         {
+
+            if(isBeingEjected)
+            {
+                rb.velocity = force;
+            }
 
             if (isGrounded || isOnPlatform)
             {
@@ -232,5 +241,17 @@ public class PlayerMovement : MonoBehaviour
     void NotTransparentAnymore()
     {
         gameObject.layer = 9;
+    }
+
+    public void EjectState(Vector2 force, float time)
+    {
+        isBeingEjected = true;
+        Invoke("StopEjection", time);
+        this.force = force;
+    }
+
+    void StopEjection()
+    {
+        isBeingEjected = false;
     }
 }
