@@ -31,6 +31,8 @@ public class AvocadoBullet : MonoBehaviour
         rb.velocity = transform.right * speed * _direction;
 
         Invoke("DestroyBullet", 1f);
+
+        GetComponent<CircleCollider2D>().enabled = true;
     }
 
     public void DestroyBullet()
@@ -40,9 +42,9 @@ public class AvocadoBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision != null && collision.transform != transform && collision.transform != _parent.transform)
+        if (collision.transform.tag == "Player" || collision.transform.tag == "IA")
         {
-            if (collision.transform.tag == "Player" || collision.transform.tag == "IA")
+            if (collision.transform != _parent.transform)
             {
                 if (pV.IsMine)
                 {
