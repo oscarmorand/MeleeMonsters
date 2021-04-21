@@ -12,7 +12,7 @@ abstract public class MonstersAttacks : MonoBehaviour
 
     private PhotonView pV;
     private PlayerScript pS;
-    private PlayerMovement pM;
+    internal PlayerMovement pM;
     internal PlayerAttacks pA;
 
     void Start()

@@ -63,13 +63,12 @@ public class PlayerAttacks : MonoBehaviour
                 {
                     if (pV.IsMine)
                     {
-                        PlayerScript targetScript = playerCollider.GetComponent<PlayerScript>();
+                        //PlayerScript targetScript = playerCollider.GetComponent<PlayerScript>();
                         PhotonView pVTarget = playerCollider.GetComponent<PhotonView>();
 
                         Vector2 direction = attack.direction;
-                        float force = PlayerAttacks.CalculateForce(attack.ejection, targetScript.percentage);
-                        Vector2 ejectionVector = new Vector2((direction.x) * force * pM.direction, (direction.y) * force);
-                        pVTarget.RPC("Eject", RpcTarget.All, ejectionVector);
+                        Vector2 newDirection = new Vector2((direction.x) * pM.direction, (direction.y));
+                        pVTarget.RPC("Eject", RpcTarget.All, newDirection, attack.ejection);
 
                         pVTarget.RPC("TakeDamage", RpcTarget.All, attack.damage);
                     }
@@ -85,9 +84,10 @@ public class PlayerAttacks : MonoBehaviour
     }
 
     [PunRPC]
-    private void Eject(Vector2 force)
+    private void Eject(Vector2 direction, float force)
     {
-        pM.Eject(force);
+        float factor = CalculateForce(force, pS.percentage);
+        pM.Eject(direction*factor);
     }
 
 

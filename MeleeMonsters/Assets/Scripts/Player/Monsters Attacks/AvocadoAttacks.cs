@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AvocadoAttacks : MonstersAttacks
 {
+
+    public GameObject bulletPrefab;
+    
 
     public override void InstantiateAttacks()
     {
@@ -44,6 +48,8 @@ public class AvocadoAttacks : MonstersAttacks
     public override void NeutralSpecial()
     {
         print("je fais une neutralspecial d'avocat hannnn");
+        GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, hitboxesPoints[3].position, new Quaternion());
+        bullet.GetComponent<AvocadoBullet>().Throw(pM.direction,gameObject);
     }
 
     public override void DownSpecial()
