@@ -14,6 +14,7 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
     public GameObject[] monstersArray;
     private int monsterIndex = 0;
     public TMP_Text[] playerNamesArray;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -37,23 +38,32 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             print("right arrow key is held down");
-            monstersArray[monsterIndex].SetActive(false);
-            monsterIndex = (monsterIndex + 1) % monstersArray.Length;
-            monstersArray[monsterIndex].SetActive(true);
-            SelectMonster(monsterIndex);
+            RightMonster();
 
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             print("left arrow key is held down");
-            monstersArray[monsterIndex].SetActive(false);
-            monsterIndex = (monsterIndex - 1 + monstersArray.Length) % monstersArray.Length;
-            monstersArray[monsterIndex].SetActive(true);
-            SelectMonster(monsterIndex);
+            LeftMonster();
         }
     }
 
+    public void LeftMonster()
+    {
+        monstersArray[monsterIndex].SetActive(false);
+        monsterIndex = (monsterIndex - 1 + monstersArray.Length) % monstersArray.Length;
+        monstersArray[monsterIndex].SetActive(true);
+        SelectMonster(monsterIndex);
+    }
+
+    public void RightMonster()
+    {
+        monstersArray[monsterIndex].SetActive(false);
+        monsterIndex = (monsterIndex + 1) % monstersArray.Length;
+        monstersArray[monsterIndex].SetActive(true);
+        SelectMonster(monsterIndex);
+    }
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -93,4 +103,5 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
         }
     }
 
+   
 }
