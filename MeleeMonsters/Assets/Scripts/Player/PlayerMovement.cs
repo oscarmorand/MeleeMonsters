@@ -77,6 +77,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (photonView.IsMine)
         {
+            if (moveInputy > 0)
+                print("j'appuie vers le haut là");
+
 
             if (isGrounded || isOnPlatform)
             {
