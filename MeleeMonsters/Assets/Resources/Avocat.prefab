@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150066979319145174}
   m_Layer: 0
-  m_Name: AttackPointUpG
+  m_Name: AttackPointNeutralG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,11 +54,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592254637370124361}
   m_LocalRotation: {x: -0.0000035981634, y: -0.0033117598, z: -0.0010864744, w: 0.999994}
-  m_LocalPosition: {x: 0.09099992, y: 0.019999921, z: 0.943}
+  m_LocalPosition: {x: 0.06, y: 0.25, z: 0.943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7249472225901993321}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -0.001, y: -0.379, z: -0.124000005}
 --- !u!1 &1862054914504229515
 GameObject:
@@ -283,8 +283,8 @@ Transform:
   m_Children:
   - {fileID: 341859696825633616}
   - {fileID: 2140401832545118798}
-  - {fileID: 4250564982676403490}
   - {fileID: 1150066979319145174}
+  - {fileID: 4250564982676403490}
   m_Father: {fileID: 4958320532538682495}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -949,7 +949,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &341859696825633616
 Transform:
   m_ObjectHideFlags: 0
@@ -958,7 +958,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5534793881946332386}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2, y: -0.71, z: 0.36612839}
+  m_LocalPosition: {x: 0.06, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7249472225901993321}
@@ -988,7 +988,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.18, y: 0.37}
   m_EdgeRadius: 0
 --- !u!1 &5680320463101543276
 GameObject:
@@ -1018,7 +1018,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7249472225901993321}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -0.001, y: -0.379, z: -0.124000005}
 --- !u!1 &6470029462661459592
 GameObject:
@@ -1074,7 +1074,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8100981850580852502}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2, y: -0.7, z: 0.94175726}
+  m_LocalPosition: {x: 1.09, y: -0.95, z: 0.94175726}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7249472225901993321}
