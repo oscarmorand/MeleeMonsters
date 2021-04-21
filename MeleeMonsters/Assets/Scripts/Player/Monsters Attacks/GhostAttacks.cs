@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AvocadoAttacks : MonstersAttacks
+public class GhostAttacks : MonstersAttacks
 {
 
     public override void InstantiateAttacks()
@@ -38,17 +38,17 @@ public class AvocadoAttacks : MonstersAttacks
 
     public override void SideSpecial()
     {
-        print("je fais une sidespecial d'avocat ohlalah");
+        print("je fais une sidespecial de fantome ohlalah");
     }
 
     public override void NeutralSpecial()
     {
-        print("je fais une neutralspecial d'avocat hannnn");
+        print("je fais une neutralspecial de fantom hannnn");
     }
 
     public override void DownSpecial()
     {
-        print("je fais une downSpecial d'avocat wouaaaa");
+        print("je fais une downSpecial de fantome wouaaaa");
     }
 
     public override void SideAir()
