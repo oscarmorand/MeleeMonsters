@@ -29,6 +29,7 @@ Transform:
   m_Children:
   - {fileID: 2681707331403566533}
   - {fileID: 1253049477630721744}
+  - {fileID: 5123769160851108850}
   m_Father: {fileID: 4958320532538682495}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -983,6 +984,7 @@ MonoBehaviour:
   hitboxesPoints:
   - {fileID: 2681707331403566533}
   - {fileID: 1253049477630721744}
+  - {fileID: 5123769160851108850}
 --- !u!1 &5053583671585442592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1655,3 +1657,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &9198150572929156314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5123769160851108850}
+  m_Layer: 0
+  m_Name: AttackPointUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5123769160851108850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9198150572929156314}
+  m_LocalRotation: {x: -0.0000035981634, y: -0.0033117598, z: -0.0010864744, w: 0.999994}
+  m_LocalPosition: {x: 0.09099996, y: 0.01999998, z: 0.943}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4459810772442305587}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -0.001, y: -0.379, z: -0.124000005}

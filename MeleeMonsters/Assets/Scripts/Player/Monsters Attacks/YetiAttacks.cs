@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostAttacks : MonstersAttacks
+public class YetiAttacks : MonstersAttacks
 {
 
     public override void InstantiateAttacks()
@@ -38,17 +38,17 @@ public class GhostAttacks : MonstersAttacks
 
     public override void SideSpecial()
     {
-        print("je fais une sidespecial de fantome ohlalah");
+        print("je fais une sidespecial de yeti ohlalah");
     }
 
     public override void NeutralSpecial()
     {
-        print("je fais une neutralspecial de fantom hannnn");
+        print("je fais une neutralspecial de yeti hannnn");
     }
 
     public override void DownSpecial()
     {
-        print("je fais une downSpecial de fantome wouaaaa");
+        print("je fais une downSpecial de yeti wouaaaa");
     }
 
     public override void SideAir()
