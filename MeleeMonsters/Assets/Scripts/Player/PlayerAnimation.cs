@@ -18,7 +18,7 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pM.isGrounded)
+        if (pM.isGrounded || pM.isOnPlatform)
         {
             if (pM.moveInputx == 0)
                 anim.SetBool("isRunning", false);

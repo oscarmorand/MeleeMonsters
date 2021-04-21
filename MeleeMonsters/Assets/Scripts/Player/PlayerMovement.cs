@@ -45,12 +45,12 @@ public class PlayerMovement : MonoBehaviour
 
     private float moveSpeed;
 
-    internal bool isGrounded;
+    public bool isGrounded;
     internal bool isTouchingFront;
+    public bool isOnPlatform;
+    public bool HasPassedPlatform;
 
-    public float timeForNextDashClone = 0.02f;
-    private float currentDashTime;
-    public GameObject dashClone;
+    public bool isPressingDown;
 
 
     void Start()
@@ -78,14 +78,21 @@ public class PlayerMovement : MonoBehaviour
         if (photonView.IsMine)
         {
 
-            if (isGrounded)
+            //if(isBeingEjected)
+            //{
+            //    rb.velocity = force;
+            //}
+
+            if (isGrounded || isOnPlatform)
             {
                 nbrJump = maxJump;
                 nbrDash = maxDash;
                 isFastFalling = false;
+                if (!isOnPlatform)
+                    gameObject.layer = 9;
             }
 
-            if (isTouchingFront && !isGrounded && moveInputx != 0)
+            if (isTouchingFront && !isGrounded && !isOnPlatform && moveInputx != 0)
                 wallSliding = true;
             else
                 wallSliding = false;
@@ -112,11 +119,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 isFastFalling = false;
+                gameObject.layer = 9;
             }
 
             if (isFastFalling)
             {
                 rb.velocity = new Vector2(rb.velocity.x, -fastFallingSpeed);
+            }
+
+            if(HasPassedPlatform)
+            {
+                gameObject.layer = 9;
             }
         }
     }
@@ -136,23 +149,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 Flip();
             }
-        }
-
-        if (isDashing)
-        {
-            currentDashTime += Time.fixedDeltaTime; // currentDashTime : le temps depuis la dernière fois qu'on a sponné un clone
-                                                    // fixedDeltaTime : le temps entre 2 updates de fixedUpdate
-
-            if (currentDashTime > timeForNextDashClone)
-            {
-                currentDashTime -= timeForNextDashClone;
-                GameObject newObject = Instantiate(dashClone, transform.position, transform.rotation); 
-                newObject.transform.localScale = transform.localScale; // retourne les clones de l'avocat dans le bon sens
-            }
-        }
-        else
-        {
-            currentDashTime = 0f;
         }
     }
 
@@ -232,5 +228,21 @@ public class PlayerMovement : MonoBehaviour
     void SetJumpingToFalse()
     {
         isJumping = false;
+    }
+
+    public void TransparentState()
+    {
+        gameObject.layer = 10;
+        Invoke("NotTransparentAnymore", 0.5f);
+    }
+
+    void NotTransparentAnymore()
+    {
+        gameObject.layer = 9;
+    }
+
+    public void Eject(Vector2 force)
+    {
+        rb.AddForce(force);
     }
 }

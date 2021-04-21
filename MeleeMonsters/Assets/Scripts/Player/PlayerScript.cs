@@ -34,6 +34,8 @@ public class PlayerScript : MonoBehaviour
     private PlayerAnimation pAnimation;
     private PlayerInputs pInputs;
 
+    private PhotonView photonView;
+
     private Rigidbody2D rb;
 
     private List<Transform> spawnList;
@@ -56,10 +58,16 @@ public class PlayerScript : MonoBehaviour
         pAnimation = GetComponent<PlayerAnimation>();
         pInputs = GetComponent<PlayerInputs>();
 
+        photonView = GetComponent<PhotonView>();
+
         rb = GetComponent<Rigidbody2D>();
 
         playerNumber = (PhotonNetwork.LocalPlayer.ActorNumber) - 1;
-        nickName = PhotonNetwork.LocalPlayer.NickName;
+
+        if (gameObject.tag == "IA")
+            nickName = "IA";
+        else
+            nickName = PhotonNetwork.LocalPlayer.NickName;
 
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         spawnList = levelManager.spawnList;
@@ -135,6 +143,15 @@ public class PlayerScript : MonoBehaviour
             _myCustomPropreties["StillInGame"] = false;
             PhotonNetwork.LocalPlayer.CustomProperties = _myCustomPropreties;
             levelManager.SearchForWinner();
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if(photonView.IsMine)
+        {
+            percentage += damage;
+            print("aie " + nickName + " a pris une attaque d'une puissance de " + damage + " pourcents et monte maintenant à " + percentage + " pourcents!");
         }
     }
 }

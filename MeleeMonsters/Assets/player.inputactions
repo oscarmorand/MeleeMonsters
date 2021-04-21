@@ -38,9 +38,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "NormalAttacks",
+                    "name": "NormalAttack",
                     "type": "Button",
                     "id": "2c9b5ced-92e6-45be-a74e-37d25ce60ee9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SpecialAttack",
+                    "type": "Button",
+                    "id": "7a5c843c-992c-4c46-98be-385c51894e65",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -238,7 +246,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "NormalAttacks",
+                    "action": "NormalAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -261,6 +269,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f6b1653-8644-43dc-afe2-7dc5b62d8ca9",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpecialAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
