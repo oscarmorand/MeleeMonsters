@@ -34,11 +34,11 @@ abstract public class MonstersAttacks : MonoBehaviour
     }
 
 
-    public abstract void SideWeak();
+    public abstract void SideGround();
 
-    public abstract void NeutralWeak();
+    public abstract void NeutralGround();
 
-    public abstract void DownWeak();
+    public abstract void DownGround();
 
     public abstract void SideSpecial();
 

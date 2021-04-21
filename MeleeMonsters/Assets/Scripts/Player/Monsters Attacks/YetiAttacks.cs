@@ -21,17 +21,17 @@ public class YetiAttacks : MonstersAttacks
         attacks.Add(new Attack("DownAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[1], new Vector2(1, 1)));
     }
 
-    public override void SideWeak()
+    public override void SideGround()
     {
         pA.BasicAttack(attacks[0]);
     }
 
-    public override void NeutralWeak()
+    public override void NeutralGround()
     {
         pA.BasicAttack(attacks[1]);
     }
 
-    public override void DownWeak()
+    public override void DownGround()
     {
         pA.BasicAttack(attacks[2]);
     }
