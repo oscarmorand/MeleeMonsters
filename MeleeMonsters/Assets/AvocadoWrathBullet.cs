@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class AvocadoBullet : MonoBehaviour
+public class AvocadoWrathBullet : MonoBehaviour
 {
-
-    public float speed = 12f;
+    public float speed;
     public int damage = 3;
     public float knockback = 100;
+    public float durationTime = 2f;
 
     private float _direction;
 
@@ -30,7 +30,7 @@ public class AvocadoBullet : MonoBehaviour
         _parent = parent;
         rb.velocity = transform.right * speed * _direction;
 
-        Invoke("DestroyBullet", 1f);
+        Invoke("DestroyBullet", durationTime);
 
         GetComponent<CircleCollider2D>().enabled = true;
     }

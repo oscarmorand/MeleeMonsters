@@ -766,8 +766,17 @@ MonoBehaviour:
   nickName: 
   monster: 2
   percentage: 0
-  maxWrathTime: 5
+  maxWrathTime: 15
+  wrathTime: 0
+  maxLoadingWrath: 500
+  loadingWrath: 480
   reappearitionTime: 1
+  sprites:
+  - {fileID: 8857413212773297185}
+  - {fileID: 2009483745094384457}
+  - {fileID: 5157581352998360029}
+  - {fileID: 3377346589468488236}
+  - {fileID: 7902287089493117831}
 --- !u!114 &4048278115268245952
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -52,4 +52,10 @@ abstract public class MonstersAttacks : MonoBehaviour
 
     public abstract void DownAir();
 
+    public abstract void SideWrath();
+
+    public abstract void NeutralWrath();
+
+    public abstract void DownWrath();
+
 }

@@ -421,7 +421,10 @@ MonoBehaviour:
   nickName: 
   monster: 3
   percentage: 0
-  maxWrathTime: 5
+  maxWrathTime: 15
+  wrathTime: 0
+  maxLoadingWrath: 500
+  loadingWrath: 480
   reappearitionTime: 1
 --- !u!114 &4048278115268245952
 MonoBehaviour:

@@ -25,9 +25,11 @@ public class PlayerScript : MonoBehaviour
     internal bool canStillPlay = true;
 
     internal bool isWrath = false;
-    public float maxWrathTime;
-    internal float wrathTime;
-    internal float wrathPercentage = 100;
+    public float maxWrathTime = 15;
+    public float wrathTime = 0;
+    public float maxLoadingWrath = 500;
+    public float loadingWrath = 495;
+    internal float wrathPercentage = 0;
 
     private PlayerMovement pMovement;
     private PlayerCollisions pCollisions;
@@ -47,8 +49,7 @@ public class PlayerScript : MonoBehaviour
 
     private ExitGames.Client.Photon.Hashtable _myCustomPropreties = new ExitGames.Client.Photon.Hashtable();
 
-    internal GameObject body;
-    internal SpriteRenderer bodySprite;
+    public List<SpriteRenderer> sprites;
 
     // Start is called before the first frame update
     void Start()
@@ -76,46 +77,65 @@ public class PlayerScript : MonoBehaviour
         gameManager = GameObject.Find("GameManagerPrefab").GetComponent<GameManager>();
         lives = gameManager.nbrLives;
 
-        body = this.transform.Find("Body").gameObject;
-        bodySprite = body.GetComponent<SpriteRenderer>();
-
-        wrathTime = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        wrathPercentage = (wrathTime / maxWrathTime) * 100;
+        //print(wrathPercentage);
         if (isWrath)
-            WrathState();
-        else
-            NormalState();
-    }
-
-    public void WrathModeState()
-    {
-        if(wrathTime >= maxWrathTime)
         {
-            wrathTime = maxWrathTime;
-            isWrath = true;
-            bodySprite.color = Color.red;
+            WrathState();
+            wrathPercentage = (wrathTime / maxWrathTime) * 100;
+        } 
+        else
+        {
+            NormalState();
+            wrathPercentage = (loadingWrath / maxLoadingWrath) * 100;
         }
+            
     }
 
     public void WrathState()
     {
-        wrathTime -= Time.deltaTime;
         if(wrathTime <= 0)
         {
             isWrath = false;
-            bodySprite.color = Color.white;
+            loadingWrath = 0;
+            //bodySprite.color = Color.white;
+            WrathColor(Color.white);
+        }
+        else
+        {
+            wrathTime -= Time.deltaTime;
         }
     }
 
     public void NormalState()
     {
-        if(wrathTime < maxWrathTime)
-            wrathTime += Time.deltaTime / 2;
+        if(loadingWrath < maxLoadingWrath)
+            loadingWrath += Time.deltaTime;
+    }
+
+
+    public void WrathModeState()
+    {
+        if (loadingWrath >= maxLoadingWrath)
+        {
+            wrathTime = maxWrathTime;
+            isWrath = true;
+            WrathColor(Color.red);
+            //bodySprite.color = Color.red;
+        }
+    }
+
+
+    public void WrathColor(Color color)
+    {
+        foreach(SpriteRenderer sprite in sprites)
+        {
+            sprite.color = color;
+        }
     }
 
     public void OnEnterReappear()
@@ -158,10 +178,24 @@ public class PlayerScript : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if(photonView.IsMine)
+        //if(photonView.IsMine)
+        //{
+        //    percentage += damage;
+        //    print("aie " + nickName + " a pris une attaque d'une puissance de " + damage + " pourcents et monte maintenant à " + percentage + " pourcents!");
+        //    if(!isWrath)
+        //    {
+        //        float bonus = damage * 2.5f;
+        //        loadingWrath += bonus;
+        //        print(nickName+" gagne " + bonus + " sec dans la barre de wrath");
+        //    }
+        //}
+        percentage += damage;
+        print("aie " + nickName + " a pris une attaque d'une puissance de " + damage + " pourcents et monte maintenant à " + percentage + " pourcents!");
+        if (!isWrath)
         {
-            percentage += damage;
-            print("aie " + nickName + " a pris une attaque d'une puissance de " + damage + " pourcents et monte maintenant à " + percentage + " pourcents!");
+            float bonus = damage * 2.5f;
+            loadingWrath += bonus;
+            print(nickName + " gagne " + bonus + " sec dans la barre de wrath");
         }
     }
 }
