@@ -12,7 +12,7 @@ abstract public class MonstersAttacks : MonoBehaviour
 
     private PhotonView pV;
     private PlayerScript pS;
-    private PlayerMovement pM;
+    internal PlayerMovement pM;
     internal PlayerAttacks pA;
 
     void Start()
@@ -34,11 +34,11 @@ abstract public class MonstersAttacks : MonoBehaviour
     }
 
 
-    public abstract void SideWeak();
+    public abstract void SideGround();
 
-    public abstract void NeutralWeak();
+    public abstract void NeutralGround();
 
-    public abstract void DownWeak();
+    public abstract void DownGround();
 
     public abstract void SideSpecial();
 

@@ -77,11 +77,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (photonView.IsMine)
         {
+            if (moveInputy > 0)
+                print("j'appuie vers le haut là");
 
-            //if(isBeingEjected)
-            //{
-            //    rb.velocity = force;
-            //}
 
             if (isGrounded || isOnPlatform)
             {
@@ -232,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void TransparentState()
     {
-        gameObject.layer = 10;
+        gameObject.layer = 11;
         Invoke("NotTransparentAnymore", 0.5f);
     }
 

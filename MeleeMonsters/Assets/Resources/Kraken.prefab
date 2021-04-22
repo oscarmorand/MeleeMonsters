@@ -419,10 +419,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nickName: 
-  monster: 0
+  monster: 3
   percentage: 0
-  maxWrathTime: 0
-  reappearitionTime: 0
+  maxWrathTime: 5
+  reappearitionTime: 1
 --- !u!114 &4048278115268245952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,6 +440,10 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 3b9c57086da3bf64392b811fc936ed7a, type: 2}
   xWallForce: 15
   wallJumpTime: 0.08
+  isGrounded: 0
+  isOnPlatform: 0
+  HasPassedPlatform: 0
+  isPressingDown: 0
 --- !u!114 &-366637032177327525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,9 +458,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1433306911251532281}
   frontCheck: {fileID: 6251800672405213747}
+  upCheck: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  whatIsPlatform:
+    serializedVersion: 2
+    m_Bits: 0
   checkRadius: 0.1
 --- !u!114 &-3785744018447802112
 MonoBehaviour:
@@ -616,6 +624,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b00349b5-e5b4-48d5-bd58-249e6c18693c
     m_ActionName: Player/WrathMode[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7a5c843c-992c-4c46-98be-385c51894e65
+    m_ActionName: Player/SpecialAttack[/Keyboard/k]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

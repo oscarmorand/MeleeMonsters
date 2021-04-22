@@ -53,25 +53,26 @@ public class PlayerAttacks : MonoBehaviour
 
     public void BasicAttack(Attack attack)
     {
-        LayerMask layerMask = 9 | 10;
+        LayerMask layerMask = (1<<9) | (1<<11);
         Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attack.hitBox.position, attack.size, layerMask);
         foreach (Collider2D playerCollider in hitColliders)
         {
             if (playerCollider != null && playerCollider.transform != transform)
             {
-                if (pV.IsMine)
+                if(playerCollider.transform.tag == "Player" || playerCollider.transform.tag == "IA")
                 {
-                    PlayerScript targetScript = playerCollider.GetComponent<PlayerScript>();
-                    PhotonView pVTarget = playerCollider.GetComponent<PhotonView>();
+                    if (pV.IsMine)
+                    {
+                        //PlayerScript targetScript = playerCollider.GetComponent<PlayerScript>();
+                        PhotonView pVTarget = playerCollider.GetComponent<PhotonView>();
 
-                    Vector2 direction = attack.direction;
-                    float force = PlayerAttacks.CalculateForce(attack.ejection, targetScript.percentage);
-                    Vector2 ejectionVector = new Vector2((direction.x) * force * pM.direction, (direction.y) * force);
-                    pVTarget.RPC("Eject", RpcTarget.All, ejectionVector);
+                        Vector2 direction = attack.direction;
+                        Vector2 newDirection = new Vector2((direction.x) * pM.direction, (direction.y));
+                        pVTarget.RPC("Eject", RpcTarget.All, newDirection, attack.ejection);
 
-                    pVTarget.RPC("TakeDamage", RpcTarget.All, attack.damage);
+                        pVTarget.RPC("TakeDamage", RpcTarget.All, attack.damage);
+                    }
                 }
-
             }
         }
     }
@@ -83,9 +84,10 @@ public class PlayerAttacks : MonoBehaviour
     }
 
     [PunRPC]
-    private void Eject(Vector2 force)
+    private void Eject(Vector2 direction, float force)
     {
-        pM.Eject(force);
+        float factor = CalculateForce(force, pS.percentage);
+        pM.Eject(direction*factor);
     }
 
 
@@ -147,188 +149,4 @@ public class PlayerAttacks : MonoBehaviour
             }
         }
     }
-
-    //private AvocadoAttacks avocadoAttacks;
-    //private PlayerScript playerScript;
-    //private PlayerMovement pM;
-
-    //private PlayerScript.Monsters monsterType;
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    avocadoAttacks = GetComponent<AvocadoAttacks>();
-    //    playerScript = GetComponent<PlayerScript>();
-    //    pM = GetComponent<PlayerMovement>();
-
-    //    PlayerScript.Monsters monsterType = playerScript.monster;
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-
-
-
-    //}
-
-    //public void NormalAttacks()
-    //{
-    //    if (pM.isGrounded)
-    //    {
-
-    //        if (pM.moveInputx != 0)
-    //        {
-    //            SideG();
-    //        }
-    //        else if (pM.moveInputy < 0)
-    //        {
-    //            DownG();
-    //        }
-    //        else
-    //        {
-    //            NeutralG();
-    //        }
-
-
-    //    }
-    //    else
-    //    {
-    //        if (pM.moveInputx != 0)
-    //        {
-    //            SideA();
-    //        }
-    //        else if (pM.moveInputy < 0)
-    //        {
-    //            DownA();
-    //        }
-    //        else
-    //        {
-    //            NeutralA();
-    //        }
-    //    }
-
-    //}
-
-
-
-
-    //// Attaques faible au sol (= Weak Ground Attacks) 
-
-    //void NeutralG()
-    //{
-    //    // Si l'attaquant est l'avocat 
-    //    if (monsterType == PlayerScript.Monsters.Avocado)
-    //    {
-    //        avocadoAttacks.AvocadoNeutralG();
-
-    //    }
-
-    //    // Si l'attaquant est le fantome 
-    //    if (monsterType == PlayerScript.Monsters.Ghost)
-    //    {
-    //        Debug.Log("Attaque du fantome déclenchée (NeutralG)");
-    //    }
-    //}
-
-    //public void SideG()
-    //{
-
-    //    // Si l'attaquant est l'avocat 
-    //    if (monsterType == PlayerScript.Monsters.Avocado)
-    //    {
-    //        avocadoAttacks.AvocadoSideG();
-
-    //    }
-
-    //    // Si l'attaquant est le fantome 
-    //    if (monsterType == PlayerScript.Monsters.Ghost)
-    //    {
-    //        Debug.Log("Attaque du fantome déclenchée");
-    //    }
-
-
-    //}
-
-    //void DownG()
-    //{
-    //    // Si l'attaquant est l'avocat 
-    //    if (monsterType == PlayerScript.Monsters.Avocado)
-    //    {
-    //        avocadoAttacks.AvocadoDownG();
-
-    //    }
-
-    //    // Si l'attaquant est le fantome 
-    //    if (monsterType == PlayerScript.Monsters.Ghost)
-    //    {
-    //        Debug.Log("Attaque du fantome déclenchée (DownG)");
-    //    }
-
-    //}
-
-
-    //// Attaque faible en l'air (= Air Weak Attacks) 
-
-    //void SideA()
-    //{
-    //    // Si l'attaquant est l'avocat 
-    //    if (monsterType == PlayerScript.Monsters.Avocado)
-    //    {
-    //        avocadoAttacks.AvocadoSideA();
-
-    //    }
-
-    //    // Si l'attaquant est le fantome 
-    //    if (monsterType == PlayerScript.Monsters.Ghost)
-    //    {
-    //        Debug.Log("Attaque du fantome déclenchée (Side A)");
-    //    }
-    //}
-
-    //void NeutralA()
-    //{
-    //    // Si l'attaquant est l'avocat 
-    //    if (monsterType == PlayerScript.Monsters.Avocado)
-    //    {
-    //        avocadoAttacks.AvocadoNeutralA();
-
-    //    }
-
-    //    // Si l'attaquant est le fantome 
-    //    if (monsterType == PlayerScript.Monsters.Ghost)
-    //    {
-    //        Debug.Log("Attaque du fantome déclenchée (NeutralA)");
-    //    }
-    //}
-
-    //void DownA()
-    //{
-    //    // Si l'attaquant est l'avocat 
-    //    if (monsterType == PlayerScript.Monsters.Avocado)
-    //    {
-    //        avocadoAttacks.AvocadoDownA();
-
-    //    }
-
-    //    // Si l'attaquant est le fantome 
-    //    if (monsterType == PlayerScript.Monsters.Ghost)
-    //    {
-    //        Debug.Log("Attaque du fantome déclenchée (DownA)");
-    //    }
-    //}
-
-
-    //// Fonction qui fais prendre des dégâts à "target". 
-    //public void AddPercentage(int damage, PlayerScript target)
-    //{
-
-    //    target.percentage += damage;
-    //    print(target.name + " took " + damage);
-    //    print(target + " current percent: " + target.percentage);
-
-    //}
-
-
-
 }

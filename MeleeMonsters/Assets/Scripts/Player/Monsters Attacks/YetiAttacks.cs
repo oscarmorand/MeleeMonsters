@@ -1,28 +1,24 @@
-﻿using Photon.Pun;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AvocadoAttacks : MonstersAttacks
+public class YetiAttacks : MonstersAttacks
 {
-
-    public GameObject bulletPrefab;
-    
 
     public override void InstantiateAttacks()
     {
         attacks = new List<Attack>();
-        attacks.Add(new Attack("SideGround", 4, 400, 0.4f, new Vector2(1, 0.5f), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("NeutralGround", 3, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[2], new Vector2(1, 1)));
-        attacks.Add(new Attack("DownGround", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[1], new Vector2(1, 1)));
+        attacks.Add(new Attack("SideWeak", 4, 400, 0.4f, new Vector2(1, 0.5f), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("NeutralWeak", 3, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("DownWeak", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
 
         attacks.Add(new Attack("SideSpecial", 10, 100, 0.8f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
         attacks.Add(new Attack("NeutralSpecial", 2, 400, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
         attacks.Add(new Attack("DownSpecial", 5, 250, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
 
         attacks.Add(new Attack("SideAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("NeutralAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("DownAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("NeutralAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[2], new Vector2(1, 1)));
+        attacks.Add(new Attack("DownAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[1], new Vector2(1, 1)));
     }
 
     public override void SideGround()
@@ -42,19 +38,17 @@ public class AvocadoAttacks : MonstersAttacks
 
     public override void SideSpecial()
     {
-        print("je fais une sidespecial d'avocat ohlalah");
+        print("je fais une sidespecial de yeti ohlalah");
     }
 
     public override void NeutralSpecial()
     {
-        print("je fais une neutralspecial d'avocat hannnn");
-        GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, hitboxesPoints[3].position, new Quaternion());
-        bullet.GetComponent<AvocadoBullet>().Throw(pM.direction,gameObject);
+        print("je fais une neutralspecial de yeti hannnn");
     }
 
     public override void DownSpecial()
     {
-        print("je fais une downSpecial d'avocat wouaaaa");
+        print("je fais une downSpecial de yeti wouaaaa");
     }
 
     public override void SideAir()
