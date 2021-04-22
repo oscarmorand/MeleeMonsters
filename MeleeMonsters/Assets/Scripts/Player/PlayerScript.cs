@@ -79,43 +79,33 @@ public class PlayerScript : MonoBehaviour
         body = this.transform.Find("Body").gameObject;
         bodySprite = body.GetComponent<SpriteRenderer>();
 
-        wrathTime = 0;
+        wrathTime = maxWrathTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        wrathPercentage = (wrathTime / maxWrathTime) * 100;
-        if (isWrath)
-            WrathState();
-        else
-            NormalState();
+        if(isWrath)
+            CheckWrathState();
     }
 
     public void WrathModeState()
     {
-        if(wrathTime >= maxWrathTime)
-        {
-            wrathTime = maxWrathTime;
-            isWrath = true;
-            bodySprite.color = Color.red;
-        }
+        isWrath = true;
+        bodySprite.color = Color.red;
     }
 
-    public void WrathState()
+    public void CheckWrathState()
     {
         wrathTime -= Time.deltaTime;
+        wrathPercentage = (wrathTime / maxWrathTime) * 100;
         if(wrathTime <= 0)
         {
             isWrath = false;
+            wrathTime = maxWrathTime;
+            wrathPercentage = 100;
             bodySprite.color = Color.white;
         }
-    }
-
-    public void NormalState()
-    {
-        if(wrathTime < maxWrathTime)
-            wrathTime += Time.deltaTime / 2;
     }
 
     public void OnEnterReappear()
