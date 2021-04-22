@@ -7,6 +7,7 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
 {
 
     public GameObject snowballPrefab;
+    public GameObject iceCubePrefab;
 
     public override void InstantiateAttacks()
     {
@@ -76,7 +77,8 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
 
     public override void SideWrath()
     {
-
+        GameObject iceCube = PhotonNetwork.Instantiate(iceCubePrefab.name, hitboxesPoints[0].position, new Quaternion());
+        iceCube.GetComponent<YetiIcecube>().Throw(pM.direction, gameObject);
     }
 
     public override void NeutralWrath()

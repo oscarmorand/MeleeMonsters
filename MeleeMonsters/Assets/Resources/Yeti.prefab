@@ -1191,6 +1191,8 @@ MonoBehaviour:
   - {fileID: 4374114101884467578}
   snowballPrefab: {fileID: 1310930056218048277, guid: 0918e0222735175478c2835f41838767,
     type: 3}
+  iceCubePrefab: {fileID: 1310930056218048277, guid: f6ac5edfcb8ac4649b645bc604862e64,
+    type: 3}
 --- !u!1 &6073221772167322959
 GameObject:
   m_ObjectHideFlags: 0
