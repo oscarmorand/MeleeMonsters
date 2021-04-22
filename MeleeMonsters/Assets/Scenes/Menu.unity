@@ -1576,7 +1576,7 @@ PrefabInstance:
     - target: {fileID: 7461130050408742631, guid: c88cb948da18cd04086cd6d502bb74b5,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7461130050485133968, guid: c88cb948da18cd04086cd6d502bb74b5,
         type: 3}
@@ -1686,7 +1686,12 @@ PrefabInstance:
     - target: {fileID: 7461130050485133969, guid: c88cb948da18cd04086cd6d502bb74b5,
         type: 3}
       propertyPath: m_Name
-      value: Panel
+      value: OptionsMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461130050485133969, guid: c88cb948da18cd04086cd6d502bb74b5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7461130051666325475, guid: c88cb948da18cd04086cd6d502bb74b5,
         type: 3}
@@ -1696,7 +1701,7 @@ PrefabInstance:
     - target: {fileID: 7461130051771093618, guid: c88cb948da18cd04086cd6d502bb74b5,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c88cb948da18cd04086cd6d502bb74b5, type: 3}
