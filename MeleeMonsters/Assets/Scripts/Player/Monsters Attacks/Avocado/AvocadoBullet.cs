@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class AvocadoWrathBullet : MonoBehaviour
+public class AvocadoBullet : MonoBehaviour
 {
-    public float speed;
+
+    public float speed = 12f;
     public int damage = 3;
     public float knockback = 100;
-    public float durationTime = 2f;
 
     private float _direction;
 
@@ -30,14 +30,14 @@ public class AvocadoWrathBullet : MonoBehaviour
         _parent = parent;
         rb.velocity = transform.right * speed * _direction;
 
-        Invoke("DestroyBullet", durationTime);
+        Invoke("DestroyBullet", 1f);
 
         GetComponent<CircleCollider2D>().enabled = true;
     }
 
     public void DestroyBullet()
     {
-        Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

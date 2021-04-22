@@ -104,6 +104,8 @@ MonoBehaviour:
   damage: 3
   knockback: 100
   durationTime: 2
+  triggerCollider: {fileID: 2475331684733411411}
+  physicsCollider: {fileID: 8626081187722305666}
 --- !u!50 &831150392122059664
 Rigidbody2D:
   serializedVersion: 4
@@ -132,7 +134,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310930056218048277}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -187,7 +189,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310930056218048277}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: f947cdfb7676ff34a8e217907aa66777, type: 2}
   m_IsTrigger: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : MonoBehaviour, IPunObservable
 {
     public enum Monsters
     {
@@ -36,7 +36,7 @@ public class PlayerScript : MonoBehaviour
     private PlayerAnimation pAnimation;
     private PlayerInputs pInputs;
 
-    private PhotonView photonView;
+    private PhotonView pV;
 
     private Rigidbody2D rb;
 
@@ -50,16 +50,18 @@ public class PlayerScript : MonoBehaviour
     private ExitGames.Client.Photon.Hashtable _myCustomPropreties = new ExitGames.Client.Photon.Hashtable();
 
     public List<SpriteRenderer> sprites;
+    internal Color actualColor;
 
     // Start is called before the first frame update
     void Start()
     {
+        actualColor = Color.white;
         pMovement = GetComponent<PlayerMovement>();
         pCollisions = GetComponent<PlayerCollisions>();
         pAnimation = GetComponent<PlayerAnimation>();
         pInputs = GetComponent<PlayerInputs>();
 
-        photonView = GetComponent<PhotonView>();
+        pV = GetComponent<PhotonView>();
 
         rb = GetComponent<Rigidbody2D>();
 
@@ -77,6 +79,7 @@ public class PlayerScript : MonoBehaviour
         gameManager = GameObject.Find("GameManagerPrefab").GetComponent<GameManager>();
         lives = gameManager.nbrLives;
 
+        AddObservable();
     }
 
     // Update is called once per frame
@@ -125,13 +128,13 @@ public class PlayerScript : MonoBehaviour
             wrathTime = maxWrathTime;
             isWrath = true;
             WrathColor(Color.red);
-            //bodySprite.color = Color.red;
         }
     }
 
 
     public void WrathColor(Color color)
     {
+        actualColor = color;
         foreach(SpriteRenderer sprite in sprites)
         {
             sprite.color = color;
@@ -178,7 +181,7 @@ public class PlayerScript : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        //if(photonView.IsMine)
+        //if(pV.IsMine)
         //{
         //    percentage += damage;
         //    print("aie " + nickName + " a pris une attaque d'une puissance de " + damage + " pourcents et monte maintenant à " + percentage + " pourcents!");
@@ -196,6 +199,37 @@ public class PlayerScript : MonoBehaviour
             float bonus = damage * 2.5f;
             loadingWrath += bonus;
             print(nickName + " gagne " + bonus + " sec dans la barre de wrath");
+        }
+    }
+
+
+
+
+
+
+    private void AddObservable()
+    {
+        if (!pV.ObservedComponents.Contains(this))
+        {
+            pV.ObservedComponents.Add(this);
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.IsWriting)
+        {
+            Vector3 tempVector = new Vector3(actualColor.r, actualColor.g, actualColor.b);
+            stream.SendNext(tempVector);
+        }
+        else
+        {
+            Vector3 newVector = (Vector3)stream.ReceiveNext();
+            Color newColor = new Color(newVector.x, newVector.y, newVector.z);
+            if (newColor != actualColor)
+            {
+                WrathColor(newColor);
+            }
         }
     }
 }

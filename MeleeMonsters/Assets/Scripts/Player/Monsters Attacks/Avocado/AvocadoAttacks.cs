@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AvocadoAttacks : MonstersAttacks
+public class AvocadoAttacks : MonstersAttacks, IPunObservable
 {
 
     public GameObject bulletPrefab;
@@ -35,11 +35,13 @@ public class AvocadoAttacks : MonstersAttacks
     public override void SideGround()
     {
         pA.BasicAttack(attacks[0]);
+        pAn.Attack("Sg");
     }
 
     public override void NeutralGround()
     {
         pA.BasicAttack(attacks[1]);
+        pAn.Attack("Ng");
     }
 
     public override void DownGround()
@@ -57,8 +59,8 @@ public class AvocadoAttacks : MonstersAttacks
         print("je fais une neutralspecial d'avocat hannnn");
         GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, hitboxesPoints[3].position, new Quaternion());
         bullet.GetComponent<AvocadoBullet>().Throw(pM.direction,gameObject);
-        noyau.enabled = false;
-        Invoke("NoyauEnable", 0.8f);
+        //pV.RPC("NoyauDisableRPC", RpcTarget.All, gameObject);
+        NoyauDisable();
     }
 
     public override void DownSpecial()
@@ -91,8 +93,8 @@ public class AvocadoAttacks : MonstersAttacks
         print("je fais une neutralspecial d'avocat hannnn");
         GameObject bullet = PhotonNetwork.Instantiate(bulletWrathPrefab.name, hitboxesPoints[3].position, new Quaternion());
         bullet.GetComponent<AvocadoWrathBullet>().Throw(pM.direction, gameObject);
-        noyau.enabled = false;
-        Invoke("NoyauEnable", 0.8f);
+        //pV.RPC("NoyauDisableRPC", RpcTarget.All, gameObject);
+        NoyauDisable();
     }
 
     public override void DownWrath()
@@ -100,8 +102,29 @@ public class AvocadoAttacks : MonstersAttacks
 
     }
 
+
+
+
+    public void NoyauDisable()
+    {
+        noyau.enabled = false;
+        Invoke("NoyauEnable", 0.8f);
+    }
+
     public void NoyauEnable()
     {
         noyau.enabled = true;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.IsWriting)
+        {
+            stream.SendNext(noyau.enabled);
+        }
+        else
+        {
+            noyau.enabled = (bool)stream.ReceiveNext();
+        }
     }
 }
