@@ -12,6 +12,7 @@ public class PlayerAttacks : MonoBehaviour
     private PlayerMovement pM;
     private PlayerScript pS;
     private PhotonView pV;
+    private Rigidbody2D rb;
 
     internal bool isAttacking = false;
     internal bool canAttack = true;
@@ -26,6 +27,7 @@ public class PlayerAttacks : MonoBehaviour
         pM = GetComponent<PlayerMovement>();
         pS = GetComponent<PlayerScript>();
         pV = GetComponent<PhotonView>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void Update()
@@ -66,11 +68,19 @@ public class PlayerAttacks : MonoBehaviour
                         //PlayerScript targetScript = playerCollider.GetComponent<PlayerScript>();
                         PhotonView pVTarget = playerCollider.GetComponent<PhotonView>();
 
+                        float bonus = 1;
+                        if (pS.isWrath)
+                        {
+                            bonus = 1.25f;
+                            WrathSustain(attack.damage);
+                        }
+                        int newDamage = (int)((float)(attack.damage) * bonus);
+
                         Vector2 direction = attack.direction;
                         Vector2 newDirection = new Vector2((direction.x) * pM.direction, (direction.y));
-                        pVTarget.RPC("Eject", RpcTarget.All, newDirection, attack.ejection);
+                        pVTarget.RPC("Eject", RpcTarget.All, newDirection, attack.ejection, bonus);
 
-                        pVTarget.RPC("TakeDamage", RpcTarget.All, attack.damage);
+                        pVTarget.RPC("TakeDamage", RpcTarget.All, newDamage);
                     }
                 }
             }
@@ -84,18 +94,27 @@ public class PlayerAttacks : MonoBehaviour
     }
 
     [PunRPC]
-    private void Eject(Vector2 direction, float force)
+    private void Eject(Vector2 direction, float force,float bonus)
     {
-        float factor = CalculateForce(force, pS.percentage);
+        float factor = CalculateForce(force, pS.percentage,rb.mass,bonus);
         pM.Eject(direction*factor);
     }
 
 
-    public static float CalculateForce(float attackForce, int targetPercentage)
+    public static float CalculateForce(float attackForce, int targetPercentage, float weight, float wrathBonus)
     {
-        return attackForce + (attackForce * targetPercentage/10);
+        //return attackForce + (attackForce * targetPercentage/10);
+        //return (float)((((targetPercentage*3/20)*(1.4/weight))+attackForce) * wrathBonus);
+        return (float)((attackForce*(targetPercentage+20)*wrathBonus) / (weight*20));
     }
 
+
+    public void WrathSustain(int damage)
+    {
+        float sustain = (float)damage / 20;
+        print("sustain de "+sustain+ " secondes!");
+        pS.wrathTime += sustain;
+    }
 
     private void EndOfAttack()
     {
@@ -124,9 +143,16 @@ public class PlayerAttacks : MonoBehaviour
                 return 2;
             }
         }
-        else  // Special Attack
+        else  
         {
-            return 1;
+            if (pS.isWrath) // Wrath special attack
+            {
+                return 3;
+            }
+            else            // Special Attack
+            {
+                return 1;
+            }
         }
 
     }

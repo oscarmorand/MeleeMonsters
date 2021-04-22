@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class AvocadoBullet : MonoBehaviour
+public class YetiIcecube : MonoBehaviour
 {
-
-    public float speed = 20f;
+    public float speed;
     public int damage = 3;
     public float knockback = 100;
+    public float durationTime = 2f;
 
     private float _direction;
 
@@ -16,6 +16,9 @@ public class AvocadoBullet : MonoBehaviour
     private PhotonView pV;
 
     private GameObject _parent;
+
+    public CircleCollider2D triggerCollider;
+    public CircleCollider2D physicsCollider;
 
     void Awake()
     {
@@ -28,16 +31,22 @@ public class AvocadoBullet : MonoBehaviour
     {
         _direction = direction;
         _parent = parent;
-        rb.velocity = transform.right * speed * _direction;
+        rb.velocity = new Vector2(speed * _direction, 0.3f * speed);
 
-        Invoke("DestroyBullet", 1f);
+        Invoke("DestroyBullet", durationTime);
 
-        GetComponent<CircleCollider2D>().enabled = true;
+        triggerCollider.enabled = true;
+        Invoke("EnablePhysics", 0.08f);
+    }
+
+    public void EnablePhysics()
+    {
+        physicsCollider.enabled = true;
     }
 
     public void DestroyBullet()
     {
-        Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,9 +58,12 @@ public class AvocadoBullet : MonoBehaviour
                 if (pV.IsMine)
                 {
                     PhotonView pVTarget = collision.GetComponent<PhotonView>();
+                    float bonus = 1;
+                    if (_parent.GetComponent<PlayerScript>().isWrath)
+                        bonus = 1.25f;
 
                     Vector2 ejectionVector = transform.right * _direction;
-                    pVTarget.RPC("Eject", RpcTarget.All, ejectionVector, knockback);
+                    pVTarget.RPC("Eject", RpcTarget.All, ejectionVector, knockback, bonus);
 
                     pVTarget.RPC("TakeDamage", RpcTarget.All, damage);
 

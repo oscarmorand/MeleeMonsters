@@ -577,8 +577,14 @@ MonoBehaviour:
   nickName: 
   monster: 0
   percentage: 0
-  maxWrathTime: 5
+  maxWrathTime: 15
+  wrathTime: 0
+  maxLoadingWrath: 500
+  loadingWrath: 495
   reappearitionTime: 1
+  sprites:
+  - {fileID: 5129723005089324561}
+  - {fileID: 2499066467883210318}
 --- !u!114 &4048278115268245952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,8 +964,14 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: isWallSliding
+  - Type: 9
+    SynchronizeType: 2
+    Name: Sg
+  - Type: 9
+    SynchronizeType: 2
+    Name: Ng
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 0
 --- !u!114 &7378664762248520219
 MonoBehaviour:
@@ -994,6 +1006,9 @@ MonoBehaviour:
   - {fileID: 4753980188466451722}
   bulletPrefab: {fileID: 1310930056218048277, guid: d1b100936d84fcb4c983f8a94988ec60,
     type: 3}
+  bulletWrathPrefab: {fileID: 1310930056218048277, guid: 7e8e4365dd269fd44ac87c7997a33916,
+    type: 3}
+  noyau: {fileID: 2499066467883210318}
 --- !u!1 &5056537353962840056
 GameObject:
   m_ObjectHideFlags: 0

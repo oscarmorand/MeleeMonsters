@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3538272974793428727}
   - component: {fileID: 4331195387708988680}
-  - component: {fileID: 8359205591854158940}
+  - component: {fileID: -3239525762223899409}
   - component: {fileID: 831150392122059664}
   - component: {fileID: 2475331684733411411}
   - component: {fileID: 4514683656916621320}
   - component: {fileID: 3466295670471063858}
   m_Layer: 0
-  m_Name: AvocatBullet
+  m_Name: YetiSnowball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: 6624888044150764136, guid: 0727f8dca85750744838c53f5cd0134e,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4201ba41fb34a404790b925ece771abe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8359205591854158940
+--- !u!114 &-3239525762223899409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,12 +95,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1310930056218048277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c13d72407cfcd6048bb8ba3a33ce109c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cd6d176c9dd06841b6e2659264b2e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 20
   damage: 3
   knockback: 100
+  durationTime: 2
 --- !u!50 &831150392122059664
 Rigidbody2D:
   serializedVersion: 4
@@ -117,11 +117,11 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!58 &2475331684733411411
 CircleCollider2D:
@@ -138,7 +138,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.32894737
+  m_Radius: 0.46
 --- !u!114 &4514683656916621320
 MonoBehaviour:
   m_ObjectHideFlags: 0

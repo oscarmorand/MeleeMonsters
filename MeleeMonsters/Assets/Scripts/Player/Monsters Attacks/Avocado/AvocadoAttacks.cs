@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AvocadoAttacks : MonstersAttacks
+public class AvocadoAttacks : MonstersAttacks, IPunObservable
 {
 
     public GameObject bulletPrefab;
+    public GameObject bulletWrathPrefab;
+
+    public SpriteRenderer noyau;
     
 
     public override void InstantiateAttacks()
@@ -23,16 +26,22 @@ public class AvocadoAttacks : MonstersAttacks
         attacks.Add(new Attack("SideAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
         attacks.Add(new Attack("NeutralAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
         attacks.Add(new Attack("DownAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+
+        attacks.Add(new Attack("SideWrath", 10, 100, 0.8f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("NeutralWrath", 2, 400, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("DownWrath", 5, 250, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
     }
 
     public override void SideGround()
     {
         pA.BasicAttack(attacks[0]);
+        pAn.Attack("Sg");
     }
 
     public override void NeutralGround()
     {
         pA.BasicAttack(attacks[1]);
+        pAn.Attack("Ng");
     }
 
     public override void DownGround()
@@ -50,6 +59,8 @@ public class AvocadoAttacks : MonstersAttacks
         print("je fais une neutralspecial d'avocat hannnn");
         GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, hitboxesPoints[3].position, new Quaternion());
         bullet.GetComponent<AvocadoBullet>().Throw(pM.direction,gameObject);
+        //pV.RPC("NoyauDisableRPC", RpcTarget.All, gameObject);
+        NoyauDisable();
     }
 
     public override void DownSpecial()
@@ -70,5 +81,50 @@ public class AvocadoAttacks : MonstersAttacks
     public override void DownAir()
     {
         pA.BasicAttack(attacks[8]);
+    }
+
+    public override void SideWrath()
+    {
+
+    }
+
+    public override void NeutralWrath()
+    {
+        print("je fais une neutralspecial d'avocat hannnn");
+        GameObject bullet = PhotonNetwork.Instantiate(bulletWrathPrefab.name, hitboxesPoints[3].position, new Quaternion());
+        bullet.GetComponent<AvocadoWrathBullet>().Throw(pM.direction, gameObject);
+        //pV.RPC("NoyauDisableRPC", RpcTarget.All, gameObject);
+        NoyauDisable();
+    }
+
+    public override void DownWrath()
+    {
+
+    }
+
+
+
+
+    public void NoyauDisable()
+    {
+        noyau.enabled = false;
+        Invoke("NoyauEnable", 0.8f);
+    }
+
+    public void NoyauEnable()
+    {
+        noyau.enabled = true;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.IsWriting)
+        {
+            stream.SendNext(noyau.enabled);
+        }
+        else
+        {
+            noyau.enabled = (bool)stream.ReceiveNext();
+        }
     }
 }

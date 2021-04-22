@@ -546,8 +546,14 @@ MonoBehaviour:
   nickName: 
   monster: 0
   percentage: 0
-  maxWrathTime: 5
+  maxWrathTime: 15
+  wrathTime: 0
+  maxLoadingWrath: 500
+  loadingWrath: 480
   reappearitionTime: 1
+  sprites:
+  - {fileID: 5129723005089324561}
+  - {fileID: 2499066467883210318}
 --- !u!114 &4048278115268245952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,7 +910,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4958320532538682467}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 770c815542ef1c04dad62d97cf3c0097, type: 3}
   m_Name: 
@@ -939,6 +945,7 @@ MonoBehaviour:
   - {fileID: 3040827734505189102}
   - {fileID: 7487619551003241794}
   - {fileID: 3497173200178055818}
+  bulletPrefab: {fileID: 0}
 --- !u!1 &6470029462661459592
 GameObject:
   m_ObjectHideFlags: 0

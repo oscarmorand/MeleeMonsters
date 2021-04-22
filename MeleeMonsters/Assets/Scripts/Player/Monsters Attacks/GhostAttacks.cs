@@ -19,6 +19,10 @@ public class GhostAttacks : MonstersAttacks
         attacks.Add(new Attack("SideAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
         attacks.Add(new Attack("NeutralAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[2], new Vector2(1, 1)));
         attacks.Add(new Attack("DownAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[1], new Vector2(1, 1)));
+
+        attacks.Add(new Attack("SideWrath", 10, 100, 0.8f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("NeutralWrath", 2, 400, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("DownWrath", 5, 250, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
     }
 
     public override void SideGround()
@@ -64,5 +68,20 @@ public class GhostAttacks : MonstersAttacks
     public override void DownAir()
     {
         pA.BasicAttack(attacks[8]);
+    }
+
+    public override void SideWrath()
+    {
+
+    }
+
+    public override void NeutralWrath()
+    {
+
+    }
+
+    public override void DownWrath()
+    {
+
     }
 }
