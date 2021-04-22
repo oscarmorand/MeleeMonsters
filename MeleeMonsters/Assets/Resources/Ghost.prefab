@@ -976,7 +976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monstersAttacks: {fileID: 1399704389673359468}
-  monster: 0
+  monster: 1
 --- !u!114 &1399704389673359468
 MonoBehaviour:
   m_ObjectHideFlags: 0
