@@ -284,6 +284,7 @@ Transform:
   - {fileID: 2140401832545118798}
   - {fileID: 4250564982676403490}
   - {fileID: 1150066979319145174}
+  - {fileID: 4753980188466451722}
   m_Father: {fileID: 4958320532538682495}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -990,7 +991,39 @@ MonoBehaviour:
   - {fileID: 2140401832545118798}
   - {fileID: 4250564982676403490}
   - {fileID: 1150066979319145174}
-  bulletPrefab: {fileID: 0}
+  - {fileID: 4753980188466451722}
+  bulletPrefab: {fileID: 1310930056218048277, guid: d1b100936d84fcb4c983f8a94988ec60,
+    type: 3}
+--- !u!1 &5056537353962840056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4753980188466451722}
+  m_Layer: 0
+  m_Name: AttackPointNeutralS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4753980188466451722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056537353962840056}
+  m_LocalRotation: {x: 0.0024471364, y: -0.0034006701, z: -0.0010738126, w: 0.9999907}
+  m_LocalPosition: {x: 0.066, y: -1.286, z: 0.936}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7249472225901993321}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0.28, y: -0.39, z: -0.124000005}
 --- !u!1 &5534793881946332386
 GameObject:
   m_ObjectHideFlags: 0
