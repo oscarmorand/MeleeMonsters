@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class AvocadoBullet : MonoBehaviour
+public class YetiSnowball : MonoBehaviour
 {
-
-    public float speed = 12f;
+    public float speed = 20f;
     public int damage = 3;
     public float knockback = 100;
+    public float durationTime = 2f;
 
     private float _direction;
 
@@ -28,9 +28,9 @@ public class AvocadoBullet : MonoBehaviour
     {
         _direction = direction;
         _parent = parent;
-        rb.velocity = transform.right * speed * _direction;
+        rb.velocity = new Vector2(speed * _direction, 0.5f* speed);
 
-        Invoke("DestroyBullet", 1f);
+        Invoke("DestroyBullet", durationTime);
 
         GetComponent<CircleCollider2D>().enabled = true;
     }
@@ -57,7 +57,6 @@ public class AvocadoBullet : MonoBehaviour
                     pVTarget.RPC("Eject", RpcTarget.All, ejectionVector, knockback, bonus);
 
                     pVTarget.RPC("TakeDamage", RpcTarget.All, damage);
-
                     DestroyBullet();
                 }
             }

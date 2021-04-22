@@ -953,16 +953,16 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: isRunning
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: isJumping
   - Type: 9
     SynchronizeType: 2
     Name: takeOf
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: isWallSliding
   - Type: 9
     SynchronizeType: 2
@@ -971,7 +971,7 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: Ng
   m_SynchronizeLayers:
-  - SynchronizeType: 2
+  - SynchronizeType: 1
     LayerIndex: 0
 --- !u!114 &7378664762248520219
 MonoBehaviour:

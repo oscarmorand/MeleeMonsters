@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class YetiAttacks : MonstersAttacks
+public class YetiAttacks : MonstersAttacks, IPunObservable
 {
+
+    public GameObject snowballPrefab;
 
     public override void InstantiateAttacks()
     {
@@ -42,7 +45,8 @@ public class YetiAttacks : MonstersAttacks
 
     public override void SideSpecial()
     {
-        print("je fais une sidespecial de yeti ohlalah");
+        GameObject snowball = PhotonNetwork.Instantiate(snowballPrefab.name, hitboxesPoints[0].position, new Quaternion());
+        snowball.GetComponent<YetiSnowball>().Throw(pM.direction, gameObject);
     }
 
     public override void NeutralSpecial()
@@ -83,5 +87,10 @@ public class YetiAttacks : MonstersAttacks
     public override void DownWrath()
     {
 
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        
     }
 }

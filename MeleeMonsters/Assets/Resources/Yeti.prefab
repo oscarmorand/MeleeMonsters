@@ -1145,19 +1145,19 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isRunning
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isJumping
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isWallSliding
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: takeOf
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 0
 --- !u!114 &2900025662857652055
 MonoBehaviour:
@@ -1189,6 +1189,8 @@ MonoBehaviour:
   - {fileID: 795531631217222920}
   - {fileID: 3914562434943041644}
   - {fileID: 4374114101884467578}
+  snowballPrefab: {fileID: 1310930056218048277, guid: 0918e0222735175478c2835f41838767,
+    type: 3}
 --- !u!1 &6073221772167322959
 GameObject:
   m_ObjectHideFlags: 0
