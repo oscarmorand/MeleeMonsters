@@ -1,9 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class KrakenAttacks : MonstersAttacks
 {
+
+    internal bool receiveTime = false;
+    internal bool neutralSpecial = false;
+
+    public GameObject bubblePrefab;
+
 
     public override void InstantiateAttacks()
     {
@@ -17,7 +24,7 @@ public class KrakenAttacks : MonstersAttacks
         attacks.Add(new Attack("DownAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[1], new Vector2(1, 1)));
 
         attacks.Add(new Attack("SideSpecial", 10, 100, 0.8f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("NeutralSpecial", 2, 400, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("NeutralSpecial", 2, 400, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
         attacks.Add(new Attack("DownSpecial", 5, 250, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
 
         attacks.Add(new Attack("SideWrath", 10, 100, 0.8f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
@@ -67,6 +74,18 @@ public class KrakenAttacks : MonstersAttacks
     public override void NeutralSpecial()
     {
         print("je fais une neutralspecial de kraken hannnn");
+        if(receiveTime)
+        {
+            float deltaTime = pA.specialTimeFinished - pA.specialTimeStarted;
+            GameObject bubble = PhotonNetwork.Instantiate(bubblePrefab.name, hitboxesPoints[0].position, new Quaternion());
+            bubble.GetComponent<KrakenBubble>().Throw(pM.direction, gameObject, deltaTime);
+            receiveTime = false;
+            neutralSpecial = false;
+        }
+        else
+        {
+            neutralSpecial = true;
+        }
     }
 
     public override void DownSpecial()

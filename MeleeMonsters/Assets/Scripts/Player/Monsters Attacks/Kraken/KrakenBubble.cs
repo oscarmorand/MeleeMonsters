@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class YetiSnowball : MonoBehaviour
+public class KrakenBubble : MonoBehaviour
 {
-    public float speed = 20f;
+    public float speed = 12f;
     public int damage = 3;
     public float knockback = 100;
-    public float durationTime = 2f;
 
     private float _direction;
 
@@ -17,6 +16,8 @@ public class YetiSnowball : MonoBehaviour
 
     private GameObject _parent;
 
+    private float bonus = 1;
+
     void Awake()
     {
         //rb.velocity = transform.right * speed * direction;
@@ -24,13 +25,17 @@ public class YetiSnowball : MonoBehaviour
         pV = GetComponent<PhotonView>();
     }
 
-    public void Throw(float direction, GameObject parent)
+    public void Throw(float direction, GameObject parent, float size)
     {
         _direction = direction;
         _parent = parent;
-        rb.velocity = new Vector2(speed * _direction, 0.5f* speed);
+        rb.velocity = transform.right * speed * _direction;
 
-        Invoke("DestroyBullet", durationTime);
+        float resize = 1f + Mathf.Clamp(size,0,2);
+        bonus = resize;
+        gameObject.transform.localScale = new Vector3(resize, resize, 1);
+
+        Invoke("DestroyBullet", resize);
 
         GetComponent<CircleCollider2D>().enabled = true;
     }
@@ -51,9 +56,10 @@ public class YetiSnowball : MonoBehaviour
                     PhotonView pVTarget = collision.GetComponent<PhotonView>();
 
                     Vector2 ejectionVector = transform.right * _direction;
-                    pVTarget.RPC("Eject", RpcTarget.All, ejectionVector, knockback, 1);
+                    pVTarget.RPC("Eject", RpcTarget.All, ejectionVector, knockback, bonus);
 
-                    pVTarget.RPC("TakeDamage", RpcTarget.All, damage);
+                    pVTarget.RPC("TakeDamage", RpcTarget.All, (int)(damage*bonus));
+
                     DestroyBullet();
                 }
             }

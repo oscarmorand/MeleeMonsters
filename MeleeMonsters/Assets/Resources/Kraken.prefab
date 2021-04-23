@@ -841,6 +841,7 @@ GameObject:
   - component: {fileID: -4568185816180669887}
   - component: {fileID: 4809792635654341064}
   - component: {fileID: 3102752595710226504}
+  - component: {fileID: 774066506139280654}
   m_Layer: 0
   m_Name: Kraken
   m_TagString: Player
@@ -1298,7 +1299,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecbd8febb64dc5e4bb2c64d9338a4ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitboxesPoints: []
+  hitboxesPoints:
+  - {fileID: 6118198390278738376}
+  - {fileID: 4037783336833518407}
+  - {fileID: 3767203571662685342}
+  - {fileID: 1021676239920663735}
+  - {fileID: 2779044542760536006}
+  - {fileID: 8726684830017482835}
+  bubblePrefab: {fileID: 1310930056218048277, guid: cb634796ab85d01418b17128fb663ac5,
+    type: 3}
+--- !u!114 &774066506139280654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958320532538682467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289ab37bf0fbae44b9186cae4fbd814b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5492483880447735281
 GameObject:
   m_ObjectHideFlags: 0

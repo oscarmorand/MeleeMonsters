@@ -8,6 +8,9 @@ public class PlayerAttacks : MonoBehaviour
 
     internal bool normalButton;
     internal bool specialButton;
+    internal bool stoppedPressing;
+    internal float specialTimeStarted;
+    internal float specialTimeFinished;
 
     private PlayerMovement pM;
     private PlayerScript pS;
@@ -17,7 +20,6 @@ public class PlayerAttacks : MonoBehaviour
     internal bool isAttacking = false;
     internal bool canAttack = true;
 
-    //public AvocadoAttacks avocadoAttacks;
     public MonstersAttacks monstersAttacks;
 
     public PlayerScript.Monsters monster;
