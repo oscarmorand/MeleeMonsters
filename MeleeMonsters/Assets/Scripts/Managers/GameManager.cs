@@ -29,6 +29,20 @@ public class GameManager : MonoBehaviourPunCallbacks
     internal Photon.Realtime.Player winner;
     internal bool IAwon = false;
 
+    public enum States
+    {
+        MainMenu,
+        RoomSelectionMenu,
+        MonsterSelectionMenu,
+        EnteringLevel,
+        Start321GO,
+        Playing,
+        End
+    }
+
+    private States currentGameState = States.MainMenu;
+    public void SetGameState(States newState) => currentGameState = newState;
+    public States GetGameState() => currentGameState;
 
     private void Awake()
     {
@@ -42,6 +56,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         this.localPlayerMonsterIndex = 0;
 
         print("my monster has type " + this.localPlayerMonsterIndex + " by default");
+        PhotonNetwork.NetworkingClient.LoadBalancingPeer.DisconnectTimeout = 60000; // in milliseconds. any high value for debug
     }
 
     // Update is called once per frame
@@ -49,8 +64,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         
     }
-
-    public void InstantiatePlayer (Vector3 pos)
+    public GameObject InstantiatePlayer (Vector3 pos)
     {
         if (playerPrefab == null)
         {
@@ -59,8 +73,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         else
         {
             Debug.Log("instancié!");
-            PhotonNetwork.Instantiate(this.playerPrefab.name, pos, Quaternion.identity, 0);
+            return PhotonNetwork.Instantiate(this.playerPrefab.name, pos, Quaternion.identity, 0);
         }
+        return null;
     }
 
     public void SelectMonster(int _monsterNbr)

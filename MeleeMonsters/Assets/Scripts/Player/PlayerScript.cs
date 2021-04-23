@@ -13,6 +13,15 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         Kraken,
     }
 
+    enum States
+    {
+        Frozen,
+        Playing,
+        Dead,
+    }
+
+    private States currentState = States.Frozen;
+
     public string nickName;
     private int playerNumber;
 
@@ -72,11 +81,16 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         else
             nickName = PhotonNetwork.LocalPlayer.NickName;
 
-        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-        spawnList = levelManager.spawnList;
-        levelManager.players.Add(this);
-
+        
         gameManager = GameObject.Find("GameManagerPrefab").GetComponent<GameManager>();
+        if(gameManager.GetGameState() == GameManager.States.Playing)
+        {
+            rb.simulated = true;
+            levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+            spawnList = levelManager.spawnList;
+            levelManager.players.Add(this);
+            currentState = States.Playing;
+        }
         lives = gameManager.nbrLives;
 
         AddObservable();

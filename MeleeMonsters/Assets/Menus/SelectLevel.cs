@@ -51,6 +51,9 @@ public class SelectLevel : MonoBehaviour
 
     void PlayLevel()
     {
+        GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
+        GameManager gameManager = manager.GetComponent<GameManager>();
+        gameManager.SetGameState(GameManager.States.EnteringLevel);
         PhotonNetwork.LoadLevel(level);
     }
 }

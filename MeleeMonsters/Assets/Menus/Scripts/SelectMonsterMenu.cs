@@ -8,19 +8,20 @@ using TMPro;
 
 public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
 {
-    private GameObject manager;
     private GameManager gameManager;
 
-    public GameObject[] monstersArray;
     private int monsterIndex = 0;
     public TMP_Text[] playerNamesArray;
+    private GameObject playerMonsterObject;
+    public GameObject[] selectCharPanel;
 
     // Start is called before the first frame update
     void Start()
     {
-        manager = GameObject.Find("GameManagerPrefab").gameObject;
+        GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager.GetComponent<GameManager>();
-        
+        gameManager.SetGameState(GameManager.States.MonsterSelectionMenu);
+        ChangeMonster(monsterIndex);
     }
 
     // Update is called once per frame
@@ -29,6 +30,7 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
         int i = 0;
         foreach (var player in gameManager.players)
         {
+            selectCharPanel[i].SetActive(true);
             playerNamesArray[i].text = player.NickName;  
             ++i;
         }
@@ -37,23 +39,37 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             print("right arrow key is held down");
-            monstersArray[monsterIndex].SetActive(false);
-            monsterIndex = (monsterIndex + 1) % monstersArray.Length;
-            monstersArray[monsterIndex].SetActive(true);
-            SelectMonster(monsterIndex);
+            RightMonster();
 
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             print("left arrow key is held down");
-            monstersArray[monsterIndex].SetActive(false);
-            monsterIndex = (monsterIndex - 1 + monstersArray.Length) % monstersArray.Length;
-            monstersArray[monsterIndex].SetActive(true);
-            SelectMonster(monsterIndex);
+            LeftMonster();
         }
     }
 
+    public void ChangeMonster(int monsterIndex)
+    {
+        if (playerMonsterObject != null)
+            PhotonNetwork.Destroy(playerMonsterObject);
+
+        gameManager.SelectMonster(monsterIndex);
+        gameManager.InitPlayerPrefab();
+        playerMonsterObject = gameManager.InstantiatePlayer(new Vector3((PhotonNetwork.LocalPlayer.ActorNumber - 1) * 2.66f - 4.0f, -0.2f, 0.0f));
+    }
+    public void LeftMonster()
+    {
+        monsterIndex = (monsterIndex - 1 + gameManager.monstersArray.Length) % gameManager.monstersArray.Length;
+        ChangeMonster(monsterIndex);
+    }
+
+    public void RightMonster()
+    {
+        monsterIndex = (monsterIndex + 1) % gameManager.monstersArray.Length;
+        ChangeMonster(monsterIndex);
+    }
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -93,4 +109,5 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
         }
     }
 
+   
 }
