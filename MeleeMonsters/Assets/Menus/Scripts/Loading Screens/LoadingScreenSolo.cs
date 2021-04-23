@@ -7,8 +7,18 @@ using UnityEngine;
 
 public class LoadingScreenSolo : MonoBehaviourPunCallbacks
 {
+    private void Start()
+    {
+        PhotonNetwork.OfflineMode = true;
+        GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
+        GameManager gameManager = manager.GetComponent<GameManager>();
+        gameManager.SetGameState(GameManager.States.MonsterSelectionMenu);
+        SceneManager.LoadScene("SelectMonster");
+    }
     public override void OnConnectedToMaster()
     {
+        PhotonNetwork.OfflineMode = true;
+
         base.OnConnectedToMaster();
         if (PhotonNetwork.IsConnected)
         {

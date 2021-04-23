@@ -29,6 +29,20 @@ public class GameManager : MonoBehaviourPunCallbacks
     internal Photon.Realtime.Player winner;
     internal bool IAwon = false;
 
+    public enum States
+    {
+        MainMenu,
+        RoomSelectionMenu,
+        MonsterSelectionMenu,
+        EnteringLevel,
+        Start321GO,
+        Playing,
+        End
+    }
+
+    private States currentGameState = States.MainMenu;
+    public void SetGameState(States newState) => currentGameState = newState;
+    public States GetGameState() => currentGameState;
 
     private void Awake()
     {

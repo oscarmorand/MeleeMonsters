@@ -7,11 +7,18 @@ using UnityEngine;
 
 public class LoadingScreenMulti : MonoBehaviourPunCallbacks
 {
-   public override void OnConnectedToMaster()
+    public void Start()
+    {
+        
+    }
+    public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
         if (PhotonNetwork.IsConnected)
         {
+            GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
+            GameManager gameManager = manager.GetComponent<GameManager>();
+            gameManager.SetGameState(GameManager.States.RoomSelectionMenu);
             SceneManager.LoadScene("Rooms");
         }
     }
