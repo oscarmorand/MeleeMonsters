@@ -12,13 +12,13 @@ public class KrakenAttacks : MonstersAttacks
         attacks.Add(new Attack("NeutralWeak", 3, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
         attacks.Add(new Attack("DownWeak", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
 
-        attacks.Add(new Attack("SideSpecial", 10, 100, 0.8f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("NeutralSpecial", 2, 400, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("DownSpecial", 5, 250, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
-
         attacks.Add(new Attack("SideAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
         attacks.Add(new Attack("NeutralAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[2], new Vector2(1, 1)));
         attacks.Add(new Attack("DownAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[1], new Vector2(1, 1)));
+
+        attacks.Add(new Attack("SideSpecial", 10, 100, 0.8f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("NeutralSpecial", 2, 400, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("DownSpecial", 5, 250, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
 
         attacks.Add(new Attack("SideWrath", 10, 100, 0.8f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
         attacks.Add(new Attack("NeutralWrath", 2, 400, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
@@ -40,6 +40,25 @@ public class KrakenAttacks : MonstersAttacks
         pA.BasicAttack(attacks[2]);
     }
 
+
+
+    public override void SideAir()
+    {
+        pA.BasicAttack(attacks[3]);
+    }
+
+    public override void NeutralAir()
+    {
+        pA.BasicAttack(attacks[4]);
+    }
+
+    public override void DownAir()
+    {
+        pA.BasicAttack(attacks[5]);
+    }
+
+
+
     public override void SideSpecial()
     {
         print("je fais une sidespecial de kraken ohlalah");
@@ -55,20 +74,7 @@ public class KrakenAttacks : MonstersAttacks
         print("je fais une downSpecial de kraken wouaaaa");
     }
 
-    public override void SideAir()
-    {
-        pA.BasicAttack(attacks[6]);
-    }
 
-    public override void NeutralAir()
-    {
-        pA.BasicAttack(attacks[7]);
-    }
-
-    public override void DownAir()
-    {
-        pA.BasicAttack(attacks[8]);
-    }
 
     public override void SideWrath()
     {

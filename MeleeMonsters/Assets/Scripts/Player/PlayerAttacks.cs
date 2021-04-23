@@ -140,7 +140,7 @@ public class PlayerAttacks : MonoBehaviour
             }
             else // Air Attack;
             {
-                return 2;
+                return 1;
             }
         }
         else  
@@ -151,7 +151,7 @@ public class PlayerAttacks : MonoBehaviour
             }
             else            // Special Attack
             {
-                return 1;
+                return 2;
             }
         }
 
