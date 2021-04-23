@@ -732,6 +732,7 @@ GameObject:
   - component: {fileID: 1102697805}
   - component: {fileID: 1102697804}
   - component: {fileID: 1102697807}
+  - component: {fileID: 1102697808}
   m_Layer: 0
   m_Name: CurrentRoomCanvas
   m_TagString: Untagged
@@ -837,6 +838,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerListingMenu: {fileID: 253137706}
   _leaveRoomMenu: {fileID: 2088411060}
+--- !u!114 &1102697808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102697802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe157ae630c0474b9957cd6560f64ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charaPrefab: {fileID: 700592427458679831, guid: 5561c78659e8259469e07c2515c18239,
+    type: 3}
+  charas: []
 --- !u!1 &1130524278
 GameObject:
   m_ObjectHideFlags: 0
