@@ -126,11 +126,17 @@ public class PlayerInputs : MonoBehaviour
     {
         if (context.performed)
         {
+            print("special performed");
             pAt.specialButton = true;
+            pAt.specialTimeStarted = Time.time;
+            pAt.stoppedPressing = false;
         }
-        else
+        if(context.canceled)
         {
+            print("special canceled");
             pAt.specialButton = false;
+            pAt.stoppedPressing = true;
+            pAt.specialTimeFinished = Time.time;
         }
     }
 

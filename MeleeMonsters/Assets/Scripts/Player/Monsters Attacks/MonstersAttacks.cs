@@ -10,10 +10,11 @@ abstract public class MonstersAttacks : MonoBehaviour
 
     public List<Transform> hitboxesPoints;
 
-    private PhotonView pV;
+    internal PhotonView pV;
     private PlayerScript pS;
     internal PlayerMovement pM;
     internal PlayerAttacks pA;
+    internal PlayerAnimation pAn;
 
     void Start()
     {
@@ -21,8 +22,10 @@ abstract public class MonstersAttacks : MonoBehaviour
         pS = GetComponent<PlayerScript>();
         pM = GetComponent<PlayerMovement>();
         pA = GetComponent<PlayerAttacks>();
+        pAn = GetComponent<PlayerAnimation>();
 
         InstantiateAttacks();
+        AddObservable();
     }
 
     public abstract void InstantiateAttacks();
@@ -52,4 +55,18 @@ abstract public class MonstersAttacks : MonoBehaviour
 
     public abstract void DownAir();
 
+    public abstract void SideWrath();
+
+    public abstract void NeutralWrath();
+
+    public abstract void DownWrath();
+
+
+    private void AddObservable()
+    {
+        if (!pV.ObservedComponents.Contains(this))
+        {
+            pV.ObservedComponents.Add(this);
+        }
+    }
 }

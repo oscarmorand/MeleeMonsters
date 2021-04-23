@@ -39,4 +39,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         anim.SetTrigger("takeOf");
     }
+
+    public void Attack(string trigger)
+    {
+        anim.SetTrigger(trigger);
+    }
 }

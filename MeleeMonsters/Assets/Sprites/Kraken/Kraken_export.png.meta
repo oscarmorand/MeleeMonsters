@@ -1,0 +1,392 @@
+fileFormatVersion: 2
+guid: 8fbf5c01cb04ff84faf41216f35c2064
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6967357549102208403
+    second: Kraken_export_0
+  - first:
+      213: -3444399467445182996
+    second: Kraken_export_1
+  - first:
+      213: -2241605081886710036
+    second: Kraken_export_2
+  - first:
+      213: 554256210515930108
+    second: Kraken_export_3
+  - first:
+      213: 4473563418579010663
+    second: Kraken_export_4
+  - first:
+      213: 6029946817551850583
+    second: Kraken_export_5
+  - first:
+      213: 3614476981710633113
+    second: Kraken_export_6
+  - first:
+      213: -4898625493738236001
+    second: Kraken_export_7
+  - first:
+      213: -7262749097067199983
+    second: Kraken_export_8
+  - first:
+      213: 2195514038938948950
+    second: Kraken_export_9
+  - first:
+      213: -663357559349358624
+    second: Kraken_export_10
+  - first:
+      213: 1151147950734914117
+    second: Kraken_export_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 210
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Kraken_export_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 306
+        width: 286
+        height: 317
+      alignment: 9
+      pivot: {x: 0.5101583, y: 0.17235385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3959f59b6c601b060800000000000000
+      internalID: 6967357549102208403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kraken_export_1
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 556
+        width: 48
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ced926efee80330d0800000000000000
+      internalID: -3444399467445182996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kraken_export_2
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 533
+        width: 74
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce6ae67fd0834e0e0800000000000000
+      internalID: -2241605081886710036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kraken_export_3
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 477
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfb2b5e361d11b700800000000000000
+      internalID: 554256210515930108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kraken_export_4
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 477
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 764859c2a3a451e30800000000000000
+      internalID: 4473563418579010663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kraken_export_5
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 374
+        width: 49
+        height: 41
+      alignment: 9
+      pivot: {x: 0.826104, y: 0.3937095}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75cdcaabeacaea350800000000000000
+      internalID: 6029946817551850583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kraken_export_6
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 377
+        width: 43
+        height: 37
+      alignment: 9
+      pivot: {x: 0.19595833, y: 0.46073955}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99830bf1aa3392230800000000000000
+      internalID: 3614476981710633113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kraken_export_7
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 201
+        width: 73
+        height: 104
+      alignment: 9
+      pivot: {x: 0.67909217, y: 0.2974682}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f975f064116940cb0800000000000000
+      internalID: -4898625493738236001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kraken_export_8
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 219
+        width: 73
+        height: 104
+      alignment: 9
+      pivot: {x: 0.34080693, y: 0.2904845}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11245880d28853b90800000000000000
+      internalID: -7262749097067199983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kraken_export_9
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 41
+        width: 226
+        height: 121
+      alignment: 9
+      pivot: {x: 0.50000006, y: 0.26589656}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 655d656d268087e10800000000000000
+      internalID: 2195514038938948950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kraken_export_10
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 27
+        width: 149
+        height: 128
+      alignment: 9
+      pivot: {x: 0.8217263, y: 0.38651234}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ef49eb70d74bc6f0800000000000000
+      internalID: -663357559349358624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kraken_export_11
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 20
+        width: 125
+        height: 123
+      alignment: 9
+      pivot: {x: 0.19204053, y: 0.43504465}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 542397f46f2b9ff00800000000000000
+      internalID: 1151147950734914117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
