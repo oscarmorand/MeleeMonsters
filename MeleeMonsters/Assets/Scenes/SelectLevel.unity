@@ -359,7 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forest: 4
   cemetery: 5
-  abyss: 0
+  abyss: 9
 --- !u!114 &135716383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 307495699}
   - component: {fileID: 307495698}
   m_Layer: 5
-  m_Name: Abysses
+  m_Name: Abyss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -731,7 +731,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 135716382}
-        m_MethodName: OnClickedForest
+        m_MethodName: OnClickedAbyss
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

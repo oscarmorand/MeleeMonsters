@@ -33,11 +33,10 @@ public class UI_PlayerLife : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        slider.value = levelManager.players[playerIndex].wrathPercentage;
-
         if (playerIndex < gameManager.players.Count)
         {
             username.text = gameManager.players[playerIndex].NickName;
+            slider.value = levelManager.players[playerIndex].wrathPercentage;
             panel.SetActive(true);
         }
         else
