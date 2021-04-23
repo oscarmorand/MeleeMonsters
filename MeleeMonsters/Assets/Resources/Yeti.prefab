@@ -1300,6 +1300,9 @@ MonoBehaviour:
   - {fileID: 795531631217222920}
   - {fileID: 3914562434943041644}
   - {fileID: 4374114101884467578}
+  - {fileID: 7838687559099584929}
+  - {fileID: 716627838587861008}
+  - {fileID: 4814210068336156261}
   snowballPrefab: {fileID: 1310930056218048277, guid: 0918e0222735175478c2835f41838767,
     type: 3}
   iceCubePrefab: {fileID: 1310930056218048277, guid: f6ac5edfcb8ac4649b645bc604862e64,
@@ -1451,8 +1454,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7026524045601139401}
-  m_LocalRotation: {x: -0.0000035981634, y: -0.0033117598, z: -0.0010864744, w: 0.999994}
-  m_LocalPosition: {x: -0.04, y: -0.28, z: 0.943}
+  m_LocalRotation: {x: -0.0000035981632, y: -0.0033117598, z: -0.0010864744, w: 0.999994}
+  m_LocalPosition: {x: -0.03999996, y: -0.27999997, z: 0.943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8624584348951149230}
