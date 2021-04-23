@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UI_PlayerLife : MonoBehaviour
@@ -13,7 +14,9 @@ public class UI_PlayerLife : MonoBehaviour
 
     private GameManager gameManager;
     private LevelManager levelManager;
+
     private GameObject panel;
+    public Slider slider;
 
     public int playerIndex = -1;
 
@@ -24,11 +27,14 @@ public class UI_PlayerLife : MonoBehaviour
         gameManager = manager?.GetComponent<GameManager>();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         panel = transform.Find("Panel PlayerLife").gameObject;
+        slider.maxValue = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        slider.value = levelManager.players[playerIndex].wrathPercentage;
+
         if (playerIndex < gameManager.players.Count)
         {
             username.text = gameManager.players[playerIndex].NickName;

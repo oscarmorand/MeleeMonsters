@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI_percentage: {fileID: 1652315685251791255}
   username: {fileID: 1652315686951122688}
+  slider: {fileID: 7231216774868510017}
   playerIndex: 0
 --- !u!1 &706367950688205834
 GameObject:

@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         
     }
-    public void InstantiatePlayer (Vector3 pos)
+    public GameObject InstantiatePlayer (Vector3 pos)
     {
         if (playerPrefab == null)
         {
@@ -59,8 +59,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         else
         {
             Debug.Log("instancié!");
-            PhotonNetwork.Instantiate(this.playerPrefab.name, pos, Quaternion.identity, 0);
+            return PhotonNetwork.Instantiate(this.playerPrefab.name, pos, Quaternion.identity, 0);
         }
+        return null;
     }
 
     public void SelectMonster(int _monsterNbr)

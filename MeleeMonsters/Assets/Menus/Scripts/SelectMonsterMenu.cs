@@ -14,14 +14,17 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
     public GameObject[] monstersArray;
     private int monsterIndex = 0;
     public TMP_Text[] playerNamesArray;
-   
+    private GameObject playerMonsterObject;
 
     // Start is called before the first frame update
     void Start()
     {
         manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager.GetComponent<GameManager>();
-        
+        gameManager.SelectMonster(0);
+        gameManager.InitPlayerPrefab();
+        playerMonsterObject = gameManager.InstantiatePlayer(new Vector3((PhotonNetwork.LocalPlayer.ActorNumber - 1) * 2.66f - 4.0f, -0.5f, 0.0f));
+
     }
 
     // Update is called once per frame
@@ -49,20 +52,23 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
         }
     }
 
+    public void ChangeMonster(int monsterIndex)
+    {
+        PhotonNetwork.Destroy(playerMonsterObject);
+        gameManager.SelectMonster(monsterIndex);
+        gameManager.InitPlayerPrefab();
+        playerMonsterObject = gameManager.InstantiatePlayer(new Vector3((PhotonNetwork.LocalPlayer.ActorNumber - 1) * 2.66f - 4.0f, -0.5f, 0.0f));
+    }
     public void LeftMonster()
     {
-        monstersArray[monsterIndex].SetActive(false);
         monsterIndex = (monsterIndex - 1 + monstersArray.Length) % monstersArray.Length;
-        monstersArray[monsterIndex].SetActive(true);
-        SelectMonster(monsterIndex);
+        ChangeMonster(monsterIndex);
     }
 
     public void RightMonster()
     {
-        monstersArray[monsterIndex].SetActive(false);
         monsterIndex = (monsterIndex + 1) % monstersArray.Length;
-        monstersArray[monsterIndex].SetActive(true);
-        SelectMonster(monsterIndex);
+        ChangeMonster(monsterIndex);
     }
     public void PlayGame()
     {
