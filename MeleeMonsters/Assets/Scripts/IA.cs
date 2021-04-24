@@ -46,7 +46,7 @@ public class IA : MonoBehaviour
             if (relativeSideX > 0.5f && !playerMovement.facingRight)
                 playerMovement.Flip();
 
-            if (playerMovement.isGrounded) //si l'IA est au sol
+            if (playerMovement.isGrounded || playerMovement.isOnPlatform) //si l'IA est au sol
             {
                 if (distanceX > 3.5f) //si le player est assez loin de l'IA (en x)
                 {
