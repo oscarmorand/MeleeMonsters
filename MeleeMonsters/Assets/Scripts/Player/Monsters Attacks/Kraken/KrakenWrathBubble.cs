@@ -68,7 +68,7 @@ public class KrakenWrathBubble : MonoBehaviour
     {
         cC.enabled = false;
         rb.velocity = Vector2.zero;
-        transform.localScale = Vector3.SmoothDamp
+        //transform.localScale = Vector3.SmoothDamp
         LayerMask layerMask = (1 << 9) | (1 << 11);
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, range*bonus, layerMask);
         foreach (Collider2D playerCollider in hitColliders)
