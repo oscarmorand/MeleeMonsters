@@ -610,6 +610,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManagerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5924781009585009070, guid: aaf11a0afc81ca2479883f7e215d6ba1,
+        type: 3}
+      propertyPath: pauseMenuPrefab
+      value: 
+      objectReference: {fileID: 8492733201762934477, guid: 2e91a9263c36f5642ad184fc8a6293a6,
+        type: 3}
     - target: {fileID: 5924781009585009071, guid: aaf11a0afc81ca2479883f7e215d6ba1,
         type: 3}
       propertyPath: m_RootOrder
