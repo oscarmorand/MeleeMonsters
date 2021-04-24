@@ -13,14 +13,15 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         Kraken,
     }
 
-    enum States
+    public enum States
     {
+        Menu,
         Frozen,
         Playing,
         Dead,
     }
 
-    private States currentState = States.Frozen;
+    public States currentState = States.Frozen;
 
     public string nickName;
     private int playerNumber;

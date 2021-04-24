@@ -52,10 +52,11 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isPressingDown;
 
+    private PlayerScript playerScript;
 
     void Start()
     {
- 
+        playerScript = GetComponent<PlayerScript>();
         moveSpeed = settings.speed;
         jumpForce = settings.jumpStrength;
         maxJump = settings.extraJump;
@@ -75,7 +76,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (photonView.IsMine)
+        bool isPlaying = (playerScript.currentState == PlayerScript.States.Playing);
+
+        if (photonView.IsMine && isPlaying)
         {
             if (moveInputy > 0)
                 print("j'appuie vers le haut là");
