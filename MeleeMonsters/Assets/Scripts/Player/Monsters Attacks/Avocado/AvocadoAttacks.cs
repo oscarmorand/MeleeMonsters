@@ -99,6 +99,7 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
         GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, hitboxesPoints[6].position, new Quaternion());
         bullet.GetComponent<AvocadoBullet>().Throw(pM.direction, gameObject);
         NoyauDisable();
+        aM.Play("bouchon champagne");
     }
 
   
@@ -119,6 +120,7 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
         GameObject bullet = PhotonNetwork.Instantiate(bulletWrathPrefab.name, hitboxesPoints[6].position, new Quaternion());
         bullet.GetComponent<AvocadoWrathBullet>().Throw(pM.direction, gameObject);
         NoyauDisable();
+        aM.Play("bouchon champagne");
     }
 
     
