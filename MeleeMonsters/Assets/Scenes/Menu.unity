@@ -957,6 +957,24 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: bouchon champagne
+    clip: {fileID: 8300000, guid: a1a613bc332b8eb439d912799398c8f3, type: 3}
+    volume: 0.75
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: wet slap
+    clip: {fileID: 8300000, guid: b94f9854699ac8c43acde060f92c11ef, type: 3}
+    volume: 0.75
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!4 &1237156780
 Transform:
   m_ObjectHideFlags: 0
