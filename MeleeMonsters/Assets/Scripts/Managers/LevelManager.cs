@@ -31,6 +31,12 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // to debug before 
+        //GameObject canvas = GameObject.Find("Canvas");
+        //GameObject pauseMenuInstance = Instantiate(gameManager.pauseMenuPrefab);
+        //pauseMenuInstance.transform.SetParent(canvas.transform);
+        //pauseMenuInstance.transform.localPosition = new Vector3(0f, 0f, 0f);
+
         gameManager.InitPlayerPrefab();
 
         print(PhotonNetwork.LocalPlayer.ActorNumber);
