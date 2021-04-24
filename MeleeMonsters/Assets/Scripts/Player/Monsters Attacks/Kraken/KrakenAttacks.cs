@@ -35,6 +35,7 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
     public override void SideGround()
     {
         pA.BasicAttack(attacks[0]);
+        aM.Play("wet slap");
     }
 
     public override void NeutralGround()
@@ -52,6 +53,7 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
     public override void SideAir()
     {
         pA.BasicAttack(attacks[3]);
+        aM.Play("wet slap");
     }
 
     public override void NeutralAir()
