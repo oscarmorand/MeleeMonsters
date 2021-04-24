@@ -73,8 +73,6 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
         aM.Play("slash sabre");
     }
 
-
-
     public override void NeutralAir()
     {
         pA.BasicAttack(attacks[5]);
@@ -104,8 +102,6 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
     }
 
   
-
-
 
     public override void SideWrath()
     {
