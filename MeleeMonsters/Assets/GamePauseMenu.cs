@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GamePauseMenu : MonoBehaviour
 {
@@ -29,10 +30,11 @@ public class GamePauseMenu : MonoBehaviour
         gameIsPaused = true;
     }
 
-    void Resume()
+    public void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
+        optionsPanel.SetActive(false);
         gameIsPaused = false;
     }
 
@@ -41,8 +43,13 @@ public class GamePauseMenu : MonoBehaviour
         optionsPanel.SetActive(true);
     }
 
-    public void BackPauseMenu()
+    public void BackOptionMenu()
     {
         optionsPanel.SetActive(false);
+    }
+
+    public void BackMainMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
