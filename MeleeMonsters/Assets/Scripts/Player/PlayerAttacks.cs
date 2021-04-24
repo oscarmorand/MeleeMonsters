@@ -23,9 +23,11 @@ public class PlayerAttacks : MonoBehaviour
     public MonstersAttacks monstersAttacks;
 
     public PlayerScript.Monsters monster;
+    private PlayerScript playerScript;
 
     public void Start()
     {
+        playerScript = GetComponent<PlayerScript>();
         pM = GetComponent<PlayerMovement>();
         pS = GetComponent<PlayerScript>();
         pV = GetComponent<PhotonView>();
@@ -34,6 +36,11 @@ public class PlayerAttacks : MonoBehaviour
 
     public void Update()
     {
+        bool isPlaying = (playerScript.currentState == PlayerScript.States.Playing);
+
+        if (!isPlaying)
+            return;
+
         if (canAttack && !isAttacking)
         {
             if (normalButton || specialButton)

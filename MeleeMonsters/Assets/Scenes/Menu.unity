@@ -904,7 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b058101de8decd146baaeb21cbf4a1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixerGroup: {fileID: 0}
+  mixerGroup: {fileID: 24300002, guid: d96d904eba120f343ad974a734d59db6, type: 2}
   sounds:
   - name: Theme
     clip: {fileID: 8300000, guid: e70776b1cb743e944a5901a31f794d6c, type: 3}
@@ -913,7 +913,7 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 1
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: d96d904eba120f343ad974a734d59db6, type: 2}
     source: {fileID: 0}
   - name: slash couteau 1
     clip: {fileID: 8300000, guid: fad8f7e431999c54d9479a1f504656c6, type: 3}
@@ -922,7 +922,7 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 1
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: d96d904eba120f343ad974a734d59db6, type: 2}
     source: {fileID: 0}
   - name: slash couteau 2
     clip: {fileID: 8300000, guid: a567f6dbd8972d54ca071959d5f66360, type: 3}
@@ -931,7 +931,7 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 1
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: d96d904eba120f343ad974a734d59db6, type: 2}
     source: {fileID: 0}
   - name: slash sabre
     clip: {fileID: 8300000, guid: 2b20cc0194422b348a4616dbec70ad8a, type: 3}
@@ -940,7 +940,7 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 1
-    mixerGroup: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: d96d904eba120f343ad974a734d59db6, type: 2}
     source: {fileID: 0}
 --- !u!4 &1237156780
 Transform:
@@ -1843,6 +1843,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7461130051344108963, guid: c88cb948da18cd04086cd6d502bb74b5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 15.634277
+      objectReference: {fileID: 0}
     - target: {fileID: 7461130051666325475, guid: c88cb948da18cd04086cd6d502bb74b5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1852,6 +1857,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461130051897591601, guid: c88cb948da18cd04086cd6d502bb74b5,
+        type: 3}
+      propertyPath: m_Value
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461130051897591601, guid: c88cb948da18cd04086cd6d502bb74b5,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c88cb948da18cd04086cd6d502bb74b5, type: 3}
