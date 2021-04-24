@@ -10,6 +10,7 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
     internal bool neutralSpecial = false;
 
     public GameObject bubblePrefab;
+    public GameObject bubbleWrathPrefab;
 
 
     public override void InstantiateAttacks()
@@ -114,8 +115,21 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
 
     public override void NeutralWrath()
     {
-
+        if (receiveTime)
+        {
+            float deltaTime = pA.specialTimeFinished - pA.specialTimeStarted;
+            GameObject bubbleWrath = PhotonNetwork.Instantiate(bubbleWrathPrefab.name, hitboxesPoints[3].position, new Quaternion());
+            bubbleWrath.GetComponent<KrakenWrathBubble>().Throw(pM.direction, gameObject, deltaTime);
+            receiveTime = false;
+            neutralSpecial = false;
+        }
+        else
+        {
+            neutralSpecial = true;
+        }
     }
+
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

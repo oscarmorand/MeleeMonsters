@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3538272974793428727}
   - component: {fileID: 4331195387708988680}
-  - component: {fileID: 5228956351427751578}
+  - component: {fileID: 8452303598152154619}
   - component: {fileID: 831150392122059664}
   - component: {fileID: 2475331684733411411}
   - component: {fileID: 4514683656916621320}
   - component: {fileID: 3466295670471063858}
   m_Layer: 0
-  m_Name: KrakenBubble
+  m_Name: KrakenWrathBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 8ea8bd79c98fc6f41b0ae1fb47f18eab, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5228956351427751578
+--- !u!114 &8452303598152154619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,12 +95,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1310930056218048277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daabce032bc0bb14e9310271002e641d, type: 3}
+  m_Script: {fileID: 11500000, guid: fd5990194c01e144eaed378d6f2ef00c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
   damage: 3
   knockback: 100
+  range: 2
 --- !u!50 &831150392122059664
 Rigidbody2D:
   serializedVersion: 4
