@@ -64,6 +64,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
     private GameObject aMGameObject;
     private AudioManager aM;
+    private PlayerSoundManager pSM;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +77,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
         aMGameObject = GameObject.Find("AudioManager");
         aM = aMGameObject.GetComponent<AudioManager>();
+        pSM = GameObject.Find("PlayerSoundManager").GetComponent<PlayerSoundManager>();
 
         pV = GetComponent<PhotonView>();
 
@@ -128,6 +130,12 @@ public class PlayerScript : MonoBehaviour, IPunObservable
             loadingWrath = 0;
             //bodySprite.color = Color.white;
             WrathColor(Color.white);
+
+            if (pSM.howManyInWrathMode <= 1)
+            {
+                aM.Stop("wrath theme");
+                aM.UnPause("theme");
+            }
         }
         else
         {
@@ -149,6 +157,12 @@ public class PlayerScript : MonoBehaviour, IPunObservable
             wrathTime = maxWrathTime;
             isWrath = true;
             WrathColor(Color.red);
+
+            if (pSM.howManyInWrathMode == 0)
+            {
+                aM.Pause("theme");
+                aM.Play("wrath theme");
+            }
         }
     }
 
