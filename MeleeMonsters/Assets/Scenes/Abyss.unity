@@ -17928,7 +17928,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 0.7995602, g: 0.9622642, b: 0.63999647, a: 1}
+  m_Color: {r: 0.26593092, g: 0.6436417, b: 0.6792453, a: 1}
   m_Origin: {x: -11, y: -13, z: 0}
   m_Size: {x: 21, y: 17, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -18193,6 +18193,21 @@ PrefabInstance:
     - target: {fileID: 1760998037759656712, guid: 36399104a93a9034c804828fa0e9b33d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760998037759656715, guid: 36399104a93a9034c804828fa0e9b33d,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.8044872
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760998037759656715, guid: 36399104a93a9034c804828fa0e9b33d,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760998037759656715, guid: 36399104a93a9034c804828fa0e9b33d,
+        type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -18695,6 +18710,21 @@ PrefabInstance:
     - target: {fileID: 1760998037759656712, guid: 36399104a93a9034c804828fa0e9b33d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760998037759656715, guid: 36399104a93a9034c804828fa0e9b33d,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.8044872
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760998037759656715, guid: 36399104a93a9034c804828fa0e9b33d,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760998037759656715, guid: 36399104a93a9034c804828fa0e9b33d,
+        type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
