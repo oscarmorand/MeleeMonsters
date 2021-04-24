@@ -34,7 +34,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     internal bool isAlive = true;
     internal bool canStillPlay = true;
 
-    internal bool isWrath = false;
+    public bool isWrath = false;
     public float maxWrathTime = 15;
     public float wrathTime = 0;
     public float maxLoadingWrath = 500;
@@ -256,19 +256,28 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     {
         if(stream.IsWriting)
         {
-            Vector3 tempVector = new Vector3(actualColor.r, actualColor.g, actualColor.b);
-            stream.SendNext(tempVector);
-            stream.SendNext(isWrath);
+            float localFloat = 0f;
+            if (isWrath)
+                localFloat = 1f;
+            float[] tempArray = new float[4];
+            tempArray[0] = actualColor.r;
+            tempArray[1] = actualColor.g;
+            tempArray[2] = actualColor.b;
+            tempArray[3] = localFloat;
+            //Vector3 tempVector = new Vector3(actualColor.r, actualColor.g, actualColor.b);
+            stream.SendNext(tempArray);
         }
         else
         {
-            Vector3 newVector = (Vector3)stream.ReceiveNext();
-            Color newColor = new Color(newVector.x, newVector.y, newVector.z);
+            //Vector3 newVector = (Vector3)stream.ReceiveNext();
+            float[] tempArray = (float[])stream.ReceiveNext();
+            Color newColor = new Color(tempArray[0], tempArray[1], tempArray[2]);
             if (newColor != actualColor)
             {
                 WrathColor(newColor);
             }
-            isWrath = (bool) stream.ReceiveNext();
+            float localFloat = tempArray[3];
+            isWrath = (localFloat == 1f);
         }
     }
 }
