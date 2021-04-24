@@ -1004,7 +1004,7 @@ MonoBehaviour:
   smoothTime: 0.3
   minField: 50
   maxField: 100
-  zoomLimiter: 10
+  zoomLimiter: 20
 --- !u!1 &815689734
 GameObject:
   m_ObjectHideFlags: 0

@@ -60,7 +60,7 @@ public class MultipleTargetCamera : MonoBehaviour
             bounds.Encapsulate(targets[i].position);
         }
 
-        return bounds.size.x;
+        return bounds.size.x + bounds.size.y;
     }
 
     void ActualizeTargets()
