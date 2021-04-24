@@ -6,7 +6,7 @@ using Photon.Pun;
 public class PlayerSoundManager : MonoBehaviour
 {
     public List<PlayerScript> players = new List<PlayerScript>();
-    public List<PlayerScript> truePlayers = new List<PlayerScript>();
+    //public List<PlayerScript> truePlayers = new List<PlayerScript>();
 
     public int howManyInWrathMode = 0;
 
@@ -19,7 +19,7 @@ public class PlayerSoundManager : MonoBehaviour
     //
     void LateUpdate()
     {
-        if (truePlayers.Count < PhotonNetwork.CurrentRoom.PlayerCount)
+        if (players.Count < PhotonNetwork.CurrentRoom.PlayerCount)
         {
             ActualizePlayers();
         }
@@ -48,7 +48,7 @@ public class PlayerSoundManager : MonoBehaviour
         foreach (GameObject playerGameObject in playersGameObjects)
         {
             players.Add(playerGameObject.GetComponent<PlayerScript>());
-            truePlayers.Add(playerGameObject.GetComponent<PlayerScript>());
+            //truePlayers.Add(playerGameObject.GetComponent<PlayerScript>());
         }
 
         foreach (GameObject IAGameObject in IAGameObjects)
