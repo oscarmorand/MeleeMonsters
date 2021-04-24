@@ -1,27 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class SelectCharMenu : MonoBehaviour
 {
-    public GameObject unlockButton;
-    public GameObject lockButton;
+    public int indexPosition = -1;
 
-    // Start is called before the first frame update
+    public GameObject leftArrow;
+    public GameObject rightArrow;
+    public GameObject toggleSelection;
+    private SelectMonsterMenu selectMonsterMenu;
+    public bool playerSelected = false;
+
     void Start()
     {
-        
+        if(indexPosition == PhotonNetwork.LocalPlayer.ActorNumber-1)
+        {
+            toggleSelection.SetActive(true);
+            leftArrow.SetActive(true);
+            rightArrow.SetActive(true);
+        }
+
+        selectMonsterMenu = GameObject.Find("SelectMonsterMenu").GetComponent<SelectMonsterMenu>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        selectMonsterMenu.setMonsterSelected(playerSelected);
     }
 
-    public void UnlockButton()
+    public void MonsterSelected()
     {
-        unlockButton.SetActive(false);
-        lockButton.SetActive(true);
+        if (!playerSelected)
+        { 
+            leftArrow.SetActive(false);
+            rightArrow.SetActive(false);
+            playerSelected = true;
+        }
+        else
+        {
+            leftArrow.SetActive(true);
+            rightArrow.SetActive(true);
+            playerSelected = false;
+        }
     }
+
+    
 }

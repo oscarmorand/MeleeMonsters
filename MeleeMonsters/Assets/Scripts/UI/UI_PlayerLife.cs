@@ -20,6 +20,7 @@ public class UI_PlayerLife : MonoBehaviour
 
     public int playerIndex = -1;
 
+
     // Start is called before the first frame update
     void Start()
     {
