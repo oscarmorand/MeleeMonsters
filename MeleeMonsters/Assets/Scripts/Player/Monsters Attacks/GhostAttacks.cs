@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class GhostAttacks : MonstersAttacks
+public class GhostAttacks : MonstersAttacks, IPunObservable
 {
 
     public override void InstantiateAttacks()
@@ -88,5 +89,10 @@ public class GhostAttacks : MonstersAttacks
     public override void DownWrath()
     {
 
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        
     }
 }

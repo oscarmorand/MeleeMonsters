@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class KrakenAttacks : MonstersAttacks
+public class KrakenAttacks : MonstersAttacks, IPunObservable
 {
 
     internal bool receiveTime = false;
@@ -106,6 +106,11 @@ public class KrakenAttacks : MonstersAttacks
     }
 
     public override void DownWrath()
+    {
+
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
 
     }
