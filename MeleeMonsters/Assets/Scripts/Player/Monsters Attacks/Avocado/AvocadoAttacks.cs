@@ -10,65 +10,76 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
     public GameObject bulletWrathPrefab;
 
     public SpriteRenderer noyau;
-    
-
 
     public override void InstantiateAttacks()
     {
         attacks = new List<Attack>();
 
         attacks.Add(new Attack("SideGround", 4, 400, 0.4f, new Vector2(1, 0.5f), hitboxesPoints[0], new Vector2(1.3f, 0.75f)));
-        attacks.Add(new Attack("NeutralGround", 3, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[2], new Vector2(1.9f, 0.55f)));
         attacks.Add(new Attack("DownGround", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[1], new Vector2(1, 1)));
+        attacks.Add(new Attack("NeutralGround", 3, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[2], new Vector2(1.9f, 0.55f)));
+       
         
-        attacks.Add(new Attack("SideAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 2)));
-        attacks.Add(new Attack("NeutralAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1.9f, 0.55f)));
-        attacks.Add(new Attack("DownAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(0.65f, 1.1f)));
+        attacks.Add(new Attack("SideAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[3], new Vector2(1, 2)));
+        attacks.Add(new Attack("DownAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[4], new Vector2(0.65f, 1.1f)));
+        attacks.Add(new Attack("NeutralAir", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[5], new Vector2(1.9f, 0.7f)));
+        
         
         attacks.Add(new Attack("SideSpecial", 10, 100, 0.8f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("NeutralSpecial", 2, 400, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
         attacks.Add(new Attack("DownSpecial", 5, 250, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("NeutralSpecial", 2, 400, 0.8f, new Vector2(0, 1), hitboxesPoints[5], new Vector2(1, 1)));
+       
 
         attacks.Add(new Attack("SideWrath", 10, 100, 0.8f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("NeutralWrath", 2, 400, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
         attacks.Add(new Attack("DownWrath", 5, 250, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("NeutralWrath", 2, 400, 0.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        
     }
 
     public override void SideGround()
     {
         pA.BasicAttack(attacks[0]);
         pAn.Attack("Sg");
+        aM.Play("slash sabre");
+    }
+
+    public override void DownGround()
+    {
+        pA.BasicAttack(attacks[1]);
+        pAn.Attack("Dg");
+        aM.Play("slash sabre");
     }
 
     public override void NeutralGround()
     {
-        pA.BasicAttack(attacks[1]);
-        pAn.Attack("Ng");
-    }
-
-
-    public override void DownGround()
-    {
         pA.BasicAttack(attacks[2]);
+        pAn.Attack("Ng");
+        aM.Play("slash sabre");
     }
-    
+
+
 
     public override void SideAir()
     {
         pA.BasicAttack(attacks[3]);
         pAn.Attack("Sa");
-    }
-
-    public override void NeutralAir()
-    {
-        pA.BasicAttack(attacks[4]);
-        pAn.Attack("Na");
+        aM.Play("slash sabre");
     }
 
     public override void DownAir()
     {
-        pA.BasicAttack(attacks[5]);
+        pA.BasicAttack(attacks[4]);
         pAn.Attack("Da");
+        aM.Play("slash sabre");
+    }
+
+
+
+    public override void NeutralAir()
+    {
+        pA.BasicAttack(attacks[5]);
+        pAn.Attack("Na");
+        aM.Play("slash sabre");
     }
 
    
@@ -79,6 +90,11 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
     }
 
 
+    public override void DownSpecial()
+    {
+        print("je fais une downSpecial d'avocat wouaaaa");
+    }
+
     public override void NeutralSpecial()
     {
         print("je fais une neutralspecial d'avocat hannnn");
@@ -87,15 +103,16 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
         NoyauDisable();
     }
 
-    public override void DownSpecial()
-    {
-        print("je fais une downSpecial d'avocat wouaaaa");
-    }
-
+  
 
 
 
     public override void SideWrath()
+    {
+
+    }
+
+    public override void DownWrath()
     {
 
     }
@@ -108,11 +125,7 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
         NoyauDisable();
     }
 
-    public override void DownWrath()
-    {
-
-    }
-
+    
 
 
 
@@ -138,4 +151,20 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
             noyau.enabled = (bool)stream.ReceiveNext();
         }
     }
+
+    /*
+    /// <summary>
+    /// Joue un son de couteau / sabre au hasard
+    /// </summary>
+    private void PlayRandomKnifeSound()
+    {
+        int rand = Random.Range(0, 2);
+        if (rand == 0)
+            aM.Play("slash sabre");
+        if (rand == 1)
+            aM.Play("slash couteau 1");
+        if (rand == 2)
+            aM.Play("slash couteau 2");
+    }
+    */
 }

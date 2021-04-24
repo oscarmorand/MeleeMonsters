@@ -62,6 +62,9 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     public List<SpriteRenderer> sprites;
     internal Color actualColor;
 
+    private GameObject aMGameObject;
+    private AudioManager aM;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +73,9 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         pCollisions = GetComponent<PlayerCollisions>();
         pAnimation = GetComponent<PlayerAnimation>();
         pInputs = GetComponent<PlayerInputs>();
+
+        aMGameObject = GameObject.Find("AudioManager");
+        aM = aMGameObject.GetComponent<AudioManager>();
 
         pV = GetComponent<PhotonView>();
 
@@ -215,6 +221,8 @@ public class PlayerScript : MonoBehaviour, IPunObservable
             loadingWrath += bonus;
             print(nickName + " gagne " + bonus + " sec dans la barre de wrath");
         }
+
+        aM.Play("oof");
     }
 
 

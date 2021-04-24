@@ -176,11 +176,11 @@ public class PlayerAttacks : MonoBehaviour
         {
             if(pM.isPressingDown) // Down Attack
             {
-                return 2;
+                return 1;
             }
             else  // Neutral Attack
             {
-                return 1;
+                return 2;
             }
         }
     }

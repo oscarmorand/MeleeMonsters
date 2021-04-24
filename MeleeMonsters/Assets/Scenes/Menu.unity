@@ -921,8 +921,8 @@ MonoBehaviour:
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
-    loop: 1
-    mixerGroup: {fileID: 24300002, guid: d96d904eba120f343ad974a734d59db6, type: 2}
+    loop: 0
+    mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: slash couteau 2
     clip: {fileID: 8300000, guid: a567f6dbd8972d54ca071959d5f66360, type: 3}
@@ -930,8 +930,8 @@ MonoBehaviour:
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
-    loop: 1
-    mixerGroup: {fileID: 24300002, guid: d96d904eba120f343ad974a734d59db6, type: 2}
+    loop: 0
+    mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: slash sabre
     clip: {fileID: 8300000, guid: 2b20cc0194422b348a4616dbec70ad8a, type: 3}
@@ -939,8 +939,17 @@ MonoBehaviour:
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
-    loop: 1
-    mixerGroup: {fileID: 24300002, guid: d96d904eba120f343ad974a734d59db6, type: 2}
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: oof
+    clip: {fileID: 8300000, guid: 2fe1dddc341f4bc4c83a772c9852f984, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
     source: {fileID: 0}
 --- !u!4 &1237156780
 Transform:
