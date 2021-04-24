@@ -16,8 +16,8 @@ public class PlayerSoundManager : MonoBehaviour
         InitializePlayers();
     }
 
-    // Update is called once per frame
-    void Update()
+    //
+    void LateUpdate()
     {
         if (truePlayers.Count < PhotonNetwork.CurrentRoom.PlayerCount)
         {
