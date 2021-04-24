@@ -944,7 +944,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: oof
     clip: {fileID: 8300000, guid: 2fe1dddc341f4bc4c83a772c9852f984, type: 3}
-    volume: 1
+    volume: 0.5
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
