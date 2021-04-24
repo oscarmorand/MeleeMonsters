@@ -16,6 +16,9 @@ abstract public class MonstersAttacks : MonoBehaviour
     internal PlayerAttacks pA;
     internal PlayerAnimation pAn;
 
+    internal GameObject aMGameObject;
+    internal AudioManager aM;
+
     void Start()
     {
         pV = GetComponent<PhotonView>();
@@ -23,6 +26,8 @@ abstract public class MonstersAttacks : MonoBehaviour
         pM = GetComponent<PlayerMovement>();
         pA = GetComponent<PlayerAttacks>();
         pAn = GetComponent<PlayerAnimation>();
+        aMGameObject = GameObject.Find("AudioManager");
+        aM = aMGameObject.GetComponent<AudioManager>();
 
         InstantiateAttacks();
         AddObservable();

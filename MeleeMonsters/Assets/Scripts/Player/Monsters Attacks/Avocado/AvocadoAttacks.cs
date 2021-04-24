@@ -10,8 +10,6 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
     public GameObject bulletWrathPrefab;
 
     public SpriteRenderer noyau;
-    
-
 
     public override void InstantiateAttacks()
     {
@@ -38,18 +36,21 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
     {
         pA.BasicAttack(attacks[0]);
         pAn.Attack("Sg");
+        aM.Play("slash sabre");
     }
 
     public override void NeutralGround()
     {
         pA.BasicAttack(attacks[1]);
         pAn.Attack("Ng");
+        aM.Play("slash sabre");
     }
 
 
     public override void DownGround()
     {
         pA.BasicAttack(attacks[2]);
+        aM.Play("slash sabre");
     }
     
 
@@ -57,18 +58,21 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
     {
         pA.BasicAttack(attacks[3]);
         pAn.Attack("Sa");
+        aM.Play("slash sabre");
     }
 
     public override void NeutralAir()
     {
         pA.BasicAttack(attacks[4]);
         pAn.Attack("Na");
+        aM.Play("slash sabre");
     }
 
     public override void DownAir()
     {
         pA.BasicAttack(attacks[5]);
         pAn.Attack("Da");
+        aM.Play("slash sabre");
     }
 
    
@@ -138,4 +142,20 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
             noyau.enabled = (bool)stream.ReceiveNext();
         }
     }
+
+    /*
+    /// <summary>
+    /// Joue un son de couteau / sabre au hasard
+    /// </summary>
+    private void PlayRandomKnifeSound()
+    {
+        int rand = Random.Range(0, 2);
+        if (rand == 0)
+            aM.Play("slash sabre");
+        if (rand == 1)
+            aM.Play("slash couteau 1");
+        if (rand == 2)
+            aM.Play("slash couteau 2");
+    }
+    */
 }
