@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 
 [RequireComponent(typeof(Camera))]
@@ -28,6 +29,8 @@ public class MultipleTargetCamera : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (targets.Count < PhotonNetwork.CurrentRoom.PlayerCount)
+            ActualizeTargets();
         if (targets.Count == 0)
             return;
         Move();
@@ -60,19 +63,31 @@ public class MultipleTargetCamera : MonoBehaviour
         return bounds.size.x;
     }
 
+    void ActualizeTargets()
+    {
+        targets = new List<Transform>();
+        InitializeTargets();
+    }
+
     void InitializeTargets()
     {
         GameObject[] IAs = GameObject.FindGameObjectsWithTag("IA");
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject IA in IAs)
         {
-            targets.Add(IA.transform);
+            if(IA.activeInHierarchy)
+                targets.Add(IA.transform);
         }
         foreach (GameObject player in players)
         {
             targets.Add(player.transform);
         }
     }
+
+    //public void AddTarget(GameObject target)
+    //{
+    //    targets.Add(target.transform);
+    //}
 
     Vector3 GetCenterPoint()
     {
