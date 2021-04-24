@@ -64,7 +64,8 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
     private GameObject aMGameObject;
     private AudioManager aM;
-    private PlayerSoundManager pSM;
+    //private PlayerSoundManager pSM;
+    private int localInt;
 
     // Start is called before the first frame update
     void Start()
@@ -77,7 +78,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
         aMGameObject = GameObject.Find("AudioManager");
         aM = aMGameObject.GetComponent<AudioManager>();
-        pSM = GameObject.Find("PlayerSoundManager").GetComponent<PlayerSoundManager>();
+        //pSM = GameObject.Find("PlayerSoundManager").GetComponent<PlayerSoundManager>();
 
         pV = GetComponent<PhotonView>();
 
@@ -109,17 +110,21 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     void Update()
     {
         //print(wrathPercentage);
-        if (isWrath)
+        if(pV.IsMine)
         {
-            WrathState();
-            wrathPercentage = (wrathTime / maxWrathTime) * 100;
-        } 
-        else
-        {
-            NormalState();
-            wrathPercentage = (loadingWrath / maxLoadingWrath) * 100;
+            if (isWrath)
+            {
+                WrathState();
+                wrathPercentage = (wrathTime / maxWrathTime) * 100;
+            }
+            else
+            {
+                NormalState();
+                wrathPercentage = (loadingWrath / maxLoadingWrath) * 100;
+            }
         }
-            
+        else
+            isWrath = localInt == 1;
     }
 
     public void WrathState()
@@ -131,11 +136,11 @@ public class PlayerScript : MonoBehaviour, IPunObservable
             //bodySprite.color = Color.white;
             WrathColor(Color.white);
 
-            if (pSM.howManyInWrathMode <= 1)
-            {
-                aM.Stop("wrath theme");
-                aM.UnPause("theme");
-            }
+            //if (pSM.howManyInWrathMode <= 1)
+            //{
+            //    aM.Stop("wrath theme");
+            //    aM.UnPause("theme");
+            //}
         }
         else
         {
@@ -158,11 +163,11 @@ public class PlayerScript : MonoBehaviour, IPunObservable
             isWrath = true;
             WrathColor(Color.red);
 
-            if (pSM.howManyInWrathMode == 0)
-            {
-                aM.Pause("theme");
-                aM.Play("wrath theme");
-            }
+            //if (pSM.howManyInWrathMode == 0)
+            //{
+            //    aM.Pause("theme");
+            //    aM.Play("wrath theme");
+            //}
         }
     }
 
@@ -256,28 +261,23 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     {
         if(stream.IsWriting)
         {
-            float localFloat = 0f;
+            localInt = 0;
             if (isWrath)
-                localFloat = 1f;
-            float[] tempArray = new float[4];
-            tempArray[0] = actualColor.r;
-            tempArray[1] = actualColor.g;
-            tempArray[2] = actualColor.b;
-            tempArray[3] = localFloat;
-            //Vector3 tempVector = new Vector3(actualColor.r, actualColor.g, actualColor.b);
-            stream.SendNext(tempArray);
+                localInt = 1;
+
+            Vector3 tempVector = new Vector3(actualColor.r, actualColor.g, actualColor.b);
+            stream.SendNext(tempVector);
+            stream.SendNext(localInt);
         }
         else
         {
-            //Vector3 newVector = (Vector3)stream.ReceiveNext();
-            float[] tempArray = (float[])stream.ReceiveNext();
-            Color newColor = new Color(tempArray[0], tempArray[1], tempArray[2]);
+            Vector3 tempVector = (Vector3)stream.ReceiveNext();
+            Color newColor = new Color(tempVector.x, tempVector.y, tempVector.z);
             if (newColor != actualColor)
             {
                 WrathColor(newColor);
             }
-            float localFloat = tempArray[3];
-            isWrath = (localFloat == 1f);
+            localInt = (int)stream.ReceiveNext();
         }
     }
 }

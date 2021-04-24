@@ -607,6 +607,7 @@ MonoBehaviour:
   nickName: 
   monster: 0
   percentage: 0
+  isWrath: 0
   maxWrathTime: 15
   wrathTime: 0
   maxLoadingWrath: 500

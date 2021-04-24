@@ -7,13 +7,16 @@ public class PlayerSoundManager : MonoBehaviour
 {
     public List<PlayerScript> players = new List<PlayerScript>();
     //public List<PlayerScript> truePlayers = new List<PlayerScript>();
+    private AudioManager aM;
 
+    private int lastHowMany = 0;
     public int howManyInWrathMode = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         InitializePlayers();
+        aM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     //
@@ -31,6 +34,25 @@ public class PlayerSoundManager : MonoBehaviour
                 localInt += 1;
         }
         howManyInWrathMode = localInt;
+
+        if(howManyInWrathMode == 0)
+        {
+            if(lastHowMany > 0)
+            {
+                aM.Stop("wrath theme");
+                aM.UnPause("theme");
+            }
+        }
+        else if(howManyInWrathMode > 0)
+        {
+            if(lastHowMany == 0)
+            {
+                aM.Pause("theme");
+                aM.Play("wrath theme");
+            }
+        }
+
+        lastHowMany = howManyInWrathMode;
     }
 
 
