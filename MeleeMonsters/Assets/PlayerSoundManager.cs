@@ -6,7 +6,7 @@ using Photon.Pun;
 public class PlayerSoundManager : MonoBehaviour
 {
     public List<PlayerScript> players = new List<PlayerScript>();
-    List<PlayerScript> truePlayers = new List<PlayerScript>();
+    public List<PlayerScript> truePlayers = new List<PlayerScript>();
 
     public int howManyInWrathMode = 0;
 
