@@ -56,16 +56,19 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
     public override void SideAir()
     {
         pA.BasicAttack(attacks[3]);
+        pAn.Attack("Sa");
     }
 
     public override void NeutralAir()
     {
         pA.BasicAttack(attacks[4]);
+        pAn.Attack("Na");
     }
 
     public override void DownAir()
     {
         pA.BasicAttack(attacks[5]);
+        pAn.Attack("Da");
     }
 
    
