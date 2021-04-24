@@ -1865,9 +1865,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7461130051666325475, guid: c88cb948da18cd04086cd6d502bb74b5,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461130051666325475, guid: c88cb948da18cd04086cd6d502bb74b5,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1629532075}
+    - target: {fileID: 7461130051666325475, guid: c88cb948da18cd04086cd6d502bb74b5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 7461130051771093618, guid: c88cb948da18cd04086cd6d502bb74b5,
         type: 3}
       propertyPath: m_AnchorMax.y
