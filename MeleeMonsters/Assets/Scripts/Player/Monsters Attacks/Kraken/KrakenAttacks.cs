@@ -85,7 +85,7 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
         if (receiveTime)
         {
             float deltaTime = pA.specialTimeFinished - pA.specialTimeStarted;
-            GameObject bubble = PhotonNetwork.Instantiate(bubblePrefab.name, hitboxesPoints[0].position, new Quaternion());
+            GameObject bubble = PhotonNetwork.Instantiate(bubblePrefab.name, hitboxesPoints[3].position, new Quaternion());
             bubble.GetComponent<KrakenBubble>().Throw(pM.direction, gameObject, deltaTime);
             receiveTime = false;
             neutralSpecial = false;

@@ -31,7 +31,7 @@ public class KrakenBubble : MonoBehaviour
         _parent = parent;
         rb.velocity = transform.right * speed * _direction;
 
-        float resize = 1f + Mathf.Clamp(size,0,2);
+        float resize = 0.8f + Mathf.Clamp(size,0,2);
         bonus = resize;
         gameObject.transform.localScale = new Vector3(resize, resize, 1);
 
