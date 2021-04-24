@@ -20,13 +20,17 @@ public class LevelManager : MonoBehaviour
     private List<Photon.Realtime.Player> playersInGame = new List<Photon.Realtime.Player>();
     private ExitGames.Client.Photon.Hashtable _myCustomPropreties = new ExitGames.Client.Photon.Hashtable();
 
-    // Start is called before the first frame update
-    void Start()
+    // before all Start functions of all GameObject
+    private void Awake()
     {
         manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager.GetComponent<GameManager>();
         gameManager.SetGameState(GameManager.States.Playing);
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
         gameManager.InitPlayerPrefab();
 
         print(PhotonNetwork.LocalPlayer.ActorNumber);
