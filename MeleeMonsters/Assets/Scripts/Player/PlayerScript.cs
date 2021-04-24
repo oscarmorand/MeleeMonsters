@@ -258,6 +258,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         {
             Vector3 tempVector = new Vector3(actualColor.r, actualColor.g, actualColor.b);
             stream.SendNext(tempVector);
+            stream.SendNext(isWrath);
         }
         else
         {
@@ -267,6 +268,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
             {
                 WrathColor(newColor);
             }
+            isWrath = (bool) stream.ReceiveNext();
         }
     }
 }
