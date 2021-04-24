@@ -997,6 +997,7 @@ MonoBehaviour:
   nickName: 
   monster: 3
   percentage: 0
+  isWrath: 0
   maxWrathTime: 15
   wrathTime: 0
   maxLoadingWrath: 500
@@ -1416,6 +1417,8 @@ MonoBehaviour:
   - {fileID: 8726684830017482835}
   - {fileID: 2779044542760536006}
   bubblePrefab: {fileID: 1310930056218048277, guid: cb634796ab85d01418b17128fb663ac5,
+    type: 3}
+  bubbleWrathPrefab: {fileID: 1310930056218048277, guid: 934bb75e413002d45a805491517bd25c,
     type: 3}
 --- !u!114 &774066506139280654
 MonoBehaviour:

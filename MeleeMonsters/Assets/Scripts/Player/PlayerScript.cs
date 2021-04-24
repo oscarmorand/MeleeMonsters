@@ -34,7 +34,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     internal bool isAlive = true;
     internal bool canStillPlay = true;
 
-    internal bool isWrath = false;
+    public bool isWrath = false;
     public float maxWrathTime = 15;
     public float wrathTime = 0;
     public float maxLoadingWrath = 500;
@@ -64,6 +64,8 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
     private GameObject aMGameObject;
     private AudioManager aM;
+    //private PlayerSoundManager pSM;
+    private int localInt;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +78,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
         aMGameObject = GameObject.Find("AudioManager");
         aM = aMGameObject.GetComponent<AudioManager>();
+        //pSM = GameObject.Find("PlayerSoundManager").GetComponent<PlayerSoundManager>();
 
         pV = GetComponent<PhotonView>();
 
@@ -107,17 +110,21 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     void Update()
     {
         //print(wrathPercentage);
-        if (isWrath)
+        if(pV.IsMine)
         {
-            WrathState();
-            wrathPercentage = (wrathTime / maxWrathTime) * 100;
-        } 
-        else
-        {
-            NormalState();
-            wrathPercentage = (loadingWrath / maxLoadingWrath) * 100;
+            if (isWrath)
+            {
+                WrathState();
+                wrathPercentage = (wrathTime / maxWrathTime) * 100;
+            }
+            else
+            {
+                NormalState();
+                wrathPercentage = (loadingWrath / maxLoadingWrath) * 100;
+            }
         }
-            
+        else
+            isWrath = localInt == 1;
     }
 
     public void WrathState()
@@ -128,6 +135,12 @@ public class PlayerScript : MonoBehaviour, IPunObservable
             loadingWrath = 0;
             //bodySprite.color = Color.white;
             WrathColor(Color.white);
+
+            //if (pSM.howManyInWrathMode <= 1)
+            //{
+            //    aM.Stop("wrath theme");
+            //    aM.UnPause("theme");
+            //}
         }
         else
         {
@@ -149,6 +162,12 @@ public class PlayerScript : MonoBehaviour, IPunObservable
             wrathTime = maxWrathTime;
             isWrath = true;
             WrathColor(Color.red);
+
+            //if (pSM.howManyInWrathMode == 0)
+            //{
+            //    aM.Pause("theme");
+            //    aM.Play("wrath theme");
+            //}
         }
     }
 
@@ -242,17 +261,23 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     {
         if(stream.IsWriting)
         {
+            localInt = 0;
+            if (isWrath)
+                localInt = 1;
+
             Vector3 tempVector = new Vector3(actualColor.r, actualColor.g, actualColor.b);
             stream.SendNext(tempVector);
+            stream.SendNext(localInt);
         }
         else
         {
-            Vector3 newVector = (Vector3)stream.ReceiveNext();
-            Color newColor = new Color(newVector.x, newVector.y, newVector.z);
+            Vector3 tempVector = (Vector3)stream.ReceiveNext();
+            Color newColor = new Color(tempVector.x, tempVector.y, tempVector.z);
             if (newColor != actualColor)
             {
                 WrathColor(newColor);
             }
+            localInt = (int)stream.ReceiveNext();
         }
     }
 }
