@@ -51,7 +51,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI_percentage: {fileID: 1652315685251791255}
   username: {fileID: 1652315686951122688}
-  slider: {fileID: 7231216774868510017}
   playerIndex: 0
 --- !u!1 &706367950688205834
 GameObject:
@@ -538,7 +537,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2936974803793752853, guid: 0727f8dca85750744838c53f5cd0134e,
+  m_Sprite: {fileID: -2124301560742553499, guid: b2fb17841aa30724498fd697354b4133,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0

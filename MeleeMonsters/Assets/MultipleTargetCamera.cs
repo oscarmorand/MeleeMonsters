@@ -7,6 +7,8 @@ using Photon.Pun;
 [RequireComponent(typeof(Camera))]
 public class MultipleTargetCamera : MonoBehaviour
 {
+    private LevelManager levelManager;
+
     public List<Transform> targets;
 
     public Vector3 offset;
@@ -22,6 +24,8 @@ public class MultipleTargetCamera : MonoBehaviour
 
     private void Start()
     {
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+
         InitializeTargets();
         cam = GetComponent<Camera>();
     }
@@ -29,8 +33,9 @@ public class MultipleTargetCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (targets.Count < PhotonNetwork.CurrentRoom.PlayerCount)
+        if (targets.Count < levelManager.playersScripts.Count )//PhotonNetwork.CurrentRoom.PlayerCount)
             ActualizeTargets();
+
         if (targets.Count == 0)
             return;
         Move();

@@ -295,7 +295,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
                 WrathColor(newColor);
             }
             localInt = (int)stream.ReceiveNext();
-            wrathPercentage = (int)stream.ReceiveNext();
+            wrathPercentage = (float)stream.ReceiveNext();
         }
     }
 
