@@ -34,33 +34,36 @@ public class GhostAttacks : MonstersAttacks, IPunObservable
         pA.BasicAttack(attacks[0]);
     }
 
-    public override void NeutralGround()
+    public override void DownGround()
     {
         pA.BasicAttack(attacks[1]);
     }
 
-    public override void DownGround()
+
+    public override void NeutralGround()
     {
         pA.BasicAttack(attacks[2]);
     }
 
+   
 
 
     public override void SideAir()
     {
         pA.BasicAttack(attacks[3]);
     }
-
-    public override void NeutralAir()
+    public override void DownAir()
     {
         pA.BasicAttack(attacks[4]);
     }
 
-    public override void DownAir()
+
+    public override void NeutralAir()
     {
         pA.BasicAttack(attacks[5]);
     }
 
+   
 
 
     public override void SideSpecial()
