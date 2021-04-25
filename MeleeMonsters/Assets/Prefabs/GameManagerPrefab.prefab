@@ -54,4 +54,4 @@ MonoBehaviour:
   - {fileID: -2903832173403348423, guid: 22ec4a9fb4ea6c841a7c4cfdeb58d0e7, type: 3}
   - {fileID: 5036915541788247956, guid: 876ba6cc09aa11c489377caaf9f9dcc3, type: 3}
   - {fileID: -3860837961153037550, guid: 3b5f83edb991b2744acb8417f02fe8ad, type: 3}
-  nbrLives: 2
+  nbrLives: 3
