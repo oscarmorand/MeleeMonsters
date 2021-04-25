@@ -17,7 +17,7 @@ public class UI_PlayerLife : MonoBehaviour
 
     private GameObject panel;
     private Image monsterImageComponent;
-    public Slider slider;
+    private Slider slider;
 
     public int playerIndex = -1;
 
@@ -30,7 +30,10 @@ public class UI_PlayerLife : MonoBehaviour
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         panel = transform.Find("Panel PlayerLife").gameObject;
         GameObject selectedChracter = panel.transform.Find("SelectedCharacter").gameObject; 
-        monsterImageComponent = selectedChracter.GetComponent<Image>(); 
+        monsterImageComponent = selectedChracter.GetComponent<Image>();
+
+        GameObject wrathModeBar = panel.transform.Find("WrathModeBar").gameObject;
+        slider = wrathModeBar.GetComponent<Slider>();
     }
 
     // Update is called once per frame

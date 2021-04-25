@@ -284,6 +284,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
             Vector3 tempVector = new Vector3(actualColor.r, actualColor.g, actualColor.b);
             stream.SendNext(tempVector);
             stream.SendNext(localInt);
+            stream.SendNext(wrathPercentage);
         }
         else
         {
@@ -294,6 +295,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
                 WrathColor(newColor);
             }
             localInt = (int)stream.ReceiveNext();
+            wrathPercentage = (int)stream.ReceiveNext();
         }
     }
 
