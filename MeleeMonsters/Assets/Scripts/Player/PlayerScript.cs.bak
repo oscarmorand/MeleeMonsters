@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicCallback 
+public class PlayerScript : MonoBehaviour, IPunObservable
 {
     public enum Monsters
     {
@@ -23,11 +23,10 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
 
     public States currentState = States.Frozen;
 
-    public string nickName = "Player";
+    public string nickName;
     private int playerNumber;
 
-    //public Monsters monster;
-    public int monsterIndex = -1;
+    public Monsters monster;
 
     private int lives;
     public int percentage;
@@ -92,14 +91,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         if (gameObject.tag == "IA")
             nickName = "IA";
         else
-        {
-            nickName = pV.Owner.NickName;
-            if (nickName == "")
-            { 
-                nickName = "Player";
-            }
-        }
-            
+            nickName = PhotonNetwork.LocalPlayer.NickName;
 
         
         gameManager = GameObject.Find("GameManagerPrefab").GetComponent<GameManager>();
@@ -119,7 +111,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
                 rb.simulated = true;
                 levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
                 spawnList = levelManager.spawnList;
-                levelManager.playersScripts.Add(this);
+                levelManager.players.Add(this);
                 currentState = States.Playing;
                 initForPlayingDone = true;
             }
@@ -295,13 +287,5 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
             }
             localInt = (int)stream.ReceiveNext();
         }
-    }
-
-    public void OnPhotonInstantiate(PhotonMessageInfo info)
-    {
-        // e.g. store this gameobject as this player's charater in Player.TagObject
-        info.Sender.TagObject = this.gameObject;
-        object[] instantiationData = info.photonView.InstantiationData;
-        monsterIndex = (int)instantiationData[0]; 
     }
 }

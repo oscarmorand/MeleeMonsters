@@ -724,7 +724,7 @@ PrefabInstance:
     - target: {fileID: 536892854720768830, guid: 3740c7a3120938a49ba619fd7e100324,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 949559303476544383, guid: 3740c7a3120938a49ba619fd7e100324,
         type: 3}
@@ -1228,7 +1228,7 @@ PrefabInstance:
     - target: {fileID: 536892854720768830, guid: 3740c7a3120938a49ba619fd7e100324,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 536892854720768831, guid: 3740c7a3120938a49ba619fd7e100324,
         type: 3}
@@ -1382,7 +1382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoints: {fileID: 2067830440}
-  players: []
+  playersScripts: []
   inSolo: 0
 --- !u!4 &997328279
 Transform:
@@ -1890,7 +1890,7 @@ PrefabInstance:
     - target: {fileID: 536892854720768830, guid: 3740c7a3120938a49ba619fd7e100324,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 536892854720768831, guid: 3740c7a3120938a49ba619fd7e100324,
         type: 3}
@@ -6969,7 +6969,7 @@ PrefabInstance:
     - target: {fileID: 536892854720768830, guid: 3740c7a3120938a49ba619fd7e100324,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 536892854720768831, guid: 3740c7a3120938a49ba619fd7e100324,
         type: 3}

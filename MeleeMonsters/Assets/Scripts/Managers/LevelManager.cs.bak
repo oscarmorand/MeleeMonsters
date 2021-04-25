@@ -5,6 +5,7 @@ using Photon.Pun;
 
 public class LevelManager : MonoBehaviour
 {
+    private GameObject manager;
     private GameManager gameManager;
     internal GameObject gameObjectIA;
 
@@ -12,7 +13,7 @@ public class LevelManager : MonoBehaviour
     internal List<Transform> spawnList;
     private GameObject spawnGameObject;
 
-    public List<PlayerScript> playersScripts;
+    public List<PlayerScript> players;
 
     public bool inSolo;
 
@@ -22,7 +23,7 @@ public class LevelManager : MonoBehaviour
     // before all Start functions of all GameObject
     private void Awake()
     {
-        GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
+        manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager.GetComponent<GameManager>();
         gameManager.SetGameState(GameManager.States.Start321GO);
     }
@@ -44,9 +45,14 @@ public class LevelManager : MonoBehaviour
         spawnPoints = spawnGameObject.GetComponent<SpawnPoints>();
 
         gameObjectIA = GameObject.FindGameObjectWithTag("IA").gameObject;
-        gameObjectIA.SetActive(false);  // wait its turn
-        
-        inSolo = PhotonNetwork.OfflineMode;
+
+        if (PhotonNetwork.PlayerList.Length > 1)
+        {
+            gameObjectIA.SetActive(false);
+            inSolo = false;
+        }
+        else
+            inSolo = true;
 
         SpawnPlayers();
     }
@@ -54,13 +60,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inSolo)
-        {
-            if (playersScripts.Count == 1)
-            {
-                gameObjectIA.SetActive(true);
-            }
-        }
+
     }
 
     void SpawnPlayers()

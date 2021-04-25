@@ -29,10 +29,12 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        int i = 0;
         foreach (var player in gameManager.playersList)
         {
-            selectCharPanel[player.ActorNumber-1].SetActive(true);
-            playerNamesArray[player.ActorNumber-1].text = player.NickName;  
+            selectCharPanel[i].SetActive(true);
+            playerNamesArray[i].text = player.NickName;  
+            ++i;
         }
 
         if (!monsterSelected)
@@ -64,13 +66,13 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
     }
     public void LeftMonster()
     {
-        monsterIndex = (monsterIndex - 1 + gameManager.monstersPrefabArray.Length) % gameManager.monstersPrefabArray.Length;
+        monsterIndex = (monsterIndex - 1 + gameManager.monstersArray.Length) % gameManager.monstersArray.Length;
         ChangeMonster(monsterIndex);
     }
 
     public void RightMonster()
     {
-        monsterIndex = (monsterIndex + 1) % gameManager.monstersPrefabArray.Length;
+        monsterIndex = (monsterIndex + 1) % gameManager.monstersArray.Length;
         ChangeMonster(monsterIndex);
     }
 
