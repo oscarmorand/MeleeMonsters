@@ -22,8 +22,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private GameObject playerPrefab;
 
-    public GameObject pauseMenuPrefab;
-
     public int nbrLives;
 
     public List<Player> players = new List<Player>(); // players in current room

@@ -25,7 +25,7 @@ public class LevelManager : MonoBehaviour
     {
         manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager.GetComponent<GameManager>();
-        gameManager.SetGameState(GameManager.States.Playing);
+        gameManager.SetGameState(GameManager.States.Start321GO);
     }
 
     // Start is called before the first frame update

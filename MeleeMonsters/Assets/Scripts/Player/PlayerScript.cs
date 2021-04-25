@@ -41,6 +41,8 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     public float loadingWrath = 495;
     internal float wrathPercentage = 0;
 
+    private bool initForPlayingDone = false;
+
     private PlayerMovement pMovement;
     private PlayerCollisions pCollisions;
     private PlayerAnimation pAnimation;
@@ -93,14 +95,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
         
         gameManager = GameObject.Find("GameManagerPrefab").GetComponent<GameManager>();
-        if(gameManager.GetGameState() == GameManager.States.Playing)
-        {
-            rb.simulated = true;
-            levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-            spawnList = levelManager.spawnList;
-            levelManager.players.Add(this);
-            currentState = States.Playing;
-        }
+        
         lives = gameManager.nbrLives;
 
         AddObservable();
@@ -109,8 +104,21 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        if (!initForPlayingDone)
+        {
+            if (gameManager.GetGameState() == GameManager.States.Playing)
+            {
+                rb.simulated = true;
+                levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+                spawnList = levelManager.spawnList;
+                levelManager.players.Add(this);
+                currentState = States.Playing;
+                initForPlayingDone = true;
+            }
+        }
+        
         //print(wrathPercentage);
-        if(pV.IsMine)
+        if (pV.IsMine)
         {
             if (isWrath)
             {
