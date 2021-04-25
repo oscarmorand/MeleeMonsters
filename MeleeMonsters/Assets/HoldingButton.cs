@@ -7,11 +7,13 @@ public class HoldingButton : MonoBehaviour
 
     private PlayerAttacks pAt;
     private KrakenAttacks kA;
+    private PlayerScript pS;
 
     // Start is called before the first frame update
     void Start()
     {
         pAt = GetComponent<PlayerAttacks>();
+        pS = GetComponent<PlayerScript>();
         kA = GetComponent<KrakenAttacks>();
     }
 
@@ -21,7 +23,10 @@ public class HoldingButton : MonoBehaviour
         if(pAt.stoppedPressing && kA.neutralSpecial)
         {
             kA.receiveTime = true;
-            kA.NeutralSpecial();
+            if (!pS.isWrath)
+                kA.NeutralSpecial();
+            else
+                kA.NeutralWrath();
             pAt.stoppedPressing = false;
         }
     }

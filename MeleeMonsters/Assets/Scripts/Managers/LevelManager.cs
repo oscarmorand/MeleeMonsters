@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class LevelManager : MonoBehaviour
 {
-    private GameObject manager;
     private GameManager gameManager;
     internal GameObject gameObjectIA;
 
@@ -13,19 +12,29 @@ public class LevelManager : MonoBehaviour
     internal List<Transform> spawnList;
     private GameObject spawnGameObject;
 
-    public List<PlayerScript> players;
+    public List<PlayerScript> playersScripts;
 
     public bool inSolo;
 
     private List<Photon.Realtime.Player> playersInGame = new List<Photon.Realtime.Player>();
     private ExitGames.Client.Photon.Hashtable _myCustomPropreties = new ExitGames.Client.Photon.Hashtable();
 
+    // before all Start functions of all GameObject
+    private void Awake()
+    {
+        GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
+        gameManager = manager.GetComponent<GameManager>();
+        gameManager.SetGameState(GameManager.States.Start321GO);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        manager = GameObject.Find("GameManagerPrefab").gameObject;
-        gameManager = manager.GetComponent<GameManager>();
-        gameManager.SetGameState(GameManager.States.Playing);
+        // to debug before 
+        //GameObject canvas = GameObject.Find("Canvas");
+        //GameObject pauseMenuInstance = Instantiate(gameManager.pauseMenuPrefab);
+        //pauseMenuInstance.transform.SetParent(canvas.transform);
+        //pauseMenuInstance.transform.localPosition = new Vector3(0f, 0f, 0f);
 
         gameManager.InitPlayerPrefab();
 
@@ -35,14 +44,9 @@ public class LevelManager : MonoBehaviour
         spawnPoints = spawnGameObject.GetComponent<SpawnPoints>();
 
         gameObjectIA = GameObject.FindGameObjectWithTag("IA").gameObject;
-
-        if (PhotonNetwork.PlayerList.Length > 1)
-        {
-            gameObjectIA.SetActive(false);
-            inSolo = false;
-        }
-        else
-            inSolo = true;
+        gameObjectIA.SetActive(false);  // wait its turn
+        
+        inSolo = PhotonNetwork.OfflineMode;
 
         SpawnPlayers();
     }
@@ -50,7 +54,13 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (inSolo)
+        {
+            if (playersScripts.Count == 1)
+            {
+                gameObjectIA.SetActive(true);
+            }
+        }
     }
 
     void SpawnPlayers()

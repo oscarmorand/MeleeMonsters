@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 
 [RequireComponent(typeof(Camera))]
@@ -14,8 +15,8 @@ public class MultipleTargetCamera : MonoBehaviour
     private Vector3 velocity;
     private Camera cam;
 
-    public float minZoom = 50f;
-    public float maxZoom = 15f;
+    public float minField = 15f;
+    public float maxField = 50f;
     public float zoomLimiter = 80f;
 
 
@@ -28,6 +29,8 @@ public class MultipleTargetCamera : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (targets.Count < PhotonNetwork.CurrentRoom.PlayerCount)
+            ActualizeTargets();
         if (targets.Count == 0)
             return;
         Move();
@@ -36,8 +39,8 @@ public class MultipleTargetCamera : MonoBehaviour
 
     void Zoom()
     {
-        float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
+        float newZoom = Mathf.Lerp(minField, maxField, GetGreatestDistance() / zoomLimiter);
+        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
     }
 
     void Move()
@@ -57,7 +60,13 @@ public class MultipleTargetCamera : MonoBehaviour
             bounds.Encapsulate(targets[i].position);
         }
 
-        return bounds.size.x;
+        return bounds.size.x + bounds.size.y;
+    }
+
+    void ActualizeTargets()
+    {
+        targets = new List<Transform>();
+        InitializeTargets();
     }
 
     void InitializeTargets()
@@ -66,13 +75,19 @@ public class MultipleTargetCamera : MonoBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject IA in IAs)
         {
-            targets.Add(IA.transform);
+            if(IA.activeInHierarchy)
+                targets.Add(IA.transform);
         }
         foreach (GameObject player in players)
         {
             targets.Add(player.transform);
         }
     }
+
+    //public void AddTarget(GameObject target)
+    //{
+    //    targets.Add(target.transform);
+    //}
 
     Vector3 GetCenterPoint()
     {

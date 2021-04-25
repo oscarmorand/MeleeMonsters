@@ -714,8 +714,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 1
   nickName: 
-  monster: 1
+  monsterIndex: -1
   percentage: 0
+  isWrath: 0
   maxWrathTime: 15
   wrathTime: 0
   maxLoadingWrath: 500

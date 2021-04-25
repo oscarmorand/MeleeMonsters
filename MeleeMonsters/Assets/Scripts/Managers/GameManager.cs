@@ -16,7 +16,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [Header("Monsters")]
-    public GameObject[] monstersArray;
+    public GameObject[] monstersPrefabArray;
+    public Sprite[] monstersSpriteArray;
+
 
     private int localPlayerMonsterIndex = 0;
 
@@ -24,7 +26,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public int nbrLives;
 
-    public List<Player> players = new List<Player>(); // players in current room
+    public List<Player> playersList = new List<Player>(); // players in current room
 
     internal Photon.Realtime.Player winner;
     internal bool IAwon = false;
@@ -73,7 +75,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         else
         {
             Debug.Log("instancié!");
-            return PhotonNetwork.Instantiate(this.playerPrefab.name, pos, Quaternion.identity, 0);
+            object[] data = new object[]
+            {
+                localPlayerMonsterIndex  // to know which monster we instanciate for replica
+            };
+            return PhotonNetwork.Instantiate(this.playerPrefab.name, pos, Quaternion.identity, 0, data);
         }
         return null;
     }
@@ -85,7 +91,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void InitPlayerPrefab()
     {
-        playerPrefab = monstersArray[localPlayerMonsterIndex];
+        playerPrefab = monstersPrefabArray[localPlayerMonsterIndex];
     }
 
     public override void OnJoinedRoom()
@@ -104,10 +110,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             return;
         if (PhotonNetwork.CurrentRoom == null || PhotonNetwork.CurrentRoom.Players == null)
             return;
-        players.Clear(); 
+        playersList.Clear(); 
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
-            players.Add(playerInfo.Value);
+            playersList.Add(playerInfo.Value);
         }
 
     }

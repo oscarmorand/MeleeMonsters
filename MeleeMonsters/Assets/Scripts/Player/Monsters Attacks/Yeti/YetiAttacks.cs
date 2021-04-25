@@ -47,8 +47,6 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
     {
         pA.BasicAttack(attacks[1]);
     }
-
-
    
 
     public override void SideAir()
@@ -61,11 +59,12 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
         pA.BasicAttack(attacks[5]);
     }
 
-
     public override void NeutralAir()
     {
         pA.BasicAttack(attacks[4]);
     }
+
+    
 
   
 
@@ -85,7 +84,7 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
         print("je fais une neutralspecial de yeti hannnn");
     }
 
-   
+    
 
     public override void SideWrath()
     {
@@ -103,7 +102,8 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
 
     }
 
-   
+
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         

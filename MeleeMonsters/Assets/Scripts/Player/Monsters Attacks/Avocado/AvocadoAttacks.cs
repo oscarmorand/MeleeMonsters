@@ -73,8 +73,6 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
         aM.Play("slash sabre");
     }
 
-
-
     public override void NeutralAir()
     {
         pA.BasicAttack(attacks[5]);
@@ -101,11 +99,10 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
         GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, hitboxesPoints[6].position, new Quaternion());
         bullet.GetComponent<AvocadoBullet>().Throw(pM.direction, gameObject);
         NoyauDisable();
+        aM.Play("bouchon champagne");
     }
 
   
-
-
 
     public override void SideWrath()
     {
@@ -123,6 +120,7 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
         GameObject bullet = PhotonNetwork.Instantiate(bulletWrathPrefab.name, hitboxesPoints[6].position, new Quaternion());
         bullet.GetComponent<AvocadoWrathBullet>().Throw(pM.direction, gameObject);
         NoyauDisable();
+        aM.Play("bouchon champagne");
     }
 
     

@@ -35,8 +35,9 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-		Play("Theme");
+		Play("theme");
     }
+
     public void Play(string sound)
 	{
 		Sound s = Array.Find(sounds, item => item.name == sound);
@@ -52,5 +53,52 @@ public class AudioManager : MonoBehaviour
 		s.source.Play();
 	}
 
+    public void Pause(string sound)
+    {
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + name + "was not found.");
+			return;
+		}
+
+		s.source.Pause();
+	}
+
+	public void UnPause(string sound)
+	{
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + name + "was not found.");
+			return;
+		}
+
+		s.source.UnPause();
+	}
+
+	public void Stop(string sound)
+	{
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + name + "was not found.");
+			return;
+		}
+
+		s.source.Stop();
+	}
+
+	public bool IsPlaying(string sound)
+    {
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + name + "was not found.");
+			throw new Exception("music does not exist in this context");
+		}
+
+		return s.source.isPlaying;
+	}
 }
 

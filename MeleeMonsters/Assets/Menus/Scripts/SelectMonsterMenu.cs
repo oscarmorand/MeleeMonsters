@@ -14,7 +14,9 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
     public TMP_Text[] playerNamesArray;
     private GameObject playerMonsterObject;
     public GameObject[] selectCharPanel;
-
+    private bool monsterSelected = false;
+    public void setMonsterSelected(bool value) => monsterSelected = value;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,27 +29,28 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        int i = 0;
-        foreach (var player in gameManager.players)
+        foreach (var player in gameManager.playersList)
         {
-            selectCharPanel[i].SetActive(true);
-            playerNamesArray[i].text = player.NickName;  
-            ++i;
+            selectCharPanel[player.ActorNumber-1].SetActive(true);
+            playerNamesArray[player.ActorNumber-1].text = player.NickName;  
         }
 
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (!monsterSelected)
         {
-            print("right arrow key is held down");
-            RightMonster();
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                print("right arrow key is held down");
+                RightMonster();
+            }
 
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                print("left arrow key is held down");
+                LeftMonster();
+            }
         }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            print("left arrow key is held down");
-            LeftMonster();
-        }
+        
+        
     }
 
     public void ChangeMonster(int monsterIndex)
@@ -61,15 +64,16 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
     }
     public void LeftMonster()
     {
-        monsterIndex = (monsterIndex - 1 + gameManager.monstersArray.Length) % gameManager.monstersArray.Length;
+        monsterIndex = (monsterIndex - 1 + gameManager.monstersPrefabArray.Length) % gameManager.monstersPrefabArray.Length;
         ChangeMonster(monsterIndex);
     }
 
     public void RightMonster()
     {
-        monsterIndex = (monsterIndex + 1) % gameManager.monstersArray.Length;
+        monsterIndex = (monsterIndex + 1) % gameManager.monstersPrefabArray.Length;
         ChangeMonster(monsterIndex);
     }
+
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

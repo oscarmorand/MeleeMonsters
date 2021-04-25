@@ -16,9 +16,11 @@ public class UI_PlayerLife : MonoBehaviour
     private LevelManager levelManager;
 
     private GameObject panel;
-    public Slider slider;
+    private Image monsterImageComponent;
+    private Slider slider;
 
     public int playerIndex = -1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,28 +29,32 @@ public class UI_PlayerLife : MonoBehaviour
         gameManager = manager?.GetComponent<GameManager>();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         panel = transform.Find("Panel PlayerLife").gameObject;
-        slider.maxValue = 0f;
+        GameObject selectedChracter = panel.transform.Find("SelectedCharacter").gameObject; 
+        monsterImageComponent = selectedChracter.GetComponent<Image>();
+
+        GameObject wrathModeBar = panel.transform.Find("WrathModeBar").gameObject;
+        slider = wrathModeBar.GetComponent<Slider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerIndex < gameManager.players.Count)
+        if (playerIndex < levelManager.playersScripts.Count)
         {
-            username.text = gameManager.players[playerIndex].NickName;
-            slider.value = levelManager.players[playerIndex].wrathPercentage;
             panel.SetActive(true);
+
+            PlayerScript playerScript =  levelManager.playersScripts[playerIndex];
+
+            username.text = playerScript.nickName;
+            slider.value = playerScript.wrathPercentage;
+            UI_percentage.text = playerScript.percentage.ToString(); 
+            monsterImageComponent.sprite = gameManager.monstersSpriteArray[playerScript.monsterIndex];
         }
         else
         {
             panel.SetActive(false);
         }
            
-
-        if (playerIndex < levelManager.players.Count)
-        {
-            UI_percentage.text = levelManager.players[playerIndex].percentage.ToString();
-        }
-            
+           
     }
 }

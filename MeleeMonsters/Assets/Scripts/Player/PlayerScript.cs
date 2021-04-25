@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerScript : MonoBehaviour, IPunObservable
+public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicCallback 
 {
     public enum Monsters
     {
@@ -23,10 +23,11 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
     public States currentState = States.Frozen;
 
-    public string nickName;
+    public string nickName = "Player";
     private int playerNumber;
 
-    public Monsters monster;
+    //public Monsters monster;
+    public int monsterIndex = -1;
 
     private int lives;
     public int percentage;
@@ -34,12 +35,14 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     internal bool isAlive = true;
     internal bool canStillPlay = true;
 
-    internal bool isWrath = false;
+    public bool isWrath = false;
     public float maxWrathTime = 15;
     public float wrathTime = 0;
     public float maxLoadingWrath = 500;
     public float loadingWrath = 495;
     internal float wrathPercentage = 0;
+
+    private bool initForPlayingDone = false;
 
     private PlayerMovement pMovement;
     private PlayerCollisions pCollisions;
@@ -64,6 +67,8 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
     private GameObject aMGameObject;
     private AudioManager aM;
+    //private PlayerSoundManager pSM;
+    private int localInt;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +81,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable
 
         aMGameObject = GameObject.Find("AudioManager");
         aM = aMGameObject.GetComponent<AudioManager>();
+        //pSM = GameObject.Find("PlayerSoundManager").GetComponent<PlayerSoundManager>();
 
         pV = GetComponent<PhotonView>();
 
@@ -86,18 +92,18 @@ public class PlayerScript : MonoBehaviour, IPunObservable
         if (gameObject.tag == "IA")
             nickName = "IA";
         else
-            nickName = PhotonNetwork.LocalPlayer.NickName;
+        {
+            nickName = pV.Owner.NickName;
+            if (nickName == "")
+            { 
+                nickName = "Player";
+            }
+        }
+            
 
         
         gameManager = GameObject.Find("GameManagerPrefab").GetComponent<GameManager>();
-        if(gameManager.GetGameState() == GameManager.States.Playing)
-        {
-            rb.simulated = true;
-            levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-            spawnList = levelManager.spawnList;
-            levelManager.players.Add(this);
-            currentState = States.Playing;
-        }
+        
         lives = gameManager.nbrLives;
 
         AddObservable();
@@ -106,18 +112,35 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        //print(wrathPercentage);
-        if (isWrath)
+        if (!initForPlayingDone)
         {
-            WrathState();
-            wrathPercentage = (wrathTime / maxWrathTime) * 100;
-        } 
-        else
-        {
-            NormalState();
-            wrathPercentage = (loadingWrath / maxLoadingWrath) * 100;
+            if (gameManager.GetGameState() == GameManager.States.Playing)
+            {
+                rb.simulated = true;
+                levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+                spawnList = levelManager.spawnList;
+                levelManager.playersScripts.Add(this);
+                currentState = States.Playing;
+                initForPlayingDone = true;
+            }
         }
-            
+        
+        //print(wrathPercentage);
+        if (pV.IsMine)
+        {
+            if (isWrath)
+            {
+                WrathState();
+                wrathPercentage = (wrathTime / maxWrathTime) * 100;
+            }
+            else
+            {
+                NormalState();
+                wrathPercentage = (loadingWrath / maxLoadingWrath) * 100;
+            }
+        }
+        else
+            isWrath = localInt == 1;
     }
 
     public void WrathState()
@@ -128,6 +151,12 @@ public class PlayerScript : MonoBehaviour, IPunObservable
             loadingWrath = 0;
             //bodySprite.color = Color.white;
             WrathColor(Color.white);
+
+            //if (pSM.howManyInWrathMode <= 1)
+            //{
+            //    aM.Stop("wrath theme");
+            //    aM.UnPause("theme");
+            //}
         }
         else
         {
@@ -149,6 +178,12 @@ public class PlayerScript : MonoBehaviour, IPunObservable
             wrathTime = maxWrathTime;
             isWrath = true;
             WrathColor(Color.red);
+
+            //if (pSM.howManyInWrathMode == 0)
+            //{
+            //    aM.Pause("theme");
+            //    aM.Play("wrath theme");
+            //}
         }
     }
 
@@ -242,17 +277,33 @@ public class PlayerScript : MonoBehaviour, IPunObservable
     {
         if(stream.IsWriting)
         {
+            localInt = 0;
+            if (isWrath)
+                localInt = 1;
+
             Vector3 tempVector = new Vector3(actualColor.r, actualColor.g, actualColor.b);
             stream.SendNext(tempVector);
+            stream.SendNext(localInt);
+            stream.SendNext(wrathPercentage);
         }
         else
         {
-            Vector3 newVector = (Vector3)stream.ReceiveNext();
-            Color newColor = new Color(newVector.x, newVector.y, newVector.z);
+            Vector3 tempVector = (Vector3)stream.ReceiveNext();
+            Color newColor = new Color(tempVector.x, tempVector.y, tempVector.z);
             if (newColor != actualColor)
             {
                 WrathColor(newColor);
             }
+            localInt = (int)stream.ReceiveNext();
+            wrathPercentage = (float)stream.ReceiveNext();
         }
+    }
+
+    public void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        // e.g. store this gameobject as this player's charater in Player.TagObject
+        info.Sender.TagObject = this.gameObject;
+        object[] instantiationData = info.photonView.InstantiationData;
+        monsterIndex = (int)instantiationData[0]; 
     }
 }

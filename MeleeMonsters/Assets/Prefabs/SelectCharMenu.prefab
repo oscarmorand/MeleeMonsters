@@ -167,7 +167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1462203284119927994
 RectTransform:
   m_ObjectHideFlags: 0
@@ -294,7 +294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2224669431229270005
 RectTransform:
   m_ObjectHideFlags: 0
@@ -361,12 +361,12 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8319777335216086165}
-        m_MethodName: 
+      - m_Target: {fileID: 720670837054364485}
+        m_MethodName: MonsterSelected
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -589,6 +589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8319777335216086166}
+  - component: {fileID: 720670837054364485}
   m_Layer: 5
   m_Name: SelectCharMenu
   m_TagString: Untagged
@@ -620,6 +621,23 @@ RectTransform:
   m_AnchoredPosition: {x: -702.8, y: -1.2999878}
   m_SizeDelta: {x: 420, y: 666}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &720670837054364485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8319777335216086165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692dd600342ec474781f40ce6d83c91c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indexPosition: -1
+  leftArrow: {fileID: 8398216553043350342}
+  rightArrow: {fileID: 1235519564890491563}
+  toggleSelection: {fileID: 1240968533842306229}
+  playerSelected: 0
 --- !u!1 &8398216553043350342
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4669171842226663045
 RectTransform:
   m_ObjectHideFlags: 0

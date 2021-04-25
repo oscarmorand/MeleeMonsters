@@ -906,9 +906,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mixerGroup: {fileID: 24300002, guid: d96d904eba120f343ad974a734d59db6, type: 2}
   sounds:
-  - name: Theme
-    clip: {fileID: 8300000, guid: e70776b1cb743e944a5901a31f794d6c, type: 3}
-    volume: 0.1
+  - name: theme
+    clip: {fileID: 8300000, guid: b51c129b5301e5848bcf76a376ac9a80, type: 3}
+    volume: 0.15
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -944,11 +944,38 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: oof
     clip: {fileID: 8300000, guid: 2fe1dddc341f4bc4c83a772c9852f984, type: 3}
-    volume: 0.5
+    volume: 0.15
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: bouchon champagne
+    clip: {fileID: 8300000, guid: a1a613bc332b8eb439d912799398c8f3, type: 3}
+    volume: 0.75
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: wet slap
+    clip: {fileID: 8300000, guid: b94f9854699ac8c43acde060f92c11ef, type: 3}
+    volume: 0.75
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: wrath theme
+    clip: {fileID: 8300000, guid: 6d23addc848e6a94aaecd30f6504eeeb, type: 3}
+    volume: 0.15
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
 --- !u!4 &1237156780
@@ -1859,9 +1886,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7461130051666325475, guid: c88cb948da18cd04086cd6d502bb74b5,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461130051666325475, guid: c88cb948da18cd04086cd6d502bb74b5,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1629532075}
+    - target: {fileID: 7461130051666325475, guid: c88cb948da18cd04086cd6d502bb74b5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 7461130051771093618, guid: c88cb948da18cd04086cd6d502bb74b5,
         type: 3}
       propertyPath: m_AnchorMax.y
