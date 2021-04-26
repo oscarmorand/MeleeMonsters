@@ -944,7 +944,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: oof
     clip: {fileID: 8300000, guid: 2fe1dddc341f4bc4c83a772c9852f984, type: 3}
-    volume: 0.15
+    volume: 0.05
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -976,6 +976,33 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: three
+    clip: {fileID: 8300000, guid: 15cf615cbec88a343b6ad80b6a118729, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: two
+    clip: {fileID: 8300000, guid: 8db328d58ebbc934b8015cd3624abd5d, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: one
+    clip: {fileID: 8300000, guid: 248830376d4239c4e82370f852f851f7, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
 --- !u!4 &1237156780

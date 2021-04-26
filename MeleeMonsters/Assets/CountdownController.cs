@@ -10,10 +10,18 @@ public class CountdownController : MonoBehaviour
     public TMP_Text countdownDisplay;
     private GameManager gameManager;
 
+    private GameObject aMGameObject;
+    private AudioManager aM;
+
+    string[] countdownStock = {"one", "two", "three"};
+
     private void Start()
     {
         gameManager = GameObject.Find("GameManagerPrefab").GetComponent<GameManager>();
         StartCoroutine(CountdownToStart());
+
+        aMGameObject = GameObject.Find("AudioManager");
+        aM = aMGameObject.GetComponent<AudioManager>();
     }
     IEnumerator CountdownToStart()
     {
@@ -22,6 +30,7 @@ public class CountdownController : MonoBehaviour
             countdownDisplay.text = countdownTime.ToString();
 
             yield return new WaitForSeconds(1f);
+            aM.Play(countdownStock[countdownTime - 1]);
 
             countdownTime--;
         }
