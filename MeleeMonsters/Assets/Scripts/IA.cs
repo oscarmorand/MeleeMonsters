@@ -79,14 +79,11 @@ public class IA : MonoBehaviour
                     {
                         if (playerMovement.nbrJump > 0)
                         {
-                            playerMovement.moveInputx = -1;
-                            playerMovement.JumpState(); //Saut vers la gauche
+                            DirectionalJump(-1); //Saut vers la gauche
                         }
                         else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
                         {
-                            playerMovement.dashInputx = -1;
-                            playerMovement.dashInputy = 1;
-                            playerMovement.DashState(); //Dash vers le haut-gauche
+                            DirectionalDash(-1, 1); //Dash vers le haut-gauche
                         }
                         else
                             playerMovement.moveInputx = -1; //Move vers la gauche
@@ -95,14 +92,11 @@ public class IA : MonoBehaviour
                     {
                         if (playerMovement.nbrJump > 0)
                         {
-                            playerMovement.moveInputx = 1;
-                            playerMovement.JumpState(); //Saut vers la droite
+                            DirectionalJump(1); //Saut vers la droite
                         }
                         else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
                         {
-                            playerMovement.dashInputx = 1;
-                            playerMovement.dashInputy = 1;
-                            playerMovement.DashState(); //Dash vers le haut-droit
+                            DirectionalDash(1, 1); //Dash vers le haut-droit
                         }
                         else
                             playerMovement.moveInputx = 1; //Move vers la droite
@@ -117,6 +111,25 @@ public class IA : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void DirectionalJump(int x)
+    {
+        if (x == -1 || x == 1)
+        {
+            playerMovement.moveInputx = x;
+            playerMovement.JumpState();
+        }
+    }
+
+    private void DirectionalDash(int x, int y)
+    {
+        if ((x == -1 || x == 1) && (y == -1 || y == 1))
+        {
+            playerMovement.dashInputx = x;
+            playerMovement.dashInputy = y;
+            playerMovement.DashState();
         }
     }
 }
