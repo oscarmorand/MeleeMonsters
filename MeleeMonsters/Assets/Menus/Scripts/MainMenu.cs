@@ -2,10 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
+    public AudioMixer audioMixer;
+
     public GameObject optionsPanel;
+
+    private void Start()
+    {
+        audioMixer.SetFloat("volume", -10.0f);
+
+    }
+
     public void PlaySolo()
     {
         SceneManager.LoadScene("LoadingScreenSolo"); //Loading screen solo
