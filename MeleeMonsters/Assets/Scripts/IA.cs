@@ -170,10 +170,10 @@ public class IA : MonoBehaviour
 
     private void UseGroundAttacks()
     {
-        if (distanceX < 1.5f && (relativeSideY > 0.25f && relativeSideY <= 1f))
+        if (distanceX < 1.5f && (relativeSideY > 0f && relativeSideY <= 1.25f))
             playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.sG); //faire une side ground
        
-        if (distanceX < 1.25f && (relativeSideY < 0.75f && relativeSideY >= -1f))
+        if (distanceX < 1.35f && (relativeSideY < 0.75f && relativeSideY >= -1f))
                 playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.dG); //faire une down ground
 
         if (distanceX < 0.75f && relativeSideY > 0.5f && relativeSideY <= 2f) 
