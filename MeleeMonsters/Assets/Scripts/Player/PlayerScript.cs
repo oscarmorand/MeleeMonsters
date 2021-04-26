@@ -149,14 +149,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         {
             isWrath = false;
             loadingWrath = 0;
-            //bodySprite.color = Color.white;
             WrathColor(Color.white);
-
-            //if (pSM.howManyInWrathMode <= 1)
-            //{
-            //    aM.Stop("wrath theme");
-            //    aM.UnPause("theme");
-            //}
         }
         else
         {
@@ -177,6 +170,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         {
             wrathTime = maxWrathTime;
             isWrath = true;
+            loadingWrath = 0;
             WrathColor(Color.red);
 
             //if (pSM.howManyInWrathMode == 0)
