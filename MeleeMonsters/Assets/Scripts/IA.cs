@@ -47,24 +47,19 @@ public class IA : MonoBehaviour
             playerMovement.moveInputx = 0;
 
             //flip pour regarder dans la direction du player
-            if (relativeSideX < 1f && playerMovement.facingRight)
+            if (relativeSideX < 0.75f && playerMovement.facingRight)
                 playerMovement.Flip();
-            if (relativeSideX > 1f && !playerMovement.facingRight)
+            if (relativeSideX > 0.75f && !playerMovement.facingRight)
                 playerMovement.Flip();
 
             //utiliser le wrath mode si la barre est pleine
             if (playerScript.loadingWrath >= playerScript.maxLoadingWrath)
-            {
                 playerScript.WrathModeState();
-            }
 
             if (playerMovement.isGrounded || playerMovement.isOnPlatform) //si l'IA est au sol ou sur une plateforme
             {
                 if (playerMovement.isOnPlatform && relativeSideY <= -2.5f) //si l'IA est sur une plateforme et que le joueur est assez bas
-                {
-                    playerMovement.FastFallState();
-                    playerMovement.TransparentState();
-                }
+                    FallFromPlatform();
 
                 /*
                 if (distanceX < 1.5f) //si le player est assez proche de l'IA (en x)
@@ -73,16 +68,7 @@ public class IA : MonoBehaviour
                 }
                 */
 
-                if (distanceX > 2.5f) //si le player est un peu loin de l'IA (en x)
-                {
-                    playerMovement.moveInputx = playerMovement.direction; //si pas très loin, aller vers le joueur
-
-                    if (distanceX > 5f) //Si très loin, dash vers le joueur
-                        DirectionalDash((int)playerMovement.direction, 0);
-
-                    if (relativeSideY >= 2.5f) //si le player est trop haut par rapport à l'IA
-                        playerMovement.JumpState();
-                }
+                FollowPlayerOnGround();
             }
             else //si l'IA n'est pas au sol et pas sur une plateforme
             {
@@ -96,37 +82,12 @@ public class IA : MonoBehaviour
 
                 if (!isThereGroundUnder) //Si l'IA n'est pas au-dessus d'un sol ou d'une plateforme
                 {
-                    RaycastHit2D isThereGroundLeft = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.left), 100f, 1 << 8);
-                    RaycastHit2D isThereGroundRight = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.right), 100f, 1 << 8);
-                    RaycastHit2D isThereGroundUnderLeft = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(new Vector2(-1, -1)), 100f, 1 << 8);
-                    RaycastHit2D isThereGroundUnderRight = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(new Vector2(1, -1)), 100f, 1 << 8);
-
-                    if (isThereGroundLeft || isThereGroundUnderLeft) //Si le terrain est à gauche de l'IA
-                    {
-                        if (playerMovement.nbrJump > 0)
-                            DirectionalJump(-1); //Saut vers la gauche
-                        else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
-                            DirectionalDash(-1, 1); //Dash vers le haut-gauche
-                        else
-                            playerMovement.moveInputx = -1; //Move vers la gauche
-                    }
-                    else if (isThereGroundRight || isThereGroundUnderRight) //Si le terrain est à droite de l'IA
-                    {
-                        if (playerMovement.nbrJump > 0)
-                            DirectionalJump(1); //Saut vers la droite
-                        else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
-                            DirectionalDash(1, 1); //Dash vers le haut-droit
-                        else
-                            playerMovement.moveInputx = 1; //Move vers la droite
-                    }
+                    RecoverToTerrain();
                 }
                 else
                 {
-                    playerMovement.moveInputx = playerMovement.direction;
                     if (relativeSideY > 3f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
-                    {
-                        playerMovement.JumpState();
-                    }
+                        DirectionalJump((int)playerMovement.direction);
                 }
             }
         }
@@ -148,6 +109,65 @@ public class IA : MonoBehaviour
             playerMovement.dashInputx = x;
             playerMovement.dashInputy = y;
             playerMovement.DashState();
+        }
+    }
+
+    private void FallFromPlatform()
+    {
+        playerMovement.FastFallState();
+        playerMovement.TransparentState();
+    }
+
+    /// <summary>
+    /// Follows the player horizontally (used when AI is on some sort of ground)
+    /// </summary>
+    private void FollowPlayerOnGround()
+    {
+        if (distanceX > 2.5f) //si le player est un peu loin de l'IA (en x)
+        {
+            playerMovement.moveInputx = playerMovement.direction; //si pas très loin, aller vers le joueur
+
+            if (distanceX > 5f) //Si très loin, dash vers le joueur
+                DirectionalDash((int)playerMovement.direction, 0);
+
+            if (relativeSideY >= 2.5f) //si le player est trop haut par rapport à l'IA
+                playerMovement.JumpState();
+        }
+    }
+
+    /// <summary>
+    /// Recovers to the terrain (used when AI is outside of the terrain)
+    /// </summary>
+    private void RecoverToTerrain()
+    {
+        RaycastHit2D isThereGroundLeft = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.left), 100f, 1 << 8);
+        RaycastHit2D isThereGroundRight = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector2.right), 100f, 1 << 8);
+        RaycastHit2D isThereGroundUnderLeft = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(new Vector2(-1, -1)), 100f, 1 << 8);
+        RaycastHit2D isThereGroundUnderRight = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(new Vector2(1, -1)), 100f, 1 << 8);
+
+        if (isThereGroundLeft || isThereGroundUnderLeft) //Si le terrain est à gauche de l'IA
+        {
+            if (playerMovement.facingRight) //se tourne vers le terrain
+                playerMovement.Flip();
+
+            if (playerMovement.nbrJump > 0)
+                DirectionalJump(-1); //Saut vers la gauche
+            else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
+                DirectionalDash(-1, 1); //Dash vers le haut-gauche
+            else
+                playerMovement.moveInputx = -1; //Move vers la gauche
+        }
+        else if (isThereGroundRight || isThereGroundUnderRight) //Si le terrain est à droite de l'IA
+        {
+            if (!playerMovement.facingRight) //se tourne vers le terrain
+                playerMovement.Flip();
+
+            if (playerMovement.nbrJump > 0)
+                DirectionalJump(1); //Saut vers la droite
+            else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
+                DirectionalDash(1, 1); //Dash vers le haut-droit
+            else
+                playerMovement.moveInputx = 1; //Move vers la droite
         }
     }
 }
