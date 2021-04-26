@@ -12,7 +12,7 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
     public override void InstantiateAttacks()
     {
         attacks = new List<Attack>();
-        attacks.Add(new Attack("SideGround  ", 4, 400, 0.4f, new Vector2(1, 0.5f), hitboxesPoints[0], new Vector2(1.15f, 0.8f)));
+        attacks.Add(new Attack("SideGround", 4, 400, 0.4f, new Vector2(1, 0.5f), hitboxesPoints[0], new Vector2(1.15f, 0.8f)));
         attacks.Add(new Attack("DownGround", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[1], new Vector2(2.5f, 1)));
         attacks.Add(new Attack("NeutralGround", 3, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[2], new Vector2(1, 0.5f)));
         
@@ -36,35 +36,40 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
     public override void SideGround()
     {
         pA.BasicAttack(attacks[0]);
+        pAn.Attack("Sg");
     }
 
     public override void DownGround()
     {
         pA.BasicAttack(attacks[1]);
+        pAn.Attack("Dg");
     }
 
     public override void NeutralGround()
     {
         pA.BasicAttack(attacks[2]);
+        pAn.Attack("Ng");
     }
    
 
     public override void SideAir()
     {
         pA.BasicAttack(attacks[3]);
+        pAn.Attack("Sa");
     }
 
     public override void DownAir()
     {
         pA.BasicAttack(attacks[4]);
+        pAn.Attack("Da");
     }
 
     public override void NeutralAir()
     {
         pA.BasicAttack(attacks[5]);
+        pAn.Attack("Na");
     }
-
-    
+   
 
 
     public override void SideSpecial()

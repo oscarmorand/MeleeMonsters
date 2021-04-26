@@ -1342,6 +1342,24 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 2
     Name: takeOf
+  - Type: 9
+    SynchronizeType: 0
+    Name: Sg
+  - Type: 9
+    SynchronizeType: 0
+    Name: Ng
+  - Type: 9
+    SynchronizeType: 0
+    Name: Dg
+  - Type: 9
+    SynchronizeType: 0
+    Name: Sa
+  - Type: 9
+    SynchronizeType: 0
+    Name: Na
+  - Type: 9
+    SynchronizeType: 0
+    Name: Da
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
