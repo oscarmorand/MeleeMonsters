@@ -9,6 +9,8 @@ public class IA : MonoBehaviour
     GameObject player;
     Transform playerTrans;
 
+    PlayerAttacks playerAttacks;
+
     float distanceX;
     float distanceY;
     float relativeSideX;
@@ -19,6 +21,8 @@ public class IA : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerMovement.dashInputy = 0;
+
+        playerAttacks = GetComponent<PlayerAttacks>();
     }
 
     // Update is called once per frame
@@ -48,10 +52,15 @@ public class IA : MonoBehaviour
 
             if (playerMovement.isGrounded || playerMovement.isOnPlatform) //si l'IA est au sol ou sur une plateforme
             {
+                if (distanceX < 1.5f) ////si le player est assez proche de l'IA (en x)
+                {
+                    playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nG);
+                }
+
                 if (distanceX > 3.5f) //si le player est assez loin de l'IA (en x)
                 {
                     if (relativeSideY < 3f) //si le player n'est pas trop haut par rapport à l'IA (en y)
-                        playerMovement.DashState();
+                        playerMovement.DashState(); //à remplacer par juste courir vers lui
                     else
                     {
                         playerMovement.moveInputx = playerMovement.direction; //appelle MovePlayerUpdate
@@ -78,32 +87,18 @@ public class IA : MonoBehaviour
                     if (isThereGroundLeft || isThereGroundUnderLeft) //Si le terrain est à gauche de l'IA
                     {
                         if (playerMovement.nbrJump > 0)
-                        {
-                            playerMovement.moveInputx = -1;
-                            playerMovement.JumpState(); //Saut vers la gauche
-                        }
+                            DirectionalJump(-1); //Saut vers la gauche
                         else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
-                        {
-                            playerMovement.dashInputx = -1;
-                            playerMovement.dashInputy = 1;
-                            playerMovement.DashState(); //Dash vers le haut-gauche
-                        }
+                            DirectionalDash(-1, 1); //Dash vers le haut-gauche
                         else
                             playerMovement.moveInputx = -1; //Move vers la gauche
                     }
                     else if (isThereGroundRight || isThereGroundUnderRight) //Si le terrain est à droite de l'IA
                     {
                         if (playerMovement.nbrJump > 0)
-                        {
-                            playerMovement.moveInputx = 1;
-                            playerMovement.JumpState(); //Saut vers la droite
-                        }
+                            DirectionalJump(1); //Saut vers la droite
                         else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
-                        {
-                            playerMovement.dashInputx = 1;
-                            playerMovement.dashInputy = 1;
-                            playerMovement.DashState(); //Dash vers le haut-droit
-                        }
+                            DirectionalDash(1, 1); //Dash vers le haut-droit
                         else
                             playerMovement.moveInputx = 1; //Move vers la droite
                     }
@@ -117,6 +112,25 @@ public class IA : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void DirectionalJump(int x)
+    {
+        if (x == -1 || x == 1)
+        {
+            playerMovement.moveInputx = x;
+            playerMovement.JumpState();
+        }
+    }
+
+    private void DirectionalDash(int x, int y)
+    {
+        if ((x == -1 || x == 1) && (y == -1 || y == 1))
+        {
+            playerMovement.dashInputx = x;
+            playerMovement.dashInputy = y;
+            playerMovement.DashState();
         }
     }
 }

@@ -5,6 +5,24 @@ using UnityEngine;
 
 public class PlayerAttacks : MonoBehaviour
 {
+    public enum attackType
+    {
+        sG,
+        dG,
+        nG,
+
+        sA,
+        dA,
+        nA,
+
+        sS,
+        dS,
+        nS,
+
+        sW,
+        dW,
+        nW
+    }
 
     internal bool normalButton;
     internal bool specialButton;
@@ -182,6 +200,20 @@ public class PlayerAttacks : MonoBehaviour
             {
                 return 2;
             }
+        }
+    }
+
+    public void IAExecuteAttack(attackType choice)
+    {
+        if (!isAttacking && canAttack)
+        {
+            isAttacking = true;
+            canAttack = false;
+
+            Attack currentAttack = monstersAttacks.attacks[(int)choice];
+            monstersAttacks.Attack(currentAttack.name);
+
+            Invoke("EndOfAttack", currentAttack.time);
         }
     }
 }
