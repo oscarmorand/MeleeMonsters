@@ -52,20 +52,27 @@ public class IA : MonoBehaviour
 
             if (playerMovement.isGrounded || playerMovement.isOnPlatform) //si l'IA est au sol ou sur une plateforme
             {
-                if (distanceX < 1.5f) ////si le player est assez proche de l'IA (en x)
+                //if () tomber plateforme
+                
+                /*
+                if (distanceX < 1.5f) //si le player est assez proche de l'IA (en x)
                 {
                     playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nG);
                 }
+                */
 
-                if (distanceX > 3.5f) //si le player est assez loin de l'IA (en x)
+                if (distanceX > 2.5f) //si le player est un peu loin de l'IA (en x)
                 {
-                    if (relativeSideY < 3f) //si le player n'est pas trop haut par rapport à l'IA (en y)
-                        playerMovement.DashState(); //à remplacer par juste courir vers lui
-                    else
+                    playerMovement.moveInputx = playerMovement.direction; //si pas très loin, aller vers le joueur
+
+                    if (distanceX > 5f) //Si très loin, dash vers le joueur
                     {
-                        playerMovement.moveInputx = playerMovement.direction; //appelle MovePlayerUpdate
-                        playerMovement.JumpState();
+                        playerMovement.moveInputy = 0;
+                        playerMovement.DashState();
                     }
+
+                    if (relativeSideY >= 2.5f) //si le player est trop haut par rapport à l'IA
+                        playerMovement.JumpState();
                 }
             }
             else //si l'IA n'est pas au sol et pas sur une plateforme
@@ -126,7 +133,7 @@ public class IA : MonoBehaviour
 
     private void DirectionalDash(int x, int y)
     {
-        if ((x == -1 || x == 1) && (y == -1 || y == 1))
+        if ((x >= -1 && x <= 1) && (y >= -1 && y <= 1))
         {
             playerMovement.dashInputx = x;
             playerMovement.dashInputy = y;
