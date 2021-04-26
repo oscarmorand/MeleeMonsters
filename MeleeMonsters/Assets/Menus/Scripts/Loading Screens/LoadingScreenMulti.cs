@@ -9,10 +9,12 @@ public class LoadingScreenMulti : MonoBehaviourPunCallbacks
 {
     public void Start()
     {
-        
+    
     }
     public override void OnConnectedToMaster()
     {
+        PhotonNetwork.OfflineMode = false;
+
         base.OnConnectedToMaster();
         if (PhotonNetwork.IsConnected)
         {

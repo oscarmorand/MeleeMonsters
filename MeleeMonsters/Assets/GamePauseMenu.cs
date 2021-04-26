@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+using System.Collections;
 
 public class GamePauseMenu : MonoBehaviour
 {
@@ -63,6 +65,19 @@ public class GamePauseMenu : MonoBehaviour
 
     public void BackMainMenu()
     {
+        DisconnectPlayer();
+    }
+
+    public void DisconnectPlayer()
+    {
+        StartCoroutine(DisconnectAndLoad());
+    }
+
+    IEnumerator DisconnectAndLoad()
+    {
+        PhotonNetwork.Disconnect();
+        while (PhotonNetwork.IsConnected)
+            yield return null;
         SceneManager.LoadScene("Menu");
     }
 }

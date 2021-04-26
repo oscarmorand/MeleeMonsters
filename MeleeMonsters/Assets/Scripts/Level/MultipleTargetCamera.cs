@@ -36,8 +36,15 @@ public class MultipleTargetCamera : MonoBehaviour
         if (targets.Count < levelManager.playersScripts.Count )//PhotonNetwork.CurrentRoom.PlayerCount)
             ActualizeTargets();
 
+        foreach (Transform target in targets)
+        {
+            if (target == null)
+                ActualizeTargets();
+        }
+
         if (targets.Count == 0)
             return;
+
         Move();
         Zoom();
     }
@@ -62,7 +69,8 @@ public class MultipleTargetCamera : MonoBehaviour
         var bounds = new Bounds(targets[0].position, Vector3.zero);
         for (int i = 0; i < targets.Count; i++)
         {
-            bounds.Encapsulate(targets[i].position);
+            if(targets[i] != null)
+                bounds.Encapsulate(targets[i].position);
         }
 
         return bounds.size.x + bounds.size.y;
@@ -97,12 +105,19 @@ public class MultipleTargetCamera : MonoBehaviour
     Vector3 GetCenterPoint()
     {
         if (targets.Count == 1)
-            return targets[0].position;
+        {
+            if (targets[0] != null)
+                return targets[0].position;
+            else
+                return Vector3.zero;
+        }
+            
 
         var bounds = new Bounds(targets[0].position, Vector3.zero);
         for (int i = 0; i < targets.Count; i++)
         {
-            bounds.Encapsulate(targets[i].position);
+            if(targets[i] != null)
+                bounds.Encapsulate(targets[i].position);
         }
 
         return bounds.center;
