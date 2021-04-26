@@ -216,7 +216,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (nbrJump > 0 && !isJumping)
         {
-            print("saut");
             isJumping = true;
             nbrJump--;
             Invoke("SetJumpingToFalse", jumpTime);

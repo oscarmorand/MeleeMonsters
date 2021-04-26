@@ -149,14 +149,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         {
             isWrath = false;
             loadingWrath = 0;
-            //bodySprite.color = Color.white;
             WrathColor(Color.white);
-
-            //if (pSM.howManyInWrathMode <= 1)
-            //{
-            //    aM.Stop("wrath theme");
-            //    aM.UnPause("theme");
-            //}
         }
         else
         {
@@ -177,13 +170,8 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         {
             wrathTime = maxWrathTime;
             isWrath = true;
+            loadingWrath = 0;
             WrathColor(Color.red);
-
-            //if (pSM.howManyInWrathMode == 0)
-            //{
-            //    aM.Pause("theme");
-            //    aM.Play("wrath theme");
-            //}
         }
     }
 
@@ -237,17 +225,6 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
 
     public void TakeDamage(int damage)
     {
-        //if(pV.IsMine)
-        //{
-        //    percentage += damage;
-        //    print("aie " + nickName + " a pris une attaque d'une puissance de " + damage + " pourcents et monte maintenant à " + percentage + " pourcents!");
-        //    if(!isWrath)
-        //    {
-        //        float bonus = damage * 2.5f;
-        //        loadingWrath += bonus;
-        //        print(nickName+" gagne " + bonus + " sec dans la barre de wrath");
-        //    }
-        //}
         percentage += damage;
         print("aie " + nickName + " a pris une attaque d'une puissance de " + damage + " pourcents et monte maintenant à " + percentage + " pourcents!");
         if (!isWrath)

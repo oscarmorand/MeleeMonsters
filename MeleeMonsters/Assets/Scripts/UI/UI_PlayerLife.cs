@@ -26,7 +26,7 @@ public class UI_PlayerLife : MonoBehaviour
     void Start()
     {
         GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
-        gameManager = manager?.GetComponent<GameManager>();
+        gameManager = manager.GetComponent<GameManager>();
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         panel = transform.Find("Panel PlayerLife").gameObject;
         GameObject selectedChracter = panel.transform.Find("SelectedCharacter").gameObject; 

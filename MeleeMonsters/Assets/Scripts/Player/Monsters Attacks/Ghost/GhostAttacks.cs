@@ -5,6 +5,7 @@ using Photon.Pun;
 
 public class GhostAttacks : MonstersAttacks, IPunObservable
 {
+    public GameObject batPrefab;
 
     public override void InstantiateAttacks()
     {
@@ -71,6 +72,8 @@ public class GhostAttacks : MonstersAttacks, IPunObservable
     public override void DownSpecial()
     {
         print("je fais une downSpecial de fantome wouaaaa");
+        GameObject bat = PhotonNetwork.Instantiate(batPrefab.name, hitboxesPoints[0].position, new Quaternion());
+        bat.GetComponent<GhostBat>().Throw(pM.direction, gameObject);
     }
 
     public override void NeutralSpecial()

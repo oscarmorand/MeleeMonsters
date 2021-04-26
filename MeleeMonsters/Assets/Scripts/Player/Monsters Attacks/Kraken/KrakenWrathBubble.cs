@@ -75,7 +75,7 @@ public class KrakenWrathBubble : MonoBehaviour
         {
             if (playerCollider.transform.tag == "Player" || playerCollider.transform.tag == "IA")
             {
-                if (pV.IsMine)
+                if (pV.IsMine && playerCollider.transform != _parent.transform)
                 {
                     PhotonView pVTarget = playerCollider.GetComponent<PhotonView>();
 

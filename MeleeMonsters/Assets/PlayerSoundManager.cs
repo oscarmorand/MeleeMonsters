@@ -5,6 +5,8 @@ using Photon.Pun;
 
 public class PlayerSoundManager : MonoBehaviour
 {
+    private LevelManager levelManager;
+
     public List<PlayerScript> players = new List<PlayerScript>();
     //public List<PlayerScript> truePlayers = new List<PlayerScript>();
     private AudioManager aM;
@@ -15,6 +17,8 @@ public class PlayerSoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+
         InitializePlayers();
         aM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
@@ -22,7 +26,7 @@ public class PlayerSoundManager : MonoBehaviour
     //
     void LateUpdate()
     {
-        if (players.Count < PhotonNetwork.CurrentRoom.PlayerCount)
+        if (players.Count < levelManager.playersScripts.Count)//PhotonNetwork.CurrentRoom.PlayerCount)
         {
             ActualizePlayers();
         }
