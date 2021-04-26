@@ -69,6 +69,7 @@ public class IA : MonoBehaviour
                 */
 
                 FollowPlayerOnGround();
+
             }
             else //si l'IA n'est pas au sol et pas sur une plateforme
             {
@@ -89,13 +90,25 @@ public class IA : MonoBehaviour
                     if (relativeSideY > 3f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
                         DirectionalJump((int)playerMovement.direction);
                 }
+
+                if ((distanceX > 0f && distanceX <= 1.5f) && (relativeSideY > -1f && relativeSideY <= 1f))
+                    playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.sA); //faire une side air
+
+                if (distanceX < 0.75f)
+                {
+                    if (relativeSideY < -0.5f && relativeSideY >= -2f)
+                        playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.dA); //faire une down air
+
+                    if (relativeSideY > 0.5f && relativeSideY <= 2f)
+                        playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nA); //faire une neutral air
+                }
             }
         }
     }
 
     private void DirectionalJump(int x)
     {
-        if (x == -1 || x == 1)
+        if ((x == -1 || x == 1) && playerMovement.nbrJump > 0)
         {
             playerMovement.moveInputx = x;
             playerMovement.JumpState();
@@ -104,7 +117,7 @@ public class IA : MonoBehaviour
 
     private void DirectionalDash(int x, int y)
     {
-        if ((x >= -1 && x <= 1) && (y >= -1 && y <= 1))
+        if ((x >= -1 && x <= 1) && (y >= -1 && y <= 1) && playerMovement.nbrDash > 0)
         {
             playerMovement.dashInputx = x;
             playerMovement.dashInputy = y;
@@ -123,15 +136,15 @@ public class IA : MonoBehaviour
     /// </summary>
     private void FollowPlayerOnGround()
     {
+        if (relativeSideY >= 2f) //si le player est trop haut par rapport à l'IA
+            DirectionalDash((int)playerMovement.direction, 1);
+
         if (distanceX > 2.5f) //si le player est un peu loin de l'IA (en x)
         {
             playerMovement.moveInputx = playerMovement.direction; //si pas très loin, aller vers le joueur
 
             if (distanceX > 5f) //Si très loin, dash vers le joueur
                 DirectionalDash((int)playerMovement.direction, 0);
-
-            if (relativeSideY >= 2.5f) //si le player est trop haut par rapport à l'IA
-                playerMovement.JumpState();
         }
     }
 
