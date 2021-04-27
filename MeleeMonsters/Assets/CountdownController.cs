@@ -18,10 +18,10 @@ public class CountdownController : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("GameManagerPrefab").GetComponent<GameManager>();
-        StartCoroutine(CountdownToStart());
 
         aMGameObject = GameObject.Find("AudioManager");
         aM = aMGameObject.GetComponent<AudioManager>();
+        StartCoroutine(CountdownToStart());
     }
     IEnumerator CountdownToStart()
     {
@@ -29,9 +29,9 @@ public class CountdownController : MonoBehaviour
         {
             countdownDisplay.text = countdownTime.ToString();
 
-            yield return new WaitForSeconds(1f);
             aM.Play(countdownStock[countdownTime - 1]);
-
+            yield return new WaitForSeconds(1f);
+            
             countdownTime--;
         }
 
