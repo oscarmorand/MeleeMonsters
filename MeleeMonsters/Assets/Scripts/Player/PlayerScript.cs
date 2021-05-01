@@ -237,7 +237,12 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         aM.Play("oof");
     }
 
-
+    public void WrathSustain(int damage)
+    {
+        float sustain = (float)damage / 20;
+        print("sustain de " + sustain + " secondes!");
+        wrathTime += sustain;
+    }
 
 
 

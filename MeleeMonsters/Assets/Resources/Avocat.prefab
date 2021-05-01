@@ -97,8 +97,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8932558000098418980}
   - component: {fileID: 2743903662052263286}
-  m_Layer: 0
-  m_Name: 0
+  m_Layer: 12
+  m_Name: SideGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -442,8 +442,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3619135983424288493}
   - component: {fileID: 6902457842635188266}
-  m_Layer: 0
-  m_Name: 1
+  m_Layer: 12
+  m_Name: DownGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -580,7 +580,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6782946065904017203}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Hitboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}

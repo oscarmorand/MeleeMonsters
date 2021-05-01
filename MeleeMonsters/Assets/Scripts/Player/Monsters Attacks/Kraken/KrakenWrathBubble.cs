@@ -79,7 +79,7 @@ public class KrakenWrathBubble : MonoBehaviour
                 {
                     PhotonView pVTarget = playerCollider.GetComponent<PhotonView>();
 
-                    _parent.GetComponent<PlayerAttacks>().WrathSustain(damage);
+                    _parent.GetComponent<PlayerScript>().WrathSustain(damage);
 
                     Vector2 direction = new Vector2(playerCollider.transform.position.x-transform.position.x, playerCollider.transform.position.y - transform.position.y);
                     direction.Normalize();

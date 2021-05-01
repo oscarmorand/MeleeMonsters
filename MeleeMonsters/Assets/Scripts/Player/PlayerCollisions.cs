@@ -47,29 +47,37 @@ public class PlayerCollisions : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject attacker = collision.transform.root.gameObject;
-        print(attacker.name);
-        //Attack attack = attacker.GetComponent<PlayerAttacks>().currentAttack;
-        //print(attack.name);
+        if(collision.gameObject.layer == 12)
+        {
+            GameObject attacker = collision.transform.root.gameObject;
+
+            Attack attack = attacker.GetComponent<PlayerAttacks>().currentAttack;
+
+            print(attacker.name + " m'attaque avec une "+attack.name);
+
+            TakeAttack(attack, attacker);
+        }
+     
     }
 
-    public void TakeAttack(Attack attack)
+    public void TakeAttack(Attack attack, GameObject attacker)
     {
-        //LayerMask layerMask = (1 << 9) | (1 << 11);
+        PlayerScript attackerScript = attacker.GetComponent<PlayerScript>();
+        PlayerMovement attackerMovement = attacker.GetComponent<PlayerMovement>();
 
-        //float bonus = 1;
-        //if (pS.isWrath)
-        //{
-        //    bonus = 1.25f;
-        //    WrathSustain(attack.damage);
-        //}
-        //int newDamage = (int)((float)(attack.damage) * bonus);
+        float bonus = 1;
+        if (attackerScript.isWrath)
+        {
+            bonus = 1.25f;
+            attackerScript.WrathSustain(attack.damage);
+        }
+        int newDamage = (int)((attack.damage) * bonus);
 
-        //Vector2 direction = attack.direction;
-        //Vector2 newDirection = new Vector2((direction.x) * pM.direction, (direction.y));
-        //pV.RPC("Eject", RpcTarget.All, newDirection, attack.ejection, bonus);
+        Vector2 direction = attack.direction;
+        Vector2 newDirection = new Vector2((direction.x) * attackerMovement.direction, (direction.y));
+        pV.RPC("Eject", RpcTarget.All, newDirection, attack.ejection, bonus);
 
-        //pV.RPC("TakeDamage", RpcTarget.All, newDamage);
+        pV.RPC("TakeDamage", RpcTarget.All, newDamage);
     }
 
     [PunRPC]

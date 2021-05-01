@@ -118,18 +118,18 @@ public class PlayerAttacks : MonoBehaviour
     {
         yield return new WaitForSeconds(attack.activationTime);
 
-        print("je m'active");
-        attack.hitbox.SetActive(true);
+        //print("je m'active");
         currentAttack = attack;
+        attack.hitbox.SetActive(true);
 
         yield return new WaitForSeconds(attack.durationTime);
 
-        print("je me désactive");
+        //print("je me désactive");
         attack.hitbox.SetActive(false);
 
         yield return new WaitForSeconds(attack.disabledTime);
 
-        print("ahhh je peux de nouveau attaquer");
+        //print("ahhh je peux de nouveau attaquer");
         EndOfAttack();
     }
 
@@ -142,13 +142,6 @@ public class PlayerAttacks : MonoBehaviour
         return (float)((attackForce*(targetPercentage+20)*wrathBonus) / (weight*20));
     }
 
-
-    public void WrathSustain(int damage)
-    {
-        float sustain = (float)damage / 20;
-        print("sustain de "+sustain+ " secondes!");
-        pS.wrathTime += sustain;
-    }
 
     private void EndOfAttack()
     {
