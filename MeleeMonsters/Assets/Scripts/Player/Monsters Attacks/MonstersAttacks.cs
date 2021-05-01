@@ -10,6 +10,8 @@ abstract public class MonstersAttacks : MonoBehaviour
 
     public List<Transform> hitboxesPoints;
 
+    public List<GameObject> hitboxes;
+
     internal PhotonView pV;
     private PlayerScript pS;
     internal PlayerMovement pM;

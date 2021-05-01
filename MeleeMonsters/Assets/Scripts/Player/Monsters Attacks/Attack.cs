@@ -7,19 +7,23 @@ public class Attack
     public string name;
     public int damage;
     public float ejection;
-    public float time;
     public Vector2 direction;
-    public Transform hitBox;
-    public Vector2 size;
+    public GameObject hitbox;
+    public float activationTime;
+    public float durationTime;
+    public float disabledTime;
+    public float hitStunTime;
 
-    public Attack(string name, int damage,float ejection, float time, Vector2 direction, Transform hitBox, Vector2 size)
+    public Attack(string name, int damage, float ejection, Vector2 direction, GameObject hitbox, float activationTime,float durationTime, float disabledTime,float hitStunTime)
     {
         this.name = name;
         this.damage = damage;
         this.ejection = ejection;
-        this.time = time;
         this.direction = direction;
-        this.hitBox = hitBox;
-        this.size = size;
+        this.hitbox = hitbox;
+        this.activationTime = activationTime;
+        this.durationTime = durationTime;
+        this.disabledTime = disabledTime;
+        this.hitStunTime = hitStunTime;
     }
 }

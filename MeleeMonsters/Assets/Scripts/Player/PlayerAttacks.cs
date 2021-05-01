@@ -35,13 +35,14 @@ public class PlayerAttacks : MonoBehaviour
     private PhotonView pV;
     private Rigidbody2D rb;
 
-    internal bool isAttacking = false;
     internal bool canAttack = true;
 
     public MonstersAttacks monstersAttacks;
 
     public PlayerScript.Monsters monster;
     private PlayerScript playerScript;
+
+    public Attack currentAttack = null;
 
     public void Start()
     {
@@ -59,7 +60,7 @@ public class PlayerAttacks : MonoBehaviour
         if (!isPlaying)
             return;
 
-        if (canAttack && !isAttacking)
+        if (canAttack)
         {
             if (normalButton || specialButton)
                 PerformAttack();
@@ -70,62 +71,68 @@ public class PlayerAttacks : MonoBehaviour
     {
         int attackNbr = DetermineAttack();
 
-        isAttacking = true;
         canAttack = false;
 
         Attack attack = monstersAttacks.attacks[attackNbr];
 
         monstersAttacks.Attack(attack.name);
 
-        Invoke("EndOfAttack", attack.time);
+        Invoke("EndOfAttack", attack.durationTime);
     }
 
-    public void BasicAttack(Attack attack)
+    //public void BasicAttack(Attack attack)
+    //{
+    //    LayerMask layerMask = (1<<9) | (1<<11);
+    //    Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attack.hitBox.position, attack.size, layerMask);
+    //    foreach (Collider2D playerCollider in hitColliders)
+    //    {
+    //        if (playerCollider != null && playerCollider.transform != transform)
+    //        {
+    //            if(playerCollider.transform.tag == "Player" || playerCollider.transform.tag == "IA")
+    //            {
+    //                if (pV.IsMine)
+    //                {
+    //                    //PlayerScript targetScript = playerCollider.GetComponent<PlayerScript>();
+    //                    PhotonView pVTarget = playerCollider.GetComponent<PhotonView>();
+
+    //                    float bonus = 1;
+    //                    if (pS.isWrath)
+    //                    {
+    //                        bonus = 1.25f;
+    //                        WrathSustain(attack.damage);
+    //                    }
+    //                    int newDamage = (int)((float)(attack.damage) * bonus);
+
+    //                    Vector2 direction = attack.direction;
+    //                    Vector2 newDirection = new Vector2((direction.x) * pM.direction, (direction.y));
+    //                    pVTarget.RPC("Eject", RpcTarget.All, newDirection, attack.ejection, bonus);
+
+    //                    pVTarget.RPC("TakeDamage", RpcTarget.All, newDamage);
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+
+    public IEnumerator BasicAttack(Attack attack)
     {
-        LayerMask layerMask = (1<<9) | (1<<11);
-        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attack.hitBox.position, attack.size, layerMask);
-        foreach (Collider2D playerCollider in hitColliders)
-        {
-            if (playerCollider != null && playerCollider.transform != transform)
-            {
-                if(playerCollider.transform.tag == "Player" || playerCollider.transform.tag == "IA")
-                {
-                    if (pV.IsMine)
-                    {
-                        //PlayerScript targetScript = playerCollider.GetComponent<PlayerScript>();
-                        PhotonView pVTarget = playerCollider.GetComponent<PhotonView>();
+        yield return new WaitForSeconds(attack.activationTime);
 
-                        float bonus = 1;
-                        if (pS.isWrath)
-                        {
-                            bonus = 1.25f;
-                            WrathSustain(attack.damage);
-                        }
-                        int newDamage = (int)((float)(attack.damage) * bonus);
+        print("je m'active");
+        attack.hitbox.SetActive(true);
+        currentAttack = attack;
 
-                        Vector2 direction = attack.direction;
-                        Vector2 newDirection = new Vector2((direction.x) * pM.direction, (direction.y));
-                        pVTarget.RPC("Eject", RpcTarget.All, newDirection, attack.ejection, bonus);
+        yield return new WaitForSeconds(attack.durationTime);
 
-                        pVTarget.RPC("TakeDamage", RpcTarget.All, newDamage);
-                    }
-                }
-            }
-        }
+        print("je me désactive");
+        attack.hitbox.SetActive(false);
+
+        yield return new WaitForSeconds(attack.disabledTime);
+
+        print("ahhh je peux de nouveau attaquer");
+        EndOfAttack();
     }
 
-    [PunRPC]
-    private void TakeDamage(int damage)
-    {
-        pS.TakeDamage(damage);
-    }
-
-    [PunRPC]
-    private void Eject(Vector2 direction, float force,float bonus)
-    {
-        float factor = CalculateForce(force, pS.percentage,rb.mass,bonus);
-        pM.Eject(direction*factor);
-    }
 
 
     public static float CalculateForce(float attackForce, int targetPercentage, float weight, float wrathBonus)
@@ -145,8 +152,8 @@ public class PlayerAttacks : MonoBehaviour
 
     private void EndOfAttack()
     {
-        isAttacking = false;
         canAttack = true;
+        currentAttack = null;
     }
 
     public int DetermineAttack()
@@ -205,15 +212,14 @@ public class PlayerAttacks : MonoBehaviour
 
     public void IAExecuteAttack(attackType choice)
     {
-        if (!isAttacking && canAttack)
+        if (canAttack)
         {
-            isAttacking = true;
             canAttack = false;
 
             Attack currentAttack = monstersAttacks.attacks[(int)choice];
             monstersAttacks.Attack(currentAttack.name);
 
-            Invoke("EndOfAttack", currentAttack.time);
+            Invoke("EndOfAttack", currentAttack.durationTime);
         }
     }
 }

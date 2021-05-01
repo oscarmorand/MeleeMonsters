@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerCollisions : MonoBehaviour
 {
 
     private PlayerMovement pM;
+    private PhotonView pV;
+    private PlayerScript pS;
+    private Rigidbody2D rb;
 
     public Transform groundCheck;
     public Transform frontCheck;
@@ -16,10 +20,14 @@ public class PlayerCollisions : MonoBehaviour
 
     public float checkRadius;
 
+
     // Start is called before the first frame update
     void Start()
     {
         pM = GetComponent<PlayerMovement>();
+        pV = GetComponent<PhotonView>();
+        pS = GetComponent<PlayerScript>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -36,4 +44,45 @@ public class PlayerCollisions : MonoBehaviour
 
         pM.isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject attacker = collision.transform.root.gameObject;
+        print(attacker.name);
+        //Attack attack = attacker.GetComponent<PlayerAttacks>().currentAttack;
+        //print(attack.name);
+    }
+
+    public void TakeAttack(Attack attack)
+    {
+        //LayerMask layerMask = (1 << 9) | (1 << 11);
+
+        //float bonus = 1;
+        //if (pS.isWrath)
+        //{
+        //    bonus = 1.25f;
+        //    WrathSustain(attack.damage);
+        //}
+        //int newDamage = (int)((float)(attack.damage) * bonus);
+
+        //Vector2 direction = attack.direction;
+        //Vector2 newDirection = new Vector2((direction.x) * pM.direction, (direction.y));
+        //pV.RPC("Eject", RpcTarget.All, newDirection, attack.ejection, bonus);
+
+        //pV.RPC("TakeDamage", RpcTarget.All, newDamage);
+    }
+
+    [PunRPC]
+    private void TakeDamage(int damage)
+    {
+        pS.TakeDamage(damage);
+    }
+
+    [PunRPC]
+    private void Eject(Vector2 direction, float force, float bonus)
+    {
+        float factor = PlayerAttacks.CalculateForce(force, pS.percentage, rb.mass, bonus);
+        pM.Eject(direction * factor);
+    }
+
 }
