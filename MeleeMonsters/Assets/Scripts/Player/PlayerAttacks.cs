@@ -116,16 +116,16 @@ public class PlayerAttacks : MonoBehaviour
 
     public IEnumerator BasicAttack(Attack attack)
     {
+        currentAttack = attack;
         yield return new WaitForSeconds(attack.activationTime);
 
         //print("je m'active");
-        currentAttack = attack;
-        attack.hitbox.SetActive(true);
+        //attack.hitbox.SetActive(true);
 
         yield return new WaitForSeconds(attack.durationTime);
 
         //print("je me désactive");
-        attack.hitbox.SetActive(false);
+        //attack.hitbox.SetActive(false);
 
         yield return new WaitForSeconds(attack.disabledTime);
 
