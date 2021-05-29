@@ -34,6 +34,7 @@ public class PlayerAttacks : MonoBehaviour
     private PlayerScript pS;
     private PhotonView pV;
     private Rigidbody2D rb;
+    internal PlayerAnimation pAn;
 
     internal bool canAttack = true;
 
@@ -51,6 +52,7 @@ public class PlayerAttacks : MonoBehaviour
         pS = GetComponent<PlayerScript>();
         pV = GetComponent<PhotonView>();
         rb = GetComponent<Rigidbody2D>();
+        pAn = GetComponent<PlayerAnimation>();
     }
 
     public void Update()
@@ -76,6 +78,8 @@ public class PlayerAttacks : MonoBehaviour
         Attack attack = monstersAttacks.attacks[attackNbr];
 
         monstersAttacks.Attack(attack.name);
+
+        AttackAnimation(attack);
 
         Invoke("EndOfAttack", attack.durationTime);
     }
@@ -211,8 +215,15 @@ public class PlayerAttacks : MonoBehaviour
 
             Attack currentAttack = monstersAttacks.attacks[(int)choice];
             monstersAttacks.Attack(currentAttack.name);
-
+            AttackAnimation(currentAttack);
             Invoke("EndOfAttack", currentAttack.durationTime);
         }
+    }
+
+    public void AttackAnimation(Attack attack)
+    {
+        string animation = attack.anim;
+        if (animation != "")
+            pAn.Attack(animation);
     }
 }

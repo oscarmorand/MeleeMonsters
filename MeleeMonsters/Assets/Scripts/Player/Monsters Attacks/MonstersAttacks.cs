@@ -16,7 +16,6 @@ abstract public class MonstersAttacks : MonoBehaviour
     private PlayerScript pS;
     internal PlayerMovement pM;
     internal PlayerAttacks pA;
-    internal PlayerAnimation pAn;
 
     internal GameObject aMGameObject;
     internal AudioManager aM;
@@ -27,7 +26,6 @@ abstract public class MonstersAttacks : MonoBehaviour
         pS = GetComponent<PlayerScript>();
         pM = GetComponent<PlayerMovement>();
         pA = GetComponent<PlayerAttacks>();
-        pAn = GetComponent<PlayerAnimation>();
         aMGameObject = GameObject.Find("AudioManager");
         aM = aMGameObject.GetComponent<AudioManager>();
 

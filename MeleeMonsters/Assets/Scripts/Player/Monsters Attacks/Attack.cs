@@ -13,8 +13,9 @@ public class Attack
     public float durationTime;
     public float disabledTime;
     public float hitStunTime;
+    public string anim;
 
-    public Attack(string name, int damage, float ejection, Vector2 direction, GameObject hitbox, float activationTime,float durationTime, float disabledTime,float hitStunTime)
+    public Attack(string name, int damage, float ejection, Vector2 direction, GameObject hitbox, float activationTime,float durationTime, float disabledTime,float hitStunTime,string anim)
     {
         this.name = name;
         this.damage = damage;
@@ -25,5 +26,6 @@ public class Attack
         this.durationTime = durationTime;
         this.disabledTime = disabledTime;
         this.hitStunTime = hitStunTime;
+        this.anim = anim;
     }
 }
