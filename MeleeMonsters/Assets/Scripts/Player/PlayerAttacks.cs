@@ -35,8 +35,9 @@ public class PlayerAttacks : MonoBehaviour
     private PhotonView pV;
     private Rigidbody2D rb;
     internal PlayerAnimation pAn;
+    private AudioManager aM;
 
-    internal bool canAttack = true;
+    public bool canAttack = true;
 
     public MonstersAttacks monstersAttacks;
 
@@ -53,6 +54,7 @@ public class PlayerAttacks : MonoBehaviour
         pV = GetComponent<PhotonView>();
         rb = GetComponent<Rigidbody2D>();
         pAn = GetComponent<PlayerAnimation>();
+        aM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     public void Update()
@@ -62,27 +64,119 @@ public class PlayerAttacks : MonoBehaviour
         if (!isPlaying)
             return;
 
-        if (canAttack)
+        if (canAttack && !pS.isHitStun)
         {
             if (normalButton || specialButton)
-                PerformAttack();
+                PlayerExecuteAttack();
         }
     }
 
-    public void PerformAttack()
+    public void PerformAttack(int attackNbr)
     {
-        int attackNbr = DetermineAttack();
-
         canAttack = false;
 
         Attack attack = monstersAttacks.attacks[attackNbr];
+        currentAttack = attack;
 
         monstersAttacks.Attack(attack.name);
 
         AttackAnimation(attack);
+        AttackSFX(attack);
 
-        Invoke("EndOfAttack", attack.durationTime);
+        Invoke("EndOfAttack", attack.time);
     }
+
+    public void PlayerExecuteAttack()
+    {
+        int attackNbr = DetermineAttack();
+        PerformAttack(attackNbr);
+    }
+
+    public void IAExecuteAttack(attackType choice)
+    {
+        if (canAttack && !pS.isHitStun)
+        {
+            PerformAttack((int)choice);
+        }
+    }
+
+
+    private void EndOfAttack()
+    {
+        canAttack = true;
+        currentAttack = null;
+    }
+
+    public static float CalculateForce(float attackForce, int targetPercentage, float weight, float wrathBonus)
+    {
+        //return attackForce + (attackForce * targetPercentage/10);
+        //return (float)((((targetPercentage*3/20)*(1.4/weight))+attackForce) * wrathBonus);
+        return (float)((attackForce*(targetPercentage+20)*wrathBonus) / (weight*20));
+    }
+
+    public static float CalculateHitStun(float knockback)
+    {
+        return knockback / 200;
+    }
+
+
+    public int DetermineAttack()
+    {
+        int type = DetermineAttackType();
+        int direction = DetermineDirection();
+
+        return (type * 3) + direction;
+    }
+
+    public int DetermineAttackType()
+    {
+        if (normalButton)
+        {
+            if (pM.isGrounded || pM.isOnPlatform) // Weak Attack;
+                return 0;
+            else // Air Attack;
+                return 1;
+        }
+        else  
+        {
+            if (pS.isWrath) // Wrath special attack
+                return 3;
+            else            // Special Attack
+                return 2;
+        }
+
+    }
+
+    public int DetermineDirection()
+    {
+        if(pM.moveInputx != 0) // Side Attack
+            return 0;
+        else
+        {
+            if(pM.isPressingDown) // Down Attack
+                return 1;
+            else  // Neutral Attack
+                return 2;
+        }
+    }
+
+    public void AttackAnimation(Attack attack)
+    {
+        string animation = attack.anim;
+        if (animation != "")
+            pAn.Attack(animation);
+    }
+
+    public void AttackSFX(Attack attack)
+    {
+        string sound = attack.sound;
+        if (sound != "")
+            aM.Play(sound);
+    }
+
+
+
+
 
     //public void BasicAttack(Attack attack)
     //{
@@ -118,112 +212,23 @@ public class PlayerAttacks : MonoBehaviour
     //    }
     //}
 
-    public IEnumerator BasicAttack(Attack attack)
-    {
-        currentAttack = attack;
-        yield return new WaitForSeconds(attack.activationTime);
+    //public IEnumerator BasicAttack(Attack attack)
+    //{
+    //    currentAttack = attack;
+    //    //yield return new WaitForSeconds(attack.activationTime);
 
-        //print("je m'active");
-        //attack.hitbox.SetActive(true);
+    //    //print("je m'active");
 
-        yield return new WaitForSeconds(attack.durationTime);
+    //    //yield return new WaitForSeconds(attack.durationTime);
 
-        //print("je me désactive");
-        //attack.hitbox.SetActive(false);
+    //    //print("je me désactive");
 
-        yield return new WaitForSeconds(attack.disabledTime);
+    //    //yield return new WaitForSeconds(attack.disabledTime);
 
-        //print("ahhh je peux de nouveau attaquer");
-        EndOfAttack();
-    }
+    //    print("ahhh je peux de nouveau attaquer");
 
+    //    yield return new WaitForSeconds(10000f);
 
-
-    public static float CalculateForce(float attackForce, int targetPercentage, float weight, float wrathBonus)
-    {
-        //return attackForce + (attackForce * targetPercentage/10);
-        //return (float)((((targetPercentage*3/20)*(1.4/weight))+attackForce) * wrathBonus);
-        return (float)((attackForce*(targetPercentage+20)*wrathBonus) / (weight*20));
-    }
-
-
-    private void EndOfAttack()
-    {
-        canAttack = true;
-        currentAttack = null;
-    }
-
-    public int DetermineAttack()
-    {
-        int type = DetermineAttackType();
-        int direction = DetermineDirection();
-
-        return (type * 3) + direction;
-    }
-
-    public int DetermineAttackType()
-    {
-        if (normalButton)
-        {
-            if (pM.isGrounded || pM.isOnPlatform) // Weak Attack;
-            {
-                return 0;
-            }
-            else // Air Attack;
-            {
-                return 1;
-            }
-        }
-        else  
-        {
-            if (pS.isWrath) // Wrath special attack
-            {
-                return 3;
-            }
-            else            // Special Attack
-            {
-                return 2;
-            }
-        }
-
-    }
-
-    public int DetermineDirection()
-    {
-        if(pM.moveInputx != 0) // Side Attack
-        {
-            return 0;
-        }
-        else
-        {
-            if(pM.isPressingDown) // Down Attack
-            {
-                return 1;
-            }
-            else  // Neutral Attack
-            {
-                return 2;
-            }
-        }
-    }
-
-    public void IAExecuteAttack(attackType choice)
-    {
-        if (canAttack)
-        {
-            canAttack = false;
-
-            Attack currentAttack = monstersAttacks.attacks[(int)choice];
-            monstersAttacks.Attack(currentAttack.name);
-            AttackAnimation(currentAttack);
-            Invoke("EndOfAttack", currentAttack.durationTime);
-        }
-    }
-
-    public void AttackAnimation(Attack attack)
-    {
-        string animation = attack.anim;
-        if (animation != "")
-            pAn.Attack(animation);
-    }
+    //    EndOfAttack();
+    //}
 }

@@ -70,6 +70,8 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
     //private PlayerSoundManager pSM;
     private int localInt;
 
+    public bool isHitStun;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -237,13 +239,21 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         aM.Play("oof");
     }
 
+    public IEnumerator HitStunState(float hitStunTime)
+    {
+        isHitStun = true;
+
+        yield return new WaitForSeconds(hitStunTime);
+
+        isHitStun = false;
+    }
+
     public void WrathSustain(int damage)
     {
         float sustain = (float)damage / 20;
         print("sustain de " + sustain + " secondes!");
         wrathTime += sustain;
     }
-
 
 
 

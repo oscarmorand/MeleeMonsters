@@ -1215,6 +1215,7 @@ MonoBehaviour:
   - {fileID: 3953328102747470727}
   - {fileID: 6177747987384270132}
   - {fileID: 7133828545756733750}
+  hitboxes: []
   batPrefab: {fileID: 1310930056218048277, guid: 82d87f5a29def084c9282a2c6163e040,
     type: 3}
 --- !u!1 &5053583671585442592

@@ -157,7 +157,8 @@ public class PlayerMovement : MonoBehaviour
     public void MovePlayerUpdate()
     {
         float horizontalMovement = moveInputx * moveSpeed * Time.deltaTime;
-        Move(horizontalMovement);
+        if(!playerScript.isHitStun)
+            Move(horizontalMovement);
     }
 
 

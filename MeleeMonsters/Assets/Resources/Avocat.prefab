@@ -765,6 +765,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 5129723005089324561}
   - {fileID: 2499066467883210318}
+  isHitStun: 0
 --- !u!114 &4048278115268245952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,6 +1178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b021fbaff610d954391eca408d73e9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canAttack: 1
   monstersAttacks: {fileID: 1138996434763545035}
   monster: 0
 --- !u!114 &1138996434763545035
