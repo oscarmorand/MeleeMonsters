@@ -106,7 +106,7 @@ public class PlayerInputs : MonoBehaviour
     {
         if(context.performed)
         {
-            pS.WrathModeState();
+            pS.GoIntoWrathMode();
         }
     }
 

@@ -27,7 +27,7 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
 
         attacks.Add(new Attack("SideSpecial", 7, 500, new Vector2(1, 0.2f), hitboxes[0], 0.1f, "",""));
         attacks.Add(new Attack("DownSpecial", 6, 400, new Vector2(0, 1), hitboxes[0], 0.1f, "",""));
-        attacks.Add(new Attack("NeutralSpecial", 2, 50, new Vector2(0, 1), hitboxes[0], 0.1f, "",""));
+        attacks.Add(new Attack("NeutralSpecial", 2, 50, new Vector2(0, 1), hitboxes[0], 0.4f, "",""));
 
 
         attacks.Add(new Attack("SideWrath", 10, 750, new Vector2(1, 0), hitboxes[0], 0.1f, "",""));

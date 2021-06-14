@@ -1076,16 +1076,21 @@ MonoBehaviour:
   maxLoadingWrath: 500
   loadingWrath: 480
   reappearitionTime: 1
-  sprites:
-  - {fileID: 7879730224113433477}
-  - {fileID: 7985945159468505764}
-  - {fileID: 345561627609132521}
-  - {fileID: 2713973297730166366}
-  - {fileID: 2730018383859919032}
+  spritesToColor:
   - {fileID: 8369963033638595713}
   - {fileID: 6370727780124540450}
   - {fileID: 4934513849399906397}
   - {fileID: 7322845350747050506}
+  - {fileID: 2730018383859919032}
+  - {fileID: 7879730224113433477}
+  - {fileID: 345561627609132521}
+  - {fileID: 2713973297730166366}
+  - {fileID: 7985945159468505764}
+  spritesToShow:
+  - {fileID: 345561627609132521}
+  - {fileID: 2713973297730166366}
+  - {fileID: 1173628645110206582}
+  isHitStun: 0
 --- !u!114 &4048278115268245952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1452,7 +1457,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 0
+    Name: isRunning
+  - Type: 4
+    SynchronizeType: 0
+    Name: isJumping
+  - Type: 4
+    SynchronizeType: 0
+    Name: isWallSliding
+  - Type: 9
+    SynchronizeType: 0
+    Name: takeOf
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -1468,6 +1485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b021fbaff610d954391eca408d73e9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canAttack: 1
   monstersAttacks: {fileID: 3102752595710226504}
   monster: 3
 --- !u!114 &3102752595710226504
@@ -1489,6 +1507,7 @@ MonoBehaviour:
   - {fileID: 1021676239920663735}
   - {fileID: 8726684830017482835}
   - {fileID: 2779044542760536006}
+  hitboxes: []
   bubblePrefab: {fileID: 1310930056218048277, guid: cb634796ab85d01418b17128fb663ac5,
     type: 3}
   bubbleWrathPrefab: {fileID: 1310930056218048277, guid: 934bb75e413002d45a805491517bd25c,

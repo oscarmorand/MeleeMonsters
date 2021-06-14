@@ -54,7 +54,7 @@ public class IA : MonoBehaviour
 
             //utiliser le wrath mode si la barre est pleine
             if (playerScript.loadingWrath >= playerScript.maxLoadingWrath)
-                playerScript.WrathModeState();
+                playerScript.GoIntoWrathMode();
 
             if (playerMovement.isGrounded || playerMovement.isOnPlatform) //si l'IA est au sol ou sur une plateforme
             {
