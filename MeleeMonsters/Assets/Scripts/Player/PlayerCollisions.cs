@@ -50,12 +50,14 @@ public class PlayerCollisions : MonoBehaviour
         if(collision.gameObject.layer == 12)
         {
             GameObject attacker = collision.transform.root.gameObject;
+            if(attacker != transform.root.gameObject)
+            {
+                Attack attack = attacker.GetComponent<PlayerAttacks>().currentAttack;
 
-            Attack attack = attacker.GetComponent<PlayerAttacks>().currentAttack;
+                print(attacker.name + " m'attaque avec une " + attack.name);
 
-            print(attacker.name + " m'attaque avec une "+attack.name);
-
-            TakeAttack(attack, attacker);
+                TakeAttack(attack, attacker);
+            }
         }
      
     }

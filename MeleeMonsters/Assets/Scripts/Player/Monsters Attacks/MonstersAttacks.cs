@@ -42,11 +42,11 @@ abstract public class MonstersAttacks : MonoBehaviour
     }
 
 
-    //public abstract void SideGround();
+    public abstract void SideGround();
 
-    //public abstract void NeutralGround();
+    public abstract void NeutralGround();
 
-    //public abstract void DownGround();
+    public abstract void DownGround();
 
     public abstract void SideSpecial();
 
@@ -54,11 +54,11 @@ abstract public class MonstersAttacks : MonoBehaviour
 
     public abstract void DownSpecial();
 
-    //public abstract void SideAir();
+    public abstract void SideAir();
 
-    //public abstract void NeutralAir();
+    public abstract void NeutralAir();
 
-    //public abstract void DownAir();
+    public abstract void DownAir();
 
     public abstract void SideWrath();
 

@@ -116,7 +116,7 @@ public class PlayerAttacks : MonoBehaviour
 
     public static float CalculateHitStun(float knockback)
     {
-        return knockback / 200;
+        return knockback / 400;
     }
 
 

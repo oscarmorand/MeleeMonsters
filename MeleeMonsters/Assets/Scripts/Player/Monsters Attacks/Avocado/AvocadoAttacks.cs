@@ -15,26 +15,36 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
     {
         attacks = new List<Attack>();
 
-        attacks.Add(new Attack("SideGround", 4, 350, new Vector2(1, 0.1f), hitboxes[0], 0.3f,"Sg", "slash sabre"));
-        attacks.Add(new Attack("DownGround", 5, 150, new Vector2(0, 1), hitboxes[0], 0.3f,"Dg", "slash sabre"));
-        attacks.Add(new Attack("NeutralGround", 3, 100, new Vector2(0, 1), hitboxes[0], 0.3f,"Ng","slash sabre"));
+        attacks.Add(new Attack("SideGround", 4, 150, new Vector2(1, 0.1f), 0.3f,"Sg", "slash sabre"));
+        attacks.Add(new Attack("DownGround", 5, 150, new Vector2(0, 1), 0.3f,"Dg", "slash sabre"));
+        attacks.Add(new Attack("NeutralGround", 3, 100, new Vector2(0, 1), 0.3f,"Ng","slash sabre"));
 
 
-        attacks.Add(new Attack("SideAir", 4, 350, new Vector2(1, 0), hitboxes[0], 0.1f,"Sa","slash sabre"));
-        attacks.Add(new Attack("DownAir", 6, 250, new Vector2(0, -1), hitboxes[0], 0.1f,"Da","slash sabre"));
-        attacks.Add(new Attack("NeutralAir", 3, 300, new Vector2(0, 1), hitboxes[0], 0.1f,"Na","slash sabre"));
+        attacks.Add(new Attack("SideAir", 4, 350, new Vector2(1, 0),  0.1f,"Sa","slash sabre"));
+        attacks.Add(new Attack("DownAir", 6, 250, new Vector2(0, -1), 0.1f,"Da","slash sabre"));
+        attacks.Add(new Attack("NeutralAir", 3, 300, new Vector2(0, 1), 0.1f,"Na","slash sabre"));
 
 
-        attacks.Add(new Attack("SideSpecial", 7, 500, new Vector2(1, 0.2f), hitboxes[0], 0.1f, "",""));
-        attacks.Add(new Attack("DownSpecial", 6, 400, new Vector2(0, 1), hitboxes[0], 0.1f, "",""));
-        attacks.Add(new Attack("NeutralSpecial", 2, 50, new Vector2(0, 1), hitboxes[0], 0.4f, "",""));
+        attacks.Add(new Attack("SideSpecial", 7, 500, new Vector2(1, 0.2f), 0.1f, "",""));
+        attacks.Add(new Attack("DownSpecial", 6, 400, new Vector2(0, 1), 0.1f, "",""));
+        attacks.Add(new Attack("NeutralSpecial", 2, 50, new Vector2(0, 1), 0.4f, "",""));
 
 
-        attacks.Add(new Attack("SideWrath", 10, 750, new Vector2(1, 0), hitboxes[0], 0.1f, "",""));
-        attacks.Add(new Attack("DownWrath", 9, 500, new Vector2(0, 1), hitboxes[0], 0.1f, "",""));
-        attacks.Add(new Attack("NeutralWrath", 4, 75, new Vector2(0, 1), hitboxes[0], 0.1f,"",""));
+        attacks.Add(new Attack("SideWrath", 10, 750, new Vector2(1, 0), 0.1f, "",""));
+        attacks.Add(new Attack("DownWrath", 9, 500, new Vector2(0, 1), 0.1f, "",""));
+        attacks.Add(new Attack("NeutralWrath", 4, 75, new Vector2(0, 1), 0.1f,"",""));
 
     }
+
+    //Basic attacks
+    public override void SideGround() { }
+    public override void DownGround() { }
+    public override void NeutralGround() { }
+    public override void SideAir() { }
+    public override void DownAir() { }
+    public override void NeutralAir() { }
+
+
 
     public override void SideSpecial()
     {
@@ -137,42 +147,5 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
     //attacks.Add(new Attack("DownWrath", 9, 500, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
     //attacks.Add(new Attack("NeutralWrath", 4, 75, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
 
-    //public override void SideGround()
-    //{
-    //    StartCoroutine(pA.BasicAttack(attacks[0]));
-    //    aM.Play("slash sabre");
-
-    //}
-
-    //public override void DownGround()
-    //{
-    //    StartCoroutine(pA.BasicAttack(attacks[1]));
-    //    aM.Play("slash sabre");
-    //}
-
-    //public override void NeutralGround()
-    //{
-    //    StartCoroutine(pA.BasicAttack(attacks[2]));
-    //    aM.Play("slash sabre");
-    //}
-
-
-
-    //public override void SideAir()
-    //{
-    //    StartCoroutine(pA.BasicAttack(attacks[3]));
-    //    aM.Play("slash sabre");
-    //}
-
-    //public override void DownAir()
-    //{
-    //    StartCoroutine(pA.BasicAttack(attacks[4]));
-    //    aM.Play("slash sabre");
-    //}
-
-    //public override void NeutralAir()
-    //{
-    //    StartCoroutine(pA.BasicAttack(attacks[5]));
-    //    aM.Play("slash sabre");
-    //}
+   
 }
