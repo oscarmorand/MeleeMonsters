@@ -173,6 +173,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
             isWrath = true;
             loadingWrath = 0;
             WrathColor(Color.red);
+            pV.RPC("WrathSprites", RpcTarget.All, true);
             WrathSprites(true);
         }
     }
@@ -182,6 +183,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         isWrath = false;
         loadingWrath = 0;
         WrathColor(Color.white);
+        pV.RPC("WrathSprites", RpcTarget.All, false);
         WrathSprites(false);
     }
 
@@ -194,6 +196,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         }
     }
 
+    [PunRPC]
     public void WrathSprites(bool enabled)
     {
         foreach(SpriteRenderer sprite in spritesToShow)

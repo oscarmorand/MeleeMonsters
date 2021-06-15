@@ -25,6 +25,7 @@ public class KrakenWave : MonoBehaviour
     public List<GameObject> playersInWave;
     public bool isDestroying = false;
 
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -41,9 +42,9 @@ public class KrakenWave : MonoBehaviour
         if(isGrounded)
             rb.velocity = new Vector2(speed * _direction, 0);
 
-        foreach(GameObject go in playersInWave)
+        foreach (GameObject go in playersInWave)
         {
-            if(!isDestroying)
+            if (!isDestroying)
             {
                 go.transform.position = transform.position;
                 go.transform.Rotate(Vector3.forward, Time.deltaTime * 80);
@@ -58,8 +59,11 @@ public class KrakenWave : MonoBehaviour
 
 
         Vector3 scale = gameObject.transform.localScale;
-        scale.x *= _direction;
+        scale.x = _direction;
         gameObject.transform.localScale = scale;
+
+        pV.RPC("SetDirection", RpcTarget.All, _direction);
+
         rb.velocity = new Vector2(speed*_direction, 0.3f * speed);
 
         triggerCollider.enabled = true;
@@ -78,6 +82,7 @@ public class KrakenWave : MonoBehaviour
         {
             go.GetComponent<PlayerScript>().isHitStun = false;
             go.transform.root.rotation = Quaternion.Euler(0, 0, 0);
+            go.GetComponent<PlayerMovement>().FollowWave(false, "");
         }
         PhotonNetwork.Destroy(gameObject);
     }
@@ -92,8 +97,32 @@ public class KrakenWave : MonoBehaviour
                 {
                     playersInWave.Add(collision.transform.root.gameObject);
                     collision.transform.root.GetComponent<PlayerScript>().isHitStun = true;
+
+                    collision.transform.root.gameObject.GetComponent<PlayerMovement>().FollowWave(true, this.name);
                 }
             }
         }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+            stream.SendNext(transform.position);
+        else
+        {
+            if(!pV.IsMine)
+            {
+                Vector3 latestPos = (Vector3)stream.ReceiveNext();
+                transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime * 5);
+            }
+        }
+    }
+
+    [PunRPC] 
+    public void SetDirection(float direction)
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = direction;
+        transform.localScale = scale;
     }
 }

@@ -54,7 +54,7 @@ public class KrakenWrathBubble : MonoBehaviour
     {
         if (collision.transform.tag == "Player" || collision.transform.tag == "IA" || collision.gameObject.layer == 8 || collision.gameObject.layer == 10)
         {
-            if (collision.transform != _parent.transform)
+            if (collision.transform.root.gameObject != _parent)
             {
                 if (pV.IsMine)
                 {

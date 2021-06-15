@@ -49,7 +49,7 @@ public class KrakenBubble : MonoBehaviour
     {
         if (collision.transform.tag == "Player" || collision.transform.tag == "IA")
         {
-            if (collision.transform != _parent.transform)
+            if (collision.transform.root.gameObject != _parent)
             {
                 if (pV.IsMine)
                 {
