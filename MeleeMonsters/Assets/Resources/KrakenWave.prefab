@@ -110,6 +110,7 @@ MonoBehaviour:
   rayCastPoint: {fileID: 8952466062895571321}
   groundPoint: {fileID: 6546366964567013076}
   playersInWave: []
+  isDestroying: 0
 --- !u!95 &2542241834109624242
 Animator:
   serializedVersion: 3

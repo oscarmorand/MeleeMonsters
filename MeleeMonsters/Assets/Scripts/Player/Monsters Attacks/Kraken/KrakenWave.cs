@@ -23,6 +23,7 @@ public class KrakenWave : MonoBehaviour
     public Transform groundPoint;
 
     public List<GameObject> playersInWave;
+    public bool isDestroying = false;
 
     void Awake()
     {
@@ -42,8 +43,11 @@ public class KrakenWave : MonoBehaviour
 
         foreach(GameObject go in playersInWave)
         {
-            go.transform.position = transform.position;
-            go.transform.Rotate(Vector3.forward, Time.deltaTime * 10);
+            if(!isDestroying)
+            {
+                go.transform.position = transform.position;
+                go.transform.Rotate(Vector3.forward, Time.deltaTime * 80);
+            }
         }
     }
 
@@ -60,8 +64,6 @@ public class KrakenWave : MonoBehaviour
 
         triggerCollider.enabled = true;
         Invoke("EnablePhysics", 0.08f);
-
-        //Invoke("DestroyBullet", durationTime);
     }
 
     public void EnablePhysics()
@@ -71,10 +73,11 @@ public class KrakenWave : MonoBehaviour
 
     public void DestroyBullet()
     {
+        isDestroying = true;
         foreach(GameObject go in playersInWave)
         {
             go.GetComponent<PlayerScript>().isHitStun = false;
-            go.transform.rotation = new Quaternion();
+            go.transform.root.rotation = Quaternion.Euler(0, 0, 0);
         }
         PhotonNetwork.Destroy(gameObject);
     }
