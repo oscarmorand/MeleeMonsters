@@ -11,6 +11,7 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
 
     public GameObject bubblePrefab;
     public GameObject bubbleWrathPrefab;
+    public GameObject wavePrefab;
 
 
     public override void InstantiateAttacks()
@@ -82,7 +83,8 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
 
     public override void DownWrath()
     {
-
+        GameObject wave = PhotonNetwork.Instantiate(wavePrefab.name, hitboxesPoints[0].position, new Quaternion());
+        wave.GetComponent<KrakenWave>().Throw(pM.direction, gameObject);
     }
 
     public override void NeutralWrath()
