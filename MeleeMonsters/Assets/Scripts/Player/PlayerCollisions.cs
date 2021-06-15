@@ -54,7 +54,10 @@ public class PlayerCollisions : MonoBehaviour
             {
                 Attack attack = attacker.GetComponent<PlayerAttacks>().currentAttack;
 
-                print(attacker.name + " m'attaque avec une " + attack.name);
+                if (attack == null)
+                    print("current attack is null");
+                else
+                    print(attacker.name + " m'attaque avec une " + attack.name);
 
                 TakeAttack(attack, attacker);
             }

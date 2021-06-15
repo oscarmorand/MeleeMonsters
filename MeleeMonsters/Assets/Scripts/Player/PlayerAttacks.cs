@@ -76,12 +76,17 @@ public class PlayerAttacks : MonoBehaviour
         canAttack = false;
 
         Attack attack = monstersAttacks.attacks[attackNbr];
+
         currentAttack = attack;
+        pV.RPC("ChangeCurrentAttack", RpcTarget.All, Attack.Serialize(attack));
 
         monstersAttacks.Attack(attack.name);
 
-        AttackAnimation(attack);
-        AttackSFX(attack);
+        //AttackAnimation(attack);
+        pV.RPC("AttackAnimation", RpcTarget.All, attack.anim);
+        //AttackSFX(attack);
+        pV.RPC("AttackSFX", RpcTarget.All, attack.sound);
+
 
         Invoke("EndOfAttack", attack.time);
     }
@@ -160,75 +165,24 @@ public class PlayerAttacks : MonoBehaviour
         }
     }
 
-    public void AttackAnimation(Attack attack)
-    {
-        string animation = attack.anim;
-        if (animation != "")
-            pAn.Attack(animation);
-    }
 
-    public void AttackSFX(Attack attack)
+    [PunRPC]
+    public void AttackSFX(string sound)
     {
-        string sound = attack.sound;
         if (sound != "")
             aM.Play(sound);
     }
 
+    [PunRPC]
+    public void AttackAnimation(string animationAttack)
+    {
+        if (animationAttack != "")
+            pAn.Attack(animationAttack);
+    }
 
-
-
-
-    //public void BasicAttack(Attack attack)
-    //{
-    //    LayerMask layerMask = (1<<9) | (1<<11);
-    //    Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attack.hitBox.position, attack.size, layerMask);
-    //    foreach (Collider2D playerCollider in hitColliders)
-    //    {
-    //        if (playerCollider != null && playerCollider.transform != transform)
-    //        {
-    //            if(playerCollider.transform.tag == "Player" || playerCollider.transform.tag == "IA")
-    //            {
-    //                if (pV.IsMine)
-    //                {
-    //                    //PlayerScript targetScript = playerCollider.GetComponent<PlayerScript>();
-    //                    PhotonView pVTarget = playerCollider.GetComponent<PhotonView>();
-
-    //                    float bonus = 1;
-    //                    if (pS.isWrath)
-    //                    {
-    //                        bonus = 1.25f;
-    //                        WrathSustain(attack.damage);
-    //                    }
-    //                    int newDamage = (int)((float)(attack.damage) * bonus);
-
-    //                    Vector2 direction = attack.direction;
-    //                    Vector2 newDirection = new Vector2((direction.x) * pM.direction, (direction.y));
-    //                    pVTarget.RPC("Eject", RpcTarget.All, newDirection, attack.ejection, bonus);
-
-    //                    pVTarget.RPC("TakeDamage", RpcTarget.All, newDamage);
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-
-    //public IEnumerator BasicAttack(Attack attack)
-    //{
-    //    currentAttack = attack;
-    //    //yield return new WaitForSeconds(attack.activationTime);
-
-    //    //print("je m'active");
-
-    //    //yield return new WaitForSeconds(attack.durationTime);
-
-    //    //print("je me désactive");
-
-    //    //yield return new WaitForSeconds(attack.disabledTime);
-
-    //    print("ahhh je peux de nouveau attaquer");
-
-    //    yield return new WaitForSeconds(10000f);
-
-    //    EndOfAttack();
-    //}
+    [PunRPC] 
+    public void ChangeCurrentAttack(float[] data)
+    {
+        currentAttack = Attack.Deserialize(data);
+    }
 }

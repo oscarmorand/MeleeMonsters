@@ -1432,40 +1432,40 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: takeOf
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Sg
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Ng
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Dg
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Sa
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Na
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Da
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Ss
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Ns
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Ds
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Sw
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Nw
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Dw
   m_SynchronizeLayers:
   - SynchronizeType: 1

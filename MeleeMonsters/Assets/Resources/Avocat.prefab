@@ -1332,7 +1332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 0
+  ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
     SynchronizeType: 1
@@ -1347,10 +1347,10 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: isWallSliding
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: Sg
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: Ng
   - Type: 9
     SynchronizeType: 0
@@ -1364,6 +1364,24 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 0
     Name: Dg
+  - Type: 9
+    SynchronizeType: 0
+    Name: Ss
+  - Type: 9
+    SynchronizeType: 0
+    Name: Ns
+  - Type: 9
+    SynchronizeType: 0
+    Name: Ds
+  - Type: 9
+    SynchronizeType: 0
+    Name: Sw
+  - Type: 9
+    SynchronizeType: 0
+    Name: Nw
+  - Type: 9
+    SynchronizeType: 0
+    Name: Dw
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
