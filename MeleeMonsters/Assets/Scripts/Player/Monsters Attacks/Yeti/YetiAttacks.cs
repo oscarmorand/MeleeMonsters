@@ -41,14 +41,14 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
         attacks.Add(new Attack("NeutralAir", 6, 350,  new Vector2(0, 1), 0.1f,"Na", ""));
 
 
-        attacks.Add(new Attack("SideSpecial", 4, 150, new Vector2(1, 0), 0.1f,"", ""));
-        attacks.Add(new Attack("DownSpecial", 12, 900,  new Vector2(0, 1), 0.1f,"", ""));
-        attacks.Add(new Attack("NeutralSpecial", 15, 1200, new Vector2(0, 1), 0.1f,"", ""));
+        attacks.Add(new Attack("SideSpecial", 4, 150, new Vector2(1, 0), 0.1f,"Ss", ""));
+        attacks.Add(new Attack("DownSpecial", 12, 900,  new Vector2(0, 1), 0.1f,"Ds", ""));
+        attacks.Add(new Attack("NeutralSpecial", 15, 1200, new Vector2(0, 1), 0.1f,"Ns", ""));
 
 
-        attacks.Add(new Attack("SideWrath", 10, 400,new Vector2(1, 0), 0.1f,"", ""));
-        attacks.Add(new Attack("DownWrath", 15, 1000, new Vector2(0, 1), 0.1f,"", ""));
-        attacks.Add(new Attack("NeutralWrath", 20, 1500, new Vector2(0, 1), 0.1f,"", ""));
+        attacks.Add(new Attack("SideWrath", 10, 400,new Vector2(1, 0), 0.1f,"Sw", ""));
+        attacks.Add(new Attack("DownWrath", 15, 1000, new Vector2(0, 1), 0.1f,"Dw", ""));
+        attacks.Add(new Attack("NeutralWrath", 20, 1500, new Vector2(0, 1), 0.1f,"Nw", ""));
 
     }
 
