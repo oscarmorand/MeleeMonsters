@@ -1241,6 +1241,7 @@ GameObject:
   - component: {fileID: 2900025662857652055}
   - component: {fileID: 678860041290047737}
   - component: {fileID: 6524688683030467966}
+  - component: {fileID: 1707983574752147025}
   m_Layer: 9
   m_Name: IAYeti
   m_TagString: IA
@@ -1778,7 +1779,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770c815542ef1c04dad62d97cf3c0097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iaattacks: {fileID: 0}
+  iaattacks: {fileID: 1707983574752147025}
+  distanceX: 0
+  distanceY: 0
+  relativeSideX: 0
+  relativeSideY: 0
+--- !u!114 &1707983574752147025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958320532538682467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9179cddc0ae2f0342ba0ccca39163d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   distanceX: 0
   distanceY: 0
   relativeSideX: 0
