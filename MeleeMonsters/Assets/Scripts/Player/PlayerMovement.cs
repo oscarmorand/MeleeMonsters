@@ -64,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem footSteps;
     public ParticleSystem impactEffect;
     private bool wasOnGround = false;
+    private bool wasOnPlatform = false;
 
     void Start()
     {
@@ -158,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if(footSteps != null)
                 {
-                    if (moveInputx != 0 && isGrounded)
+                    if (moveInputx != 0 && (isGrounded||isOnPlatform))
                     {
                         photonView.RPC("ShowFootStepParticles", RpcTarget.All, true);
                     }
@@ -168,12 +169,13 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
 
-                if(isGrounded!=wasOnGround && impactEffect != null)
+                if((isGrounded!=wasOnGround || isOnPlatform!=wasOnPlatform) && impactEffect != null)
                 {
                     photonView.RPC("PlayImpactEffect", RpcTarget.All);
                     PlayImpact();
                 }
 
+                wasOnPlatform = isOnPlatform;
                 wasOnGround = isGrounded;
             }
         }
