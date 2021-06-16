@@ -57,6 +57,10 @@ public class PlayerMovement : MonoBehaviour
     internal bool inWave = false;
     internal GameObject wave;
 
+    internal bool isDashAttacking;
+    internal float dashAttackSpeed = 0;
+    internal Vector2 dashAttackDirection;
+
     void Start()
     {
         playerScript = GetComponent<PlayerScript>();
@@ -94,6 +98,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
+
+                if(isDashAttacking)
+                {
+                    rb.velocity = new Vector2(dashAttackDirection.x*direction*dashAttackSpeed, dashAttackDirection.y*dashAttackSpeed);
+                }
+
                 if (isGrounded || isOnPlatform)
                 {
                     nbrJump = maxJump;
@@ -203,6 +213,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+
+
+
     public void DashState()
     {
         if (nbrDash > 0)
@@ -224,6 +237,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+
+
     public void JumpState()
     {
         if (nbrJump > 0 && !isJumping)
@@ -242,6 +257,9 @@ public class PlayerMovement : MonoBehaviour
         isJumping = false;
     }
 
+
+
+
     public void TransparentState()
     {
         gameObject.layer = 11;
@@ -253,10 +271,16 @@ public class PlayerMovement : MonoBehaviour
         gameObject.layer = 9;
     }
 
+
+
+
     public void Eject(Vector2 force)
     {
         rb.AddForce(force);
     }
+
+
+
 
 
     public void FollowWave(bool follow, string waveName)
@@ -275,5 +299,21 @@ public class PlayerMovement : MonoBehaviour
             wave = null;
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+    }
+
+
+
+    public void DashAttackState(float time, float speed, Vector2 direction)
+    {
+        isDashAttacking = true;
+        dashAttackSpeed = speed;
+        dashAttackDirection = direction;
+        Invoke("NotDashAttackingAnymore", time);
+
+    }
+
+    public void NotDashAttackingAnymore()
+    {
+        isDashAttacking = false;
     }
 }

@@ -36,6 +36,8 @@ public class PlayerAnimation : MonoBehaviour
         }
            
         anim.SetBool("isWallSliding", pM.wallSliding);
+
+        DashAttack(pM.isDashAttacking);
     }
 
     public void TakeOf()
@@ -54,5 +56,17 @@ public class PlayerAnimation : MonoBehaviour
     public void Attack(string trigger)
     {
         anim.SetTrigger(trigger);
+    }
+
+    public void DashAttack(bool isDashAttacking)
+    {
+        anim.SetBool("isDashAttacking", isDashAttacking);
+        pV.RPC("DashAttackRPC", RpcTarget.All, isDashAttacking);
+    }
+
+    [PunRPC]
+    public void DashAttackRPC(bool isDashAttacking)
+    {
+        anim.SetBool("isDashAttacking", isDashAttacking);
     }
 }

@@ -25,14 +25,14 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
         attacks.Add(new Attack("NeutralAir", 3, 300, new Vector2(0, 1), 0.3f,"Na","slash sabre"));
 
 
-        attacks.Add(new Attack("SideSpecial", 7, 500, new Vector2(1, 0.2f), 0.5f, "Ss",""));
+        attacks.Add(new Attack("SideSpecial", 7, 500, new Vector2(1, 0.2f), 0.8f, "Ss",""));
         attacks.Add(new Attack("DownSpecial", 6, 400, new Vector2(0, 1), 1f, "Ds",""));
-        attacks.Add(new Attack("NeutralSpecial", 2, 50, new Vector2(0, 1), 0.5f, "Ns",""));
+        attacks.Add(new Attack("NeutralSpecial", 2, 50, new Vector2(0, 1), 0.5f, "Ns","bouchon champagne"));
 
 
-        attacks.Add(new Attack("SideWrath", 10, 750, new Vector2(1, 0), 0.8f, "Sw",""));
+        attacks.Add(new Attack("SideWrath", 10, 750, new Vector2(1, 0), 1f, "Sw",""));
         attacks.Add(new Attack("DownWrath", 9, 500, new Vector2(0, 1), 1f, "Dw",""));
-        attacks.Add(new Attack("NeutralWrath", 4, 75, new Vector2(0, 1), 0.7f,"Nw",""));
+        attacks.Add(new Attack("NeutralWrath", 4, 75, new Vector2(0, 1), 0.7f,"Nw", "bouchon champagne"));
 
     }
 
@@ -48,14 +48,11 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
 
     public override void SideSpecial()
     {
-        print("je fais une sidespecial d'avocat ohlalah");
+        pM.DashAttackState(0.4f, 15f, new Vector2(1, 0));
     }
 
 
-    public override void DownSpecial()
-    {
-        print("je fais une downSpecial d'avocat wouaaaa");
-    }
+    public override void DownSpecial(){}
 
     public override void NeutralSpecial()
     {
@@ -63,20 +60,16 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
         GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, hitboxesPoints[6].position, new Quaternion());
         bullet.GetComponent<AvocadoBullet>().Throw(pM.direction, gameObject);
         NoyauDisable();
-        aM.Play("bouchon champagne");
     }
 
   
 
     public override void SideWrath()
     {
-
+        pM.DashAttackState(0.2f, 30f, new Vector2(1, 0));
     }
 
-    public override void DownWrath()
-    {
-
-    }
+    public override void DownWrath(){}
 
     public override void NeutralWrath()
     {
@@ -84,8 +77,9 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
         GameObject bullet = PhotonNetwork.Instantiate(bulletWrathPrefab.name, hitboxesPoints[6].position, new Quaternion());
         bullet.GetComponent<AvocadoWrathBullet>().Throw(pM.direction, gameObject);
         NoyauDisable();
-        aM.Play("bouchon champagne");
     }
+
+
 
 
     public void NoyauDisable()
@@ -126,26 +120,4 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
             aM.Play("slash couteau 2");
     }
     */
-
-
-    //attacks.Add(new Attack("SideGround", 4, 350, new Vector2(1, 0.1f), hitboxesPoints[0], new Vector2(1.3f, 0.75f), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
-    //attacks.Add(new Attack("DownGround", 5, 150,  new Vector2(0, 1), hitboxesPoints[1], new Vector2(1, 1), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
-    //attacks.Add(new Attack("NeutralGround", 3, 100, new Vector2(0, 1), hitboxesPoints[2], new Vector2(1.9f, 0.55f), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
-
-
-    //attacks.Add(new Attack("SideAir", 4, 350, new Vector2(1, 0), hitboxesPoints[3], new Vector2(1, 2), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
-    //attacks.Add(new Attack("DownAir", 6, 250, new Vector2(0, -1), hitboxesPoints[4], new Vector2(0.65f, 1.1f), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
-    //attacks.Add(new Attack("NeutralAir", 3, 300, new Vector2(0, 1), hitboxesPoints[5], new Vector2(1.9f, 0.7f), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
-
-
-    //attacks.Add(new Attack("SideSpecial", 7, 500, new Vector2(1, 0.2f), hitboxesPoints[0], new Vector2(1, 1), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
-    //attacks.Add(new Attack("DownSpecial", 6, 400, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
-    //attacks.Add(new Attack("NeutralSpecial", 2, 50, new Vector2(0, 1), hitboxesPoints[5], new Vector2(1, 1), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
-
-
-    //attacks.Add(new Attack("SideWrath", 10, 750, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
-    //attacks.Add(new Attack("DownWrath", 9, 500, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
-    //attacks.Add(new Attack("NeutralWrath", 4, 75, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1), hitboxes[0], 0.1f, 0.2f, 0.1f, 0.2f));
-
-   
 }
