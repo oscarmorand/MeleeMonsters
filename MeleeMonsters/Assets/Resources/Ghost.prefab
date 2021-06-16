@@ -869,6 +869,7 @@ MonoBehaviour:
   isOnPlatform: 0
   HasPassedPlatform: 0
   isPressingDown: 0
+  footSteps: {fileID: 0}
 --- !u!114 &-366637032177327525
 MonoBehaviour:
   m_ObjectHideFlags: 0

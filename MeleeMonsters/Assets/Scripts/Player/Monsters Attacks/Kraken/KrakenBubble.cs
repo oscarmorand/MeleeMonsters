@@ -53,7 +53,8 @@ public class KrakenBubble : MonoBehaviour
     {
         ParticleSystem partSys = particleBurstPrefab.GetComponent<ParticleSystem>();
 
-        partSys.startSize = 0.1f * bonus;
+        var main = partSys.main;
+        main.startSize = 0.1f * bonus;
 
         ParticleSystem.Burst burst = new ParticleSystem.Burst();
         burst.count = 20 * bonus;

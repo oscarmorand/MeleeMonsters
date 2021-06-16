@@ -61,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
     internal float dashAttackSpeed = 0;
     internal Vector2 dashAttackDirection;
 
+    public ParticleSystem footSteps;
+
     void Start()
     {
         playerScript = GetComponent<PlayerScript>();
@@ -77,7 +79,6 @@ public class PlayerMovement : MonoBehaviour
         nbrDash = maxDash;
         dashTime = settings.dashTime;
         jumpTime = settings.jumpTime;
-
     }
 
 
@@ -151,6 +152,18 @@ public class PlayerMovement : MonoBehaviour
                 if (HasPassedPlatform)
                 {
                     gameObject.layer = 9;
+                }
+
+                if(footSteps != null)
+                {
+                    if (moveInputx != 0 && isGrounded)
+                    {
+                        photonView.RPC("ShowFootStepParticles", RpcTarget.All, true);
+                    }
+                    else
+                    {
+                        photonView.RPC("ShowFootStepParticles", RpcTarget.All, false);
+                    }
                 }
             }
         }
@@ -315,5 +328,18 @@ public class PlayerMovement : MonoBehaviour
     public void NotDashAttackingAnymore()
     {
         isDashAttacking = false;
+    }
+
+
+    [PunRPC]
+    public void ShowFootStepParticles(bool show)
+    {
+        if (show)
+        {
+            if(footSteps.isStopped)
+                footSteps.Play();
+        }
+        else
+            footSteps.Stop();
     }
 }
