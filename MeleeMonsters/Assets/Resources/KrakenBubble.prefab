@@ -101,6 +101,8 @@ MonoBehaviour:
   speed: 12
   damage: 3
   knockback: 100
+  particleBurstPrefab: {fileID: 7783896587537146404, guid: 369df6b41e1faba4ebed5642d3e3a847,
+    type: 3}
 --- !u!50 &831150392122059664
 Rigidbody2D:
   serializedVersion: 4
