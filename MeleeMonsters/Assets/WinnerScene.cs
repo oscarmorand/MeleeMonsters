@@ -22,7 +22,7 @@ public class WinnerScene : MonoBehaviour
             winner = "The AI";
         else
             winner = gameManager.winner.NickName;
-        UIWinner.text = winner + " is the winner of the game";
+        UIWinner.text = winner + " is the winner of the game !";
     }
 
     // Update is called once per frame
