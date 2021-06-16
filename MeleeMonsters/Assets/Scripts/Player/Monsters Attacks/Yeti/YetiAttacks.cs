@@ -12,66 +12,57 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
     public override void InstantiateAttacks()
     {
         attacks = new List<Attack>();
-        attacks.Add(new Attack("SideGround", 6, 400, 0.8f, new Vector2(1, 0.1f), hitboxesPoints[0], new Vector2(1.15f, 0.8f)));
-        attacks.Add(new Attack("DownGround", 9, 500, 1f, new Vector2(0, 1), hitboxesPoints[1], new Vector2(2.5f, 1)));
-        attacks.Add(new Attack("NeutralGround", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[2], new Vector2(1, 0.5f)));
-        
+        //attacks.Add(new Attack("SideGround", 6, 400, 0.8f, new Vector2(1, 0.1f), hitboxesPoints[0], new Vector2(1.15f, 0.8f)));
+        //attacks.Add(new Attack("DownGround", 9, 500, 1f, new Vector2(0, 1), hitboxesPoints[1], new Vector2(2.5f, 1)));
+        //attacks.Add(new Attack("NeutralGround", 4, 200, 0.4f, new Vector2(0, 1), hitboxesPoints[2], new Vector2(1, 0.5f)));
 
-        attacks.Add(new Attack("SideAir", 10, 600, 1f, new Vector2(0.5f, -1), hitboxesPoints[3], new Vector2(1.5f, 1)));
-        attacks.Add(new Attack("DownAir", 11, 700, 1.2f, new Vector2(0, -1), hitboxesPoints[4], new Vector2(1.39f, 1)));
-        attacks.Add(new Attack("NeutralAir", 6, 350, 0.5f, new Vector2(0, 1), hitboxesPoints[5], new Vector2(1, 0.85f)));
-        
-        
-        attacks.Add(new Attack("SideSpecial", 4, 150, 0.6f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("DownSpecial", 12, 900, 1.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("NeutralSpecial", 15, 1200, 1.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
-        
-        
-        attacks.Add(new Attack("SideWrath", 10, 400, 1f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("DownWrath", 15, 1000, 1.9f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("NeutralWrath", 20, 1500, 2f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
-        
+
+        //attacks.Add(new Attack("SideAir", 10, 600, 1f, new Vector2(0.5f, -1), hitboxesPoints[3], new Vector2(1.5f, 1)));
+        //attacks.Add(new Attack("DownAir", 11, 700, 1.2f, new Vector2(0, -1), hitboxesPoints[4], new Vector2(1.39f, 1)));
+        //attacks.Add(new Attack("NeutralAir", 6, 350, 0.5f, new Vector2(0, 1), hitboxesPoints[5], new Vector2(1, 0.85f)));
+
+
+        //attacks.Add(new Attack("SideSpecial", 4, 150, 0.6f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
+        //attacks.Add(new Attack("DownSpecial", 12, 900, 1.4f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        //attacks.Add(new Attack("NeutralSpecial", 15, 1200, 1.8f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+
+
+        //attacks.Add(new Attack("SideWrath", 10, 400, 1f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
+        //attacks.Add(new Attack("DownWrath", 15, 1000, 1.9f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        //attacks.Add(new Attack("NeutralWrath", 20, 1500, 2f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+
+        attacks.Add(new Attack("SideGround", 6, 400, new Vector2(1, 0.1f), 0.1f,"Sg", ""));
+        attacks.Add(new Attack("DownGround", 9, 500,  new Vector2(0, 1), 0.1f,"Dg", ""));
+        attacks.Add(new Attack("NeutralGround", 4, 200, new Vector2(0, 1), 0.1f,"Ng", ""));
+
+
+        attacks.Add(new Attack("SideAir", 10, 600,  new Vector2(0.5f, -1), 0.1f,"Sa", ""));
+        attacks.Add(new Attack("DownAir", 11, 700, new Vector2(0, -1), 0.1f, "Da", ""));
+        attacks.Add(new Attack("NeutralAir", 6, 350,  new Vector2(0, 1), 0.1f,"Na", ""));
+
+
+        attacks.Add(new Attack("SideSpecial", 4, 150, new Vector2(1, 0), 0.1f,"Ss", ""));
+        attacks.Add(new Attack("DownSpecial", 12, 900,  new Vector2(0, 1), 0.1f,"Ds", ""));
+        attacks.Add(new Attack("NeutralSpecial", 15, 1200, new Vector2(0, 1), 0.1f,"Ns", ""));
+
+
+        attacks.Add(new Attack("SideWrath", 10, 400,new Vector2(1, 0), 0.1f,"Sw", ""));
+        attacks.Add(new Attack("DownWrath", 15, 1000, new Vector2(0, 1), 0.1f,"Dw", ""));
+        attacks.Add(new Attack("NeutralWrath", 20, 1500, new Vector2(0, 1), 0.1f,"Nw", ""));
+
     }
 
-    public override void SideGround()
-    {
-        pA.BasicAttack(attacks[0]);
-        pAn.Attack("Sg");
-    }
 
-    public override void DownGround()
-    {
-        pA.BasicAttack(attacks[1]);
-        pAn.Attack("Dg");
-    }
 
-    public override void NeutralGround()
-    {
-        pA.BasicAttack(attacks[2]);
-        pAn.Attack("Ng");
-    }
-   
+    //Basic attacks
+    public override void SideGround(){}
+    public override void DownGround(){}
+    public override void NeutralGround(){}
+    public override void SideAir(){}
+    public override void DownAir(){}
+    public override void NeutralAir(){}
 
-    public override void SideAir()
-    {
-        pA.BasicAttack(attacks[3]);
-        pAn.Attack("Sa");
-    }
 
-    public override void DownAir()
-    {
-        pA.BasicAttack(attacks[4]);
-        pAn.Attack("Da");
-    }
-
-    public override void NeutralAir()
-    {
-        pA.BasicAttack(attacks[5]);
-        pAn.Attack("Na");
-    }
-   
-
-  
 
     public override void SideSpecial()
     {

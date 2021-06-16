@@ -62,13 +62,16 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
 
     private ExitGames.Client.Photon.Hashtable _myCustomPropreties = new ExitGames.Client.Photon.Hashtable();
 
-    public List<SpriteRenderer> sprites;
+    public List<SpriteRenderer> spritesToColor;
+    public List<SpriteRenderer> spritesToShow;
     internal Color actualColor;
 
     private GameObject aMGameObject;
     private AudioManager aM;
     //private PlayerSoundManager pSM;
     private int localInt;
+
+    public bool isHitStun;
 
     // Start is called before the first frame update
     void Start()
@@ -81,7 +84,6 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
 
         aMGameObject = GameObject.Find("AudioManager");
         aM = aMGameObject.GetComponent<AudioManager>();
-        //pSM = GameObject.Find("PlayerSoundManager").GetComponent<PlayerSoundManager>();
 
         pV = GetComponent<PhotonView>();
 
@@ -130,12 +132,12 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         {
             if (isWrath)
             {
-                WrathState();
+                InWrathState();
                 wrathPercentage = (wrathTime / maxWrathTime) * 100;
             }
             else
             {
-                NormalState();
+                InNormalState();
                 wrathPercentage = (loadingWrath / maxLoadingWrath) * 100;
             }
         }
@@ -143,13 +145,13 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
             isWrath = localInt == 1;
     }
 
-    public void WrathState()
+
+    //WRATH MODE
+    public void InWrathState()
     {
         if(wrathTime <= 0)
         {
-            isWrath = false;
-            loadingWrath = 0;
-            WrathColor(Color.white);
+            ReturnToNormalState();
         }
         else
         {
@@ -157,14 +159,13 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         }
     }
 
-    public void NormalState()
+    public void InNormalState()
     {
         if(loadingWrath < maxLoadingWrath)
             loadingWrath += Time.deltaTime;
     }
 
-
-    public void WrathModeState()
+    public void GoIntoWrathMode()
     {
         if (loadingWrath >= maxLoadingWrath)
         {
@@ -172,18 +173,41 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
             isWrath = true;
             loadingWrath = 0;
             WrathColor(Color.red);
+            pV.RPC("WrathSprites", RpcTarget.All, true);
+            WrathSprites(true);
         }
     }
 
+    public void ReturnToNormalState()
+    {
+        isWrath = false;
+        loadingWrath = 0;
+        WrathColor(Color.white);
+        pV.RPC("WrathSprites", RpcTarget.All, false);
+        WrathSprites(false);
+    }
 
     public void WrathColor(Color color)
     {
         actualColor = color;
-        foreach(SpriteRenderer sprite in sprites)
+        foreach(SpriteRenderer sprite in spritesToColor)
         {
             sprite.color = color;
         }
     }
+
+    [PunRPC]
+    public void WrathSprites(bool enabled)
+    {
+        foreach(SpriteRenderer sprite in spritesToShow)
+        {
+            sprite.gameObject.SetActive(enabled);
+        }
+    }
+
+
+
+    //REAPPEAR
 
     public void OnEnterReappear()
     {
@@ -207,9 +231,18 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         rb.velocity = new Vector2(0, 0);
         int randomSpawnPoint = Random.Range(0, spawnList.Count);
         transform.position = spawnList[randomSpawnPoint].position;
-        //transform.position = new Vector3(0, 1, 0);
         isAlive = true;
         percentage = 0;
+
+        if(isWrath)
+        {
+            ReturnToNormalState();
+        }
+        else
+        {
+            loadingWrath -= 30 / 100 * loadingWrath;    //on perd 30% de la barre de chargement de wrath 
+        }
+
     }
 
     void CheckStillAlive()
@@ -222,6 +255,11 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
             levelManager.SearchForWinner();
         }
     }
+
+
+
+
+    //TAKE DAMAGE
 
     public void TakeDamage(int damage)
     {
@@ -237,10 +275,26 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         aM.Play("oof");
     }
 
+    public IEnumerator HitStunState(float hitStunTime)
+    {
+        isHitStun = true;
+
+        yield return new WaitForSeconds(hitStunTime);
+
+        isHitStun = false;
+    }
+
+    public void WrathSustain(int damage)
+    {
+        float sustain = (float)damage / 20;
+        print("sustain de " + sustain + " secondes!");
+        wrathTime += sustain;
+    }
 
 
 
 
+    //PHOTON
 
     private void AddObservable()
     {

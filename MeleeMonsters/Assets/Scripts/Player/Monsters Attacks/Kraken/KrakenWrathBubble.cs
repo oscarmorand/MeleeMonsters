@@ -54,7 +54,7 @@ public class KrakenWrathBubble : MonoBehaviour
     {
         if (collision.transform.tag == "Player" || collision.transform.tag == "IA" || collision.gameObject.layer == 8 || collision.gameObject.layer == 10)
         {
-            if (collision.transform != _parent.transform)
+            if (collision.transform.root.gameObject != _parent)
             {
                 if (pV.IsMine)
                 {
@@ -79,7 +79,7 @@ public class KrakenWrathBubble : MonoBehaviour
                 {
                     PhotonView pVTarget = playerCollider.GetComponent<PhotonView>();
 
-                    _parent.GetComponent<PlayerAttacks>().WrathSustain(damage);
+                    _parent.GetComponent<PlayerScript>().WrathSustain(damage);
 
                     Vector2 direction = new Vector2(playerCollider.transform.position.x-transform.position.x, playerCollider.transform.position.y - transform.position.y);
                     direction.Normalize();

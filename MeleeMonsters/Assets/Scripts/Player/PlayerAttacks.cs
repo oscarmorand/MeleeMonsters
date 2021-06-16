@@ -34,14 +34,17 @@ public class PlayerAttacks : MonoBehaviour
     private PlayerScript pS;
     private PhotonView pV;
     private Rigidbody2D rb;
+    internal PlayerAnimation pAn;
+    private AudioManager aM;
 
-    internal bool isAttacking = false;
-    internal bool canAttack = true;
+    public bool canAttack = true;
 
     public MonstersAttacks monstersAttacks;
 
     public PlayerScript.Monsters monster;
     private PlayerScript playerScript;
+
+    public Attack currentAttack = null;
 
     public void Start()
     {
@@ -50,6 +53,8 @@ public class PlayerAttacks : MonoBehaviour
         pS = GetComponent<PlayerScript>();
         pV = GetComponent<PhotonView>();
         rb = GetComponent<Rigidbody2D>();
+        pAn = GetComponent<PlayerAnimation>();
+        aM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     public void Update()
@@ -59,74 +64,53 @@ public class PlayerAttacks : MonoBehaviour
         if (!isPlaying)
             return;
 
-        if (canAttack && !isAttacking)
+        if (canAttack && !pS.isHitStun)
         {
             if (normalButton || specialButton)
-                PerformAttack();
+                PlayerExecuteAttack();
         }
     }
 
-    public void PerformAttack()
+    public void PerformAttack(int attackNbr)
     {
-        int attackNbr = DetermineAttack();
-
-        isAttacking = true;
         canAttack = false;
 
         Attack attack = monstersAttacks.attacks[attackNbr];
 
+        currentAttack = attack;
+        pV.RPC("ChangeCurrentAttack", RpcTarget.All, Attack.Serialize(attack));
+
         monstersAttacks.Attack(attack.name);
+
+        //AttackAnimation(attack);
+        pV.RPC("AttackAnimation", RpcTarget.All, attack.anim);
+        //AttackSFX(attack);
+        pV.RPC("AttackSFX", RpcTarget.All, attack.sound);
+
 
         Invoke("EndOfAttack", attack.time);
     }
 
-    public void BasicAttack(Attack attack)
+    public void PlayerExecuteAttack()
     {
-        LayerMask layerMask = (1<<9) | (1<<11);
-        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attack.hitBox.position, attack.size, layerMask);
-        foreach (Collider2D playerCollider in hitColliders)
+        int attackNbr = DetermineAttack();
+        PerformAttack(attackNbr);
+    }
+
+    public void IAExecuteAttack(attackType choice)
+    {
+        if (canAttack && !pS.isHitStun)
         {
-            if (playerCollider != null && playerCollider.transform != transform)
-            {
-                if(playerCollider.transform.tag == "Player" || playerCollider.transform.tag == "IA")
-                {
-                    if (pV.IsMine)
-                    {
-                        //PlayerScript targetScript = playerCollider.GetComponent<PlayerScript>();
-                        PhotonView pVTarget = playerCollider.GetComponent<PhotonView>();
-
-                        float bonus = 1;
-                        if (pS.isWrath)
-                        {
-                            bonus = 1.25f;
-                            WrathSustain(attack.damage);
-                        }
-                        int newDamage = (int)((float)(attack.damage) * bonus);
-
-                        Vector2 direction = attack.direction;
-                        Vector2 newDirection = new Vector2((direction.x) * pM.direction, (direction.y));
-                        pVTarget.RPC("Eject", RpcTarget.All, newDirection, attack.ejection, bonus);
-
-                        pVTarget.RPC("TakeDamage", RpcTarget.All, newDamage);
-                    }
-                }
-            }
+            PerformAttack((int)choice);
         }
     }
 
-    [PunRPC]
-    private void TakeDamage(int damage)
-    {
-        pS.TakeDamage(damage);
-    }
 
-    [PunRPC]
-    private void Eject(Vector2 direction, float force,float bonus)
+    private void EndOfAttack()
     {
-        float factor = CalculateForce(force, pS.percentage,rb.mass,bonus);
-        pM.Eject(direction*factor);
+        canAttack = true;
+        currentAttack = null;
     }
-
 
     public static float CalculateForce(float attackForce, int targetPercentage, float weight, float wrathBonus)
     {
@@ -135,19 +119,11 @@ public class PlayerAttacks : MonoBehaviour
         return (float)((attackForce*(targetPercentage+20)*wrathBonus) / (weight*20));
     }
 
-
-    public void WrathSustain(int damage)
+    public static float CalculateHitStun(float knockback)
     {
-        float sustain = (float)damage / 20;
-        print("sustain de "+sustain+ " secondes!");
-        pS.wrathTime += sustain;
+        return knockback / 400;
     }
 
-    private void EndOfAttack()
-    {
-        isAttacking = false;
-        canAttack = true;
-    }
 
     public int DetermineAttack()
     {
@@ -162,24 +138,16 @@ public class PlayerAttacks : MonoBehaviour
         if (normalButton)
         {
             if (pM.isGrounded || pM.isOnPlatform) // Weak Attack;
-            {
                 return 0;
-            }
             else // Air Attack;
-            {
                 return 1;
-            }
         }
         else  
         {
             if (pS.isWrath) // Wrath special attack
-            {
                 return 3;
-            }
             else            // Special Attack
-            {
                 return 2;
-            }
         }
 
     }
@@ -187,33 +155,34 @@ public class PlayerAttacks : MonoBehaviour
     public int DetermineDirection()
     {
         if(pM.moveInputx != 0) // Side Attack
-        {
             return 0;
-        }
         else
         {
             if(pM.isPressingDown) // Down Attack
-            {
                 return 1;
-            }
             else  // Neutral Attack
-            {
                 return 2;
-            }
         }
     }
 
-    public void IAExecuteAttack(attackType choice)
+
+    [PunRPC]
+    public void AttackSFX(string sound)
     {
-        if (!isAttacking && canAttack)
-        {
-            isAttacking = true;
-            canAttack = false;
+        if (sound != "")
+            aM.Play(sound);
+    }
 
-            Attack currentAttack = monstersAttacks.attacks[(int)choice];
-            monstersAttacks.Attack(currentAttack.name);
+    [PunRPC]
+    public void AttackAnimation(string animationAttack)
+    {
+        if (animationAttack != "")
+            pAn.Attack(animationAttack);
+    }
 
-            Invoke("EndOfAttack", currentAttack.time);
-        }
+    [PunRPC] 
+    public void ChangeCurrentAttack(float[] data)
+    {
+        currentAttack = Attack.Deserialize(data);
     }
 }

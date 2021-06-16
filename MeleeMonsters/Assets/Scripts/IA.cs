@@ -54,7 +54,7 @@ public class IA : MonoBehaviour
 
             //utiliser le wrath mode si la barre est pleine
             if (playerScript.loadingWrath >= playerScript.maxLoadingWrath)
-                playerScript.WrathModeState();
+                playerScript.GoIntoWrathMode();
 
             if (playerMovement.isGrounded || playerMovement.isOnPlatform) //si l'IA est au sol ou sur une plateforme
             {
@@ -142,30 +142,47 @@ public class IA : MonoBehaviour
         RaycastHit2D isThereGroundUnderLeft = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(new Vector2(-1, -1)), 100f, 1 << 8);
         RaycastHit2D isThereGroundUnderRight = Physics2D.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(new Vector2(1, -1)), 100f, 1 << 8);
 
-        if (isThereGroundLeft || isThereGroundUnderLeft) //Si le terrain est à gauche de l'IA
+        if (relativeSideX > 0) //si le joueur est à droite de l'IA
         {
-            if (playerMovement.facingRight) //se tourne vers le terrain
-                playerMovement.Flip();
-
-            if (playerMovement.nbrJump > 0)
-                DirectionalJump(-1); //Saut vers la gauche
-            else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
-                DirectionalDash(-1, 1); //Dash vers le haut-gauche
-            else
-                playerMovement.moveInputx = -1; //Move vers la gauche
+            if (isThereGroundLeft || isThereGroundUnderLeft) //Si le terrain est à gauche de l'IA
+            {
+                if (isThereGroundRight || isThereGroundUnderRight) //Si le terrain est aussi à droite de l'IA
+                    AerialRecovery(1);
+                else //S'il n'y a pas de terrain à droite de l'IA
+                    AerialRecovery(-1);
+            }
+            else //Si le terrain est à droite de l'IA
+            {
+                AerialRecovery(1);
+            }
         }
-        else if (isThereGroundRight || isThereGroundUnderRight) //Si le terrain est à droite de l'IA
+        else //si le joueur est à gauche de l'IA
         {
-            if (!playerMovement.facingRight) //se tourne vers le terrain
-                playerMovement.Flip();
-
-            if (playerMovement.nbrJump > 0)
-                DirectionalJump(1); //Saut vers la droite
-            else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
-                DirectionalDash(1, 1); //Dash vers le haut-droit
-            else
-                playerMovement.moveInputx = 1; //Move vers la droite
+            if (isThereGroundRight || isThereGroundUnderRight) //Si le terrain est à droite de l'IA
+            {
+                if (isThereGroundLeft || isThereGroundUnderLeft) //Si le terrain est aussi à gauche de l'IA
+                    AerialRecovery(-1);
+                else //S'il n'y a pas de terrain à gauche de l'IA
+                    AerialRecovery(1);
+            }
+            else //Si le terrain est à gauche de l'IA
+            {
+                AerialRecovery(-1);
+            }
         }
+    }
+
+    /// <summary>
+    /// When in the air and next to a ledge, used to get back above terrain
+    /// </summary>
+    private void AerialRecovery(int x)
+    {
+        if (playerMovement.nbrJump > 0)
+            DirectionalJump(x); //Saut vers la gauche ou la droite
+        else if (playerMovement.nbrDash > 0 && !playerMovement.isJumping)
+            DirectionalDash(x, 1); //Dash vers le haut-gauche ou haut-droite
+        else
+            playerMovement.moveInputx = x; //Move vers la gauche ou la droite
     }
 
     private void UseGroundAttacks()

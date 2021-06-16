@@ -10,11 +10,12 @@ abstract public class MonstersAttacks : MonoBehaviour
 
     public List<Transform> hitboxesPoints;
 
+    public List<GameObject> hitboxes;
+
     internal PhotonView pV;
     private PlayerScript pS;
     internal PlayerMovement pM;
     internal PlayerAttacks pA;
-    internal PlayerAnimation pAn;
 
     internal GameObject aMGameObject;
     internal AudioManager aM;
@@ -25,7 +26,6 @@ abstract public class MonstersAttacks : MonoBehaviour
         pS = GetComponent<PlayerScript>();
         pM = GetComponent<PlayerMovement>();
         pA = GetComponent<PlayerAttacks>();
-        pAn = GetComponent<PlayerAnimation>();
         aMGameObject = GameObject.Find("AudioManager");
         aM = aMGameObject.GetComponent<AudioManager>();
 

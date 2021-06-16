@@ -11,66 +11,40 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
 
     public GameObject bubblePrefab;
     public GameObject bubbleWrathPrefab;
+    public GameObject wavePrefab;
 
 
     public override void InstantiateAttacks()
     {
         attacks = new List<Attack>();
-        attacks.Add(new Attack("SideGround", 4, 350, 0.5f, new Vector2(1, 0.1f), hitboxesPoints[0], new Vector2(1.5f, 0.75f)));
-        attacks.Add(new Attack("DownGround", 4, 400, 0.6f, new Vector2(0, 1), hitboxesPoints[1], new Vector2(3.85f, 0.7f)));
-        attacks.Add(new Attack("NeutralGround", 5, 300, 0.3f, new Vector2(0, 1), hitboxesPoints[2], new Vector2(1.3f, 0.7f)));
+        attacks.Add(new Attack("SideGround", 4, 350, new Vector2(1, 0.1f), 0.1f,"Sg", "wet slap"));
+        attacks.Add(new Attack("DownGround", 4, 400,  new Vector2(0, 1), 0.1f, "Dg", ""));
+        attacks.Add(new Attack("NeutralGround", 5, 300, new Vector2(0, 1), 0.1f, "Ng", ""));
         
-        attacks.Add(new Attack("SideAir", 4, 350, 0.4f, new Vector2(0, 1), hitboxesPoints[3], new Vector2(1, 1.85f)));
-        attacks.Add(new Attack("DownAir", 7, 500, 0.7f, new Vector2(0, -1), hitboxesPoints[4], new Vector2(1, 1)));
-        attacks.Add(new Attack("NeutralAir", 6, 400, 0.6f, new Vector2(0, 1), hitboxesPoints[5], new Vector2(2.5f, 3.1f)));
+        attacks.Add(new Attack("SideAir", 4, 350, new Vector2(0, 1), 0.1f, "Sa", "wet slap"));
+        attacks.Add(new Attack("DownAir", 7, 500, new Vector2(0, -1), 0.1f, "Da", ""));
+        attacks.Add(new Attack("NeutralAir", 6, 400, new Vector2(0, 1), 0.1f, "Na", ""));
         
-        attacks.Add(new Attack("SideSpecial", 10, 600, 1f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("DownSpecial", 8, 400, 0.7f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("NeutralSpecial", 3, 100, 0.3f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("SideSpecial", 10, 600, new Vector2(1, 0), 0.1f, "Ss", ""));
+        attacks.Add(new Attack("DownSpecial", 8, 400,  new Vector2(0, 1), 0.1f,"Ds", ""));
+        attacks.Add(new Attack("NeutralSpecial", 3, 100, new Vector2(0, 1), 0.1f,"Ns", ""));
         
-        attacks.Add(new Attack("SideWrath", 12, 850, 1.3f, new Vector2(1, 0), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("DownWrath", 14, 1000, 1.5f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
-        attacks.Add(new Attack("NeutralWrath", 5, 200, 0.6f, new Vector2(0, 1), hitboxesPoints[0], new Vector2(1, 1)));
+        attacks.Add(new Attack("SideWrath", 12, 850, new Vector2(1, 0), 0.1f,"Sw", ""));
+        attacks.Add(new Attack("DownWrath", 14, 1000,  new Vector2(0, 1), 0.1f, "Dw", ""));
+        attacks.Add(new Attack("NeutralWrath", 5, 200, new Vector2(0, 1), 0.1f, "Nw", ""));
         
     }
 
-    public override void SideGround()
-    {
-        pA.BasicAttack(attacks[0]);
-        aM.Play("wet slap");
-    }
 
-    public override void DownGround()
-    {
-        pA.BasicAttack(attacks[1]);
-    }
+    //Basic attacks
+    public override void SideGround(){}
+    public override void DownGround(){}
+    public override void NeutralGround(){}
+    public override void SideAir(){}
+    public override void DownAir(){}
+    public override void NeutralAir(){}
 
 
-    public override void NeutralGround()
-    {
-        pA.BasicAttack(attacks[2]);
-    }
-
-    
-
-
-    public override void SideAir()
-    {
-        pA.BasicAttack(attacks[3]);
-        aM.Play("wet slap");
-    }
-
-    public override void DownAir()
-    {
-        pA.BasicAttack(attacks[4]);
-    }
-
-    public override void NeutralAir()
-    {
-        pA.BasicAttack(attacks[5]);
-    }
-
-    
 
     public override void SideSpecial()
     {
@@ -102,7 +76,6 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
    
 
 
-
     public override void SideWrath()
     {
 
@@ -110,7 +83,8 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
 
     public override void DownWrath()
     {
-
+        GameObject wave = PhotonNetwork.Instantiate(wavePrefab.name, hitboxesPoints[0].position, new Quaternion());
+        wave.GetComponent<KrakenWave>().Throw(pM.direction, gameObject);
     }
 
     public override void NeutralWrath()

@@ -7,19 +7,35 @@ public class Attack
     public string name;
     public int damage;
     public float ejection;
-    public float time;
     public Vector2 direction;
-    public Transform hitBox;
-    public Vector2 size;
+    public float time;
+    public string anim;
+    public string sound;
 
-    public Attack(string name, int damage,float ejection, float time, Vector2 direction, Transform hitBox, Vector2 size)
+    public Attack(string name, int damage, float ejection, Vector2 direction, float time, string anim, string sound)
     {
         this.name = name;
         this.damage = damage;
         this.ejection = ejection;
-        this.time = time;
         this.direction = direction;
-        this.hitBox = hitBox;
-        this.size = size;
+        this.time = time;
+        this.anim = anim;
+        this.sound = sound;
+    }
+
+    public static Attack Deserialize(float[] data)
+    {
+        Attack result = new Attack("", (int)data[0], data[1], new Vector2(data[2], data[3]), 0, "","") ;
+        return result;
+    }
+
+    public static float[] Serialize(Attack attack)
+    {
+        float[] result = new float[4];
+        result[0] = (float)attack.damage;
+        result[1] = attack.ejection;
+        result[2] = attack.direction.x;
+        result[3] = attack.direction.y;
+        return result;
     }
 }

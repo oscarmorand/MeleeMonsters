@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class YetiIcecube : MonoBehaviour
 {
-    public float speed;
+    public float speed = 20f;
     public int damage = 3;
     public float knockback = 100;
     public float durationTime = 2f;
