@@ -989,7 +989,6 @@ GameObject:
   - component: {fileID: -1417845002242164788}
   - component: {fileID: 8966568649149063766}
   - component: {fileID: -5369653022103507167}
-  - component: {fileID: 7841368054667289278}
   m_Layer: 9
   m_Name: IAvocat
   m_TagString: IA
@@ -1292,11 +1291,11 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.033616304, y: -0.11}
-  m_Size: {x: 1.1264055, y: 1.92}
+  m_Offset: {x: 0.033616304, y: -0.13}
+  m_Size: {x: 1.1264055, y: 1.98}
   m_Direction: 0
 --- !u!95 &7108932685594624397
 Animator:
@@ -1491,22 +1490,6 @@ MonoBehaviour:
   bulletWrathPrefab: {fileID: 1310930056218048277, guid: 7e8e4365dd269fd44ac87c7997a33916,
     type: 3}
   noyau: {fileID: 2499066467883210318}
---- !u!70 &7841368054667289278
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4958320532538682467}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.04}
-  m_Size: {x: 1.02, y: 0.13}
-  m_Direction: 1
 --- !u!1 &5177033977609488920
 GameObject:
   m_ObjectHideFlags: 0

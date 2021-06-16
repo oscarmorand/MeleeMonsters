@@ -76,6 +76,7 @@ public class PlayerCollisions : MonoBehaviour
             bonus = 1.25f;
             attackerScript.WrathSustain(attack.damage);
         }
+            
         int newDamage = (int)((attack.damage) * bonus);
 
         Vector2 direction = attack.direction;
