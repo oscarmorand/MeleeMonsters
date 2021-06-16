@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     public ParticleSystem footSteps;
     public ParticleSystem impactEffect;
+    public ParticleSystem dashEffect;
     private bool wasOnGround = false;
     private bool wasOnPlatform = false;
 
@@ -172,7 +173,6 @@ public class PlayerMovement : MonoBehaviour
                 if((isGrounded!=wasOnGround || isOnPlatform!=wasOnPlatform) && impactEffect != null)
                 {
                     photonView.RPC("PlayImpactEffect", RpcTarget.All);
-                    PlayImpact();
                 }
 
                 wasOnPlatform = isOnPlatform;
@@ -222,6 +222,13 @@ public class PlayerMovement : MonoBehaviour
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
+        if(dashEffect != null)
+        {
+            if (facingRight)
+                dashEffect.gameObject.transform.rotation = Quaternion.Euler(0, 0, -20);
+            else
+                dashEffect.gameObject.transform.rotation = Quaternion.Euler(0, 0, 200);
+        }
     }
 
 
@@ -246,8 +253,10 @@ public class PlayerMovement : MonoBehaviour
         if (nbrDash > 0)
         {
             isDashing = true;
-            Invoke("SetDashingToFalse", dashTime);
+            if (dashEffect != null)
+                photonView.RPC("PlayDashEffect", RpcTarget.All);
             nbrDash--;
+            Invoke("SetDashingToFalse", dashTime);
         }
     }
     void SetDashingToFalse()
@@ -333,6 +342,8 @@ public class PlayerMovement : MonoBehaviour
         isDashAttacking = true;
         dashAttackSpeed = speed;
         dashAttackDirection = direction;
+        if(dashEffect != null)
+            photonView.RPC("PlayDashEffect", RpcTarget.All);
         Invoke("NotDashAttackingAnymore", time);
 
     }
@@ -358,14 +369,18 @@ public class PlayerMovement : MonoBehaviour
     [PunRPC]
     public void PlayImpactEffect()
     {
-        PlayImpact();
-    }
-
-    public void PlayImpact()
-    {
         impactEffect.gameObject.SetActive(true);
         impactEffect.Stop();
         impactEffect.transform.position = footSteps.transform.position;
         impactEffect.Play();
+    }
+
+    [PunRPC]
+    public void PlayDashEffect()
+    {
+        dashEffect.gameObject.SetActive(true);
+        dashEffect.Stop();
+        dashEffect.transform.position = footSteps.transform.position;
+        dashEffect.Play();
     }
 }

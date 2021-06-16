@@ -871,6 +871,7 @@ MonoBehaviour:
   isPressingDown: 0
   footSteps: {fileID: 0}
   impactEffect: {fileID: 0}
+  dashEffect: {fileID: 0}
 --- !u!114 &-366637032177327525
 MonoBehaviour:
   m_ObjectHideFlags: 0
