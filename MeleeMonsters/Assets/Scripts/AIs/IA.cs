@@ -11,11 +11,12 @@ public class IA : MonoBehaviour
 
     PlayerAttacks playerAttacks;
     PlayerScript playerScript;
+    public IAAttacks iaattacks;
 
-    float distanceX;
-    float distanceY;
-    float relativeSideX;
-    float relativeSideY;
+    public float distanceX;
+    public float distanceY;
+    public float relativeSideX;
+    public float relativeSideY;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +64,7 @@ public class IA : MonoBehaviour
 
                 FollowPlayerOnGround();
 
-                UseGroundAttacks();
+                iaattacks.UseGroundAttacks();
             }
             else //si l'IA n'est pas au sol et pas sur une plateforme
             {
@@ -83,9 +84,9 @@ public class IA : MonoBehaviour
                 {
                     if (relativeSideY > 3f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
                         DirectionalJump((int)playerMovement.direction);
-                }
 
-                UseAirAttacks();
+                    iaattacks.UseAirAttacks();
+                }
             }
         }
     }
@@ -184,43 +185,4 @@ public class IA : MonoBehaviour
         else
             playerMovement.moveInputx = x; //Move vers la gauche ou la droite
     }
-
-    private void UseGroundAttacks()
-    {
-        if (distanceX < 1.5f && (relativeSideY > 0f && relativeSideY <= 1.25f))
-            playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.sG); //faire une side ground
-       
-        if (distanceX < 1.35f && (relativeSideY < 0.75f && relativeSideY >= -1f))
-                playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.dG); //faire une down ground
-
-        if (distanceX < 0.75f && relativeSideY > 0.5f && relativeSideY <= 2f) 
-            playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nG); //faire une neutral ground
-    }
-
-    private void UseAirAttacks()
-    {
-        if ((distanceX > 0f && distanceX <= 1.5f) && (relativeSideY > -1f && relativeSideY <= 1f))
-            playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.sA); //faire une side air
-
-        if (distanceX < 0.75f)
-        {
-            if (relativeSideY < -0.5f && relativeSideY >= -2f)
-                playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.dA); //faire une down air
-
-            if (relativeSideY > 0.5f && relativeSideY <= 2f)
-                playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nA); //faire une neutral air
-        }
-    }
-
-    /*
-    private void UseSpecialAttacks()
-    {
-
-    }
-
-    private void UseWrathAttacks()
-    {
-
-    }
-    */
 }
