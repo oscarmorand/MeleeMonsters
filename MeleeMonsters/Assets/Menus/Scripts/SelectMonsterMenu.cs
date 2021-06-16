@@ -14,7 +14,10 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
     public TMP_Text[] playerNamesArray;
     private GameObject playerMonsterObject;
     public GameObject[] selectCharPanel;
+    public GameObject playButton;
+    public GameObject imagePlayGame;
     private bool monsterSelected = false;
+    // private bool playersReady = false;
     public void setMonsterSelected(bool value) => monsterSelected = value;
     
     // Start is called before the first frame update
@@ -23,6 +26,8 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
         GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager.GetComponent<GameManager>();
         gameManager.SetGameState(GameManager.States.MonsterSelectionMenu);
+        imagePlayGame.SetActive(true);
+        playButton.SetActive(false);
         ChangeMonster(monsterIndex);
     }
 
@@ -37,6 +42,9 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
 
         if (!monsterSelected)
         {
+            imagePlayGame.SetActive(true);
+            playButton.SetActive(false);
+
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 print("right arrow key is held down");
@@ -48,6 +56,11 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
                 print("left arrow key is held down");
                 LeftMonster();
             }
+        }
+        else
+        {
+            imagePlayGame.SetActive(false);
+            playButton.SetActive(true);
         }
         
         

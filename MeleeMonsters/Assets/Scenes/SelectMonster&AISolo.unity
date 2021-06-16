@@ -862,6 +862,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  playButton: {fileID: 0}
+  imagePlayGame: {fileID: 0}
 --- !u!222 &451743516
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2788,7 +2790,7 @@ GameObject:
   - component: {fileID: 2108470698}
   - component: {fileID: 2108470697}
   m_Layer: 0
-  m_Name: Dropdown
+  m_Name: AILevelDropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2836,7 +2838,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.9716981, g: 0.69851327, b: 0.26125845, a: 0.6862745}
+    m_NormalColor: {r: 0.9716981, g: 0.69851327, b: 0.26125845, a: 0.8666667}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
