@@ -62,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
     internal Vector2 dashAttackDirection;
 
     public ParticleSystem footSteps;
+    public ParticleSystem impactEffect;
+    private bool wasOnGround = false;
 
     void Start()
     {
@@ -165,6 +167,14 @@ public class PlayerMovement : MonoBehaviour
                         photonView.RPC("ShowFootStepParticles", RpcTarget.All, false);
                     }
                 }
+
+                if(isGrounded!=wasOnGround && impactEffect != null)
+                {
+                    photonView.RPC("PlayImpactEffect", RpcTarget.All);
+                    PlayImpact();
+                }
+
+                wasOnGround = isGrounded;
             }
         }
     }
@@ -341,5 +351,19 @@ public class PlayerMovement : MonoBehaviour
         }
         else
             footSteps.Stop();
+    }
+
+    [PunRPC]
+    public void PlayImpactEffect()
+    {
+        PlayImpact();
+    }
+
+    public void PlayImpact()
+    {
+        impactEffect.gameObject.SetActive(true);
+        impactEffect.Stop();
+        impactEffect.transform.position = footSteps.transform.position;
+        impactEffect.Play();
     }
 }
