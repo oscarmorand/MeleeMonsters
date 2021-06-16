@@ -12,9 +12,11 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
     Vector3 latestPos;
     Vector3 latestScale;
     //Quaternion latestRot;
+    PlayerMovement pM;
 
     void Start()
     {
+        pM = GetComponent<PlayerMovement>();
         if (photonView.IsMine)
         {
             //Player is local
@@ -64,6 +66,7 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
             transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime*5);
             //transform.localScale = Vector3.Lerp(transform.localScale, latestScale, Time.deltaTime * 5);
             transform.localScale = latestScale;
+            pM.direction = latestScale.x;
             //transform.rotation = Quaternion.Lerp(transform.rotation, latestRot, Time.deltaTime * 5);
         }
     }

@@ -1386,16 +1386,16 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: isRunning
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: isJumping
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: takeOf
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: isWallSliding
   - Type: 9
     SynchronizeType: 0
@@ -1415,6 +1415,24 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 0
     Name: Da
+  - Type: 9
+    SynchronizeType: 0
+    Name: Ss
+  - Type: 9
+    SynchronizeType: 0
+    Name: Ns
+  - Type: 9
+    SynchronizeType: 0
+    Name: Ds
+  - Type: 9
+    SynchronizeType: 0
+    Name: Sw
+  - Type: 9
+    SynchronizeType: 0
+    Name: Nw
+  - Type: 9
+    SynchronizeType: 0
+    Name: Dw
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

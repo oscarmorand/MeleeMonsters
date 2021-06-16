@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,12 +8,14 @@ public class PlayerAnimation : MonoBehaviour
     internal Animator anim;
 
     private PlayerMovement pM;
+    private PhotonView pV;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         pM = GetComponent<PlayerMovement>();
+        pV = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
@@ -38,7 +41,15 @@ public class PlayerAnimation : MonoBehaviour
     public void TakeOf()
     {
         anim.SetTrigger("takeOf");
+        pV.RPC("TakeOfRPC", RpcTarget.All);
     }
+
+    [PunRPC]
+    public void TakeOfRPC()
+    {
+        anim.SetTrigger("takeOf");
+    }
+
 
     public void Attack(string trigger)
     {
