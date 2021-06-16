@@ -10890,6 +10890,7 @@ GameObject:
   - component: {fileID: 3102752595710226504}
   - component: {fileID: 774066506139280654}
   - component: {fileID: 4015378552098467431}
+  - component: {fileID: 1831927052625025511}
   m_Layer: 9
   m_Name: IAKraken
   m_TagString: IA
@@ -11449,7 +11450,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770c815542ef1c04dad62d97cf3c0097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iaattacks: {fileID: 0}
+  iaattacks: {fileID: 1831927052625025511}
+  distanceX: 0
+  distanceY: 0
+  relativeSideX: 0
+  relativeSideY: 0
+--- !u!114 &1831927052625025511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958320532538682467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b67f0c05a2e01418ead3ec633bca75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   distanceX: 0
   distanceY: 0
   relativeSideX: 0
