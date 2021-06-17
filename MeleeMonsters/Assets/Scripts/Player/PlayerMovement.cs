@@ -57,6 +57,16 @@ public class PlayerMovement : MonoBehaviour
     internal bool inWave = false;
     internal GameObject wave;
 
+    internal bool isDashAttacking;
+    internal float dashAttackSpeed = 0;
+    internal Vector2 dashAttackDirection;
+
+    public ParticleSystem footSteps;
+    public ParticleSystem impactEffect;
+    public ParticleSystem dashEffect;
+    private bool wasOnGround = false;
+    private bool wasOnPlatform = false;
+
     void Start()
     {
         playerScript = GetComponent<PlayerScript>();
@@ -73,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
         nbrDash = maxDash;
         dashTime = settings.dashTime;
         jumpTime = settings.jumpTime;
-
     }
 
 
@@ -94,6 +103,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
+
+                if(isDashAttacking)
+                {
+                    rb.velocity = new Vector2(dashAttackDirection.x*direction*dashAttackSpeed, dashAttackDirection.y*dashAttackSpeed);
+                }
+
                 if (isGrounded || isOnPlatform)
                 {
                     nbrJump = maxJump;
@@ -142,6 +157,26 @@ public class PlayerMovement : MonoBehaviour
                 {
                     gameObject.layer = 9;
                 }
+
+                if(footSteps != null)
+                {
+                    if (moveInputx != 0 && (isGrounded||isOnPlatform))
+                    {
+                        photonView.RPC("ShowFootStepParticles", RpcTarget.All, true);
+                    }
+                    else
+                    {
+                        photonView.RPC("ShowFootStepParticles", RpcTarget.All, false);
+                    }
+                }
+
+                if((isGrounded!=wasOnGround || isOnPlatform!=wasOnPlatform) && impactEffect != null)
+                {
+                    photonView.RPC("PlayImpactEffect", RpcTarget.All);
+                }
+
+                wasOnPlatform = isOnPlatform;
+                wasOnGround = isGrounded;
             }
         }
     }
@@ -187,6 +222,13 @@ public class PlayerMovement : MonoBehaviour
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
+        if(dashEffect != null)
+        {
+            if (facingRight)
+                dashEffect.gameObject.transform.rotation = Quaternion.Euler(0, 0, -20);
+            else
+                dashEffect.gameObject.transform.rotation = Quaternion.Euler(0, 0, 200);
+        }
     }
 
 
@@ -203,13 +245,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+
+
+
     public void DashState()
     {
         if (nbrDash > 0)
         {
             isDashing = true;
-            Invoke("SetDashingToFalse", dashTime);
+            if (dashEffect != null)
+                photonView.RPC("PlayDashEffect", RpcTarget.All);
             nbrDash--;
+            Invoke("SetDashingToFalse", dashTime);
         }
     }
     void SetDashingToFalse()
@@ -222,6 +269,8 @@ public class PlayerMovement : MonoBehaviour
     {
         isFastFalling = true;
     }
+
+
 
 
     public void JumpState()
@@ -242,6 +291,9 @@ public class PlayerMovement : MonoBehaviour
         isJumping = false;
     }
 
+
+
+
     public void TransparentState()
     {
         gameObject.layer = 11;
@@ -253,10 +305,16 @@ public class PlayerMovement : MonoBehaviour
         gameObject.layer = 9;
     }
 
+
+
+
     public void Eject(Vector2 force)
     {
         rb.AddForce(force);
     }
+
+
+
 
 
     public void FollowWave(bool follow, string waveName)
@@ -275,5 +333,57 @@ public class PlayerMovement : MonoBehaviour
             wave = null;
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+    }
+
+
+
+    public void SetDashAttackState(float waitingTime, float time, float speed, Vector2 direction)
+    {
+        StartCoroutine(DashAttackState(waitingTime,time,speed,direction));
+    }
+
+    IEnumerator DashAttackState(float waitingTime, float time, float speed, Vector2 direction)
+    {
+        yield return new WaitForSeconds(waitingTime);
+
+        isDashAttacking = true;
+        dashAttackSpeed = speed;
+        dashAttackDirection = direction;
+        if (dashEffect != null)
+            photonView.RPC("PlayDashEffect", RpcTarget.All);
+
+        yield return new WaitForSeconds(time);
+        isDashAttacking = false;
+    }
+
+
+    [PunRPC]
+    public void ShowFootStepParticles(bool show)
+    {
+        if (show)
+        {
+            if(footSteps.isStopped)
+                footSteps.Play();
+        }
+        else
+            footSteps.Stop();
+    }
+
+    [PunRPC]
+    public void PlayImpactEffect()
+    {
+        impactEffect.gameObject.SetActive(true);
+        impactEffect.Stop();
+        impactEffect.transform.position = footSteps.transform.position;
+        impactEffect.Play();
+    }
+
+    [PunRPC]
+    public void PlayDashEffect()
+    {
+        dashEffect.gameObject.SetActive(true);
+        dashEffect.Stop();
+        dashEffect.transform.position = footSteps.transform.position;
+        dashEffect.Play();
     }
 }
