@@ -10,7 +10,6 @@ public class SelectCharMenu : MonoBehaviour
     public GameObject leftArrow;
     public GameObject rightArrow;
     public GameObject toggleSelection;
-    private SelectMonsterMenu selectMonsterMenu;
     public bool playerSelected = false;
 
     void Start()
@@ -21,13 +20,6 @@ public class SelectCharMenu : MonoBehaviour
             leftArrow.SetActive(true);
             rightArrow.SetActive(true);
         }
-
-        selectMonsterMenu = GameObject.Find("SelectMonsterMenu").GetComponent<SelectMonsterMenu>();
-    }
-
-    void Update()
-    {
-        selectMonsterMenu.setMonsterSelected(playerSelected);
     }
 
     public void MonsterSelected()

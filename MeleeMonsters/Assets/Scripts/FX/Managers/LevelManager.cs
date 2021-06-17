@@ -42,31 +42,33 @@ public class LevelManager : MonoBehaviour
 
         spawnGameObject = GameObject.Find("SpawnPoints").gameObject;
         spawnPoints = spawnGameObject.GetComponent<SpawnPoints>();
-
-        gameObjectIA = GameObject.FindGameObjectWithTag("IA").gameObject;
-        gameObjectIA.SetActive(false);  // wait its turn
         
         inSolo = PhotonNetwork.OfflineMode;
 
         SpawnPlayers();
+
+        if (inSolo)
+        {
+            //if (playersScripts.Count == 1)
+            
+            /* GameObject[] IAs = GameObject.FindGameObjectsWithTag("IA");
+            gameObjectIA = IAs[0]; */
+            gameObjectIA = gameManager.InstantiateAI(spawnPoints.p2[1].position);
+
+            
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (inSolo)
-        {
-            if (playersScripts.Count == 1)
-            {
-                gameObjectIA.SetActive(true);
-            }
-        }
+        
     }
 
     void SpawnPlayers()
     {
         int iaNbr = 0;
-        if (gameObjectIA.activeSelf)
+        if (inSolo)
             iaNbr++;
         switch (PhotonNetwork.PlayerList.Length + iaNbr)
         {
