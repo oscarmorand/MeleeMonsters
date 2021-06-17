@@ -18,6 +18,8 @@ public class KrakenBubble : MonoBehaviour
 
     private float bonus = 1;
 
+    public GameObject particleBurstPrefab;
+
     void Awake()
     {
         //rb.velocity = transform.right * speed * direction;
@@ -42,7 +44,23 @@ public class KrakenBubble : MonoBehaviour
 
     public void DestroyBullet()
     {
+        particleBurstPrefab = PhotonNetwork.Instantiate(particleBurstPrefab.name, transform.position, new Quaternion());
+        PlayParticleSystem();
         PhotonNetwork.Destroy(gameObject);
+    }
+
+    public void PlayParticleSystem()
+    {
+        ParticleSystem partSys = particleBurstPrefab.GetComponent<ParticleSystem>();
+
+        var main = partSys.main;
+        main.startSize = 0.1f * bonus;
+
+        ParticleSystem.Burst burst = new ParticleSystem.Burst();
+        burst.count = 20 * bonus;
+        partSys.emission.SetBurst(0, burst);
+
+        partSys.Play();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -165,7 +165,6 @@ public class PlayerAttacks : MonoBehaviour
         }
     }
 
-
     [PunRPC]
     public void AttackSFX(string sound)
     {
@@ -184,5 +183,10 @@ public class PlayerAttacks : MonoBehaviour
     public void ChangeCurrentAttack(float[] data)
     {
         currentAttack = Attack.Deserialize(data);
+    }
+
+    public void PlayAttackAnimation(string animationName) //utilisée que par le Kraken dans son downSpecial
+    {
+        pV.RPC("AttackAnimation", RpcTarget.All, animationName);
     }
 }
