@@ -64,7 +64,10 @@ public class IA : MonoBehaviour
 
                 FollowPlayerOnGround();
 
-                iaattacks.UseGroundAttacks();
+                if (!playerScript.isWrath)
+                    iaattacks.UseGroundAttacks();
+                else
+                    iaattacks.UseGroundAttacksW();
             }
             else //si l'IA n'est pas au sol et pas sur une plateforme
             {
@@ -85,7 +88,10 @@ public class IA : MonoBehaviour
                     if (relativeSideY > 3f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
                         DirectionalJump((int)playerMovement.direction);
 
-                    iaattacks.UseAirAttacks();
+                    if (!playerScript.isWrath)
+                        iaattacks.UseAirAttacks();
+                    else
+                        iaattacks.UseAirAttacksW();
                 }
             }
         }
