@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class IAAvocado : IAAttacks
 {
@@ -18,38 +19,68 @@ public class IAAvocado : IAAttacks
 
     public override void UseGroundAttacks()
     {
-        if (distanceX < 1.5f && (relativeSideY > 0f && relativeSideY <= 1.25f))
-            playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.sG); //faire une side ground
+        System.Random rd = new System.Random();
 
-        if (distanceX < 1.35f && (relativeSideY < 0.75f && relativeSideY >= -1f))
-            playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.dG); //faire une down ground
+        if (relativeSideY >= -1f)
+        {
+            if (relativeSideY < 1f && distanceX < 1.5f)
+                playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.dG); //dG
+        }
+        if (relativeSideY >= 0f)
+        {
+            if (distanceX < 1.5f)
+            {
+                if (relativeSideY < 1.5f)
+                    playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.sG); //sG
 
-        if (distanceX < 0.75f && relativeSideY > 0.5f && relativeSideY <= 2f)
-            playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nG); //faire une neutral ground
+                if (relativeSideY < 1f)
+                    playerAttacks.IAExecuteAttack((PlayerAttacks.attackType)rd.Next(0, 2)); //sG / dG
+            }
+            if (distanceX < 1f)
+            {
+                if (relativeSideY < 2f)
+                    playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nG); //nG
+
+                if (relativeSideY < 1.5f)
+                    playerAttacks.IAExecuteAttack((PlayerAttacks.attackType)(rd.Next(0, 2) == 1 ? 2 : 0)); //sG / nG
+
+                if (relativeSideY < 1f)
+                    playerAttacks.IAExecuteAttack((PlayerAttacks.attackType)rd.Next(0, 3)); //sG / dG / nG
+            }
+        }
+        if (distanceY < 0.5f && distanceX >= 4f && rd.Next(0, 5) == 1) //1 chance sur 5
+            playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nS); //nS
+
     }
 
     public override void UseAirAttacks()
     {
-        if ((distanceX > 0f && distanceX <= 1.5f) && (relativeSideY > -1f && relativeSideY <= 1f))
-            playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.sA); //faire une side air
+        System.Random rd = new System.Random();
 
-        if (distanceX < 0.75f)
+        if (relativeSideY >= -2f)
         {
-            if (relativeSideY < -0.5f && relativeSideY >= -2f)
-                playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.dA); //faire une down air
+            if (relativeSideY < 0f && distanceX < 0.75f)
+                playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.dA); //dA
+        }
+        if (relativeSideY >= 0f)
+        {
+            if (distanceX < 1.5f)
+            {
+                if (relativeSideY < 1.5f)
+                    playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.sA); //sA
+            }
+            if (distanceX < 1f)
+            {
+                if (relativeSideY < 2f)
+                    playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nA); //nA
 
-            if (relativeSideY > 0.5f && relativeSideY <= 2f)
-                playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nA); //faire une neutral air
+                if (relativeSideY < 1.5f)
+                    playerAttacks.IAExecuteAttack((PlayerAttacks.attackType)(rd.Next(3, 5) == 4 ? 5 : 3)); //sA / nA
+            }
         }
     }
 
-    public void UseSpecialAttacks()
-    {
+    //wrathground
 
-    }
-
-    public void UseWrathAttacks()
-    {
-
-    }
+    //wrathair
 }
