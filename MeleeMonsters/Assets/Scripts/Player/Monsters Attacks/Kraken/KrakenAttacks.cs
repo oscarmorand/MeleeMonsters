@@ -42,7 +42,14 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
     public override void DownGround(){}
     public override void NeutralGround(){}
     public override void SideAir(){}
-    public override void DownAir(){}
+
+    public override void DownAir()
+    {
+        GameObject bubble = PhotonNetwork.Instantiate(bubblePrefab.name, hitboxesPoints[4].position, new Quaternion());
+        bubble.GetComponent<KrakenBubble>().Throw(0, gameObject, 0.5f);
+    }
+
+
     public override void NeutralAir(){}
 
 

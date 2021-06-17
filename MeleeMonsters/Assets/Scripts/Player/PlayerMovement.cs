@@ -157,7 +157,12 @@ public class PlayerMovement : MonoBehaviour
                     rb.velocity = new Vector2(rb.velocity.x, -fastFallingSpeed);
                 }
 
-                if(isFastFallingAttacking)
+                if (isDashAttacking)
+                {
+                    rb.velocity = new Vector2(dashAttackDirection.x * direction * dashAttackSpeed, dashAttackDirection.y * dashAttackSpeed);
+                }
+
+                if (isFastFallingAttacking)
                 {
                     rb.velocity = new Vector2(0, -20);
                     if(isGrounded || isOnPlatform)
@@ -359,6 +364,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DashAttackState(float waitingTime, float time, float speed, Vector2 direction)
     {
+        rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(waitingTime);
 
         isDashAttacking = true;
