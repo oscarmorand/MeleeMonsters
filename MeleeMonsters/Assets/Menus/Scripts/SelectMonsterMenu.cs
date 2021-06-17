@@ -17,7 +17,7 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
     public GameObject playButton;
     public GameObject imagePlayGame;
     private bool monsterSelected = false;
-    public void setMonsterSelected(bool value) => monsterSelected = value;
+    public void setMonsterSelected(bool value) => monsterSelected = !value;
     
     // Start is called before the first frame update
     void Start()

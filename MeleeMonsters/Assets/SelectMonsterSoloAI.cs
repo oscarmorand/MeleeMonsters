@@ -16,6 +16,9 @@ public class SelectMonsterSoloAI : MonoBehaviour
     public GameObject aICharPanel;
     public GameObject playButton;
     public GameObject imagePlayGame;
+    public GameObject tooglePlayer;
+    public GameObject greenLockImage;
+    public GameObject grayPanel;
     private bool monsterSelected = false;
     private bool choosingAI = false;
     public void setMonsterSelected(bool value) => monsterSelected = !value;
@@ -26,6 +29,9 @@ public class SelectMonsterSoloAI : MonoBehaviour
         GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager.GetComponent<GameManager>();
         gameManager.SetGameState(GameManager.States.MonsterSelectionMenu);
+        grayPanel.SetActive(true);
+        tooglePlayer.SetActive(true);
+        greenLockImage.SetActive(false);
         imagePlayGame.SetActive(true);
         playButton.SetActive(false);
         ChangeMonster(monsterIndex);
@@ -51,6 +57,10 @@ public class SelectMonsterSoloAI : MonoBehaviour
         }
         else
         {
+            grayPanel.SetActive(false);
+            tooglePlayer.SetActive(false);
+            greenLockImage.SetActive(true);
+
             if (!choosingAI)
             {
                 monsterSelected = false;
@@ -72,7 +82,7 @@ public class SelectMonsterSoloAI : MonoBehaviour
             Destroy(AIMonsterObject);
 
         gameManager.SelectAIMonster(monsterIndex);
-        AIMonsterObject = gameManager.InstantiateAI(new Vector3(4.7f, 0f, 0f));
+        AIMonsterObject = gameManager.InstantiateAI(new Vector3(2.8f, 0.3f, 0f));
     }
 
     public void ChangeMonster(int monsterIndex) // Player
@@ -82,7 +92,7 @@ public class SelectMonsterSoloAI : MonoBehaviour
 
         gameManager.SelectMonster(monsterIndex);
         gameManager.InitPlayerPrefab();
-        playerMonsterObject = gameManager.InstantiatePlayer(new Vector3(-4.7f, 0f, 0f));
+        playerMonsterObject = gameManager.InstantiatePlayer(new Vector3(-2.8f, 0.3f, 0f));
     }
     public void LeftMonster()
     {
