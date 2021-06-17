@@ -13,14 +13,14 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
     {
         attacks = new List<Attack>();
 
-        attacks.Add(new Attack("SideGround", 6, 400, new Vector2(1, 0.1f), 0.1f,"Sg", ""));
-        attacks.Add(new Attack("DownGround", 9, 500,  new Vector2(0, 1), 0.1f,"Dg", ""));
-        attacks.Add(new Attack("NeutralGround", 4, 200, new Vector2(0, 1), 0.1f,"Ng", ""));
+        attacks.Add(new Attack("SideGround", 6, 400, new Vector2(1, 0.1f), 0.3f,"Sg", ""));
+        attacks.Add(new Attack("DownGround", 9, 500,  new Vector2(0, 1), 0.35f,"Dg", ""));
+        attacks.Add(new Attack("NeutralGround", 4, 200, new Vector2(0, 1), 0.3f,"Ng", ""));
 
 
-        attacks.Add(new Attack("SideAir", 10, 600,  new Vector2(0.5f, -1), 0.1f,"Sa", ""));
-        attacks.Add(new Attack("DownAir", 11, 700, new Vector2(0, -1), 0.1f, "Da", ""));
-        attacks.Add(new Attack("NeutralAir", 6, 350,  new Vector2(0, 1), 0.1f,"Na", ""));
+        attacks.Add(new Attack("SideAir", 10, 600,  new Vector2(0.5f, -1), 0.4f,"Sa", ""));
+        attacks.Add(new Attack("DownAir", 11, 700, new Vector2(0, -1), 0.42f, "Da", ""));
+        attacks.Add(new Attack("NeutralAir", 6, 350,  new Vector2(0, 1), 0.15f,"Na", ""));
 
 
         attacks.Add(new Attack("SideSpecial", 4, 150, new Vector2(1, 0), 0.6f,"Ss", ""));
