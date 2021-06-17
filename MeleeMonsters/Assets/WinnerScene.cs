@@ -23,6 +23,8 @@ public class WinnerScene : MonoBehaviour
         else
             winner = gameManager.winner.NickName;
         UIWinner.text = winner + " is the winner of the game !";
+
+        gameManager.InstantiatePlayer(new Vector3(0f, -2, 0f));
     }
 
     // Update is called once per frame

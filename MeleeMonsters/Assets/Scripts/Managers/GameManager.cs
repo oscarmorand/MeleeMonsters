@@ -17,12 +17,15 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [Header("Monsters")]
     public GameObject[] monstersPrefabArray;
+    public GameObject[] aImonstersArray;
     public Sprite[] monstersSpriteArray;
 
 
     private int localPlayerMonsterIndex = 0;
+    private int AIMonsterIndex = 0;
 
     private GameObject playerPrefab;
+    public GameObject AIPrefab;
 
     public int nbrLives;
 
@@ -84,6 +87,20 @@ public class GameManager : MonoBehaviourPunCallbacks
         return null;
     }
 
+    public GameObject InstantiateAI (Vector3 pos)
+    {
+        if (AIPrefab == null)
+        {
+            Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
+        }
+        else
+        {
+            Debug.Log("instancié!");
+            return Instantiate(AIPrefab, pos, Quaternion.identity);
+        }
+        return null;
+    }
+
     public void SelectMonster(int _monsterNbr)
     {
         localPlayerMonsterIndex = _monsterNbr;
@@ -92,6 +109,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void InitPlayerPrefab()
     {
         playerPrefab = monstersPrefabArray[localPlayerMonsterIndex];
+    }
+
+    public void SelectAIMonster(int _AImonsterNbr)
+    {
+        AIMonsterIndex = _AImonsterNbr;
+        AIPrefab = aImonstersArray[AIMonsterIndex];
     }
 
     public override void OnJoinedRoom()

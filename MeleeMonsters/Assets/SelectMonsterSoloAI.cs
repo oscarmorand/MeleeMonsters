@@ -6,19 +6,20 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 
-public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
+public class SelectMonsterSoloAI : MonoBehaviour
 {
     private GameManager gameManager;
 
     private int monsterIndex = 0;
-    public TMP_Text[] playerNamesArray;
     private GameObject playerMonsterObject;
-    public GameObject[] selectCharPanel;
+    private GameObject AIMonsterObject;
+    public GameObject aICharPanel;
     public GameObject playButton;
     public GameObject imagePlayGame;
     private bool monsterSelected = false;
-    public void setMonsterSelected(bool value) => monsterSelected = value;
-    
+    private bool choosingAI = false;
+    public void setMonsterSelected(bool value) => monsterSelected = !value;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,22 +29,14 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
         imagePlayGame.SetActive(true);
         playButton.SetActive(false);
         ChangeMonster(monsterIndex);
+        ChangeAIMonster(monsterIndex);
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach (var player in gameManager.playersList)
-        {
-            selectCharPanel[player.ActorNumber-1].SetActive(true);
-            playerNamesArray[player.ActorNumber-1].text = player.NickName;  
-        }
-
         if (!monsterSelected)
         {
-            imagePlayGame.SetActive(true);
-            playButton.SetActive(false);
-
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 print("right arrow key is held down");
@@ -58,72 +51,68 @@ public class SelectMonsterMenu : MonoBehaviourPun, IPunObservable
         }
         else
         {
-            imagePlayGame.SetActive(false);
-            playButton.SetActive(true);
+            if (!choosingAI)
+            {
+                monsterSelected = false;
+                choosingAI = true;
+                aICharPanel.SetActive(true);
+            }
+            else
+            {
+                imagePlayGame.SetActive(false);
+                playButton.SetActive(true);
+            }
         }
-        
-        
+
     }
 
-    public void ChangeMonster(int monsterIndex)
+    public void ChangeAIMonster(int monsterIndex) // AI
+    {
+        if (AIMonsterObject != null)
+            Destroy(AIMonsterObject);
+
+        gameManager.SelectAIMonster(monsterIndex);
+        AIMonsterObject = gameManager.InstantiateAI(new Vector3(4.7f, 0f, 0f));
+    }
+
+    public void ChangeMonster(int monsterIndex) // Player
     {
         if (playerMonsterObject != null)
             PhotonNetwork.Destroy(playerMonsterObject);
 
         gameManager.SelectMonster(monsterIndex);
         gameManager.InitPlayerPrefab();
-        playerMonsterObject = gameManager.InstantiatePlayer(new Vector3((PhotonNetwork.LocalPlayer.ActorNumber - 1) * 2.66f - 4.0f, -0.2f, 0.0f));
+        playerMonsterObject = gameManager.InstantiatePlayer(new Vector3(-4.7f, 0f, 0f));
     }
     public void LeftMonster()
     {
         monsterIndex = (monsterIndex - 1 + gameManager.monstersPrefabArray.Length) % gameManager.monstersPrefabArray.Length;
-        ChangeMonster(monsterIndex);
+        if (choosingAI)
+            ChangeAIMonster(monsterIndex);
+        else
+            ChangeMonster(monsterIndex);
     }
 
     public void RightMonster()
     {
         monsterIndex = (monsterIndex + 1) % gameManager.monstersPrefabArray.Length;
-        ChangeMonster(monsterIndex);
+        if (choosingAI)
+            ChangeAIMonster(monsterIndex);
+        else
+            ChangeMonster(monsterIndex);
     }
 
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    
     /*
-    public void OnClickedAvocado()
-    {
-        SelectMonster(0);
-    }
-
-    public void OnClickedGhost()
-    {
-        SelectMonster(1);
-    }
-    */
     void SelectMonster(int monster)
     {
         gameManager.SelectMonster(monster);
         print(PhotonNetwork.NickName + " has choose " + monster);
     }
+    */
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            //We own this player: send the others our data
-            //stream.SendNext(transform.position);
-            //stream.SendNext(transform.localScale); 
-            //stream.SendNext(transform.rotation);
-        }
-        else
-        {
-            //Network player, receive data
-            //latestPos = (Vector3)stream.ReceiveNext();
-            //latestScale = (Vector3)stream.ReceiveNext();
-            //latestRot = (Quaternion)stream.ReceiveNext();
-        }
-    }
-
-   
 }

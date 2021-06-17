@@ -42,9 +42,6 @@ public class LevelManager : MonoBehaviour
 
         spawnGameObject = GameObject.Find("SpawnPoints").gameObject;
         spawnPoints = spawnGameObject.GetComponent<SpawnPoints>();
-
-        gameObjectIA = GameObject.FindGameObjectWithTag("IA").gameObject;
-        gameObjectIA.SetActive(false);  // wait its turn
         
         inSolo = PhotonNetwork.OfflineMode;
 
@@ -58,7 +55,7 @@ public class LevelManager : MonoBehaviour
         {
             if (playersScripts.Count == 1)
             {
-                gameObjectIA.SetActive(true);
+                gameObjectIA = Instantiate(gameManager.AIPrefab, spawnPoints.p2[1].position, Quaternion.identity);
             }
         }
     }

@@ -49,6 +49,11 @@ MonoBehaviour:
   - {fileID: 4958320532538682467, guid: 4eaddad448a2d23429ed0eea726bfd8d, type: 3}
   - {fileID: 4958320532538682467, guid: 1243e384533e502498309a6fa4922836, type: 3}
   - {fileID: 4958320532538682467, guid: 544af2434a5bba0489315dbec581cacb, type: 3}
+  aImonstersArray:
+  - {fileID: 4958320532538682467, guid: 7dde166eab071ae42aca2ec8733eb0c8, type: 3}
+  - {fileID: 4958320532538682467, guid: 7dde166eab071ae42aca2ec8733eb0c8, type: 3}
+  - {fileID: 4958320532538682467, guid: 7dde166eab071ae42aca2ec8733eb0c8, type: 3}
+  - {fileID: 4958320532538682467, guid: 7dde166eab071ae42aca2ec8733eb0c8, type: 3}
   monstersSpriteArray:
   - {fileID: -2124301560742553499, guid: b2fb17841aa30724498fd697354b4133, type: 3}
   - {fileID: -2903832173403348423, guid: 22ec4a9fb4ea6c841a7c4cfdeb58d0e7, type: 3}
