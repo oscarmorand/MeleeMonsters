@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isPressingDown;
 
     private PlayerScript playerScript;
+    private MonstersAttacks mA;
 
     internal bool inWave = false;
     internal GameObject wave;
@@ -60,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
     internal bool isDashAttacking;
     internal float dashAttackSpeed = 0;
     internal Vector2 dashAttackDirection;
+
+    internal bool isFastFallingAttacking;
 
     public ParticleSystem footSteps;
     public ParticleSystem impactEffect;
@@ -70,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         playerScript = GetComponent<PlayerScript>();
+        mA = GetComponent<MonstersAttacks>();
         moveSpeed = settings.speed;
         jumpForce = settings.jumpStrength;
         maxJump = settings.extraJump;
@@ -151,6 +155,16 @@ public class PlayerMovement : MonoBehaviour
                 if (isFastFalling)
                 {
                     rb.velocity = new Vector2(rb.velocity.x, -fastFallingSpeed);
+                }
+
+                if(isFastFallingAttacking)
+                {
+                    rb.velocity = new Vector2(0, -20);
+                    if(isGrounded || isOnPlatform)
+                    {
+                        isFastFallingAttacking = false;
+                        mA.FastFallAttackCallback();
+                    }
                 }
 
                 if (HasPassedPlatform)
@@ -357,6 +371,10 @@ public class PlayerMovement : MonoBehaviour
         isDashAttacking = false;
     }
 
+    public void SetFastFallAttack()
+    {
+        isFastFallingAttacking = true;
+    }
 
     [PunRPC]
     public void ShowFootStepParticles(bool show)

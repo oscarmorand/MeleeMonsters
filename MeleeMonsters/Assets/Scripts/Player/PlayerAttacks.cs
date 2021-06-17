@@ -165,7 +165,6 @@ public class PlayerAttacks : MonoBehaviour
         }
     }
 
-
     [PunRPC]
     public void AttackSFX(string sound)
     {

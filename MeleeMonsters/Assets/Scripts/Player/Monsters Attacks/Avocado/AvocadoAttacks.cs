@@ -80,6 +80,8 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
     }
 
 
+    public override void FastFallAttackCallback() { }
+
 
 
     public void NoyauDisable()

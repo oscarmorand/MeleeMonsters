@@ -101,6 +101,12 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
     }
 
 
+    public override void FastFallAttackCallback() 
+    { 
+    
+    }
+
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

@@ -8,6 +8,7 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
 
     public GameObject snowballPrefab;
     public GameObject iceCubePrefab;
+    public GameObject hiddenStalactitePrefab;
 
     public override void InstantiateAttacks()
     {
@@ -54,7 +55,7 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
 
     public override void DownSpecial()
     {
-        print("je fais une downSpecial de yeti wouaaaa");
+        pM.SetFastFallAttack();
     }
 
     public override void NeutralSpecial()
@@ -70,16 +71,21 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
         iceCube.GetComponent<YetiIcecube>().Throw(pM.direction, gameObject);
     }
 
-    public override void DownWrath()
-    {
-
-    }
+    public override void DownWrath(){}
 
     public override void NeutralWrath()
     {
         pM.SetDashAttackState(0.2f, 0.03f, 18f, new Vector2(0f, 1));
     }
 
+
+    public override void FastFallAttackCallback()
+    {
+        GameObject hiddenStalactiteLeft = PhotonNetwork.Instantiate(hiddenStalactitePrefab.name, hitboxesPoints[1].position, new Quaternion());
+        GameObject hiddenStalactiteRight = PhotonNetwork.Instantiate(hiddenStalactitePrefab.name, hitboxesPoints[2].position, new Quaternion());
+        hiddenStalactiteLeft.GetComponent<YetiHiddenStalactite>().Throw(-1, gameObject);
+        hiddenStalactiteRight.GetComponent<YetiHiddenStalactite>().Throw(1, gameObject);
+    }
 
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

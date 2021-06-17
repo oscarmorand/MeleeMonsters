@@ -67,6 +67,9 @@ abstract public class MonstersAttacks : MonoBehaviour
     public abstract void DownWrath();
 
 
+    public abstract void FastFallAttackCallback();
+
+
     private void AddObservable()
     {
         if (!pV.ObservedComponents.Contains(this))

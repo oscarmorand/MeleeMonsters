@@ -1771,6 +1771,8 @@ MonoBehaviour:
     type: 3}
   iceCubePrefab: {fileID: 1310930056218048277, guid: f6ac5edfcb8ac4649b645bc604862e64,
     type: 3}
+  hiddenStalactitePrefab: {fileID: 1310930056218048277, guid: 9a6d4bd55c02a0344bb6e9e294d1a2e2,
+    type: 3}
 --- !u!114 &6524688683030467966
 MonoBehaviour:
   m_ObjectHideFlags: 0
