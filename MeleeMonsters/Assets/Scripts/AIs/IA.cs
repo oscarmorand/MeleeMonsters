@@ -12,6 +12,7 @@ public class IA : MonoBehaviour
     PlayerAttacks playerAttacks;
     PlayerScript playerScript;
     public IAAttacks iaattacks;
+    private Rigidbody2D rb;
 
     public float distanceX;
     public float distanceY;
@@ -26,11 +27,17 @@ public class IA : MonoBehaviour
 
         playerAttacks = GetComponent<PlayerAttacks>();
         playerScript = GetComponent<PlayerScript>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (playerScript.currentState == PlayerScript.States.Frozen)
+            return;
+
+        rb.simulated = true;
+
         if (player == null) 
         {
             gameObject.tag = "IA";
