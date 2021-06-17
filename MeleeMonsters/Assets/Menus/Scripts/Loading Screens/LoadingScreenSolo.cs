@@ -13,7 +13,7 @@ public class LoadingScreenSolo : MonoBehaviourPunCallbacks
         GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
         GameManager gameManager = manager.GetComponent<GameManager>();
         gameManager.SetGameState(GameManager.States.MonsterSelectionMenu);
-        SceneManager.LoadScene("SelectMonster");
+        SceneManager.LoadScene("SelectMonster&AISolo");
     }
     public override void OnConnectedToMaster()
     {
@@ -26,7 +26,7 @@ public class LoadingScreenSolo : MonoBehaviourPunCallbacks
             options.MaxPlayers = 1;
             options.IsVisible = false;
             PhotonNetwork.JoinOrCreateRoom("solo", options, TypedLobby.Default);
-            SceneManager.LoadScene("SelectMonster");
+            SceneManager.LoadScene("SelectMonster&AISolo");
         }
           
     }

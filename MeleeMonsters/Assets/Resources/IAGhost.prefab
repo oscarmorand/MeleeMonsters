@@ -871,6 +871,9 @@ MonoBehaviour:
   isOnPlatform: 0
   HasPassedPlatform: 0
   isPressingDown: 0
+  footSteps: {fileID: 0}
+  impactEffect: {fileID: 0}
+  dashEffect: {fileID: 0}
 --- !u!114 &-366637032177327525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1121,7 +1124,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4958320532538682467}
   m_BodyType: 0
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
