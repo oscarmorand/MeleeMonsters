@@ -96,7 +96,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         else
         {
             Debug.Log("instancié!");
-            return Instantiate(AIPrefab, pos, Quaternion.identity);
+            object[] data = new object[]
+            {
+                AIMonsterIndex  // to know which monster we instanciate for replica
+            };
+            return PhotonNetwork.Instantiate(AIPrefab.name, pos, Quaternion.identity, 0, data);
         }
         return null;
     }

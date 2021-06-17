@@ -50,9 +50,6 @@ public class LevelManager : MonoBehaviour
         if (inSolo)
         {
             //if (playersScripts.Count == 1)
-            
-            /* GameObject[] IAs = GameObject.FindGameObjectsWithTag("IA");
-            gameObjectIA = IAs[0]; */
             gameObjectIA = gameManager.InstantiateAI(spawnPoints.p2[1].position);
 
             

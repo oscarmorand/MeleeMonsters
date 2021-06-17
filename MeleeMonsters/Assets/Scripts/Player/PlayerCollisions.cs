@@ -91,7 +91,7 @@ public class PlayerCollisions : MonoBehaviour
     [PunRPC]
     private void TakeDamage(int damage)
     {
-        pS.TakeDamage(damage);
+       pS.TakeDamage(damage);
     }
 
     [PunRPC]

@@ -79,7 +79,7 @@ public class SelectMonsterSoloAI : MonoBehaviour
     public void ChangeAIMonster(int monsterIndex) // AI
     {
         if (AIMonsterObject != null)
-            Destroy(AIMonsterObject);
+            PhotonNetwork.Destroy(AIMonsterObject);
 
         gameManager.SelectAIMonster(monsterIndex);
         AIMonsterObject = gameManager.InstantiateAI(new Vector3(2.8f, 0.3f, 0f));
