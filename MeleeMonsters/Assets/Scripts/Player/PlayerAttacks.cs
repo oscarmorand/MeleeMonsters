@@ -184,4 +184,9 @@ public class PlayerAttacks : MonoBehaviour
     {
         currentAttack = Attack.Deserialize(data);
     }
+
+    public void PlayAttackAnimation(string animationName) //utilisée que par le Kraken dans son downSpecial
+    {
+        pV.RPC("AttackAnimation", RpcTarget.All, animationName);
+    }
 }

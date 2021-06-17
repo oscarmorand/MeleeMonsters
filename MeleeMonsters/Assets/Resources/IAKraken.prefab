@@ -16275,6 +16275,8 @@ MonoBehaviour:
     type: 3}
   wavePrefab: {fileID: 1310930056218048277, guid: b3c9bce7445db034a9bef50f70b623e3,
     type: 3}
+  geyserPrefab: {fileID: 1310930056218048277, guid: 4c379bcdba6e13c45aa5637528396383,
+    type: 3}
 --- !u!114 &774066506139280654
 MonoBehaviour:
   m_ObjectHideFlags: 0
