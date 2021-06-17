@@ -49,4 +49,8 @@ abstract public class IAAttacks : MonoBehaviour
     abstract public void UseGroundAttacks();
 
     abstract public void UseAirAttacks();
+
+    abstract public void UseGroundAttacksW();
+
+    abstract public void UseAirAttacksW();
 }

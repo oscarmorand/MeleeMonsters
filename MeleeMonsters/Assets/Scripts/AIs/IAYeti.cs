@@ -49,12 +49,12 @@ public class IAYeti : IAAttacks
         //}
     }
 
-    public void UseSpecialAttacks()
+    public override void UseGroundAttacksW()
     {
 
     }
 
-    public void UseWrathAttacks()
+    public override void UseAirAttacksW()
     {
 
     }
