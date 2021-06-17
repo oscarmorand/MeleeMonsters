@@ -337,19 +337,22 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    public void DashAttackState(float time, float speed, Vector2 direction)
+    public void SetDashAttackState(float waitingTime, float time, float speed, Vector2 direction)
     {
+        StartCoroutine(DashAttackState(waitingTime,time,speed,direction));
+    }
+
+    IEnumerator DashAttackState(float waitingTime, float time, float speed, Vector2 direction)
+    {
+        yield return new WaitForSeconds(waitingTime);
+
         isDashAttacking = true;
         dashAttackSpeed = speed;
         dashAttackDirection = direction;
-        if(dashEffect != null)
+        if (dashEffect != null)
             photonView.RPC("PlayDashEffect", RpcTarget.All);
-        Invoke("NotDashAttackingAnymore", time);
 
-    }
-
-    public void NotDashAttackingAnymore()
-    {
+        yield return new WaitForSeconds(time);
         isDashAttacking = false;
     }
 

@@ -48,7 +48,7 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
 
     public override void SideSpecial()
     {
-        pM.DashAttackState(0.4f, 15f, new Vector2(1, 0));
+        pM.SetDashAttackState(0f, 0.4f, 15f, new Vector2(1, 0));
     }
 
 
@@ -66,7 +66,7 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
 
     public override void SideWrath()
     {
-        pM.DashAttackState(0.2f, 30f, new Vector2(1, 0));
+        pM.SetDashAttackState(0f, 0.2f, 30f, new Vector2(1, 0));
     }
 
     public override void DownWrath(){}

@@ -20,11 +20,11 @@ public class GhostAttacks : MonstersAttacks, IPunObservable
         attacks.Add(new Attack("DownAir", 6, 200,  new Vector2(0, 1), 0.1f,"Da", ""));
         attacks.Add(new Attack("NeutralAir", 2, 100,  new Vector2(0, 1), 0.1f,"Na", ""));
 
-        attacks.Add(new Attack("SideSpecial", 5, 100, new Vector2(1, 0), 0.1f, "Ss", ""));
+        attacks.Add(new Attack("SideSpecial", 5, 100, new Vector2(0, 1), 1f, "Ss", ""));
         attacks.Add(new Attack("DownSpecial", 6, 100,  new Vector2(0, 1), 0.6f, "Ds", ""));
         attacks.Add(new Attack("NeutralSpecial", 2, 500, new Vector2(1, 0.1f), 0.6f, "Ns", ""));
 
-        attacks.Add(new Attack("SideWrath", 8, 250,  new Vector2(1, 0), 0.1f,"Sw", ""));
+        attacks.Add(new Attack("SideWrath", 8, 250,  new Vector2(1, 0), 1.4f,"Sw", ""));
         attacks.Add(new Attack("DownWrath", 10, 200,  new Vector2(0, 1),  1f, "Dw", ""));
         attacks.Add(new Attack("NeutralWrath", 3, 700, new Vector2(1, 0.1f), 0.8f, "Nw", ""));
     }
@@ -43,7 +43,7 @@ public class GhostAttacks : MonstersAttacks, IPunObservable
 
     public override void SideSpecial()
     {
-        print("je fais une sidespecial de fantome ohlalah");
+        pM.SetDashAttackState(0.2f, 0.08f, 50f, new Vector2(1, 0));
     }
 
     public override void DownSpecial()
@@ -59,7 +59,7 @@ public class GhostAttacks : MonstersAttacks, IPunObservable
 
     public override void SideWrath()
     {
-
+        pM.SetDashAttackState(0.25f, 0.18f, 32f, new Vector2(1, 0));
     }
 
     public override void DownWrath()
