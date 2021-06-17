@@ -310,6 +310,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Eject(Vector2 force)
     {
+        //rb.velocity = Vector2.zero;
         rb.AddForce(force);
     }
 
