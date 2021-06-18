@@ -8,6 +8,9 @@ public class StalactitRoof : MonoBehaviour
 
     public float knockback;
     public int damage;
+    public bool down;
+    public GameObject burst;
+    public Transform burstPos;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,9 +19,28 @@ public class StalactitRoof : MonoBehaviour
             PhotonView pVTarget = collision.GetComponent<PhotonView>();
             float bonus = 1;
 
-            pVTarget.RPC("Eject", RpcTarget.All, Vector2.down, knockback, bonus);
+            Vector2 trajectoire;
+            if (down)
+                trajectoire = Vector2.down;
+            else
+            {
+                if (collision.transform.position.x - transform.position.x > 0)
+                    trajectoire = Vector2.right;
+                else
+                    trajectoire = Vector2.left;
+            }
+
+            pVTarget.RPC("Eject", RpcTarget.All, trajectoire, knockback, bonus);
 
             pVTarget.RPC("TakeDamage", RpcTarget.All, damage);
         }
+        else if (collision.gameObject.layer == 8 || collision.gameObject.layer == 10)
+        {
+            burst = PhotonNetwork.Instantiate(burst.name, burstPos.position, new Quaternion());
+            burst.GetComponent<ParticleSystem>().Play();
+            Destroy(gameObject);
+        }
     }
+
+
 }
