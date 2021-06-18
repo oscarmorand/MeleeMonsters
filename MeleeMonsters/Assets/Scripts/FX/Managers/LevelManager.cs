@@ -148,6 +148,6 @@ public class LevelManager : MonoBehaviour
 
     void EndGame()
     {
-        PhotonNetwork.LoadLevel(6);
+        PhotonNetwork.LoadLevel(7);
     }
 }
