@@ -51,7 +51,6 @@ public class LevelManager : MonoBehaviour
         {
             //if (playersScripts.Count == 1)
             gameObjectIA = gameManager.InstantiateAI(spawnPoints.p2[1].position);
-
             
         }
     }
@@ -148,6 +147,7 @@ public class LevelManager : MonoBehaviour
 
     void EndGame()
     {
-        PhotonNetwork.LoadLevel(6);
+        gameManager.SetGameState(GameManager.States.End);
+        PhotonNetwork.LoadLevel(7);
     }
 }

@@ -212,7 +212,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
     public void OnEnterReappear()
     {
         isAlive = false;
-        lives--;
+           lives--;
         CheckStillAlive();
         if (canStillPlay)
             Invoke("Reappear", reappearitionTime);
@@ -250,9 +250,9 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         if(lives <= 0)
         {
             canStillPlay = false;
+            levelManager.SearchForWinner();
             _myCustomPropreties["StillInGame"] = false;
             PhotonNetwork.LocalPlayer.CustomProperties = _myCustomPropreties;
-            levelManager.SearchForWinner();
         }
     }
 
