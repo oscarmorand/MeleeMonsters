@@ -18,13 +18,13 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
     public override void InstantiateAttacks()
     {
         attacks = new List<Attack>();
-        attacks.Add(new Attack("SideGround", 4, 350, new Vector2(1, 0.1f), 0.1f,"Sg", "wet slap"));
-        attacks.Add(new Attack("DownGround", 4, 400,  new Vector2(0, 1), 0.1f, "Dg", ""));
-        attacks.Add(new Attack("NeutralGround", 5, 300, new Vector2(0, 1), 0.1f, "Ng", ""));
+        attacks.Add(new Attack("SideGround", 4, 350, new Vector2(1, 0.1f), 0.25f,"Sg", "wet slap"));
+        attacks.Add(new Attack("DownGround", 4, 400,  new Vector2(0, 1), 0.30f, "Dg", ""));
+        attacks.Add(new Attack("NeutralGround", 5, 300, new Vector2(0, 1), 0.32f, "Ng", ""));
         
-        attacks.Add(new Attack("SideAir", 4, 350, new Vector2(0, 1), 0.1f, "Sa", "wet slap"));
-        attacks.Add(new Attack("DownAir", 7, 500, new Vector2(0, -1), 0.1f, "Da", ""));
-        attacks.Add(new Attack("NeutralAir", 6, 400, new Vector2(0, 1), 0.1f, "Na", ""));
+        attacks.Add(new Attack("SideAir", 4, 350, new Vector2(0, 1), 0.25f, "Sa", "wet slap"));
+        attacks.Add(new Attack("DownAir", 7, 500, new Vector2(0, -1), 0.37f, "Da", ""));
+        attacks.Add(new Attack("NeutralAir", 6, 400, new Vector2(0, 1), 0.35f, "Na", ""));
         
         attacks.Add(new Attack("SideSpecial", 10, 600, new Vector2(1, 0), 1f, "Ss", ""));
         attacks.Add(new Attack("DownSpecial", 8, 400,  new Vector2(0, 1), 0.1f,"", ""));
