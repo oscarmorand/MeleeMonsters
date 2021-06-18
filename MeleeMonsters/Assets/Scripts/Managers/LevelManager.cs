@@ -159,7 +159,6 @@ public class LevelManager : MonoBehaviour
                     if (player.lives > 0)
                     {
                         ++count;
-                        print("count = " + count);
                         winnerPlayerScript = player.nickName;
                     }
                 }
