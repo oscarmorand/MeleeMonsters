@@ -42,3 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: frontLight1
+    uniqueID: 214913343
+    locked: 0
+  - name: frontLight2
+    uniqueID: 191031767
+    locked: 0

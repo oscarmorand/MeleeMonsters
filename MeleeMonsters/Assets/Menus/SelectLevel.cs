@@ -12,6 +12,7 @@ public class SelectLevel : MonoBehaviour
     public int forest;
     public int cemetery;
     public int abyss;
+    public int frozenCave;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,13 @@ public class SelectLevel : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
             level = abyss;
     }
+
+    public void OnClickedFrozenCave()
+    {
+        if (PhotonNetwork.IsMasterClient)
+            level = frozenCave;
+    }
+
 
     public void OnClickedPlay()
     {
