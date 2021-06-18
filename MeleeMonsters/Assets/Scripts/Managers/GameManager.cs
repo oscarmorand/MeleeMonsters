@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public List<Player> playersList = new List<Player>(); // players in current room
 
-    internal Photon.Realtime.Player winner;
+    public string winner = "";
     internal bool IAwon = false;
 
     public enum States

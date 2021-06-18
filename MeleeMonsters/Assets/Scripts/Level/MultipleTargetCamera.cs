@@ -33,15 +33,15 @@ public class MultipleTargetCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (targets.Count < levelManager.playersScripts.Count )//PhotonNetwork.CurrentRoom.PlayerCount)
-            ActualizeTargets();
-
+        //if (targets.Count < levelManager.playersScripts.Count )//PhotonNetwork.CurrentRoom.PlayerCount)
+        ActualizeTargets();
+        /*
         foreach (Transform target in targets)
         {
             if (target == null)
                 ActualizeTargets();
         }
-
+        */
         if (targets.Count == 0)
             return;
 
@@ -85,15 +85,19 @@ public class MultipleTargetCamera : MonoBehaviour
     void InitializeTargets()
     {
         GameObject[] IAs = GameObject.FindGameObjectsWithTag("IA");
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        //GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject IA in IAs)
         {
             if(IA.activeInHierarchy)
                 targets.Add(IA.transform);
         }
-        foreach (GameObject player in players)
+        foreach (PlayerScript player in levelManager.playersScripts)
         {
-            targets.Add(player.transform);
+            if (player != null)
+            {
+                if (player.lives > 0)
+                    targets.Add(player.transform);
+            }
         }
     }
 

@@ -7,17 +7,17 @@ using UnityEngine.SceneManagement;
 public class SelectLevel : MonoBehaviour
 {
 
-    int level;
-
+    string level;
+    /*
     public int forest;
     public int cemetery;
     public int abyss;
     public int frozenCave;
-
+    */
     // Start is called before the first frame update
     void Start()
     {
-        level = SceneManager.GetActiveScene().buildIndex;
+        //level = SceneManager.GetActiveScene().buildIndex;
     }
 
     // Update is called once per frame
@@ -29,25 +29,25 @@ public class SelectLevel : MonoBehaviour
     public void OnClickedForest()
     {
         if(PhotonNetwork.IsMasterClient)
-            level = forest;
+            level = "Forest";
     }
 
     public void OnClickedCemetery()
     {
         if (PhotonNetwork.IsMasterClient)
-            level = cemetery;
+            level = "Cemetery";
     }
 
     public void OnClickedAbyss()
     {
         if (PhotonNetwork.IsMasterClient)
-            level = abyss;
+            level = "Abyss";
     }
 
     public void OnClickedFrozenCave()
     {
         if (PhotonNetwork.IsMasterClient)
-            level = frozenCave;
+            level = "Grotte";
     }
 
 

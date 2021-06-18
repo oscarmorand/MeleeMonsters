@@ -5848,6 +5848,7 @@ MonoBehaviour:
   currentState: 1
   nickName: 
   monsterIndex: 0
+  lives: 0
   percentage: 0
   isWrath: 0
   maxWrathTime: 15

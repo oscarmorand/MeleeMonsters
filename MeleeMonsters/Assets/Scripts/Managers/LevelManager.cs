@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using Photon.Pun;
 
@@ -16,7 +17,7 @@ public class LevelManager : MonoBehaviour
 
     public bool inSolo;
 
-    private List<Photon.Realtime.Player> playersInGame = new List<Photon.Realtime.Player>();
+    //private List<Photon.Realtime.Player> playersInGame = new List<Photon.Realtime.Player>();
     private ExitGames.Client.Photon.Hashtable _myCustomPropreties = new ExitGames.Client.Photon.Hashtable();
 
     // before all Start functions of all GameObject
@@ -58,7 +59,11 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameManager.GetGameState() == GameManager.States.Playing)
+        { 
+            SearchForWinner(); 
+        }
+            
     }
 
     void SpawnPlayers()
@@ -98,6 +103,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    /*
     public void PlayersStillInGame()
     {
         print("playerStillIngame est lance");
@@ -110,44 +116,76 @@ public class LevelManager : MonoBehaviour
             print(player.NickName + " " + player.CustomProperties["StillInGame"].ToString());
         }
     }
-
+    */
     public void SearchForWinner()
     {
-        PlayersStillInGame();
+        //PlayersStillInGame();
 
         if(inSolo)
         {
+            if (playersScripts[0].lives <= 0)
+            {
+                // AI won
+                gameManager.IAwon = true;
+                gameManager.winner = playersScripts[1].nickName;
+                print(playersScripts[1].nickName + " is the winner !");
+                EndGame();
+            }
+            else if (playersScripts[1].lives <= 0)
+            {
+                // Player won
+                gameManager.winner = playersScripts[0].nickName;
+                print(playersScripts[0].nickName + " is the winner !");
+                EndGame();
+            }
+            /*
             if(playersInGame.Count <= 1)
             {
                 if (playersInGame.Count == 1 && !(gameObjectIA.GetComponent<PlayerScript>().canStillPlay))
                     WinnerFound();
-                if (playersInGame.Count == 0 && (gameObjectIA.GetComponent<PlayerScript>().canStillPlay))
-                    gameManager.IAwon = true;
+                //if (playersInGame.Count == 0 && (gameObjectIA.GetComponent<PlayerScript>().canStillPlay))
+                   //gameManager.IAwon = true;
                 EndGame();
-            } 
+            } */
         }
         else
         {
-            if (playersInGame.Count < 2)
+            int count = 0;
+            string winnerPlayerScript = "";
+            foreach (PlayerScript player in playersScripts)
             {
-                if (playersInGame.Count == 1)
-                    WinnerFound();
-                if (playersInGame.Count == 0)
+                if (player != null)
+                {
+                    if (player.lives > 0)
+                    {
+                        ++count;
+                        winnerPlayerScript = player.nickName;
+                    }
+                }
+                    
+            }
+
+            if (count < 2)
+            {
+                print("GoToEndGame");
+                if (count == 1)
+                {
+                    gameManager.winner = winnerPlayerScript;
+                    print(winnerPlayerScript + " is the winner !");
+                }
+                    
+                if (count == 0)
                     print("vous etes tous morts");
+
                 EndGame();
             }
         } 
     }
 
-    void WinnerFound()
-    {
-        gameManager.winner = playersInGame[0];
-        print(playersInGame[0].NickName + " is the winner !");
-    }
-
     void EndGame()
     {
+        print("EndGame");
         gameManager.SetGameState(GameManager.States.End);
-        PhotonNetwork.LoadLevel(7);
+        SceneManager.LoadScene("WinnerScene");
     }
 }
