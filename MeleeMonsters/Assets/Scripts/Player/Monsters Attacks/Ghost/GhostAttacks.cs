@@ -12,13 +12,13 @@ public class GhostAttacks : MonstersAttacks, IPunObservable
     {
         attacks = new List<Attack>();
 
-        attacks.Add(new Attack("SideGround", 3, 300, new Vector2(1, 0.1f), 0.1f,"Sg",""));
-        attacks.Add(new Attack("DownGround", 5, 400, new Vector2(0, 1), 0.1f,"Dg", ""));
-        attacks.Add(new Attack("NeutralGround", 4, 150,  new Vector2(0, 1), 0.1f,"Ng", ""));
+        attacks.Add(new Attack("SideGround", 3, 300, new Vector2(1, 0.1f), 0.5f,"Sg",""));
+        attacks.Add(new Attack("DownGround", 5, 400, new Vector2(0, 1), 0.5f,"Dg", ""));
+        attacks.Add(new Attack("NeutralGround", 4, 150,  new Vector2(0, 1), 0.5f,"Ng", ""));
 
-        attacks.Add(new Attack("SideAir", 5, 400,  new Vector2(1, 0), 0.1f, "Sa", ""));
-        attacks.Add(new Attack("DownAir", 6, 200,  new Vector2(0, 1), 0.1f,"Da", ""));
-        attacks.Add(new Attack("NeutralAir", 2, 100,  new Vector2(0, 1), 0.1f,"Na", ""));
+        attacks.Add(new Attack("SideAir", 5, 400,  new Vector2(1, 0), 0.5f, "Sa", ""));
+        attacks.Add(new Attack("DownAir", 6, 200,  new Vector2(0, 1), 0.5f,"Da", ""));
+        attacks.Add(new Attack("NeutralAir", 2, 100,  new Vector2(0, 1), 0.5f,"Na", ""));
 
         attacks.Add(new Attack("SideSpecial", 5, 100, new Vector2(0, 1), 1f, "Ss", ""));
         attacks.Add(new Attack("DownSpecial", 6, 100,  new Vector2(0, 1), 0.6f, "Ds", ""));
