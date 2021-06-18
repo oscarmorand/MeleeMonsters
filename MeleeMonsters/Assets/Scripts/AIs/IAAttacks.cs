@@ -31,6 +31,9 @@ abstract public class IAAttacks : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        if (playerScript.currentState == PlayerScript.States.Frozen)
+            return;
+
         if (player == null)
         {
             gameObject.tag = "IA";

@@ -29,7 +29,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
     //public Monsters monster;
     public int monsterIndex = -1;
 
-    private int lives;
+    public int lives;
     public int percentage;
 
     internal bool isAlive = true;
@@ -218,10 +218,11 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
             Invoke("Reappear", reappearitionTime);
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
             if (levelManager.inSolo)
             {
-                Destroy(levelManager.gameObjectIA);
+                levelManager.gameObjectIA.SetActive(false);
             }
         }
     }

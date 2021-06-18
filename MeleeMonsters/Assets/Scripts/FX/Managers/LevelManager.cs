@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour
 
     public bool inSolo;
 
-    private List<Photon.Realtime.Player> playersInGame = new List<Photon.Realtime.Player>();
+    //private List<Photon.Realtime.Player> playersInGame = new List<Photon.Realtime.Player>();
     private ExitGames.Client.Photon.Hashtable _myCustomPropreties = new ExitGames.Client.Photon.Hashtable();
 
     // before all Start functions of all GameObject
@@ -98,6 +98,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    /*
     public void PlayersStillInGame()
     {
         print("playerStillIngame est lance");
@@ -110,29 +111,44 @@ public class LevelManager : MonoBehaviour
             print(player.NickName + " " + player.CustomProperties["StillInGame"].ToString());
         }
     }
-
+    */
     public void SearchForWinner()
     {
-        PlayersStillInGame();
+        //PlayersStillInGame();
 
         if(inSolo)
         {
+            if (playersScripts[0].lives <= 0)
+            {
+                // AI won
+                gameManager.IAwon = true;
+                gameManager.winner = playersScripts[1];
+                print(playersScripts[1].nickName + " is the winner !");
+            }
+            else
+            {
+                // Player won
+                gameManager.winner = playersScripts[0];
+                print(playersScripts[0].nickName + " is the winner !");
+            }
+            EndGame();
+            /*
             if(playersInGame.Count <= 1)
             {
                 if (playersInGame.Count == 1 && !(gameObjectIA.GetComponent<PlayerScript>().canStillPlay))
                     WinnerFound();
-                if (playersInGame.Count == 0 && (gameObjectIA.GetComponent<PlayerScript>().canStillPlay))
-                    gameManager.IAwon = true;
+                //if (playersInGame.Count == 0 && (gameObjectIA.GetComponent<PlayerScript>().canStillPlay))
+                   //gameManager.IAwon = true;
                 EndGame();
-            } 
+            } */
         }
         else
         {
-            if (playersInGame.Count < 2)
+            if (playersScripts.Count < 2)
             {
-                if (playersInGame.Count == 1)
+                if (playersScripts.Count == 1)
                     WinnerFound();
-                if (playersInGame.Count == 0)
+                if (playersScripts.Count == 0)
                     print("vous etes tous morts");
                 EndGame();
             }
@@ -141,8 +157,8 @@ public class LevelManager : MonoBehaviour
 
     void WinnerFound()
     {
-        gameManager.winner = playersInGame[0];
-        print(playersInGame[0].NickName + " is the winner !");
+        gameManager.winner = playersScripts[0];
+        print(playersScripts[0].nickName + " is the winner !");
     }
 
     void EndGame()

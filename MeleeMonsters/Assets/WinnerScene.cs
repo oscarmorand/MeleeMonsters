@@ -17,20 +17,17 @@ public class WinnerScene : MonoBehaviour
         GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager?.GetComponent<GameManager>();
 
-
         if (gameManager.IAwon)
         {
-            winner = "The AI";
-            //gameManager.InstantiateAI(new Vector3(0f, -1.8f, 0));
+            gameManager.InstantiateAI(new Vector3(0f, -1.8f, 0));
         }
         else
         {
-            winner = gameManager.winner.NickName;
-            //gameManager.InstantiatePlayer(new Vector3(0f, -1.8f, 0));
-        }  
+            gameManager.InstantiatePlayer(new Vector3(0f, -1.8f, 0));
+        }
+        winner = gameManager.winner.nickName;
         UIWinner.text = winner + " is the winner of the game !";
 
-        //gameManager.InstantiatePlayer(new Vector3(0f, -2, 0f));
     }
 
     // Update is called once per frame
