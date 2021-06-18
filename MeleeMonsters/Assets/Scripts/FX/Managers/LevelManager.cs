@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using Photon.Pun;
 
@@ -58,7 +59,11 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameManager.GetGameState() == GameManager.States.Playing)
+        { 
+            SearchForWinner(); 
+        }
+            
     }
 
     void SpawnPlayers()
@@ -122,13 +127,13 @@ public class LevelManager : MonoBehaviour
             {
                 // AI won
                 gameManager.IAwon = true;
-                gameManager.winner = playersScripts[1];
+                gameManager.winner = playersScripts[1].nickName;
                 print(playersScripts[1].nickName + " is the winner !");
             }
             else
             {
                 // Player won
-                gameManager.winner = playersScripts[0];
+                gameManager.winner = playersScripts[0].nickName;
                 print(playersScripts[0].nickName + " is the winner !");
             }
             EndGame();
@@ -144,26 +149,43 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            if (playersScripts.Count < 2)
+            int count = 0;
+            string winnerPlayerScript = "";
+            foreach (PlayerScript player in playersScripts)
             {
-                if (playersScripts.Count == 1)
-                    WinnerFound();
-                if (playersScripts.Count == 0)
+                if (player != null)
+                {
+                    if (player.lives > 0)
+                    {
+                        ++count;
+                        print("count = " + count);
+                        winnerPlayerScript = player.nickName;
+                    }
+                }
+                    
+            }
+
+            if (count < 2)
+            {
+                print("GoToEndGame");
+                if (count == 1)
+                {
+                    gameManager.winner = winnerPlayerScript;
+                    print(winnerPlayerScript + " is the winner !");
+                }
+                    
+                if (count == 0)
                     print("vous etes tous morts");
+
                 EndGame();
             }
         } 
     }
 
-    void WinnerFound()
-    {
-        gameManager.winner = playersScripts[0];
-        print(playersScripts[0].nickName + " is the winner !");
-    }
-
     void EndGame()
     {
+        print("EndGame");
         gameManager.SetGameState(GameManager.States.End);
-        PhotonNetwork.LoadLevel(7);
+        SceneManager.LoadScene("WinnerScene");
     }
 }

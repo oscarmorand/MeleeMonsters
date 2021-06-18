@@ -42,6 +42,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
     public float loadingWrath = 495;
     internal float wrathPercentage = 0;
 
+    private bool initForStart321Go = false;
     private bool initForPlayingDone = false;
 
     private PlayerMovement pMovement;
@@ -114,14 +115,21 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
     // Update is called once per frame
     void Update()
     {
+        if (!initForStart321Go)  // TODO : do this with events
+        {
+            if (gameManager.GetGameState() == GameManager.States.Start321GO)
+            {
+                levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+                spawnList = levelManager.spawnList;
+                levelManager.playersScripts.Add(this);
+                initForStart321Go = true;
+            }
+        }
         if (!initForPlayingDone)
         {
             if (gameManager.GetGameState() == GameManager.States.Playing)
             {
                 rb.simulated = true;
-                levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-                spawnList = levelManager.spawnList;
-                levelManager.playersScripts.Add(this);
                 currentState = States.Playing;
                 initForPlayingDone = true;
             }
@@ -212,7 +220,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
     public void OnEnterReappear()
     {
         isAlive = false;
-           lives--;
+        lives--;
         CheckStillAlive();
         if (canStillPlay)
             Invoke("Reappear", reappearitionTime);
@@ -251,7 +259,6 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         if(lives <= 0)
         {
             canStillPlay = false;
-            levelManager.SearchForWinner();
             _myCustomPropreties["StillInGame"] = false;
             PhotonNetwork.LocalPlayer.CustomProperties = _myCustomPropreties;
         }
