@@ -129,14 +129,15 @@ public class LevelManager : MonoBehaviour
                 gameManager.IAwon = true;
                 gameManager.winner = playersScripts[1].nickName;
                 print(playersScripts[1].nickName + " is the winner !");
+                EndGame();
             }
-            else
+            else if (playersScripts[1].lives <= 0)
             {
                 // Player won
                 gameManager.winner = playersScripts[0].nickName;
                 print(playersScripts[0].nickName + " is the winner !");
+                EndGame();
             }
-            EndGame();
             /*
             if(playersInGame.Count <= 1)
             {
