@@ -7,21 +7,21 @@ public class PlayerAttacks : MonoBehaviour
 {
     public enum attackType
     {
-        sG,
-        dG,
-        nG,
+        sG = 0,
+        dG = 1,
+        nG = 2,
 
-        sA,
-        dA,
-        nA,
+        sA = 3,
+        dA = 4,
+        nA = 5,
 
-        sS,
-        dS,
-        nS,
+        sS = 6,
+        dS = 7,
+        nS = 8,
 
-        sW,
-        dW,
-        nW
+        sW = 9,
+        dW = 10,
+        nW = 11,
     }
 
     internal bool normalButton;
