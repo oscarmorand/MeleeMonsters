@@ -5,6 +5,16 @@ using System;
 
 public class IA : MonoBehaviour
 {
+    public enum IADifficultyChoice
+    {
+        Dummy = 0,
+        Beginner = 1,
+        Intermediate = 2,
+        Advanced = 3
+    }
+
+    public int iaDifficultyChoice;
+
     PlayerMovement playerMovement;
     GameObject player;
     Transform playerTrans;
@@ -28,6 +38,8 @@ public class IA : MonoBehaviour
         playerAttacks = GetComponent<PlayerAttacks>();
         playerScript = GetComponent<PlayerScript>();
         rb = GetComponent<Rigidbody2D>();
+
+        //iaDifficultyChoice = "POUR LIANE"
     }
 
     // Update is called once per frame
@@ -46,6 +58,8 @@ public class IA : MonoBehaviour
         } 
         else
         {
+            System.Random rd = new System.Random();
+            
             relativeSideX = playerTrans.position.x - gameObject.transform.position.x;
             relativeSideY = playerTrans.position.y - gameObject.transform.position.y;
             distanceX = Math.Abs(relativeSideX);
@@ -69,12 +83,39 @@ public class IA : MonoBehaviour
                 if (playerMovement.isOnPlatform && relativeSideY <= -2.5f) //si l'IA est sur une plateforme et que le joueur est assez bas
                     FallFromPlatform();
 
-                FollowPlayerOnGround();
+                if (iaDifficultyChoice != (int) IADifficultyChoice.Dummy) //Si l'IA est autre chose qu'un dummy
+                    FollowPlayerOnGround();
 
-                if (!playerScript.isWrath)
-                    iaattacks.UseGroundAttacks();
-                else
-                    iaattacks.UseGroundAttacksW();
+                if (iaDifficultyChoice == (int)IADifficultyChoice.Beginner)
+                {
+                    if (rd.Next(0, 30) == 0) //2 attaques par seconde
+                    {
+                        if (!playerScript.isWrath)
+                            iaattacks.UseGroundAttacks();
+                        else
+                            iaattacks.UseGroundAttacksW();
+                    }
+                }
+
+                if (iaDifficultyChoice == (int)IADifficultyChoice.Intermediate)
+                {
+                    if (rd.Next(0, 15) == 0) //4 attaques par seconde
+                    {
+                        if (!playerScript.isWrath)
+                            iaattacks.UseGroundAttacks();
+                        else
+                            iaattacks.UseGroundAttacksW();
+                    }
+                }
+
+                if (iaDifficultyChoice == (int)IADifficultyChoice.Advanced)
+                {
+                    if (!playerScript.isWrath)
+                        iaattacks.UseGroundAttacks();
+                    else
+                        iaattacks.UseGroundAttacksW();
+                }
+
             }
             else //si l'IA n'est pas au sol et pas sur une plateforme
             {
@@ -92,13 +133,42 @@ public class IA : MonoBehaviour
                 }
                 else
                 {
-                    if (relativeSideY > 4f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
-                        DirectionalJump((int)playerMovement.direction);
+                    if (iaDifficultyChoice != (int)IADifficultyChoice.Dummy) //Si l'IA est autre chose qu'un dummy
+                    {
+                        if (relativeSideY > 4f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
+                            DirectionalJump((int)playerMovement.direction);
+                    }
 
-                    if (!playerScript.isWrath)
-                        iaattacks.UseAirAttacks();
-                    else
-                        iaattacks.UseAirAttacksW();
+                    if (iaDifficultyChoice == (int)IADifficultyChoice.Beginner)
+                    {
+                        if (rd.Next(0, 30) == 0) //2 attaques par seconde
+                        {
+                            if (!playerScript.isWrath)
+                                iaattacks.UseAirAttacks();
+                            else
+                                iaattacks.UseAirAttacksW();
+                        }
+                    }
+
+                    if (iaDifficultyChoice == (int)IADifficultyChoice.Intermediate)
+                    {
+                        if (rd.Next(0, 15) == 0) //4 attaques par seconde
+                        {
+                            if (!playerScript.isWrath)
+                                iaattacks.UseAirAttacks();
+                            else
+                                iaattacks.UseAirAttacksW();
+                        }
+                    }
+
+                    if (iaDifficultyChoice == (int)IADifficultyChoice.Advanced)
+                    {
+                        if (!playerScript.isWrath)
+                            iaattacks.UseAirAttacks();
+                        else
+                            iaattacks.UseAirAttacksW();
+                    }
+                    
                 }
             }
         }
