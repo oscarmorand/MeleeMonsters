@@ -9,9 +9,17 @@ public class OptionsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public TMP_Dropdown resolutionDropdown;
+    public GameObject gameOptionsPanel;
+    public GameObject goldImage;
+    public Slider livesSlider;
+    public TMP_Text numberText;
+
+    private GameManager gameManager;
+
     Resolution[] resolutions;
     private void Start()
     {
+
         /*
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
@@ -56,5 +64,20 @@ public class OptionsMenu : MonoBehaviour
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
+    }
+
+    public void SetGameOptionPanel()
+    {
+        goldImage.SetActive(true);
+        gameOptionsPanel.SetActive(true);
+    }
+
+    public void SetNumberLives()
+    {
+        GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
+        gameManager = manager.GetComponent<GameManager>();
+
+        gameManager.nbrLives = (int) livesSlider.value;
+        numberText.text = gameManager.nbrLives.ToString();
     }
 }
