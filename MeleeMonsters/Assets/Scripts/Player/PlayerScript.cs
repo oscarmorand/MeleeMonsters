@@ -199,10 +199,6 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         isWrath = false;
         loadingWrath = 0;
         WrathColor(Color.white);
-        foreach (var mat in Materials)
-        {
-            mat?.SetFloat("WrathCoef", 0f);
-        }
         pV.RPC("WrathSprites", RpcTarget.All, false);
         WrathSprites(false);
     }
@@ -226,7 +222,10 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
 
         foreach (var mat in Materials)
         {
-            mat?.SetFloat("WrathCoef", 1f);
+            if(enabled)
+                mat?.SetFloat("WrathCoef", 1f);
+            else
+                mat?.SetFloat("WrathCoef", 0f);
         }
     }
 
