@@ -85,7 +85,7 @@ public class PlayerCollisions : MonoBehaviour
 
         pV.RPC("TakeDamage", RpcTarget.All, newDamage);
 
-        pV.RPC("HitStunState", RpcTarget.All, attack.ejection);
+        pV.RPC("HitStunState", RpcTarget.All, attack.hitStun);
     }
 
     [PunRPC]
@@ -102,9 +102,8 @@ public class PlayerCollisions : MonoBehaviour
     }
 
     [PunRPC]
-    private void HitStunState(float knockback)
+    private void HitStunState(float hitStunTime)
     {
-        float hitStunTime = PlayerAttacks.CalculateHitStun(knockback);
         StartCoroutine(pS.HitStunState(hitStunTime));
     }
 

@@ -119,11 +119,6 @@ public class PlayerAttacks : MonoBehaviour
         return (float)((attackForce*(targetPercentage+20)*wrathBonus) / (weight*20));
     }
 
-    public static float CalculateHitStun(float knockback)
-    {
-        return knockback / 400;
-    }
-
 
     public int DetermineAttack()
     {

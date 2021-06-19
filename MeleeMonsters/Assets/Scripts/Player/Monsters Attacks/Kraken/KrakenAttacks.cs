@@ -18,21 +18,21 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
     public override void InstantiateAttacks()
     {
         attacks = new List<Attack>();
-        attacks.Add(new Attack("SideGround", 4, 350, new Vector2(1, 0.1f), 0.25f,"Sg", "wet slap"));
-        attacks.Add(new Attack("DownGround", 4, 400,  new Vector2(0, 1), 0.30f, "Dg", ""));
-        attacks.Add(new Attack("NeutralGround", 5, 300, new Vector2(0, 1), 0.32f, "Ng", ""));
+        attacks.Add(new Attack("SideGround", 4, 350, new Vector2(1, 0.1f), 0.25f,"Sg", "wet slap", 1f));
+        attacks.Add(new Attack("DownGround", 4, 400,  new Vector2(0, 1), 0.30f, "Dg", "", 1f));
+        attacks.Add(new Attack("NeutralGround", 5, 300, new Vector2(0, 1), 0.32f, "Ng", "", 1f));
         
-        attacks.Add(new Attack("SideAir", 4, 350, new Vector2(0, 1), 0.25f, "Sa", "wet slap"));
-        attacks.Add(new Attack("DownAir", 7, 500, new Vector2(0, -1), 0.37f, "Da", ""));
-        attacks.Add(new Attack("NeutralAir", 6, 400, new Vector2(0, 1), 0.35f, "Na", ""));
+        attacks.Add(new Attack("SideAir", 4, 350, new Vector2(0, 1), 0.25f, "Sa", "wet slap", 1f));
+        attacks.Add(new Attack("DownAir", 7, 500, new Vector2(0, -1), 0.37f, "Da", "", 1f));
+        attacks.Add(new Attack("NeutralAir", 6, 400, new Vector2(0, 1), 0.35f, "Na", "", 1f));
         
-        attacks.Add(new Attack("SideSpecial", 10, 600, new Vector2(1, 0), 1f, "Ss", ""));
-        attacks.Add(new Attack("DownSpecial", 8, 400,  new Vector2(0, 1), 0.1f,"", ""));
-        attacks.Add(new Attack("NeutralSpecial", 3, 100, new Vector2(0, 1), 0.1f,"Ns", ""));
+        attacks.Add(new Attack("SideSpecial", 10, 600, new Vector2(1, 0), 1f, "Ss", "", 1f));
+        attacks.Add(new Attack("DownSpecial", 8, 400,  new Vector2(0, 1), 0.1f,"", "", 1f));
+        attacks.Add(new Attack("NeutralSpecial", 3, 100, new Vector2(0, 1), 0.1f,"Ns", "", 1f));
         
-        attacks.Add(new Attack("SideWrath", 12, 850, new Vector2(1, 0), 0.1f,"Sw", ""));
-        attacks.Add(new Attack("DownWrath", 14, 1000,  new Vector2(0, 1), 1f, "Dw", ""));
-        attacks.Add(new Attack("NeutralWrath", 5, 200, new Vector2(0, 1), 0.1f, "Nw", ""));
+        attacks.Add(new Attack("SideWrath", 12, 850, new Vector2(1, 0), 0.1f,"Sw", "", 1f));
+        attacks.Add(new Attack("DownWrath", 14, 1000,  new Vector2(0, 1), 1f, "Dw", "", 1f));
+        attacks.Add(new Attack("NeutralWrath", 5, 200, new Vector2(0, 1), 0.1f, "Nw", "", 1f));
         
     }
 
