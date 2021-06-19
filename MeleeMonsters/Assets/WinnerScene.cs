@@ -7,7 +7,6 @@ public class WinnerScene : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text UIWinner;
-    private string winner;
 
     private GameManager gameManager;
 
@@ -16,15 +15,20 @@ public class WinnerScene : MonoBehaviour
     {
         GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager?.GetComponent<GameManager>();
-
-
+        /*
         if (gameManager.IAwon)
-            winner = "The AI";
+        {
+            gameManager.InstantiateAI(new Vector3(0f, -1.8f, 0));
+        }
         else
-            winner = gameManager.winner.NickName;
-        UIWinner.text = winner + " is the winner of the game !";
-
-        gameManager.InstantiatePlayer(new Vector3(0f, -2, 0f));
+        {
+            gameManager.InstantiatePlayer(new Vector3(0f, -1.8f, 0));
+        }
+        */
+        if (gameManager.winner == "")
+            UIWinner.text = "No monster is victorious !";
+        else
+            UIWinner.text = gameManager.winner + " is the winner of the game !";
     }
 
     // Update is called once per frame

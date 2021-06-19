@@ -7,6 +7,7 @@ public class PlayerAnimation : MonoBehaviour
 {
     internal Animator anim;
 
+    PlayerScript playerScript;
     private PlayerMovement pM;
     private PhotonView pV;
 
@@ -16,6 +17,7 @@ public class PlayerAnimation : MonoBehaviour
         anim = GetComponent<Animator>();
         pM = GetComponent<PlayerMovement>();
         pV = GetComponent<PhotonView>();
+        playerScript = GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
@@ -37,7 +39,8 @@ public class PlayerAnimation : MonoBehaviour
            
         anim.SetBool("isWallSliding", pM.wallSliding);
 
-        DashAttack(pM.isDashAttacking);
+        if (playerScript.currentState == PlayerScript.States.Playing)
+            DashAttack(pM.isDashAttacking);
     }
 
     public void TakeOf()

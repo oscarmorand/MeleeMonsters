@@ -92,7 +92,7 @@ public class IA : MonoBehaviour
                 }
                 else
                 {
-                    if (relativeSideY > 3f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
+                    if (relativeSideY > 4f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
                         DirectionalJump((int)playerMovement.direction);
 
                     if (!playerScript.isWrath)
@@ -134,14 +134,14 @@ public class IA : MonoBehaviour
     /// </summary>
     private void FollowPlayerOnGround()
     {
-        if (relativeSideY >= 2f) //si le player est trop haut par rapport à l'IA
+        if (relativeSideY >= 4.5f) //si le player est trop haut par rapport à l'IA
             DirectionalDash((int)playerMovement.direction, 1);
 
         if (distanceX > 2.5f) //si le player est un peu loin de l'IA (en x)
         {
-            playerMovement.moveInputx = playerMovement.direction; //si pas très loin, aller vers le joueur
+            playerMovement.moveInputx = playerMovement.direction; //aller vers le joueur
 
-            if (distanceX > 5f) //Si très loin, dash vers le joueur
+            if (distanceX > 6f) //Si très loin, dash vers le joueur
                 DirectionalDash((int)playerMovement.direction, 0);
         }
     }
