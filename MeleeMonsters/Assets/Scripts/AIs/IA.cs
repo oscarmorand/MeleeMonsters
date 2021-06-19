@@ -5,15 +5,7 @@ using System;
 
 public class IA : MonoBehaviour
 {
-    public enum IADifficultyChoice
-    {
-        Dummy = 0,
-        Beginner = 1,
-        Intermediate = 2,
-        Advanced = 3
-    }
-
-    public int iaDifficultyChoice;
+    public GameManager.IADifficultyChoice iaDifficultyChoice;
 
     PlayerMovement playerMovement;
     GameObject player;
@@ -38,6 +30,9 @@ public class IA : MonoBehaviour
         playerAttacks = GetComponent<PlayerAttacks>();
         playerScript = GetComponent<PlayerScript>();
         rb = GetComponent<Rigidbody2D>();
+        GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
+        GameManager gameManager = manager.GetComponent<GameManager>();
+        iaDifficultyChoice = gameManager.iaLevel;
 
         //iaDifficultyChoice = "POUR LIANE"
     }
@@ -83,10 +78,10 @@ public class IA : MonoBehaviour
                 if (playerMovement.isOnPlatform && relativeSideY <= -2.5f) //si l'IA est sur une plateforme et que le joueur est assez bas
                     FallFromPlatform();
 
-                if (iaDifficultyChoice != (int) IADifficultyChoice.Dummy) //Si l'IA est autre chose qu'un dummy
+                if (iaDifficultyChoice != GameManager.IADifficultyChoice.Dummy) //Si l'IA est autre chose qu'un dummy
                     FollowPlayerOnGround();
 
-                if (iaDifficultyChoice == (int)IADifficultyChoice.Beginner)
+                if (iaDifficultyChoice == GameManager.IADifficultyChoice.Beginner)
                 {
                     if (rd.Next(0, 30) == 0) //2 attaques par seconde
                     {
@@ -97,7 +92,7 @@ public class IA : MonoBehaviour
                     }
                 }
 
-                if (iaDifficultyChoice == (int)IADifficultyChoice.Intermediate)
+                if (iaDifficultyChoice == GameManager.IADifficultyChoice.Intermediate)
                 {
                     if (rd.Next(0, 15) == 0) //4 attaques par seconde
                     {
@@ -108,7 +103,7 @@ public class IA : MonoBehaviour
                     }
                 }
 
-                if (iaDifficultyChoice == (int)IADifficultyChoice.Advanced)
+                if (iaDifficultyChoice == GameManager.IADifficultyChoice.Advanced)
                 {
                     if (!playerScript.isWrath)
                         iaattacks.UseGroundAttacks();
@@ -133,13 +128,13 @@ public class IA : MonoBehaviour
                 }
                 else
                 {
-                    if (iaDifficultyChoice != (int)IADifficultyChoice.Dummy) //Si l'IA est autre chose qu'un dummy
+                    if (iaDifficultyChoice != GameManager.IADifficultyChoice.Dummy) //Si l'IA est autre chose qu'un dummy
                     {
                         if (relativeSideY > 4f && playerMovement.nbrJump > 0) //si le player est au dessus de l'IA et qu'elle a des sauts
                             DirectionalJump((int)playerMovement.direction);
                     }
 
-                    if (iaDifficultyChoice == (int)IADifficultyChoice.Beginner)
+                    if (iaDifficultyChoice == GameManager.IADifficultyChoice.Beginner)
                     {
                         if (rd.Next(0, 30) == 0) //2 attaques par seconde
                         {
@@ -150,7 +145,7 @@ public class IA : MonoBehaviour
                         }
                     }
 
-                    if (iaDifficultyChoice == (int)IADifficultyChoice.Intermediate)
+                    if (iaDifficultyChoice == GameManager.IADifficultyChoice.Intermediate)
                     {
                         if (rd.Next(0, 15) == 0) //4 attaques par seconde
                         {
@@ -161,7 +156,7 @@ public class IA : MonoBehaviour
                         }
                     }
 
-                    if (iaDifficultyChoice == (int)IADifficultyChoice.Advanced)
+                    if (iaDifficultyChoice == GameManager.IADifficultyChoice.Advanced)
                     {
                         if (!playerScript.isWrath)
                             iaattacks.UseAirAttacks();

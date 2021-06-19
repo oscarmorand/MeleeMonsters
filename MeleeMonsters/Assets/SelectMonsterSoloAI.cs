@@ -14,11 +14,16 @@ public class SelectMonsterSoloAI : MonoBehaviour
     private GameObject playerMonsterObject;
     private GameObject AIMonsterObject;
     public GameObject aICharPanel;
+
     public GameObject playButton;
     public GameObject imagePlayGame;
+
     public GameObject tooglePlayer;
     public GameObject greenLockImage;
     public GameObject grayPanel;
+
+    public TMP_Dropdown IALevelDropdown;
+
     private bool monsterSelected = false;
     private bool choosingAI = false;
     public void setMonsterSelected(bool value) => monsterSelected = !value;
@@ -117,13 +122,8 @@ public class SelectMonsterSoloAI : MonoBehaviour
         SceneManager.LoadScene("SelectLevel");
     }
     
-
-    /*
-    void SelectMonster(int monster)
+    public void SetIALevel()
     {
-        gameManager.SelectMonster(monster);
-        print(PhotonNetwork.NickName + " has choose " + monster);
+        gameManager.iaLevel = (GameManager.IADifficultyChoice) IALevelDropdown.value;
     }
-    */
-
 }

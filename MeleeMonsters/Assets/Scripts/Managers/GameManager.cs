@@ -33,6 +33,15 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public string winner = "";
     internal bool IAwon = false;
+    public enum IADifficultyChoice
+    {
+        Dummy = 0,
+        Beginner = 1,
+        Intermediate = 2,
+        Advanced = 3
+    }
+
+    public IADifficultyChoice iaLevel = IADifficultyChoice.Beginner;
 
     public enum States
     {
