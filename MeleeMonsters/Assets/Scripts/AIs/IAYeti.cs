@@ -20,7 +20,7 @@ public class IAYeti : IAAttacks
     {
         System.Random rd = new System.Random();
 
-        if (relativeSideY >= 0f)
+        if (relativeSideY >= -0.5f)
         {
             if (distanceX < 1f)
             {
@@ -93,7 +93,7 @@ public class IAYeti : IAAttacks
     {
         System.Random rd = new System.Random();
 
-        if (relativeSideY >= 0f)
+        if (relativeSideY >= -0.5f)
         {
             if (distanceX < 1f)
             {
