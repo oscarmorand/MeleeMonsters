@@ -53,10 +53,7 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
         snowball.GetComponent<YetiSnowball>().Throw(pM.direction, gameObject);
     }
 
-    public override void DownSpecial()
-    {
-        pM.SetFastFallAttack();
-    }
+    public override void DownSpecial(){}
 
     public override void NeutralSpecial()
     {
@@ -71,7 +68,10 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
         iceCube.GetComponent<YetiIcecube>().Throw(pM.direction, gameObject);
     }
 
-    public override void DownWrath(){}
+    public override void DownWrath()
+    {
+        pM.SetFastFallAttack();
+    }
 
     public override void NeutralWrath()
     {
