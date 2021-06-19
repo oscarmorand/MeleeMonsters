@@ -59,6 +59,8 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
     private LevelManager levelManager;
     private GameManager gameManager;
 
+    private List<Material> Materials = new List<Material>();
+
     public float reappearitionTime;
 
     private ExitGames.Client.Photon.Hashtable _myCustomPropreties = new ExitGames.Client.Photon.Hashtable();
@@ -66,6 +68,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
     public List<SpriteRenderer> spritesToColor;
     public List<SpriteRenderer> spritesToShow;
     internal Color actualColor;
+    public Color wrathColor;
 
     private GameObject aMGameObject;
     private AudioManager aM;
@@ -98,18 +101,23 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         {
             nickName = pV.Owner.NickName;
             if (nickName == "")
-            { 
+            {
                 nickName = "Player";
             }
         }
-            
 
-        
+
+
         gameManager = GameObject.Find("GameManagerPrefab").GetComponent<GameManager>();
-        
+
         lives = gameManager.nbrLives;
 
         AddObservable();
+
+        foreach (var child in GetComponentsInChildren<SpriteRenderer>())
+        {
+            Materials.Add(child.material);
+        }
     }
 
     // Update is called once per frame
@@ -180,7 +188,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
             wrathTime = maxWrathTime;
             isWrath = true;
             loadingWrath = 0;
-            WrathColor(Color.red);
+            WrathColor(wrathColor); 
             pV.RPC("WrathSprites", RpcTarget.All, true);
             WrathSprites(true);
         }
@@ -191,6 +199,10 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         isWrath = false;
         loadingWrath = 0;
         WrathColor(Color.white);
+        foreach (var mat in Materials)
+        {
+            mat?.SetFloat("WrathCoef", 0f);
+        }
         pV.RPC("WrathSprites", RpcTarget.All, false);
         WrathSprites(false);
     }
@@ -210,6 +222,11 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         foreach(SpriteRenderer sprite in spritesToShow)
         {
             sprite.gameObject.SetActive(enabled);
+        }
+
+        foreach (var mat in Materials)
+        {
+            mat?.SetFloat("WrathCoef", 1f);
         }
     }
 
