@@ -11234,7 +11234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photonView: {fileID: 4958320532538682465}
   rb: {fileID: 3079477876805541461}
-  settings: {fileID: 11400000, guid: 8d8b5d7a038d58e449c30dc80baec3fd, type: 2}
+  settings: {fileID: 11400000, guid: 4936577aba2feea45bbedb339f4709a7, type: 2}
   xWallForce: 15
   wallJumpTime: 0.08
   isGrounded: 0

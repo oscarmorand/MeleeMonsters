@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "MeleeMonsters/Monsters/GhostSettings")]
 public class GhostSettings : MonsterScriptableObject
 {
-    public float StoneShootStrength = 5;
+    public float StoneShootStrength;
 }

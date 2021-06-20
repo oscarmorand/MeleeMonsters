@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "MeleeMonsters/Monsters/AvocadoSettings")]
 public class AvocadoSettings : MonsterScriptableObject
 {
-    public float StoneShootStrength = 5;
+    public float StoneShootStrength;
 }
