@@ -13,11 +13,11 @@ public class GhostAttacks : MonstersAttacks, IPunObservable
         attacks = new List<Attack>();
 
         attacks.Add(new Attack("SideGround", 3, 200, new Vector2(2f, 1f), 0.6f,"Sg","", 0.8f));
-        attacks.Add(new Attack("DownGround", 3, 200, new Vector2(1f, 1), 0.6f,"Dg", "", 0.8f));
-        attacks.Add(new Attack("NeutralGround", 4, 210,  new Vector2(0, 1), 0.9f,"Ng", "", 0.9f));
+        attacks.Add(new Attack("DownGround", 3, 200, new Vector2(1f, 1), 0.6f,"Dg", "chaine", 0.8f));
+        attacks.Add(new Attack("NeutralGround", 4, 210,  new Vector2(0, 1), 0.9f,"Ng", "chaine", 0.9f));
 
-        attacks.Add(new Attack("SideAir", 3, 200,  new Vector2(2, 1f), 0.6f, "Sa", "", 0.8f));
-        attacks.Add(new Attack("DownAir", 6, 250,  new Vector2(0, -2), 0.9f,"Da", "", 0.8f));
+        attacks.Add(new Attack("SideAir", 3, 200,  new Vector2(2, 1f), 0.6f, "Sa", "chaine", 0.8f));
+        attacks.Add(new Attack("DownAir", 6, 250,  new Vector2(0, -2), 0.9f,"Da", "chaine", 0.8f));
         attacks.Add(new Attack("NeutralAir", 5, 100,  new Vector2(0, 1), 0.6f,"Na", "expansion", 0.9f));
 
         attacks.Add(new Attack("SideSpecial", 5, 150, new Vector2(0, 2f), 1f, "Ss", "invisibility", 1f));

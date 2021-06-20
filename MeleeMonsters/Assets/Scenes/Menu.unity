@@ -1118,6 +1118,15 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: chaine
+    clip: {fileID: 8300000, guid: dff4bf462c7ece54286125ae4f96cbd1, type: 3}
+    volume: 0.2
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!4 &1237156780
 Transform:
   m_ObjectHideFlags: 0
