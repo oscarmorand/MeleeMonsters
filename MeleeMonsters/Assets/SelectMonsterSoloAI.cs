@@ -20,7 +20,7 @@ public class SelectMonsterSoloAI : MonoBehaviour
 
     public GameObject tooglePlayer;
     public GameObject greenLockImage;
-    public GameObject grayPanel;
+    public GameObject greyPanel;
 
     public TMP_Dropdown IALevelDropdown;
 
@@ -34,7 +34,7 @@ public class SelectMonsterSoloAI : MonoBehaviour
         GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
         gameManager = manager.GetComponent<GameManager>();
         gameManager.SetGameState(GameManager.States.MonsterSelectionMenu);
-        grayPanel.SetActive(true);
+        greyPanel.SetActive(true);
         tooglePlayer.SetActive(true);
         greenLockImage.SetActive(false);
         imagePlayGame.SetActive(true);
@@ -62,7 +62,7 @@ public class SelectMonsterSoloAI : MonoBehaviour
         }
         else
         {
-            grayPanel.SetActive(false);
+            greyPanel.SetActive(false);
             tooglePlayer.SetActive(false);
             greenLockImage.SetActive(true);
 

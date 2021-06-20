@@ -37,5 +37,11 @@ public class WinnerScene : MonoBehaviour
         
     }
 
+    public void QuitGame()
+    {
+        Debug.Log("QUIT");
+        Application.Quit();
+    }
+
 
 }

@@ -19,4 +19,10 @@ public class LeaveRoomMenu : MonoBehaviour
         PhotonNetwork.LeaveRoom(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
+
+    public void OnClick_LeaveSolo()
+    {
+        PhotonNetwork.LeaveRoom(true);
+        SceneManager.LoadScene("Menu");
+    }
 }

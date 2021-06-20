@@ -807,7 +807,7 @@ MonoBehaviour:
   imagePlayGame: {fileID: 1573620020}
   tooglePlayer: {fileID: 1436569127}
   greenLockImage: {fileID: 1887737837}
-  grayPanel: {fileID: 2011498369}
+  greyPanel: {fileID: 2011498369}
   IALevelDropdown: {fileID: 2108470697}
 --- !u!222 &451743516
 CanvasRenderer:
@@ -893,7 +893,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 597241231}
-        m_MethodName: OnClick_LeaveRoom
+        m_MethodName: OnClick_LeaveSolo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2427,7 +2427,7 @@ GameObject:
   - component: {fileID: 1573620023}
   - component: {fileID: 1573620022}
   m_Layer: 0
-  m_Name: Image
+  m_Name: GreyStartGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3336,7 +3336,7 @@ GameObject:
   - component: {fileID: 2011498372}
   - component: {fileID: 2011498371}
   m_Layer: 0
-  m_Name: GrayPanel
+  m_Name: GreyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
