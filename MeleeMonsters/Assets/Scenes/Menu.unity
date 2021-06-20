@@ -940,7 +940,7 @@ MonoBehaviour:
   sounds:
   - name: theme
     clip: {fileID: 8300000, guid: 048fedebb4f9b4b4196aa9e7f5f245d4, type: 3}
-    volume: 0.3
+    volume: 0.25
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -1012,7 +1012,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: wooshe4
     clip: {fileID: 8300000, guid: 636fe278c7903c0498fa1aef5d15afb2, type: 3}
-    volume: 0.748
+    volume: 0.6
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -1048,7 +1048,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: wooshe15
     clip: {fileID: 8300000, guid: 071e49502bd05e7469543775257cafe4, type: 3}
-    volume: 1
+    volume: 0.6
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -1184,6 +1184,24 @@ MonoBehaviour:
   - name: snowball
     clip: {fileID: 8300000, guid: c1749e2fc857ab642aa9b8f3d609ea9f, type: 3}
     volume: 0.4
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: icecube
+    clip: {fileID: 8300000, guid: ff69f42852751644eb84d4d3c0c2da5a, type: 3}
+    volume: 0.2
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: icebreak
+    clip: {fileID: 8300000, guid: ccafa3b8c39209e44bfc8d6b1eeb63f0, type: 3}
+    volume: 0.2
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0

@@ -14,6 +14,7 @@ public class YetiIcecube : MonoBehaviour
 
     private Rigidbody2D rb;
     private PhotonView pV;
+    private AudioManager aM;
 
     private GameObject _parent;
 
@@ -25,6 +26,7 @@ public class YetiIcecube : MonoBehaviour
         //rb.velocity = transform.right * speed * direction;
         rb = GetComponent<Rigidbody2D>();
         pV = GetComponent<PhotonView>();
+        aM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     public void Throw(float direction, GameObject parent)
@@ -46,6 +48,7 @@ public class YetiIcecube : MonoBehaviour
 
     public void DestroyBullet()
     {
+        aM.Play("icecube");
         PhotonNetwork.Destroy(gameObject);
     }
 

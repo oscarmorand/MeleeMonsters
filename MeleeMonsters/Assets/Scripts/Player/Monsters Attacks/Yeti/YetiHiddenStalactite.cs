@@ -13,6 +13,7 @@ public class YetiHiddenStalactite : MonoBehaviour
 
     private Rigidbody2D rb;
     private PhotonView pV;
+    private AudioManager aM;
 
     private GameObject _parent;
 
@@ -30,6 +31,7 @@ public class YetiHiddenStalactite : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         pV = GetComponent<PhotonView>();
+        aM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -69,6 +71,7 @@ public class YetiHiddenStalactite : MonoBehaviour
     {
         hasTouched = true;
         print("reveal");
+        aM.Play("icebreak");
         anim.SetTrigger("hasHitten");
         Invoke("DestroyBullet", 0.35f);
     }
