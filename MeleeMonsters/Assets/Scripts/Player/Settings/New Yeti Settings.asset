@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452278de2081fe64389750f9d01275e9, type: 3}
   m_Name: New Yeti Settings
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpStrength: 3
+  speed: 300
+  jumpStrength: 10
   jumpTime: 0.025
   extraJump: 1
-  wallSlidingSpeed: 5
-  yWallForce: 5
-  gravityScale: 1
-  fastFallingSpeed: 10
-  dashNbr: 1
-  dashForce: 15
-  dashTime: 0.2
+  wallSlidingSpeed: 2
+  yWallForce: 7
+  gravityScale: 2
+  fastFallingSpeed: 15
+  dashNbr: 2
+  dashForce: 13
+  dashTime: 0.15
   dashCoolDown: 0.2
