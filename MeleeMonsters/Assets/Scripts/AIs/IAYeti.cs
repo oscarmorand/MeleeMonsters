@@ -156,7 +156,7 @@ public class IAYeti : IAAttacks
         if (relativeSideY < 2f && distanceX >= 4f && rd.Next(0, 8) == 0) //1 chance sur 8
             playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.sW); //sW
 
-        if (relativeSideY >= -5f && relativeSideY < -1.5f && distanceX > 2.5f && rd.Next(0, 35) == 0) //1 chance sur 35
+        if (relativeSideY < -1.5f && distanceX > 2f && rd.Next(0, 30) == 0) //1 chance sur 30
             playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.dW); //dW
     }
 }
