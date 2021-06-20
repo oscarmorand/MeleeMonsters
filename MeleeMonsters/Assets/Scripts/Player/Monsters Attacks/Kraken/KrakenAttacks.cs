@@ -24,13 +24,13 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
         
         attacks.Add(new Attack("SideAir", 5, 300, new Vector2(1, 1), 0.6f, "Sa", "wet slap", 0.6f));
         attacks.Add(new Attack("DownAir", 8, 450, new Vector2(0, -1), 0.4f, "Da", "", 1f));
-        attacks.Add(new Attack("NeutralAir", 7, 350, new Vector2(2, 2), 0.7f, "Na", "", 0.9f));
+        attacks.Add(new Attack("NeutralAir", 7, 350, new Vector2(2, 2), 0.7f, "Na", "ballooninflation", 0.9f));
         
         attacks.Add(new Attack("SideSpecial", 7, 600, new Vector2(1, 0), 1f, "Ss", "", 0.6f));
-        attacks.Add(new Attack("DownSpecial", 8, 400,  new Vector2(0, 2), 1.2f,"", "", 1f));
+        attacks.Add(new Attack("DownSpecial", 8, 400,  new Vector2(0, 2), 1.2f, "", "", 1f));
         attacks.Add(new Attack("NeutralSpecial", 3, 100, new Vector2(1, 1), 0.3f,"Ns", "", 0.2f));
         
-        attacks.Add(new Attack("SideWrath", 12, 800, new Vector2(1, 1), 1f,"Sw", "", 1f));
+        attacks.Add(new Attack("SideWrath", 12, 800, new Vector2(1, 1), 1f,"Sw", "wave", 1f));
         attacks.Add(new Attack("DownWrath", 14, 900,  new Vector2(0, 2), 1.1f, "Dw", "", 0.9f));
         attacks.Add(new Attack("NeutralWrath", 5, 200, new Vector2(1, 1), 0.3f, "Nw", "", 0.3f));
         

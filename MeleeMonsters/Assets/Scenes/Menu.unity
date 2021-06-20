@@ -949,7 +949,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: oof
     clip: {fileID: 8300000, guid: 2fe1dddc341f4bc4c83a772c9852f984, type: 3}
-    volume: 0.04
+    volume: 0.03
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -958,7 +958,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: bouchon champagne
     clip: {fileID: 8300000, guid: a1a613bc332b8eb439d912799398c8f3, type: 3}
-    volume: 0.75
+    volume: 0.6
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -1121,6 +1121,33 @@ MonoBehaviour:
   - name: chaine
     clip: {fileID: 8300000, guid: dff4bf462c7ece54286125ae4f96cbd1, type: 3}
     volume: 0.2
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: bloodbath
+    clip: {fileID: 8300000, guid: 3937fe3a85c3f53429141c1316cf1d6c, type: 3}
+    volume: 0.12
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: ballooninflation
+    clip: {fileID: 8300000, guid: bc4f0bee0f01602489a8e01bb48ffb93, type: 3}
+    volume: 0.15
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: wave
+    clip: {fileID: 8300000, guid: 8792514e4ba58334eaac3a4b5da04358, type: 3}
+    volume: 0.25
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0

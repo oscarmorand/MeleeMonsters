@@ -260,6 +260,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
     public void OnEnterReappear()
     {
         DeathParticles();
+        aM.Play("bloodbath");
         isAlive = false;
         lives--;
         CheckStillAlive();
