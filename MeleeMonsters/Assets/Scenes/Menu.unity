@@ -949,7 +949,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: oof
     clip: {fileID: 8300000, guid: 2fe1dddc341f4bc4c83a772c9852f984, type: 3}
-    volume: 0.02
+    volume: 0.04
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -1085,6 +1085,42 @@ MonoBehaviour:
   - name: invisibility
     clip: {fileID: 8300000, guid: ffb62d5e97f8f304fb9127c7bd180978, type: 3}
     volume: 0.1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Batcri
+    clip: {fileID: 8300000, guid: ffc0bc8dad367e440be252514fd3ee60, type: 3}
+    volume: 0.1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: petit_boo
+    clip: {fileID: 8300000, guid: 82fc521309efc8748bc6f66f5bde9775, type: 3}
+    volume: 0.25
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: gros_boo
+    clip: {fileID: 8300000, guid: b4c43c011591a19499176c457c8c2bc7, type: 3}
+    volume: 0.25
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: chaine
+    clip: {fileID: 8300000, guid: dff4bf462c7ece54286125ae4f96cbd1, type: 3}
+    volume: 0.2
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
