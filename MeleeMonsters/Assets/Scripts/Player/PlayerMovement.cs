@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
                     isFastFalling = false;
                 }
 
-                if (isJumping)
+                if (isJumping && !isDashAttacking)
                 {
                     rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                     isFastFalling = false;
@@ -203,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (photonView.IsMine)
+        if (photonView.IsMine && !isDashAttacking)
         {
             MovePlayerUpdate();
 
