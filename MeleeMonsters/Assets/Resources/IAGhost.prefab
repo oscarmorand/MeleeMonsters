@@ -1292,6 +1292,8 @@ MonoBehaviour:
   isAppearing: 0
   wrath: {fileID: -6465566751694194690, guid: 108b9503123c9204591dfa6a18b6e273, type: 3}
   appear: {fileID: -6465566751694194690, guid: 7639b27cbf38f4946b156fbe7e92fc3d, type: 3}
+  deathParticles: {fileID: 7783896587537146404, guid: 2f5f0298ae53f174f8a5f0437e8e8af8,
+    type: 3}
 --- !u!114 &4048278115268245952
 MonoBehaviour:
   m_ObjectHideFlags: 0
