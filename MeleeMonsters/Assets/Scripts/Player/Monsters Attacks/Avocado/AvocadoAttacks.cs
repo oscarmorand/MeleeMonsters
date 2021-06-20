@@ -15,9 +15,9 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
     {
         attacks = new List<Attack>();
 
-        attacks.Add(new Attack("SideGround", 4, 150, new Vector2(1, 0.1f), 0.3f,"Sg", "slash sabre", 1f));
-        attacks.Add(new Attack("DownGround", 5, 150, new Vector2(0, 1), 0.45f,"Dg", "slash sabre", 1f));
-        attacks.Add(new Attack("NeutralGround", 3, 100, new Vector2(0, 1), 0.45f,"Ng","slash sabre", 1f));
+        attacks.Add(new Attack("SideGround", 4, 150, new Vector2(1, 0.3f), 0.5f,"Sg", "slash sabre", 0.4f));
+        attacks.Add(new Attack("DownGround", 5, 150, new Vector2(0, 1), 0.7f,"Dg", "slash sabre", 1.2f));
+        attacks.Add(new Attack("NeutralGround", 3, 100, new Vector2(0, 1), 0.4f,"Ng","slash sabre", 0.8f));
 
 
         attacks.Add(new Attack("SideAir", 4, 350, new Vector2(1, 0),  0.45f,"Sa","slash sabre", 1f));

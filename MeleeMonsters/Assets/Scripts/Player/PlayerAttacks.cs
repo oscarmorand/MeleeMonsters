@@ -112,11 +112,11 @@ public class PlayerAttacks : MonoBehaviour
         currentAttack = null;
     }
 
-    public static float CalculateForce(float attackForce, int targetPercentage, float weight, float wrathBonus)
+    public static float CalculateForce(float attackForce, int targetPercentage, float weight, float wrathBonus, int attackDamage)
     {
         //return attackForce + (attackForce * targetPercentage/10);
         //return (float)((((targetPercentage*3/20)*(1.4/weight))+attackForce) * wrathBonus);
-        return (float)((attackForce*(targetPercentage+20)*wrathBonus) / (weight*20));
+        return (((( targetPercentage/10 + targetPercentage *  (attackDamage/20)) * weight * 1.4f) + 18) + attackForce);
     }
 
 

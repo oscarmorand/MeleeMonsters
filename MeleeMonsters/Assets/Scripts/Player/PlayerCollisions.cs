@@ -81,7 +81,7 @@ public class PlayerCollisions : MonoBehaviour
 
         Vector2 direction = attack.direction;
         Vector2 newDirection = new Vector2((direction.x) * attackerMovement.direction, (direction.y));
-        pV.RPC("Eject", RpcTarget.All, newDirection, attack.ejection, bonus);
+        pV.RPC("Eject", RpcTarget.All, newDirection, attack.ejection, bonus,newDamage);
 
         pV.RPC("TakeDamage", RpcTarget.All, newDamage);
 
@@ -95,9 +95,9 @@ public class PlayerCollisions : MonoBehaviour
     }
 
     [PunRPC]
-    private void Eject(Vector2 direction, float force, float bonus)
+    private void Eject(Vector2 direction, float force, float bonus, int attackDamage)
     {
-        float factor = PlayerAttacks.CalculateForce(force, pS.percentage, rb.mass, bonus);
+        float factor = PlayerAttacks.CalculateForce(force, pS.percentage, rb.mass, bonus, attackDamage);
         pM.Eject(direction * factor);
     }
 
