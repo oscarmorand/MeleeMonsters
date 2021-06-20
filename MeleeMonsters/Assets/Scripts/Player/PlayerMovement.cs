@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerScript playerScript;
     private MonstersAttacks mA;
+    private AudioManager aM;
 
     internal bool inWave = false;
     internal GameObject wave;
@@ -74,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerScript = GetComponent<PlayerScript>();
         mA = GetComponent<MonstersAttacks>();
+        aM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         moveSpeed = settings.speed;
         jumpForce = settings.jumpStrength;
         maxJump = settings.extraJump;
@@ -272,6 +274,7 @@ public class PlayerMovement : MonoBehaviour
         if (nbrDash > 0)
         {
             isDashing = true;
+            aM.Play("wooshi8");
             if (dashEffect != null)
                 photonView.RPC("PlayDashEffect", RpcTarget.All);
             nbrDash--;
@@ -297,6 +300,7 @@ public class PlayerMovement : MonoBehaviour
         if (nbrJump > 0 && !isJumping)
         {
             isJumping = true;
+            aM.Play("wooshb4");
             nbrJump--;
             Invoke("SetJumpingToFalse", jumpTime);
         }
