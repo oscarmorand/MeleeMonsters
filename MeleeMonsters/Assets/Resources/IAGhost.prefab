@@ -1764,6 +1764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770c815542ef1c04dad62d97cf3c0097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iaDifficultyChoice: 0
   iaattacks: {fileID: 6034478149288254148}
   distanceX: 0
   distanceY: 0

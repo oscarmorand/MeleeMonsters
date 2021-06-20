@@ -33,8 +33,6 @@ public class IA : MonoBehaviour
         GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
         GameManager gameManager = manager.GetComponent<GameManager>();
         iaDifficultyChoice = gameManager.iaLevel;
-
-        //iaDifficultyChoice = "POUR LIANE"
     }
 
     // Update is called once per frame
@@ -70,8 +68,11 @@ public class IA : MonoBehaviour
                 playerMovement.Flip();
 
             //utiliser le wrath mode si la barre est pleine
-            if (playerScript.loadingWrath >= playerScript.maxLoadingWrath)
-                playerScript.GoIntoWrathMode();
+            if (iaDifficultyChoice != GameManager.IADifficultyChoice.Dummy) //Si l'IA est autre chose qu'un dummy
+            {
+                if (playerScript.loadingWrath >= playerScript.maxLoadingWrath)
+                    playerScript.GoIntoWrathMode();
+            }
 
             if (playerMovement.isGrounded || playerMovement.isOnPlatform) //si l'IA est au sol ou sur une plateforme
             {
@@ -83,7 +84,7 @@ public class IA : MonoBehaviour
 
                 if (iaDifficultyChoice == GameManager.IADifficultyChoice.Beginner)
                 {
-                    if (rd.Next(0, 30) == 0) //2 attaques par seconde
+                    if (rd.Next(0, 60) == 0) //1 attaques par seconde
                     {
                         if (!playerScript.isWrath)
                             iaattacks.UseGroundAttacks();
@@ -94,7 +95,7 @@ public class IA : MonoBehaviour
 
                 if (iaDifficultyChoice == GameManager.IADifficultyChoice.Intermediate)
                 {
-                    if (rd.Next(0, 15) == 0) //4 attaques par seconde
+                    if (rd.Next(0, 20) == 0) //3 attaques par seconde
                     {
                         if (!playerScript.isWrath)
                             iaattacks.UseGroundAttacks();
@@ -136,7 +137,7 @@ public class IA : MonoBehaviour
 
                     if (iaDifficultyChoice == GameManager.IADifficultyChoice.Beginner)
                     {
-                        if (rd.Next(0, 30) == 0) //2 attaques par seconde
+                        if (rd.Next(0, 60) == 0) //1 attaques par seconde
                         {
                             if (!playerScript.isWrath)
                                 iaattacks.UseAirAttacks();
@@ -147,7 +148,7 @@ public class IA : MonoBehaviour
 
                     if (iaDifficultyChoice == GameManager.IADifficultyChoice.Intermediate)
                     {
-                        if (rd.Next(0, 15) == 0) //4 attaques par seconde
+                        if (rd.Next(0, 20) == 0) //3 attaques par seconde
                         {
                             if (!playerScript.isWrath)
                                 iaattacks.UseAirAttacks();
