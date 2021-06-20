@@ -1138,7 +1138,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: ballooninflation
     clip: {fileID: 8300000, guid: bc4f0bee0f01602489a8e01bb48ffb93, type: 3}
-    volume: 0.15
+    volume: 0.25
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -1148,6 +1148,42 @@ MonoBehaviour:
   - name: wave
     clip: {fileID: 8300000, guid: 8792514e4ba58334eaac3a4b5da04358, type: 3}
     volume: 0.25
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: pop
+    clip: {fileID: 8300000, guid: 839e2669833d0b64589f14139a9e7fa0, type: 3}
+    volume: 0.15
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: geyser
+    clip: {fileID: 8300000, guid: b1b704991bc86f1489c53a1d0a5cfc31, type: 3}
+    volume: 0.2
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: rubrub
+    clip: {fileID: 8300000, guid: f7b5f8cd7fdeb464a9187873932b284a, type: 3}
+    volume: 0.15
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: snowball
+    clip: {fileID: 8300000, guid: c1749e2fc857ab642aa9b8f3d609ea9f, type: 3}
+    volume: 0.4
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0

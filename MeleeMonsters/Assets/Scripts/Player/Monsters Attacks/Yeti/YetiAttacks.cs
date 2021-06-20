@@ -25,13 +25,13 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
 
 
         attacks.Add(new Attack("SideSpecial", 4, 100, new Vector2(1, 0), 0.6f,"Ss", "", 0.3f));
-        attacks.Add(new Attack("DownSpecial", 12, 500,  new Vector2(0, 2), 1.3f,"Ds", "", 0.7f));
-        attacks.Add(new Attack("NeutralSpecial", 10, 550, new Vector2(0, 2), 1.4f,"Ns", "", 0.7f));
+        attacks.Add(new Attack("DownSpecial", 12, 500,  new Vector2(0, 2), 1.3f,"Ds", "wooshb4", 0.7f));
+        attacks.Add(new Attack("NeutralSpecial", 10, 550, new Vector2(0, 2), 1.4f,"Ns", "wooshb4", 0.7f));
 
 
         attacks.Add(new Attack("SideWrath", 10, 100,new Vector2(1, 1), 0.8f,"Sw", "", 0.3f));
         attacks.Add(new Attack("DownWrath", 22, 580, new Vector2(0, 1), 1f,"Dw", "", 1f)); // fait mal mais n'éjecte pas trop haut
-        attacks.Add(new Attack("NeutralWrath", 18, 650, new Vector2(1, 2), 2f,"Nw", "", 1f)); //éjecte assez haut
+        attacks.Add(new Attack("NeutralWrath", 18, 650, new Vector2(1, 2), 2f,"Nw", "wooshb4", 1f)); //éjecte assez haut
 
     }
 

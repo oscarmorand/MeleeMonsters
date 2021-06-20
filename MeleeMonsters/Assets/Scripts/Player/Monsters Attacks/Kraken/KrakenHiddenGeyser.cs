@@ -13,6 +13,7 @@ public class KrakenHiddenGeyser : MonoBehaviour
 
     private Rigidbody2D rb;
     private PhotonView pV;
+    private AudioManager aM;
 
     private GameObject _parent;
 
@@ -29,6 +30,7 @@ public class KrakenHiddenGeyser : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         pV = GetComponent<PhotonView>();
+        aM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -67,6 +69,7 @@ public class KrakenHiddenGeyser : MonoBehaviour
     public void RevealGeyser()
     {
         hasTouched = true;
+        aM.Play("geyser");
         particleSystemGeyserGO.SetActive(true);
         Invoke("DestroyBullet", 0.82f);
     }
