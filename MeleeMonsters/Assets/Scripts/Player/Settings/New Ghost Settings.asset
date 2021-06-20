@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dff053d9d9d2bd4db2cdbb2b7aadb84, type: 3}
   m_Name: New Ghost Settings
   m_EditorClassIdentifier: 
-  speed: 450
+  speed: 430
   jumpStrength: 9
   jumpTime: 0.025
   extraJump: 1
