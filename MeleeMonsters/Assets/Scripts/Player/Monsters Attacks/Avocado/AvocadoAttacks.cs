@@ -15,24 +15,24 @@ public class AvocadoAttacks : MonstersAttacks, IPunObservable
     {
         attacks = new List<Attack>();
 
-        attacks.Add(new Attack("SideGround", 4, 150, new Vector2(1, 0.3f), 0.5f,"Sg", "slash sabre", 0.4f));
-        attacks.Add(new Attack("DownGround", 5, 150, new Vector2(0, 1), 0.7f,"Dg", "slash sabre", 1.2f));
-        attacks.Add(new Attack("NeutralGround", 3, 100, new Vector2(0, 1), 0.4f,"Ng","slash sabre", 0.8f));
+        attacks.Add(new Attack("SideGround", 4, 190, new Vector2(2, 1), 0.5f,"Sg", "slash sabre", 0.5f));
+        attacks.Add(new Attack("DownGround", 5, 190, new Vector2(1, 1), 0.7f,"Dg", "slash sabre", 0.9f));
+        attacks.Add(new Attack("NeutralGround", 3, 150, new Vector2(0, 2), 0.4f,"Ng","slash sabre", 0.8f));
 
 
-        attacks.Add(new Attack("SideAir", 4, 350, new Vector2(1, 0),  0.45f,"Sa","slash sabre", 1f));
-        attacks.Add(new Attack("DownAir", 6, 250, new Vector2(0, -1), 0.3f,"Da","slash sabre", 1f));
-        attacks.Add(new Attack("NeutralAir", 3, 300, new Vector2(0, 1), 0.3f,"Na","slash sabre", 1f));
+        attacks.Add(new Attack("SideAir", 4, 190, new Vector2(2f, 1),  0.45f,"Sa","slash sabre", 0.5f));
+        attacks.Add(new Attack("DownAir", 6, 190, new Vector2(0, -2), 0.3f,"Da","slash sabre", 0.9f));
+        attacks.Add(new Attack("NeutralAir", 3, 150, new Vector2(0, 2), 0.3f,"Na","slash sabre", 0.8f));
 
 
-        attacks.Add(new Attack("SideSpecial", 7, 500, new Vector2(1, 0.2f), 0.8f, "Ss","", 1f));
-        attacks.Add(new Attack("DownSpecial", 6, 400, new Vector2(0, 1), 1f, "Ds","", 1f));
+        attacks.Add(new Attack("SideSpecial", 5, 400, new Vector2(0, 1f), 1f, "Ss","", 1f));
+        attacks.Add(new Attack("DownSpecial", 7, 500, new Vector2(0, 1), 1.5f, "Ds","", 1f));
         attacks.Add(new Attack("NeutralSpecial", 2, 50, new Vector2(0, 1), 0.5f, "Ns","bouchon champagne", 1f));
 
 
-        attacks.Add(new Attack("SideWrath", 10, 750, new Vector2(1, 0), 1f, "Sw","", 1f));
-        attacks.Add(new Attack("DownWrath", 9, 500, new Vector2(0, 1), 1f, "Dw","", 1f));
-        attacks.Add(new Attack("NeutralWrath", 4, 75, new Vector2(0, 1), 0.7f,"Nw", "bouchon champagne", 1f));
+        attacks.Add(new Attack("SideWrath", 10, 600, new Vector2(1, 0), 2f, "Sw","", 1f));
+        attacks.Add(new Attack("DownWrath", 9, 750, new Vector2(0, 1), 2f, "Dw","", 1f));
+        attacks.Add(new Attack("NeutralWrath", 5, 75, new Vector2(0, 1), 0.8f,"Nw", "bouchon champagne", 1f));
 
     }
 
