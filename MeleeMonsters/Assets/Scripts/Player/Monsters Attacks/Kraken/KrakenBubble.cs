@@ -77,7 +77,7 @@ public class KrakenBubble : MonoBehaviour
                     PhotonView pVTarget = collision.GetComponent<PhotonView>();
 
                     Vector2 ejectionVector = transform.right * _direction;
-                    pVTarget.RPC("Eject", RpcTarget.All, ejectionVector, knockback, bonus);
+                    pVTarget.RPC("Eject", RpcTarget.All, ejectionVector, knockback, bonus,damage);
 
                     pVTarget.RPC("TakeDamage", RpcTarget.All, (int)(damage*bonus));
 

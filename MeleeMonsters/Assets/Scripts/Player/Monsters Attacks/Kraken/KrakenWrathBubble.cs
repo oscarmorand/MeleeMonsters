@@ -83,7 +83,7 @@ public class KrakenWrathBubble : MonoBehaviour
 
                     Vector2 direction = new Vector2(playerCollider.transform.position.x-transform.position.x, playerCollider.transform.position.y - transform.position.y);
                     direction.Normalize();
-                    pVTarget.RPC("Eject", RpcTarget.All, direction, knockback, bonus);
+                    pVTarget.RPC("Eject", RpcTarget.All, direction, knockback, bonus, damage);
 
                     pVTarget.RPC("TakeDamage", RpcTarget.All, (int)(damage*bonus));
                 }

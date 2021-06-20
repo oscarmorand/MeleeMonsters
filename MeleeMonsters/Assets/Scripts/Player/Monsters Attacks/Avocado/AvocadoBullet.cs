@@ -49,12 +49,9 @@ public class AvocadoBullet : MonoBehaviour
                 if (pV.IsMine)
                 {
                     PhotonView pVTarget = collision.GetComponent<PhotonView>();
-                    float bonus = 1;
-                    if (_parent.GetComponent<PlayerScript>().isWrath)
-                        bonus = 1.25f;
 
                     Vector2 ejectionVector = transform.right * _direction;
-                    pVTarget.RPC("Eject", RpcTarget.All, ejectionVector, knockback, bonus);
+                    pVTarget.RPC("Eject", RpcTarget.All, ejectionVector, knockback, 1,damage);
 
                     pVTarget.RPC("TakeDamage", RpcTarget.All, damage);
 
