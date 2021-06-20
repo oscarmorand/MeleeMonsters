@@ -9,7 +9,7 @@ using TMPro;
 public class SelectLevel : MonoBehaviour
 {
 
-    string level;
+    string level = "Forest";
     private GameManager gameManager;
 
     // UI
