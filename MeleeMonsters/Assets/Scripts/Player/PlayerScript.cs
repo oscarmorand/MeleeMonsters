@@ -83,6 +83,8 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
     public Shader wrath;
     public Shader appear;
 
+    public GameObject deathParticles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -257,6 +259,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
 
     public void OnEnterReappear()
     {
+        DeathParticles();
         isAlive = false;
         lives--;
         CheckStillAlive();
@@ -275,6 +278,12 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
                 levelManager.gameObjectIA.SetActive(false);
             }
         }
+    }
+
+    public void DeathParticles()
+    {
+        GameObject deathParticlesGO = PhotonNetwork.Instantiate(deathParticles.name, transform.position, new Quaternion());
+        deathParticlesGO.GetComponent<ParticleSystem>().Play();
     }
 
     private void Reappear()
