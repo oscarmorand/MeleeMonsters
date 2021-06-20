@@ -114,6 +114,39 @@ public class IAGhost : IAAttacks
 
     public override void UseAirAttacksW()
     {
+        System.Random rd = new System.Random();
 
+        if (relativeSideY < 1.5f)
+        {
+            if (relativeSideY >= 0f)
+            {
+                if (distanceX < 1.5f)
+                    playerAttacks.IAExecuteAttack((PlayerAttacks.attackType)Random3Luck(3, 5, 11, 5)); //sA / nA / nW (1 chance sur 5)
+
+                if (distanceX < 2.5f && rd.Next(0, 5) == 0)
+                    playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nW); //nW (1 chance sur 5) 
+            }
+
+            if (relativeSideY >= -1f && distanceX < 4f && rd.Next(0, 7) == 0) //1 chance sur 7
+                playerAttacks.IAExecuteAttack((PlayerAttacks.attackType)Random2Luck(9, 10, 5)); //sW / dW (1 chance sur 5)
+
+            if (relativeSideY >= -1.5f)
+            {
+                if (relativeSideY < -0.5f && distanceX < 0.75f)
+                    playerAttacks.IAExecuteAttack((PlayerAttacks.attackType)Random2(4, 5)); //dA / nA
+
+                if (distanceX < 1.25f)
+                    playerAttacks.IAExecuteAttack((PlayerAttacks.attackType)Random2(3, 5)); //sA / nA
+
+                if (distanceX >= 2.5f && rd.Next(0, 30) == 0) //1 chance sur 30
+                    playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.dW); //dW
+            }
+        }
+
+        if (relativeSideY >= -2.25f && relativeSideY < -0.5f && distanceX < 0.75f)
+            playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.dA); //dA
+
+        if (distanceX < 2.5f && relativeSideY > -0.5f && relativeSideY < 2f && rd.Next(0, 20) == 0) //1 chance sur 20
+            playerAttacks.IAExecuteAttack((PlayerAttacks.attackType)Random2Luck(11, 9, 3)); //nW / sW (1 chance sur 3)
     }
 }
