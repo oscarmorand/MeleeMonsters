@@ -90,7 +90,7 @@ public class YetiHiddenStalactite : MonoBehaviour
                     PhotonView pVTarget = collision.GetComponent<PhotonView>();
 
                     Vector2 ejectionVector = Vector2.up;
-                    pVTarget.RPC("Eject", RpcTarget.All, ejectionVector, knockback, 1f);
+                    pVTarget.RPC("Eject", RpcTarget.All, ejectionVector, knockback, 1f, damage);
 
                     pVTarget.RPC("TakeDamage", RpcTarget.All, damage);
 
