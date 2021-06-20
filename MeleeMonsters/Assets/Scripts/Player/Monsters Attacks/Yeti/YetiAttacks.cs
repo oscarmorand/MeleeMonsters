@@ -25,7 +25,7 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
 
 
         attacks.Add(new Attack("SideSpecial", 4, 150, new Vector2(1, 0), 0.6f,"Ss", "", 1f));
-        attacks.Add(new Attack("DownSpecial", 12, 60,  new Vector2(1, 1), 0.7f,"Ds", "", 1f));
+        attacks.Add(new Attack("DownSpecial", 12, 60,  new Vector2(0, 1), 0.7f,"Ds", "", 1f));
         attacks.Add(new Attack("NeutralSpecial", 7, 500, new Vector2(0, 1), 1f,"Ns", "", 1f));
 
 
