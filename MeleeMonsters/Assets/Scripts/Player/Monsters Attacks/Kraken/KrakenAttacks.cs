@@ -63,18 +63,25 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
 
     public override void NeutralSpecial()
     {
-        if (receiveTime)
+        if(gameObject.tag == "IA")
         {
-            float deltaTime = pA.specialTimeFinished - pA.specialTimeStarted;
             GameObject bubble = PhotonNetwork.Instantiate(bubblePrefab.name, hitboxesPoints[1].position, new Quaternion());
-            bubble.GetComponent<KrakenBubble>().Throw(pM.direction, gameObject, deltaTime);
-            receiveTime = false;
-            neutralSpecial = false;
+            bubble.GetComponent<KrakenBubble>().Throw(pM.direction, gameObject, 0);
         }
         else
         {
-            neutralSpecial = true;
+            if (receiveTime)
+            {
+                float deltaTime = pA.specialTimeFinished - pA.specialTimeStarted;
+                GameObject bubble = PhotonNetwork.Instantiate(bubblePrefab.name, hitboxesPoints[1].position, new Quaternion());
+                bubble.GetComponent<KrakenBubble>().Throw(pM.direction, gameObject, deltaTime);
+                receiveTime = false;
+                neutralSpecial = false;
+            }
+            else
+                neutralSpecial = true;
         }
+        
     }
 
    
@@ -90,23 +97,32 @@ public class KrakenAttacks : MonstersAttacks, IPunObservable
 
     public override void NeutralWrath()
     {
-        if (receiveTime)
+        if(gameObject.tag == "IA")
         {
-            float deltaTime = pA.specialTimeFinished - pA.specialTimeStarted;
             GameObject bubbleWrath = PhotonNetwork.Instantiate(bubbleWrathPrefab.name, hitboxesPoints[1].position, new Quaternion());
-            bubbleWrath.GetComponent<KrakenWrathBubble>().Throw(pM.direction, gameObject, deltaTime);
-            receiveTime = false;
-            neutralSpecial = false;
+            bubbleWrath.GetComponent<KrakenWrathBubble>().Throw(pM.direction, gameObject, 0);
         }
         else
         {
-            neutralSpecial = true;
+            if (receiveTime)
+            {
+                float deltaTime = pA.specialTimeFinished - pA.specialTimeStarted;
+                GameObject bubbleWrath = PhotonNetwork.Instantiate(bubbleWrathPrefab.name, hitboxesPoints[1].position, new Quaternion());
+                bubbleWrath.GetComponent<KrakenWrathBubble>().Throw(pM.direction, gameObject, deltaTime);
+                receiveTime = false;
+                neutralSpecial = false;
+            }
+            else
+            {
+                neutralSpecial = true;
+            }
         }
     }
 
 
     public override void FastFallAttackCallback() 
     {
+        print("callback pour l'" + gameObject.name);
         pA.PlayAttackAnimation("Ds");
         GameObject hiddenGeyserLeft = PhotonNetwork.Instantiate(geyserPrefab.name, hitboxesPoints[2].position, new Quaternion());
         GameObject hiddenGeyserRight = PhotonNetwork.Instantiate(geyserPrefab.name, hitboxesPoints[3].position, new Quaternion());

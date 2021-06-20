@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class IAKraken : IAAttacks
 {
+
+    private KrakenAttacks kA;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        kA = GetComponent<KrakenAttacks>();
     }
 
     // Update is called once per frame
@@ -51,8 +55,8 @@ public class IAKraken : IAAttacks
             }
         }
 
-        //if (distanceY < 1.5f && distanceX >= 2.5f && rd.Next(0, 7) == 0)
-        //    playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nS); //nS (ne marche pas)
+        if (distanceY < 1.5f && distanceX >= 2.5f && rd.Next(0, 20) == 0)
+            playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nS); //nS
     }
 
     public override void UseAirAttacks()
@@ -83,8 +87,8 @@ public class IAKraken : IAAttacks
                 playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.dS); //dS
         }
 
-        //if (distanceY < 1.5f && distanceX >= 2.5f && rd.Next(0, 7) == 0)
-        //    playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nS); //nS (ne marche pas)
+        if (distanceY < 1.5f && distanceX >= 2.5f && rd.Next(0, 20) == 0)
+            playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nS); //nS (ne marche pas)
     }
 
     public override void UseGroundAttacksW()
@@ -152,7 +156,7 @@ public class IAKraken : IAAttacks
         if (relativeSideY < 2f && distanceX < 0.75f && rd.Next(0, 5) == 0) //1 chance sur 5
             playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.dA); //dA
 
-        //if (distanceY < 1.5f && distanceX >= 2.5f && rd.Next(0, 7) == 0)
-        //    playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nW); //nW (ne marche pas)
+        if (distanceY < 1.5f && distanceX >= 2.5f && rd.Next(0, 7) == 0)
+            playerAttacks.IAExecuteAttack(PlayerAttacks.attackType.nW); //nW (ne marche pas)
     }
 }
