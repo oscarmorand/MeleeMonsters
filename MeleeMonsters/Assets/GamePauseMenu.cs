@@ -5,8 +5,11 @@ using System.Collections;
 
 public class GamePauseMenu : MonoBehaviour
 {
-    public GameObject optionsPanel;
+    public GameObject settingsPanel;
     public GameObject pauseMenuUI;
+    public GameObject greyImage;
+    public GameObject controlsPanel;
+    public GameObject goldImage;
     private LevelManager levelManager;
 
     private bool soloMode;
@@ -49,20 +52,34 @@ public class GamePauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
-        optionsPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        greyImage.SetActive(false);
         gameIsPaused = false;
     }
 
-    public void OptionMenu()
+    public void SettingsMenu()
     {
-        optionsPanel.SetActive(true);
+        settingsPanel.SetActive(true);
+        greyImage.SetActive(true);
     }
 
     public void BackOptionMenu()
     {
-        optionsPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        greyImage.SetActive(false);
     }
 
+    public void ControlsPanel()
+    {
+        controlsPanel.SetActive(true);
+        goldImage.SetActive(true);
+    }
+    
+    public void BackControls()
+    {
+        controlsPanel.SetActive(false);
+        goldImage.SetActive(false);
+    }
     public void BackMainMenu()
     {
         DisconnectPlayer();

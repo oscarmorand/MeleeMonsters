@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class SelectLevel : MonoBehaviour
 {
 
     string level;
-    /*
-    public int forest;
-    public int cemetery;
-    public int abyss;
-    public int frozenCave;
-    */
+    private GameManager gameManager;
+
+    // UI
+    public GameObject gameOptionsPanel;
+    public GameObject goldImage;
+    public Slider livesSlider;
+    public TMP_Text numberText;
+
     // Start is called before the first frame update
     void Start()
     {
-        //level = SceneManager.GetActiveScene().buildIndex;
+        GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
+        gameManager = manager.GetComponent<GameManager>();
+        livesSlider.value = gameManager.nbrLives;
     }
 
     // Update is called once per frame
@@ -59,9 +65,20 @@ public class SelectLevel : MonoBehaviour
 
     void PlayLevel()
     {
-        GameObject manager = GameObject.Find("GameManagerPrefab").gameObject;
-        GameManager gameManager = manager.GetComponent<GameManager>();
         gameManager.SetGameState(GameManager.States.EnteringLevel);
         PhotonNetwork.LoadLevel(level);
+    }
+
+    // UI
+    public void SetGameOptionPanel()
+    {
+        goldImage.SetActive(true);
+        gameOptionsPanel.SetActive(true);
+    }
+
+    public void SetNumberLives()
+    {
+        gameManager.nbrLives = (int)livesSlider.value;
+        numberText.text = gameManager.nbrLives.ToString();
     }
 }

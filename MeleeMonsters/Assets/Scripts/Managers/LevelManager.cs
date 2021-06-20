@@ -88,8 +88,6 @@ public class LevelManager : MonoBehaviour
         }
         print("il y a " + (PhotonNetwork.PlayerList.Length + iaNbr).ToString() + " joueurs ou ia");
 
-        //gameManager.InstantiatePlayer(spawnList[(PhotonNetwork.LocalPlayer.ActorNumber) % spawnList.Count].position);
-
         gameManager.InstantiatePlayer(spawnList[(PhotonNetwork.LocalPlayer.ActorNumber) - 1].position);
         InitializePlayers();
     }
@@ -103,23 +101,8 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    /*
-    public void PlayersStillInGame()
-    {
-        print("playerStillIngame est lance");
-        foreach(Photon.Realtime.Player player in PhotonNetwork.PlayerList)
-        {
-            if((bool)player.CustomProperties["StillInGame"])
-            {
-                playersInGame.Add(player);
-            }
-            print(player.NickName + " " + player.CustomProperties["StillInGame"].ToString());
-        }
-    }
-    */
     public void SearchForWinner()
     {
-        //PlayersStillInGame();
 
         if(inSolo)
         {
@@ -138,15 +121,6 @@ public class LevelManager : MonoBehaviour
                 print(playersScripts[0].nickName + " is the winner !");
                 EndGame();
             }
-            /*
-            if(playersInGame.Count <= 1)
-            {
-                if (playersInGame.Count == 1 && !(gameObjectIA.GetComponent<PlayerScript>().canStillPlay))
-                    WinnerFound();
-                //if (playersInGame.Count == 0 && (gameObjectIA.GetComponent<PlayerScript>().canStillPlay))
-                   //gameManager.IAwon = true;
-                EndGame();
-            } */
         }
         else
         {
@@ -188,4 +162,5 @@ public class LevelManager : MonoBehaviour
         gameManager.SetGameState(GameManager.States.End);
         SceneManager.LoadScene("WinnerScene");
     }
+
 }
