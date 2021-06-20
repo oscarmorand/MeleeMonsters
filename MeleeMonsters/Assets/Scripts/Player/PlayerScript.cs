@@ -77,6 +77,12 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
 
     public bool isHitStun;
 
+    public bool isAppearing;
+    private float appearTime;
+
+    public Shader wrath;
+    public Shader appear;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -118,6 +124,10 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         {
             Materials.Add(child.material);
         }
+
+        GameManager.States state = gameManager.GetGameState();
+        if (state == GameManager.States.Playing || state == GameManager.States.Start321GO)
+            AppearDissolveState();
     }
 
     // Update is called once per frame
@@ -159,6 +169,17 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         }
         else
             isWrath = localInt == 1;
+
+        if(isAppearing)
+        {
+            appearTime += Time.deltaTime;
+            UpdateFade(appearTime / 3);
+            if(appearTime >= 3)
+            {
+                isAppearing = false;
+                ChangeShader(wrath);
+            }
+        }
     }
 
 
@@ -239,7 +260,11 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         lives--;
         CheckStillAlive();
         if (canStillPlay)
-            Invoke("Reappear", reappearitionTime);
+        {
+            currentState = States.Frozen;
+            AppearDissolveState();
+            Reappear();
+        }
         else
         {
             //Destroy(gameObject);
@@ -280,7 +305,28 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
         }
     }
 
+    public void AppearDissolveState()
+    {
+        appearTime = 0;
+        isAppearing = true;
+        ChangeShader(appear);
+    }
 
+    public void ChangeShader(Shader shader)
+    {
+        foreach(Material mat in Materials)
+        {
+            mat.shader = shader;
+        }
+    }
+
+    public void UpdateFade(float fade)
+    {
+        foreach (Material mat in Materials)
+        {
+            mat.SetFloat("_Fade", fade);
+        }
+    }
 
 
     //TAKE DAMAGE

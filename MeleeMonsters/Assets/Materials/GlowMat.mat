@@ -40,6 +40,7 @@ Material:
     - Vector1_21ED454: 0.95
     - WrathCoef: 0
     - _EnableExternalAlpha: 0
+    - _Fade: 0.971
     m_Colors:
     - Color_DB0D5A95: {r: 1, g: 0.165544, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

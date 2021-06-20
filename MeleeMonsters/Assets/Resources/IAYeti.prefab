@@ -1370,6 +1370,9 @@ MonoBehaviour:
   - {fileID: 6275022572931034431}
   wrathColor: {r: 1, g: 0.6, b: 0.6, a: 1}
   isHitStun: 0
+  isAppearing: 0
+  wrath: {fileID: -6465566751694194690, guid: 108b9503123c9204591dfa6a18b6e273, type: 3}
+  appear: {fileID: -6465566751694194690, guid: 7639b27cbf38f4946b156fbe7e92fc3d, type: 3}
 --- !u!114 &4048278115268245952
 MonoBehaviour:
   m_ObjectHideFlags: 0
