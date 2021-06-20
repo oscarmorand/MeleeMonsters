@@ -125,6 +125,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
             Materials.Add(child.material);
         }
 
+
         GameManager.States state = gameManager.GetGameState();
         if (state == GameManager.States.Playing || state == GameManager.States.Start321GO)
             AppearDissolveState();
@@ -278,6 +279,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
 
     private void Reappear()
     {
+        currentState = States.Playing;
         rb.velocity = new Vector2(0, 0);
         int randomSpawnPoint = Random.Range(0, spawnList.Count);
         transform.position = spawnList[randomSpawnPoint].position;
