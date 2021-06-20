@@ -83,7 +83,7 @@ public class YetiHiddenStalactite : MonoBehaviour
     {
         if (collision.transform.tag == "Player" || collision.transform.tag == "IA")
         {
-            if (collision.transform.root.gameObject != _parent.transform.root.gameObject)
+            if (collision.transform.gameObject != _parent)
             {
                 if (pV.IsMine)
                 {
