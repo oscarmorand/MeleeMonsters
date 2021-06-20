@@ -45,6 +45,8 @@ public class WinnerScene : MonoBehaviour
         PhotonNetwork.LeaveRoom(true);
         PhotonNetwork.Disconnect();
         gameManager.nbrLives = 3;
+        gameManager.iaLevel = GameManager.IADifficultyChoice.Beginner;
+        gameManager.winner = "";
         SceneManager.LoadScene("Menu");
     }
 
