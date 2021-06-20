@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: New Kraken Settings
   m_EditorClassIdentifier: 
   speed: 305
-  jumpStrength: 5
+  jumpStrength: 8
   jumpTime: 0.02
   extraJump: 1
   wallSlidingSpeed: 1
