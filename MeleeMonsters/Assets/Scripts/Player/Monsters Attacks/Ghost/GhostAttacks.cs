@@ -12,8 +12,8 @@ public class GhostAttacks : MonstersAttacks, IPunObservable
     {
         attacks = new List<Attack>();
 
-        attacks.Add(new Attack("SideGround", 3, 300, new Vector2(1, 0.1f), 0.5f,"Sg","", 1f));
-        attacks.Add(new Attack("DownGround", 5, 400, new Vector2(0, 1), 0.5f,"Dg", "", 1f));
+        attacks.Add(new Attack("SideGround", 5, 500, new Vector2(2f, 1f), 0.5f,"Sg","", 1f));
+        attacks.Add(new Attack("DownGround", 5, 400, new Vector2(0.25f, 1), 0.5f,"Dg", "", 1f));
         attacks.Add(new Attack("NeutralGround", 4, 150,  new Vector2(0, 1), 0.5f,"Ng", "", 1f));
 
         attacks.Add(new Attack("SideAir", 5, 400,  new Vector2(1, 0), 0.5f, "Sa", "", 1f));
