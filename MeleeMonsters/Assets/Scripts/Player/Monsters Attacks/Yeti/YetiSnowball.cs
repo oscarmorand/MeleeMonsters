@@ -14,6 +14,7 @@ public class YetiSnowball : MonoBehaviour
 
     private Rigidbody2D rb;
     private PhotonView pV;
+    private AudioManager aM;
 
     private GameObject _parent;
 
@@ -22,6 +23,7 @@ public class YetiSnowball : MonoBehaviour
         //rb.velocity = transform.right * speed * direction;
         rb = GetComponent<Rigidbody2D>();
         pV = GetComponent<PhotonView>();
+        aM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     public void Throw(float direction, GameObject parent)
@@ -37,6 +39,7 @@ public class YetiSnowball : MonoBehaviour
 
     public void DestroyBullet()
     {
+        aM.Play("snowball");
         PhotonNetwork.Destroy(gameObject);
     }
 

@@ -16,6 +16,7 @@ public class KrakenWrathBubble : MonoBehaviour
     private PhotonView pV;
     private CircleCollider2D cC;
     private Animator anim;
+    private AudioManager aM;
 
     private GameObject _parent;
 
@@ -27,6 +28,7 @@ public class KrakenWrathBubble : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         pV = GetComponent<PhotonView>();
         anim = GetComponent<Animator>();
+        aM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     public void Throw(float direction, GameObject parent, float size)
@@ -47,6 +49,7 @@ public class KrakenWrathBubble : MonoBehaviour
 
     public void DestroyBullet()
     {
+        aM.Play("pop");
         PhotonNetwork.Destroy(gameObject);
     }
 

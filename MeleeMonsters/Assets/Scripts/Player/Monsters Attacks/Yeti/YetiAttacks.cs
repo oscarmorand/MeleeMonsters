@@ -14,24 +14,24 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
     {
         attacks = new List<Attack>();
 
-        attacks.Add(new Attack("SideGround", 9, 550, new Vector2(2, 1f), 0.6f,"Sg", "",1f));
-        attacks.Add(new Attack("DownGround", 12, 610,  new Vector2(0, 1), 0.7f,"Dg", "", 1f));
-        attacks.Add(new Attack("NeutralGround", 14, 400, new Vector2(0, 2), 0.9f,"Ng", "", 1f));
+        attacks.Add(new Attack("SideGround", 9, 550, new Vector2(2, 1f), 0.6f,"Sg", "wooshe4",1f));
+        attacks.Add(new Attack("DownGround", 12, 610,  new Vector2(0, 1), 0.7f,"Dg", "wooshe7", 1f));
+        attacks.Add(new Attack("NeutralGround", 14, 400, new Vector2(0, 2), 0.9f,"Ng", "wooshe15", 1f));
 
 
-        attacks.Add(new Attack("SideAir", 10, 550,  new Vector2(0.5f, -1), 0.6f,"Sa", "", 1f));
-        attacks.Add(new Attack("DownAir", 11, 550, new Vector2(0, -2), 0.6f, "Da", "", 1f));
-        attacks.Add(new Attack("NeutralAir", 14, 400,  new Vector2(0, 2), 0.9f,"Na", "", 1f));
+        attacks.Add(new Attack("SideAir", 10, 550,  new Vector2(0.5f, -1), 0.6f,"Sa", "wooshe4", 1f));
+        attacks.Add(new Attack("DownAir", 11, 550, new Vector2(0, -2), 0.6f, "Da", "wooshe15", 1f));
+        attacks.Add(new Attack("NeutralAir", 14, 400,  new Vector2(0, 2), 0.9f,"Na", "wooshe15", 1f));
 
 
         attacks.Add(new Attack("SideSpecial", 4, 100, new Vector2(1, 0), 0.6f,"Ss", "", 0.3f));
-        attacks.Add(new Attack("DownSpecial", 12, 500,  new Vector2(0, 2), 1.3f,"Ds", "", 0.7f));
-        attacks.Add(new Attack("NeutralSpecial", 10, 550, new Vector2(0, 2), 1.4f,"Ns", "", 0.7f));
+        attacks.Add(new Attack("DownSpecial", 12, 500,  new Vector2(0, 2), 1.3f,"Ds", "icebreak", 0.7f));
+        attacks.Add(new Attack("NeutralSpecial", 10, 550, new Vector2(0, 2), 1.4f,"Ns", "wooshb4", 0.7f));
 
 
         attacks.Add(new Attack("SideWrath", 10, 100,new Vector2(1, 1), 0.8f,"Sw", "", 0.3f));
-        attacks.Add(new Attack("DownWrath", 22, 580, new Vector2(0, 1), 1f,"Dw", "", 1f)); // fait mal mais n'éjecte pas trop haut
-        attacks.Add(new Attack("NeutralWrath", 18, 650, new Vector2(1, 2), 2f,"Nw", "", 1f)); //éjecte assez haut
+        attacks.Add(new Attack("DownWrath", 22, 580, new Vector2(0, 1), 1f,"Dw", "wooshb4", 1f)); // fait mal mais n'éjecte pas trop haut
+        attacks.Add(new Attack("NeutralWrath", 18, 650, new Vector2(1, 2), 2f,"Nw", "wooshb4", 1f)); //éjecte assez haut
 
     }
 
