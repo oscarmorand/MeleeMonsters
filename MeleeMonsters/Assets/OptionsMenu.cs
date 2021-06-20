@@ -7,6 +7,15 @@ using TMPro;
 
 public class OptionsMenu : MonoBehaviour
 {
+    [System.Serializable]
+    public class ScreenResolution
+    {
+        public int width;
+        public int height;
+    }
+
+    public ScreenResolution[] resolutions;
+
     public AudioMixer audioMixer;
     public TMP_Dropdown resolutionDropdown;
     public GameObject gameOptionsPanel;
@@ -16,50 +25,28 @@ public class OptionsMenu : MonoBehaviour
 
     private GameManager gameManager;
 
-    Resolution[] resolutions;
+    
     private void Start()
     {
 
-        /*
-        resolutions = Screen.resolutions;
-        resolutionDropdown.ClearOptions();
-
-        List<string> options = new List<string>();
-        int currentResolutionIndex = 0;
-        
-        for (int i = 0; i < resolutions.Length; ++i)
-        {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
-
-            if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex = i;
-            }
-        }
-        
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
-        */
     }
 
     public void SetResolution(int resolutionIndex)
     {
-        
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        // Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolutions[resolutionIndex].width, resolutions[resolutionIndex].height, Screen.fullScreen);
     }
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
     }
 
+    /*
     public void SetQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
     }
+    */
 
     public void SetFullscreen(bool isFullscreen)
     {

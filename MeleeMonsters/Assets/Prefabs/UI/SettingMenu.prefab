@@ -1336,7 +1336,7 @@ MonoBehaviour:
   m_Value: 2
   m_Options:
     m_Options:
-    - m_Text: 800 x 600
+    - m_Text: 960 x 540
       m_Image: {fileID: 0}
     - m_Text: 1280 x 720
       m_Image: {fileID: 0}
@@ -1628,18 +1628,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5254392456469756542}
-        m_MethodName: SetQuality
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_AlphaFadeSpeed: 0.15
 --- !u!1 &4879278577780378412
 GameObject:
@@ -2563,6 +2552,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b96a8001c7baca479549ecb442357f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resolutions:
+  - width: 960
+    height: 540
+  - width: 1280
+    height: 720
+  - width: 1920
+    height: 1080
   audioMixer: {fileID: 24100000, guid: d96d904eba120f343ad974a734d59db6, type: 2}
   resolutionDropdown: {fileID: 0}
   gameOptionsPanel: {fileID: 1235173612069332689}

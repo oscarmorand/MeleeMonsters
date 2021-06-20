@@ -3072,7 +3072,7 @@ PrefabInstance:
     - target: {fileID: 5286155732096555087, guid: 6f7a85eddd831d74a831fca3053fde82,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RightMonster
+      value: LeftMonster
       objectReference: {fileID: 0}
     - target: {fileID: 5342980375963979731, guid: 6f7a85eddd831d74a831fca3053fde82,
         type: 3}
