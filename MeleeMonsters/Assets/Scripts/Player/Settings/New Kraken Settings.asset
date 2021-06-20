@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8598f1352dc7d44ca817057d41736c1, type: 3}
   m_Name: New Kraken Settings
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpStrength: 3
-  jumpTime: 0.025
+  speed: 305
+  jumpStrength: 5
+  jumpTime: 0.02
   extraJump: 1
   wallSlidingSpeed: 5
   yWallForce: 5
   gravityScale: 1
   fastFallingSpeed: 10
   dashNbr: 1
-  dashForce: 15
+  dashForce: 14
   dashTime: 0.2
   dashCoolDown: 0.2
