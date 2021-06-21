@@ -259,14 +259,15 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
 
     public void OnEnterReappear()
     {
+        if (!pV.IsMine)
+            return;
         DeathParticles();
         aM.Play("bloodbath");
         isAlive = false;
-        lives--;
+        pV.RPC("DecrementLives", RpcTarget.All);
         CheckStillAlive();
         if (canStillPlay)
         {
-            currentState = States.Frozen;
             AppearDissolveState();
             Reappear();
         }
@@ -279,6 +280,12 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
                 levelManager.gameObjectIA.SetActive(false);
             }
         }
+    }
+
+    [PunRPC]
+    public void DecrementLives()
+    {
+        lives--;
     }
 
     public void DeathParticles()
@@ -398,7 +405,6 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
             stream.SendNext(tempVector);
             stream.SendNext(localInt);
             stream.SendNext(wrathPercentage);
-            stream.SendNext(lives);
         }
         else
         {
@@ -410,7 +416,6 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
             }
             localInt = (int)stream.ReceiveNext();
             wrathPercentage = (float)stream.ReceiveNext();
-            lives = (int)stream.ReceiveNext();
         }
     }
 
