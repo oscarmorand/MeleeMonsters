@@ -44,6 +44,9 @@ public class WinnerScene : MonoBehaviour
         PhotonNetwork.DestroyAll();
         PhotonNetwork.LeaveRoom(true);
         PhotonNetwork.Disconnect();
+        AudioManager aM = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        aM.Stop("wrath theme");
+        aM.UnPause("theme");
         gameManager.nbrLives = 3;
         gameManager.iaLevel = GameManager.IADifficultyChoice.Beginner;
         gameManager.winner = "";
