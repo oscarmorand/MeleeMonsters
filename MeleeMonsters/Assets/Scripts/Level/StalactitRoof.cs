@@ -17,7 +17,6 @@ public class StalactitRoof : MonoBehaviour
         if (collision.transform.tag == "Player" || collision.transform.tag == "IA")
         {
             PhotonView pVTarget = collision.GetComponent<PhotonView>();
-            float bonus = 1;
 
             Vector2 trajectoire;
             if (down)
@@ -30,7 +29,7 @@ public class StalactitRoof : MonoBehaviour
                     trajectoire = Vector2.left;
             }
 
-            pVTarget.RPC("Eject", RpcTarget.All, trajectoire, knockback, bonus);
+            pVTarget.RPC("Eject", RpcTarget.All, trajectoire, knockback, 1f, damage);
 
             pVTarget.RPC("TakeDamage", RpcTarget.All, damage);
         }

@@ -19,9 +19,9 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
         attacks.Add(new Attack("NeutralGround", 14, 400, new Vector2(0, 2), 0.9f,"Ng", "wooshe15", 1f));
 
 
-        attacks.Add(new Attack("SideAir", 10, 550,  new Vector2(0.5f, -1), 0.6f,"Sa", "wooshe4", 1f));
+        attacks.Add(new Attack("SideAir", 10, 550,  new Vector2(1, -1), 0.6f,"Sa", "wooshe4", 1f));
         attacks.Add(new Attack("DownAir", 11, 550, new Vector2(0, -2), 0.6f, "Da", "wooshe15", 1f));
-        attacks.Add(new Attack("NeutralAir", 14, 400,  new Vector2(0, 2), 0.9f,"Na", "wooshe15", 1f));
+        attacks.Add(new Attack("NeutralAir", 14, 400,  new Vector2(2, 0), 0.9f,"Na", "wooshe15", 1f));
 
 
         attacks.Add(new Attack("SideSpecial", 4, 100, new Vector2(1, 0), 0.6f,"Ss", "", 0.3f));
@@ -57,7 +57,7 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
 
     public override void NeutralSpecial()
     {
-        pM.SetDashAttackState(0.2f, 0.03f, 18f, new Vector2(0.5f, 1));
+        pM.SetDashAttackState(0.2f, 0.02f, 12f, new Vector2(1, 1));
     }
 
     
@@ -75,7 +75,7 @@ public class YetiAttacks : MonstersAttacks, IPunObservable
 
     public override void NeutralWrath()
     {
-        pM.SetDashAttackState(0.2f, 0.03f, 18f, new Vector2(0f, 1));
+        pM.SetDashAttackState(0.2f, 0.02f, 12f, new Vector2(0f, 1));
     }
 
 
