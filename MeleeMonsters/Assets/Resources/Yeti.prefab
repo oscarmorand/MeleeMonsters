@@ -11346,10 +11346,10 @@ MonoBehaviour:
   lives: 0
   percentage: 0
   isWrath: 0
-  maxWrathTime: 15
+  maxWrathTime: 20
   wrathTime: 0
-  maxLoadingWrath: 500
-  loadingWrath: 480
+  maxLoadingWrath: 180
+  loadingWrath: 0
   reappearitionTime: 1
   spritesToColor:
   - {fileID: 8857413212773297185}

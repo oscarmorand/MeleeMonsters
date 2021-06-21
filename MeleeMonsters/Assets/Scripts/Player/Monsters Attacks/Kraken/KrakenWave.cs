@@ -25,6 +25,8 @@ public class KrakenWave : MonoBehaviour
     public List<GameObject> playersInWave;
     public bool isDestroying = false;
 
+    public float countDown = 0;
+
 
     void Awake()
     {
@@ -50,6 +52,10 @@ public class KrakenWave : MonoBehaviour
                 go.transform.Rotate(Vector3.forward, Time.deltaTime * 80);
             }
         }
+
+        countDown += Time.deltaTime;
+        if (countDown >= 3)
+            DestroyBullet();
     }
 
     public void Throw(float direction, GameObject parent)
