@@ -7,7 +7,6 @@ public class GamePauseMenu : MonoBehaviour
 {
     public GameObject settingsPanel;
     public GameObject pauseMenuUI;
-    public GameObject greyImage;
     public GameObject controlsPanel;
     public GameObject goldImage;
     private LevelManager levelManager;
@@ -53,20 +52,17 @@ public class GamePauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
         settingsPanel.SetActive(false);
-        greyImage.SetActive(false);
         gameIsPaused = false;
     }
 
     public void SettingsMenu()
     {
         settingsPanel.SetActive(true);
-        greyImage.SetActive(true);
     }
 
     public void BackOptionMenu()
     {
         settingsPanel.SetActive(false);
-        greyImage.SetActive(false);
     }
 
     public void ControlsPanel()
