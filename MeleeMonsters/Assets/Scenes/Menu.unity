@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -906,8 +906,8 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: wrath theme
-    clip: {fileID: 8300000, guid: 6d23addc848e6a94aaecd30f6504eeeb, type: 3}
-    volume: 0.15
+    clip: {fileID: 8300000, guid: fb14b7763b331c8499a56bff64193d22, type: 3}
+    volume: 0.1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
