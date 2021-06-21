@@ -19,6 +19,8 @@ public class UI_PlayerLife : MonoBehaviour
     private Image monsterImageComponent;
     private Slider slider;
 
+    public TMP_Text livesText;
+
     public int playerIndex = -1;
 
 
@@ -34,6 +36,8 @@ public class UI_PlayerLife : MonoBehaviour
 
         GameObject wrathModeBar = panel.transform.Find("WrathModeBar").gameObject;
         slider = wrathModeBar.GetComponent<Slider>();
+
+        livesText.text = gameManager.nbrLives.ToString();
     }
 
     // Update is called once per frame
@@ -47,8 +51,10 @@ public class UI_PlayerLife : MonoBehaviour
 
             username.text = playerScript.nickName;
             slider.value = playerScript.wrathPercentage;
+            livesText.text = playerScript.lives.ToString();
             UI_percentage.text = playerScript.percentage.ToString(); 
             monsterImageComponent.sprite = gameManager.monstersSpriteArray[playerScript.monsterIndex];
+
         }
         else
         {
