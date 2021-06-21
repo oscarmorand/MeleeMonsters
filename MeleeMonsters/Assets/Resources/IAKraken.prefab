@@ -241,7 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6230648554811542093}
   - component: {fileID: 5206664893749421687}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: NeutralGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5460,7 +5460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 262003561128705688}
   - component: {fileID: 7638177530097392072}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: DownSpecial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5768,7 +5768,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6161737238684266841}
   - component: {fileID: 6931752368429309316}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: SideWrath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10799,7 +10799,7 @@ GameObject:
   - component: {fileID: 2514326178866642651}
   - component: {fileID: 4468450686288805745}
   - component: {fileID: 754849932801449147}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: DownWrath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30965,7 +30965,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6132251708925152736}
   - component: {fileID: 4711363643466034520}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: SideAir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31082,7 +31082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2701054752349930133}
   - component: {fileID: 3335027416071352996}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: SideSpecial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31195,7 +31195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3555119330618640060}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Hitboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31318,7 +31318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5353521796482859787}
   - component: {fileID: 3102722499988636002}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: SideGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
