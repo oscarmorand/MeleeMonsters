@@ -398,6 +398,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
             stream.SendNext(tempVector);
             stream.SendNext(localInt);
             stream.SendNext(wrathPercentage);
+            stream.SendNext(lives);
         }
         else
         {
@@ -409,6 +410,7 @@ public class PlayerScript : MonoBehaviour, IPunObservable, IPunInstantiateMagicC
             }
             localInt = (int)stream.ReceiveNext();
             wrathPercentage = (float)stream.ReceiveNext();
+            lives = (int)stream.ReceiveNext();
         }
     }
 
