@@ -654,7 +654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1197037697324805363}
   - component: {fileID: 797859535896567826}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: NeutralSpecial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1122,7 +1122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2664455550192113928}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Hitboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1163,7 +1163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4634820656640067835}
   - component: {fileID: 5963399076915425379}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: NeutralWrath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
